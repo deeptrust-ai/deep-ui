@@ -178,8 +178,9 @@ export const Loading: Story = {
         <Button {...args} variant="ghost" />
       </div>
       <Text>
-        If you have an icon inside the button, you can use the button`s <Code>disabled</Code> state and wrap the icon in
-        a standalone <Code>{`<Spinner>`}</Code> to achieve a more sophisticated design.
+        If you have an icon inside the button, you can use the button`s <Code>disabled</Code> state
+        and wrap the icon in a standalone <Code>{`<Spinner>`}</Code> to achieve a more sophisticated
+        design.
       </Text>
       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
         <Button {...args} loading={false} variant="classic">

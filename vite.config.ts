@@ -7,8 +7,10 @@ import react from '@vitejs/plugin-react';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 // https://vite.dev/config/
+const isStorybookCommand = process.argv.some((arg) => arg.includes('storybook'));
+
 export default defineConfig({
-  plugins: [react(), dts({ include: ['lib'] }), libInjectCss()],
+  plugins: [react(), !isStorybookCommand && dts({ include: ['lib'] }), libInjectCss()].filter(Boolean),
   resolve: {
     // Map the package name to the local lib entry so bare imports like
     // `import { Button } from '@deeptrust/deep-ui'` resolve during dev.

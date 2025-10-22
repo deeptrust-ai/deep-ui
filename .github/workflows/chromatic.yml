@@ -1,5 +1,5 @@
 # Workflow name
-name: 'Chromatic'
+name: "Chromatic"
 
 # Events for the workflow
 on:
@@ -23,8 +23,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
       - run: npm install
+      - name: Lint library
+        if: github.event_name == 'pull_request'
+        run: npm run lint:library
+      - name: Typecheck library
+        if: github.event_name == 'pull_request'
+        run: npm run tsc:library
+      - run: npm run build
+      - name: Lint stories
+        if: github.event_name == 'pull_request'
+        run: npm run lint:stories
+      - name: Typecheck stories
+        if: github.event_name == 'pull_request'
+        run: npm run tsc:stories
       - run: npm run build
       #👇 Chromatic check for pull requests
       - name: Chromatic PR Check

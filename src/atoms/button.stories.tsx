@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { AcornIcon } from '@phosphor-icons/react';
+import 'frosted-ui/styles.css';
 import { Code, Spinner, Text } from 'frosted-ui';
 
 import { Button, type ButtonProps } from '@deeptrust/deep-ui';

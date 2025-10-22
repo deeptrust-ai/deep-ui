@@ -23,9 +23,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "bun"
-      - run: bun install
-      - run: bun build
+          cache: "npm"
+      - run: npm install
+      - run: npm run build
       #👇 Chromatic check for pull requests
       - name: Chromatic PR Check
         if: github.event_name == 'pull_request'

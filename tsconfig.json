@@ -1,11 +1,21 @@
 {
-  "files": [],
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@deeptrust/deep-ui": ["lib/main.ts"],
+      "@deeptrust/deep-ui/*": ["lib/*"]
+    },
     "module": "esnext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "skipLibCheck": true
   },
-  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+
+  "include": ["src", "stories"],
+  "exclude": ["lib/**/*.d.ts", "node_modules"]
 }

@@ -1,6 +1,10 @@
+import { Button as FrostedButton, type ButtonProps } from 'frosted-ui';
+
 import styles from './styles.module.css';
 
-export function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  const { className, ...restProps } = props;
-  return <button className={`${className} ${styles.button}`} {...restProps} />;
+const Button = ({ className, ...restProps }: ButtonProps) => {
+  return <FrostedButton className={`${className} ${styles.button}`} {...restProps} />;
 }
+
+export default Button;
+export type { ButtonProps };

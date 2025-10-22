@@ -1,12 +1,18 @@
 # Workflow name
-name: "Chromatic Publish"
+name: "Chromatic"
 
-# Event for the workflow
-on: push
+# Events for the workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 # List of jobs
 jobs:
-  test:
+  chromatic:
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
@@ -17,12 +23,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "yarn"
-      - run: yarn
-      #👇 Adds Chromatic as a step in the workflow
-      - uses: chromaui/action@latest
-        # Options required for Chromatic's GitHub Action
+          cache: "bun"
+      - run: bun install
+      - run: bun build
+      #👇 Chromatic check for pull requests
+      - name: Chromatic PR Check
+        if: github.event_name == 'pull_request'
+        uses: chromaui/action@latest
         with:
-          #👇 Chromatic projectToken,
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+      #👇 Chromatic publish when main is updated
+      - name: Chromatic Publish
+        if: github.event_name == 'push'
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          autoAcceptChanges: true

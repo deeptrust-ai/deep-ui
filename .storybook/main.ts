@@ -18,12 +18,18 @@ const config: StorybookConfig = {
     options: {},
   },
   async viteFinal(config) {
+    const base = Array.isArray(config.resolve?.alias)
+      ? Object.fromEntries(
+          (config.resolve!.alias as Array<any>).map((a) => [a.find, a.replacement])
+        )
+      : config.resolve?.alias || {};
+
     config.resolve = config.resolve || {};
+
     config.resolve.alias = {
-      ...(config.resolve.alias || {}),
+      ...base,
+      '@deeptrust/deep-ui/styles.css': resolve(__dirname, '..', 'lib', 'styles.css'),
       '@deeptrust/deep-ui': resolve(__dirname, '..', 'lib', 'main.ts'),
-      // Support deep imports like '@deeptrust/deep-ui/atoms/Button'
-      '^@deeptrust/deep-ui/(.*)$': resolve(__dirname, '..', 'lib') + '/$1',
     };
     return config;
   },

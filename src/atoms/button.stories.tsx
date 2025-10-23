@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { DownloadIcon, AcornIcon } from '@phosphor-icons/react';
+import type { ComponentType } from 'react';
 import 'frosted-ui/styles.css';
-import { Code, Spinner, Text } from 'frosted-ui';
+import { Code, Spinner as FrostedSpinner, Text, type SpinnerProps } from 'frosted-ui';
 
 import { Button, type ButtonProps } from '@deeptrust/deep-ui';
 
@@ -17,6 +18,10 @@ const buttonPropDefs = {
     default: 'indigo',
   },
 } as const;
+
+// this will be gone soon
+const SpinnerComponent = FrostedSpinner as unknown as ComponentType<SpinnerProps>;
+const Spinner = (props: SpinnerProps) => <SpinnerComponent {...props} />;
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -178,8 +183,9 @@ export const Loading: Story = {
         <Button {...args} variant="ghost" />
       </div>
       <Text>
-        If you have an icon inside the button, you can use the button`s <Code>disabled</Code> state and wrap the icon in
-        a standalone <Code>{`<Spinner>`}</Code> to achieve a more sophisticated design.
+        If you have an icon inside the button, you can use the button`s <Code>disabled</Code> state
+        and wrap the icon in a standalone <Code>{`<Spinner>`}</Code> to achieve a more sophisticated
+        design.
       </Text>
       <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
         <Button {...args} loading={false} variant="classic">

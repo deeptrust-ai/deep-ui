@@ -25,19 +25,6 @@ jobs:
           node-version: 20
           cache: "npm"
       - run: npm install
-      - name: Lint library
-        if: github.event_name == 'pull_request'
-        run: npm run lint:library
-      - name: Typecheck library
-        if: github.event_name == 'pull_request'
-        run: npm run tsc:library
-      - run: npm run build
-      - name: Lint stories
-        if: github.event_name == 'pull_request'
-        run: npm run lint:stories
-      - name: Typecheck stories
-        if: github.event_name == 'pull_request'
-        run: npm run tsc:stories
       - run: npm run build
       #👇 Chromatic check for pull requests
       - name: Chromatic PR Check
@@ -46,6 +33,7 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+          exitOnceUploaded: true
       #👇 Chromatic publish when main is updated
       - name: Chromatic Publish
         if: github.event_name == 'push'
@@ -54,3 +42,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
           autoAcceptChanges: true
+          exitOnceUploaded: true

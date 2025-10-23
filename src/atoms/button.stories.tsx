@@ -2,16 +2,16 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { DownloadIcon, AcornIcon } from '@phosphor-icons/react';
 import type { ComponentType } from 'react';
-import 'frosted-ui/styles.css';
+
 import {
+  Button,
+  type ButtonProps,
   Code,
   Spinner as FrostedSpinner,
   Text,
   type SpinnerProps,
   buttonPropDefs,
-} from 'frosted-ui';
-
-import { Button, type ButtonProps } from '@deeptrust/deep-ui';
+} from '@deeptrust/deep-ui';
 
 // this will be gone soon
 const SpinnerComponent = FrostedSpinner as unknown as ComponentType<SpinnerProps>;

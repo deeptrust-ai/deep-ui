@@ -1,4 +1,5 @@
-import { Theme } from 'frosted-ui';
+import { Theme } from '@deeptrust/deep-ui';
+import '@deeptrust/deep-ui/styles.css';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {

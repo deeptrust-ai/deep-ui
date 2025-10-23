@@ -32,7 +32,12 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['react', 'react/jsx-runtime'],
+      external: [
+        'react',
+        'react/jsx-runtime',
+        /^frosted-ui(\/.*)?$/,
+        /^@deeptrust\/deep-ui(\/.*)?$/,
+      ],
       input: (() => {
         const entries = Object.fromEntries(
           glob

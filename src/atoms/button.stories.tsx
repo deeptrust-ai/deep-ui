@@ -3,21 +3,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DownloadIcon, AcornIcon } from '@phosphor-icons/react';
 import type { ComponentType } from 'react';
 import 'frosted-ui/styles.css';
-import { Code, Spinner as FrostedSpinner, Text, type SpinnerProps } from 'frosted-ui';
+import {
+  Code,
+  Spinner as FrostedSpinner,
+  Text,
+  type SpinnerProps,
+  buttonPropDefs,
+} from 'frosted-ui';
 
 import { Button, type ButtonProps } from '@deeptrust/deep-ui';
-
-const buttonPropDefs = {
-  size: {
-    default: '3',
-  },
-  variant: {
-    default: 'solid',
-  },
-  color: {
-    default: 'indigo',
-  },
-} as const;
 
 // this will be gone soon
 const SpinnerComponent = FrostedSpinner as unknown as ComponentType<SpinnerProps>;
@@ -29,6 +23,24 @@ const meta = {
   component: Button,
   args: {
     disabled: false,
+    highContrast: false,
+  },
+  argTypes: {
+    size: {
+      options: buttonPropDefs.size.values,
+      control: { type: 'inline-radio' },
+      table: { defaultValue: { summary: buttonPropDefs.size.default } },
+    },
+    variant: {
+      options: buttonPropDefs.variant.values,
+      control: { type: 'select' },
+      table: { defaultValue: { summary: buttonPropDefs.variant.default } },
+    },
+    color: {
+      options: buttonPropDefs.color.values,
+      control: { type: 'select' },
+      table: { defaultValue: { summary: buttonPropDefs.color.default } },
+    },
   },
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

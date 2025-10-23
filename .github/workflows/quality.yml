@@ -1,0 +1,47 @@
+# Workflow name
+name: "Quality Checks"
+
+# Events for the workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# List of jobs
+jobs:
+  lint:
+    name: "Lint (${{ matrix.script }})"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        script: ["lint:library", "lint:stories"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - run: npm install
+      - run: npm run ${{ matrix.script }}
+
+  typecheck:
+    name: "Typecheck (${{ matrix.script }})"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        script: ["tsc:library", "tsc:stories"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - run: npm install
+      - run: npm run ${{ matrix.script }}

@@ -17,6 +17,10 @@ export default defineConfig({
     // Map the package name to the local lib entry so bare imports like
     // `import { Button } from '@deeptrust/deep-ui'` resolve during dev.
     alias: [
+      {
+        find: '@deeptrust/deep-ui/styles.css',
+        replacement: resolve(__dirname, 'lib', 'styles.css'),
+      },
       { find: '@deeptrust/deep-ui', replacement: resolve(__dirname, 'lib', 'main.ts') },
       { find: /^@deeptrust\/deep-ui\/(.*)$/, replacement: resolve(__dirname, 'lib') + '/$1' },
     ],

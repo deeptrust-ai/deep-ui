@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
+    "classnames": "2.5.1",
     "frosted-ui": "0.0.1-canary.82"
   },
   "devDependencies": {

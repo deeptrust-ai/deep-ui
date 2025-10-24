@@ -16,6 +16,6 @@
     "skipLibCheck": true
   },
 
-  "include": ["src", "stories", ".storybook"],
+  "include": ["src", "stories", ".storybook", "colors"],
   "exclude": ["lib/**/*.d.ts", "node_modules"]
 }

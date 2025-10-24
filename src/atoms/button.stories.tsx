@@ -11,6 +11,7 @@ import {
   Text,
   type SpinnerProps,
   buttonPropDefs,
+  buttonColors,
 } from '@deeptrust/deep-ui';
 
 // this will be gone soon
@@ -37,9 +38,9 @@ const meta = {
       table: { defaultValue: { summary: buttonPropDefs.variant.default } },
     },
     color: {
-      options: buttonPropDefs.color.values,
+      options: buttonColors,
       control: { type: 'select' },
-      table: { defaultValue: { summary: buttonPropDefs.color.default } },
+      table: { defaultValue: { summary: buttonColors[0] } },
     },
   },
   parameters: {
@@ -59,7 +60,7 @@ export const Default: Story = {
     children: 'Button',
     size: buttonPropDefs.size.default,
     variant: buttonPropDefs.variant.default,
-    color: buttonPropDefs.color.default,
+    color: buttonColors[0],
   },
 };
 
@@ -68,7 +69,7 @@ export const Size: Story = {
     children: 'Button',
     size: buttonPropDefs.size.default,
     variant: buttonPropDefs.variant.default,
-    color: buttonPropDefs.color.default,
+    color: buttonColors[0],
   },
   render: (args: ButtonProps) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
@@ -84,7 +85,7 @@ export const Variant: Story = {
   args: {
     children: 'Button',
     size: buttonPropDefs.size.default,
-    color: buttonPropDefs.color.default,
+    color: buttonColors[0],
   },
   render: (args: ButtonProps) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
@@ -104,10 +105,10 @@ export const Color: Story = {
   },
   render: (args: ButtonProps) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-      <Button {...args} color="indigo" />
-      <Button {...args} color="cyan" />
+      <Button {...args} color="violet" />
       <Button {...args} color="orange" />
-      <Button {...args} color="crimson" />
+      <Button {...args} color="yellow" />
+      <Button {...args} color="red" />
     </div>
   ),
 };
@@ -178,7 +179,7 @@ export const Loading: Story = {
   args: {
     children: 'Button',
     size: buttonPropDefs.size.default,
-    color: buttonPropDefs.color.default,
+    color: buttonColors[0],
     disabled: undefined,
     loading: true,
   },

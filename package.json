@@ -15,7 +15,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "build": "node colors/build.js && tsc -b ./tsconfig.lib.json && vite build",
     "lint:library": "eslint \"lib/**/*.@(ts|tsx)\"",
     "lint:stories": "eslint \"src/**/*.stories.@(ts|tsx|mdx)\"",
     "lint": "npm run lint:library && npm run lint:stories",
@@ -40,6 +40,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "4.1.1",
     "@eslint/js": "9.36.0",
+    "@frosted-ui/colors": "^0.0.1-canary.83",
     "@storybook/addon-a11y": "9.1.13",
     "@storybook/addon-docs": "9.1.13",
     "@storybook/addon-onboarding": "9.1.13",

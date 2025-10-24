@@ -5,7 +5,15 @@ import type { Preview } from '@storybook/react';
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <Theme>
+      <Theme
+        appearance="light"
+        accentColor="violet"
+        grayColor='gray'
+        dangerColor="red"
+        successColor="green"
+        warningColor="yellow"
+        infoColor="blue"
+      >
         <Story />
       </Theme>
     ),

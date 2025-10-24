@@ -15,7 +15,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "node colors/build.js && tsc -b ./tsconfig.lib.json && vite build",
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
     "lint:library": "eslint \"lib/**/*.@(ts|tsx)\"",
     "lint:stories": "eslint \"src/**/*.stories.@(ts|tsx|mdx)\"",
     "lint": "npm run lint:library && npm run lint:stories",

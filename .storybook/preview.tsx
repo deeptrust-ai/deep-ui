@@ -8,7 +8,7 @@ const preview: Preview = {
       <Theme
         appearance="light"
         accentColor="violet"
-        grayColor='gray'
+        grayColor="gray"
         dangerColor="red"
         successColor="green"
         warningColor="yellow"

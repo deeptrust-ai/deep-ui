@@ -2,11 +2,16 @@
 
 /** Manually generated using https://www.radix-ui.com/colors/custom **/
 
-:root, .light, .light-theme, .radix-themes {
+:root,
+.light,
+.light-theme,
+.radix-themes {
   --color-background: #fff;
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --gray-1: #fbfcfe;
   --gray-2: #f8f9fa;
   --gray-3: #eef0f3;
@@ -33,7 +38,7 @@
   --gray-a11: #0000029b;
   --gray-a12: #000000df;
 
-  --gray-contrast: #FFFFFF;
+  --gray-contrast: #ffffff;
   --gray-surface: #ffffffcc;
   --gray-indicator: #8d8d8e;
   --gray-track: #8d8d8e;
@@ -41,7 +46,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --gray-1: oklch(99.1% 0.003 264.5);
       --gray-2: oklch(98.1% 0.0023 264.5);
       --gray-3: oklch(95.3% 0.0045 264.5);
@@ -68,7 +75,7 @@
       --gray-a11: color(display-p3 0 0 0.0078 / 0.608);
       --gray-a12: color(display-p3 0 0 0 / 0.8745);
 
-      --gray-contrast: #FFFFFF;
+      --gray-contrast: #ffffff;
       --gray-surface: color(display-p3 1 1 1 / 80%);
       --gray-indicator: oklch(64.3% 0.0011 264.5);
       --gray-track: oklch(64.3% 0.0011 264.5);
@@ -76,7 +83,9 @@
   }
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --blue-1: #fafdff;
   --blue-2: #f3faff;
   --blue-3: #e6f4ff;
@@ -111,7 +120,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --blue-1: oklch(99.3% 0.0044 245.2);
       --blue-2: oklch(98.1% 0.0103 245.2);
       --blue-3: oklch(96% 0.0232 245.2);
@@ -146,7 +157,9 @@
   }
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --yellow-1: #fdfdf9;
   --yellow-2: #fbfaef;
   --yellow-3: #f9f6c8;
@@ -181,7 +194,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --yellow-1: oklch(99.3% 0.0048 104.8);
       --yellow-2: oklch(98.4% 0.0153 104.8);
       --yellow-3: oklch(96.4% 0.0595 104.8);
@@ -216,7 +231,9 @@
   }
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --red-1: #fffcfb;
   --red-2: #fff7f5;
   --red-3: #ffeae6;
@@ -251,7 +268,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --red-1: oklch(99.4% 0.0041 28.35);
       --red-2: oklch(98.3% 0.0108 28.35);
       --red-3: oklch(95.6% 0.0274 28.35);
@@ -286,7 +305,9 @@
   }
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --violet-1: #fcfcff;
   --violet-2: #f8f8ff;
   --violet-3: #f0eeff;
@@ -321,7 +342,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --violet-1: oklch(99.3% 0.007 288.3);
       --violet-2: oklch(98.2% 0.0167 288.3);
       --violet-3: oklch(95.9% 0.0444 288.3);
@@ -356,7 +379,9 @@
   }
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --green-1: #fafefa;
   --green-2: #f4fbf4;
   --green-3: #e3f9e2;
@@ -391,7 +416,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --green-1: oklch(99.4% 0.0067 144.3);
       --green-2: oklch(98.2% 0.0123 144.3);
       --green-3: oklch(96% 0.0379 144.3);
@@ -426,7 +453,9 @@
   }
 }
 
-:root, .light, .light-theme {
+:root,
+.light,
+.light-theme {
   --orange-1: #fefcfa;
   --orange-2: #fff5ec;
   --orange-3: #ffead4;
@@ -461,7 +490,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    :root,
+    .light,
+    .light-theme {
       --orange-1: oklch(99.2% 0.0033 56.99);
       --orange-2: oklch(97.9% 0.019 56.99);
       --orange-3: oklch(95.8% 0.0456 56.99);

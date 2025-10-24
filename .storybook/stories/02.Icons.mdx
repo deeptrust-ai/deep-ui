@@ -1,0 +1,90 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guides/2. Icons" />
+
+# Icons
+
+DeepUI leverages the [Phosphor Icons](https://phosphoricons.com/) library for its iconography. Phosphor is a flexible, open-source icon set with a wide variety of styles and weights, making it easy to find icons that fit your design needs.
+
+## Installation
+
+DeepUI expects [@phosphor-icons/react](https://www.npmjs.com/package/@phosphor-icons/react) to be available in the consuming application. Install it alongside DeepUI:
+
+```bash
+npm install @phosphor-icons/react
+```
+
+The icons package ships plain React components, so no extra bundler plugins are required.
+
+## Basic Usage
+
+Each icon is exported as a PascalCased component from `@phosphor-icons/react`. Import the icon you need and render it like any other React component.
+
+```tsx
+import { AcornIcon } from '@phosphor-icons/react';
+import { Button } from '@deeptrust/deep-ui';
+
+export function IconDemo() {
+  return (
+    <Button>
+      <AcornIcon size={16} weight="bold" />
+      Harvest
+    </Button>
+  );
+}
+```
+
+- `size` accepts a number or string and controls the width/height in pixels (defaults to `24`).
+- `weight` toggles stylistic variants (`"thin" | "light" | "regular" | "bold" | "fill" | "duotone"`).
+- Additional props such as `color`, `mirrored`, and `className` are also supported; see the [Phosphor docs](https://phosphoricons.com/) for the full API.
+
+## Dynamic Icons
+
+Phosphor exposes a tree-shakeable index, so importing icons individually keeps bundles small. When you need to choose icons at runtime, load them via dynamic imports:
+
+```tsx
+const { CameraIcon } = await import('@phosphor-icons/react/dist/ssr/CameraIcon');
+```
+
+The `dist/ssr` entry contains pre-renderable components (no browser-only APIs) which makes them safe for SSR frameworks.
+
+## Styling Tips
+
+Icons inherit `currentColor` by default, so they adopt the text color of their container. Adjust button/icon spacing with inline styles or SCSS:
+
+```tsx
+<Button style={{ gap: '0.5rem' }}>
+  <AcornIcon weight="fill" />
+  Plant
+</Button>
+```
+
+If you need consistent icon sizing across the app, define a utility class in your global stylesheet:
+
+```css
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+```
+
+```tsx
+<AcornIcon className="icon-sm" />
+```
+
+## Using With DeepUI Slots
+
+Buttons, chips, and other DeepUI components typically accept arbitrary children. When placing icons next to text:
+
+1. Import the icon component directly from `@phosphor-icons/react`.
+2. Wrap it in the target component’s children.
+3. Optionally add layout helpers (`gap`, `display: inline-flex`) either via provided props or custom classes.
+
+```tsx
+<Button variant="soft" color="info">
+  <AcornIcon weight="duotone" />
+  Info
+</Button>
+```
+
+That’s all that’s required—no manual SVG configuration. Browse the [Phosphor gallery](https://phosphoricons.com/) to find icons and copy the generated import snippet straight into your DeepUI project.

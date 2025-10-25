@@ -3,18 +3,16 @@ import { extname, relative, resolve } from 'path';
 import { fileURLToPath } from 'node:url';
 import { glob } from 'glob';
 import dts from 'vite-plugin-dts';
-import react from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 // https://vite.dev/config/
 const isStorybookCommand = process.argv.some((arg) => arg.includes('storybook'));
 
 export default defineConfig({
-  plugins: [
-    react({ plugins: [['@swc/plugin-styled-components', {}]] }),
-    !isStorybookCommand && dts({ include: ['lib'] }),
-    libInjectCss(),
-  ].filter(Boolean),
+  plugins: [react(), !isStorybookCommand && dts({ include: ['lib'] }), libInjectCss()].filter(
+    Boolean
+  ),
   resolve: {
     // Map the package name to the local lib entry so bare imports like
     // `import { Button } from '@deeptrust/deep-ui'` resolve during dev.

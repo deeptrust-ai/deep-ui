@@ -1,6 +1,6 @@
-import { Theme } from '@deeptrust/deep-ui';
-import '@deeptrust/deep-ui/styles.css';
 import type { Preview } from '@storybook/react';
+import { Theme } from '../lib';
+import '../lib/styles.css';
 
 const preview: Preview = {
   decorators: [

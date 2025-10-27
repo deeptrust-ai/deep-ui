@@ -1,7 +1,7 @@
 import { Text } from 'frosted-ui';
 import cn from 'classnames';
 import styles from './styles.module.css';
-import { IMenuItemProps } from './types';
+import type { IMenuItemProps } from './types';
 import { menuItemDefaults } from './constants';
 
 const MenuItem = ({

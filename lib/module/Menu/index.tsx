@@ -1,9 +1,10 @@
 import MenuItem from '../../atom/MenuItem';
 import type { IMenuProps } from './types';
+import styles from './styles.module.css';
 
 const Menu = ({ pages }: IMenuProps) => {
   return (
-    <div>
+    <nav className={styles.menu}>
       <ul>
         {pages.map((page) => (
           <li key={page.label}>
@@ -20,7 +21,7 @@ const Menu = ({ pages }: IMenuProps) => {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 };
 

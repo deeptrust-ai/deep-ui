@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Menu, type IMenuProps } from '../../../lib';
+import { Action } from 'frosted-ui/components/alert-dialog/alert-dialog';
+import { AcornIcon } from '@phosphor-icons/react';
 // import { AcornIcon } from '@phosphor-icons/react';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -9,17 +11,18 @@ const meta = {
   component: Menu,
   args: {
     pages: [
-      { label: 'Home', link: '/' },
-      { label: 'About', link: '/about' },
+      { label: 'Home', link: '/', icon: <AcornIcon />, selected: false },
+      { label: 'About', link: '/about', icon: <AcornIcon />, selected: false },
       {
         label: 'Services',
         link: '/services',
+        icon: <AcornIcon />,
         subPages: [
-          { label: 'Consulting', link: '/services/consulting' },
-          { label: 'Development', link: '/services/development' },
+          { label: 'Consulting', link: '/services/consulting', selected: false },
+          { label: 'Development', link: '/services/development', selected: false },
         ],
       },
-      { label: 'Contact', link: '/contact' },
+      { label: 'Contact', link: '/contact', icon: <AcornIcon />, selected: false },
     ],
   },
   parameters: {

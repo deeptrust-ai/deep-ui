@@ -1,19 +1,6 @@
 import { type ButtonProps as FrostButtonProps } from 'frosted-ui';
 import { ReactNode } from 'react';
-
-export const buttonColors = [
-  'gray',
-  'danger',
-  'warning',
-  'success',
-  'info',
-  'violet',
-  'green',
-  'blue',
-  'orange',
-  'red',
-  'yellow',
-] as const;
+import { buttonColors } from './constants';
 
 export type ButtonProps = Omit<FrostButtonProps, 'color'> & {
   color?: (typeof buttonColors)[number];

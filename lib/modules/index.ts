@@ -1,1 +1,2 @@
-export { default as MenuItem, type IMenuItemProps } from './MenuItem';
+export { default as MenuItem } from './MenuItem';
+export type { IMenuItemProps } from './MenuItem/types';

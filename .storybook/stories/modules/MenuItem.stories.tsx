@@ -45,3 +45,18 @@ export const SubItem: Story = {
     subItem: true,
   },
 };
+
+export const Selected: Story = {
+  args: {
+    ...defaultArgs,
+    selected: true,
+  },
+};
+
+export const SelectedSubItem: Story = {
+  args: {
+    ...defaultArgs,
+    subItem: true,
+    selected: true,
+  },
+};

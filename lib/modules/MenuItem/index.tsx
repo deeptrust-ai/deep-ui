@@ -1,23 +1,8 @@
-import type { ReactNode } from 'react';
-
 import { Text } from 'frosted-ui';
 import cn from 'classnames';
 import styles from './styles.module.css';
-
-export const menuItemDefaults = {
-  link: '#',
-  subItem: false,
-  selected: false,
-  icon: null,
-};
-
-export interface IMenuItemProps {
-  readonly label: string;
-  readonly icon?: ReactNode;
-  readonly link?: string;
-  readonly selected?: boolean;
-  readonly subItem?: boolean;
-}
+import { IMenuItemProps } from './types';
+import { menuItemDefaults } from './constants';
 
 const MenuItem = ({
   label,
@@ -26,20 +11,29 @@ const MenuItem = ({
   selected = menuItemDefaults.selected,
   subItem = menuItemDefaults.subItem,
 }: IMenuItemProps) => {
-  const classNames = cn(styles.item, {
-    [styles.subItem]: subItem,
-    [styles.selected]: selected,
-  });
-
   return (
-    <>
-      {/* {subItem && <div className={styles.subItemIndicator} />} */}
+    <div
+      className={cn(styles.item, {
+        [styles.subItem]: subItem,
+      })}
+    >
+      {subItem && (
+        <div
+          className={cn(styles.subItemIndicator, { [styles.selectedSubItem]: subItem && selected })}
+        />
+      )}
 
-      <a href={link} className={classNames}>
+      <a
+        href={link}
+        className={cn(styles.anchor, {
+          [styles.subItem]: subItem,
+          [styles.selected]: selected,
+        })}
+      >
         {icon}
         <Text>{label}</Text>
       </a>
-    </>
+    </div>
   );
 };
 export default MenuItem;

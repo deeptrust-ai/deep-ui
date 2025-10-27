@@ -1,39 +1,42 @@
-.menu {
-  nav {
+.item {
+  &.subItem {
+    padding-left: var(--space-6);
     display: flex;
-    flex-direction: column;
-    gap: 0;
-
-    ul li {
-      display: flex;
-      flex-direction: row;
-    }
+    flex-direction: row;
+    gap: var(--space-2);
   }
 }
 
-.item {
-  padding: 10px 16px;
-  border-radius: 8px;
+.anchor {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-4);
   text-decoration: none;
-  color: var(--text-primary);
-  background: var(--background-secondary);
-  font-weight: 500;
+  color: var(--gray-12);
+  background: var(--white-a12);
+  font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
   flex-direction: row;
-  gap: 8px;
+  gap: var(--space-2);
+  box-shadow: 0 0 2px 0 #00000008;
+
+  &.selected {
+    background-color: var(--blue-a3);
+    box-shadow: 0 0 2px 0 #0000001a inset;
+  }
 
   &:hover {
-    background-color: var(--gray-a3);
+    background-color: var(--blue-a2);
+    box-shadow: 0 0 2px 0 #0000001a inset;
   }
 
   &.secondary {
-    padding-left: 16px;
+    padding-left: var(--space-4);
 
     &::before {
       content: ' ';
       color: #dcdfe4;
-      margin-left: 8px;
+      margin-left: var(--space-2);
       background-color: var(--blue-6);
       width: 6px;
       height: 100%;
@@ -42,12 +45,30 @@
 }
 
 .subItemWrapper {
-  margin-left: var(--spacing-6);
-  padding-left: var(--spacing-3);
-  border-left: 2px solid var(--nav-discreet-border-color, #dcdfe4);
+  margin-left: var(--space-6);
+  padding-left: var(--space-3);
+  border-left: 2px solid #dcdfe4;
 }
 
 .subItemIndicator {
-  padding-left: var(--spacing-6);
-  background: var(--nav-discreet-border-color, #dcdfe4);
+  background: #dcdfe4;
+  width: 1px;
+  margin-left: var(--space-8);
+  border-radius: var(--radius-2);
+}
+
+.selectedSubItem {
+  position: relative;
+
+  &::before {
+    content: ' ';
+    display: block;
+    background-color: #667085;
+    width: 3px;
+    height: 50%;
+    border-radius: var(--radius-2);
+    position: absolute;
+    inset: 50% 0 0 -1px;
+    transform: translateY(-50%);
+  }
 }

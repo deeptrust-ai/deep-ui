@@ -5,14 +5,14 @@ This README explains how to build the library, consume the package locally or fr
 ### Prerequisites
 
 - Node.js (14+ recommended)
-- npm, yarn, pnpm
+- bun
 - Ensure peerDependencies (React, ReactDOM, etc.) required by the package are installed in the consuming project
   - ```
     "peerDependencies": {
-      "react": "19.1.1",
-      "react-dom": "19.1.1",
-      "@phosphor-icons/react": "2.1.10",
-      "frosted-ui": "0.0.1-canary.81"
+      "react": "18",
+      "react-dom": "18",
+      "@phosphor-icons/react": "2",
+      "frosted-ui": "0.0.1"
     },
     ```
 
@@ -33,14 +33,14 @@ cd <directoy-cloned-into>
 2. Install dependencies:
 
 ```
-npm install
+bun install
 ```
 
 Build the library
 
 - Standard build (run the script defined in package.json):
   ```
-  npm run build
+  bun run build
   ```
 - Verify output in `lib/` and that package.json `main`/`module`/`types` point to the built files.
 
@@ -51,13 +51,13 @@ Build the library
 1. From the package root:
 
 ```
-npm pack
+bun pack
 ```
 
 This produces `<package-name>-<version>.tgz` (scoped names become a tarball named without the scope). 2. In the consumer project:
 
 ```
-npm add /full/path/to/@deeptrust-deep-ui-1.2.3.tgz
+bun add /full/path/to/@deeptrust-deep-ui-1.2.3.tgz
 ```
 
 3. Import as usual:
@@ -66,21 +66,21 @@ npm add /full/path/to/@deeptrust-deep-ui-1.2.3.tgz
 import { Button } from '@deeptrust/deep-ui';
 ```
 
-### Option B — npm link (fast local dev)
+### Option B — bun link (fast local dev)
 
 1. In DeepUI repo:
 
 ```
-npm link
+bun link
 ```
 
 2. In the consumer project:
 
 ```
-npm link @deeptrust/deep-ui
+bun link @deeptrust/deep-ui
 ```
 
-3. When testing changes, rebuild DeepUI (`npm run build`).
+3. When testing changes, rebuild DeepUI (`bun run build`).
 
 ### Option C — local file reference (monorepo / workspaces)
 
@@ -90,20 +90,20 @@ npm link @deeptrust/deep-ui
     "@deeptrust/deep-ui": "file:../your-DeepUI-directory"
   }
   ```
-- Then run install in consumer project (`npm install`).
+- Then run install in consumer project (`bun install`).
 
 ## Storybook (local development)
 
 - Start Storybook (dev server):
 
   ```
-  npm run storybook
+  bun run storybook
   ```
 
   Default port: 6006 (open http://localhost:6006)
 
 - Build Storybook (static output):
   ```
-  npm run build:storybook
+  bun run build:storybook
   ```
   Output in `storybook-static/`.

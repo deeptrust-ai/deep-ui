@@ -2,6 +2,9 @@
   "name": "@deeptrust/deep-ui",
   "license": "UNLICENSED",
   "private": true,
+  "publishConfig": {
+    "access": "restricted"
+  },
   "version": "0.0.0-dev",
   "type": "module",
   "main": "dist/main.js",
@@ -34,7 +37,6 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
-    "classnames": "2.5.1",
     "frosted-ui": "0.0.1-canary.82"
   },
   "devDependencies": {
@@ -53,11 +55,14 @@
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
     "@vitejs/plugin-react": "5.0.4",
+    "@vitejs/plugin-react-swc": "^4.2.0",
     "ajv": "8.17.1",
     "chromatic": "13.3.1",
+    "classnames": "^2.5.1",
     "eslint": "9.36.0",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-react-refresh": "0.4.22",
+    "eslint-plugin-storybook": "^9.1.15",
     "glob": "11.0.3",
     "globals": "16.4.0",
     "playwright": "1.56.1",

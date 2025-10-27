@@ -1,5 +1,5 @@
 # Workflow name
-name: 'Chromatic'
+name: "Chromatic"
 
 # Events for the workflow
 on:
@@ -23,9 +23,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-      - run: npm install
-      - run: npm run build
+          cache: "bun"
+
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run build
       #👇 Chromatic check for pull requests
       - name: Chromatic PR Check
         if: github.event_name == 'pull_request'

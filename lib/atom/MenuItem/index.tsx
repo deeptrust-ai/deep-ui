@@ -31,7 +31,7 @@ const MenuItem = ({
         })}
       >
         {icon}
-        <Text>{label}</Text>
+        <Text size="3">{label}</Text>
       </a>
     </div>
   );

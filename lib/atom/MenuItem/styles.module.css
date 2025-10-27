@@ -45,7 +45,7 @@
 }
 
 .subItemWrapper {
-  margin-left: var(--space-6);
+  margin-left: var(--space-2);
   padding-left: var(--space-3);
   border-left: 2px solid #dcdfe4;
 }

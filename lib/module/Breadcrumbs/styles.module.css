@@ -4,9 +4,15 @@
   padding: 0;
   border: none;
   background: none;
-  color: inherit;
+  color: var(--accent-a10);
   font: inherit;
   cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-3);
+
+  &:hover {
+    background-color: var(--accent-a3);
+  }
 }
 
 .orgName {
@@ -18,4 +24,8 @@
 
 .icon {
   color: var(--accent-a12);
+}
+
+.orgDropdown {
+  min-width: 250px;
 }

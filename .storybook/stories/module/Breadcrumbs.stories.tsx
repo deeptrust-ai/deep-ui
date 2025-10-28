@@ -19,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
   organizations: [
-    { name: 'Acme, Inc', isTrial: false, selected: true },
+    { name: 'Acme, Inc', isTrial: true, selected: true },
     { name: 'Monsters Inc', isTrial: true },
     { name: 'Stark Industries', isTrial: false },
   ],

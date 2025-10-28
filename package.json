@@ -20,7 +20,7 @@
     "build-storybook": "storybook build",
     "build": "tsc -b ./tsconfig.lib.json && vite build",
     "lint:library": "eslint \"lib/**/*.@(ts|tsx)\"",
-    "lint:stories": "eslint \".storybook/**/*.stories.@(ts|tsx|mdx)\"",
+    "lint:stories": "eslint \"**/*.stories.@(ts|tsx|mdx)\"",
     "lint": "npm run lint:library && npm run lint:stories",
     "tsc:library": "tsc -p tsconfig.lib.json --pretty",
     "tsc:stories": "tsc -p tsconfig.stories.json --pretty",

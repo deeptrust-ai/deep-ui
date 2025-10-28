@@ -5,6 +5,7 @@
   },
   "include": [
     ".storybook/**/*.stories.(ts|tsx|mdx)",
-    ".storybook/**/*"
+    ".storybook/**/*",
+    "../lib/**/*.stories.(ts|tsx|mdx)"
   ]
 }

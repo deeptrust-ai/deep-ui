@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import { Theme } from '../lib';
+import { Theme } from 'frosted-ui';
 import '../lib/styles.css';
 
 const preview: Preview = {
@@ -14,7 +14,9 @@ const preview: Preview = {
         warningColor="yellow"
         infoColor="blue"
       >
-        <Story />
+        <div style={{ position: 'relative' }}>
+          <Story />
+        </div>
       </Theme>
     ),
   ],

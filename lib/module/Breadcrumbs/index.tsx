@@ -18,8 +18,9 @@ const Breadcrumbs = ({ organizations }: IBreadcrumbsProps) => {
           <FrostedDropdown.Trigger className={styles.orgTrigger}>
             <button type="button" className={styles.orgTrigger}>
               <FrostedText size="1" className={styles.orgName}>
-                <BuildingsIcon size={12} /> {selectedOrg.name}{' '}
-                {selectedOrg.isTrial ? <Chip label="Trial" /> : null} <CaretUpDownIcon size={12} />
+                <BuildingsIcon size={12} className={styles.icon} weight="bold" /> {selectedOrg.name}{' '}
+                {selectedOrg.isTrial ? <Chip label="Trial" /> : null}{' '}
+                <CaretUpDownIcon size={12} className={styles.icon} weight="bold" />
               </FrostedText>
             </button>
           </FrostedDropdown.Trigger>
@@ -37,7 +38,7 @@ const Breadcrumbs = ({ organizations }: IBreadcrumbsProps) => {
       </FrostedBreadcrumbs.Item>
       <FrostedBreadcrumbs.Item asChild>
         <FrostedText size="1">
-          <HeadphonesIcon /> Workspace
+          <HeadphonesIcon className={styles.icon} weight="bold" /> Workspace
         </FrostedText>
       </FrostedBreadcrumbs.Item>
       <FrostedBreadcrumbs.Item>Project</FrostedBreadcrumbs.Item>

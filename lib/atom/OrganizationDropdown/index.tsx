@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { DropdownMenu as FrostedDropdown, Text as FrostedText, Button } from 'frosted-ui';
+import { DropdownMenu as FrostedDropdown, Text as FrostedText } from 'frosted-ui';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
 import Badge from '../Badge';

@@ -1,4 +1,4 @@
-import { IOrganizationDropdown } from '../../atom/OrganizationDropdown/types';
+import type { IOrganizationDropdown } from '../../atom/OrganizationDropdown/types';
 
 export interface IBreadcrumbsProps {
   organizations: IOrganizationDropdown[];

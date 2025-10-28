@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Menu, type IMenuProps } from '../../../lib';
+import { Menu, type IMenuProps } from '../..';
 import { AcornIcon } from '@phosphor-icons/react';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Module/Menu',
+  title: 'Molecule/Menu',
   component: Menu,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

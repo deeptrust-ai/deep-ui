@@ -3,5 +3,9 @@
   "compilerOptions": {
     "types": ["vite/client"]
   },
-  "include": [".storybook/**/*.stories.(ts|tsx|mdx)", ".storybook/**/*"]
+  "include": [
+    ".storybook/**/*.stories.(ts|tsx|mdx)",
+    ".storybook/**/*",
+    "../lib/**/*.stories.(ts|tsx|mdx)"
+  ]
 }

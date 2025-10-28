@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Breadcrumbs, type IBreadcrumbsProps } from '../../../lib';
+import { Breadcrumbs, type IBreadcrumbsProps } from '../..';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Module/Breadcrumbs',
+  title: 'Molecule/Breadcrumbs',
   component: Breadcrumbs,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

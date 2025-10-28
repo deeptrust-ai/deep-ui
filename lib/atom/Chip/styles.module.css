@@ -1,0 +1,6 @@
+.chip {
+  border: 1px solid #cfcfd0;
+  border-radius: var(--radius-thumb);
+  color: #00468c;
+  padding: var(--space-1) var(--space-2);
+}

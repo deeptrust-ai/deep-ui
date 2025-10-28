@@ -5,6 +5,13 @@ import styles from './styles.module.css';
 import Badge from '../Badge';
 import type { IOrganizationDropdownProps } from './types';
 
+/**
+ * OrganizationDropdown component allows users to select an organization from a dropdown menu.
+ *
+ * It displays the selected organization's name along with an icon and a "Trial" badge if applicable.
+ *
+ * This component passes through the [`asChild` composition prop](https://www.radix-ui.com/primitives/docs/guides/composition#composing-multiple-primitives) to the underlying button element.
+ */
 const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdownProps>(
   ({ organizations, ...restProps }: IOrganizationDropdownProps, forwardedRef) => {
     const selectedOrg = organizations.find((org) => org.selected) || organizations[0];

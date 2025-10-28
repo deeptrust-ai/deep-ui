@@ -2,7 +2,6 @@ import {
   Breadcrumbs as FrostedBreadcrumbs,
   DropdownMenu as FrostedDropdown,
   Text as FrostedText,
-  Button as FrostedButton,
 } from 'frosted-ui';
 import { BuildingsIcon, CaretUpDownIcon, HeadphonesIcon } from '@phosphor-icons/react';
 import type { IBreadcrumbsProps } from './types';
@@ -16,11 +15,13 @@ const Breadcrumbs = ({ organizations }: IBreadcrumbsProps) => {
     <FrostedBreadcrumbs.Root color="gray">
       <FrostedBreadcrumbs.Item>
         <FrostedDropdown.Root>
-          <FrostedDropdown.Trigger>
-            <FrostedText size="1" className={styles.orgName}>
-              <BuildingsIcon size={12} /> {selectedOrg.name}{' '}
-              {selectedOrg.isTrial ? <Chip label="Trial" /> : null} <CaretUpDownIcon size={12} />
-            </FrostedText>
+          <FrostedDropdown.Trigger className={styles.orgTrigger}>
+            <button type="button" className={styles.orgTrigger}>
+              <FrostedText size="1" className={styles.orgName}>
+                <BuildingsIcon size={12} /> {selectedOrg.name}{' '}
+                {selectedOrg.isTrial ? <Chip label="Trial" /> : null} <CaretUpDownIcon size={12} />
+              </FrostedText>
+            </button>
           </FrostedDropdown.Trigger>
           <FrostedDropdown.Content size="2" variant="translucent">
             <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>

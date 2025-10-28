@@ -46,4 +46,6 @@ const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdown
   }
 );
 
+OrganizationDropdown.displayName = 'OrganizationDropdown';
+
 export default OrganizationDropdown;

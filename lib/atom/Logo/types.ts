@@ -1,9 +1,10 @@
-import type { VARIANT_CONFIG } from './constants';
+import type { SIZE_CONFIG, VARIANT_CONFIG } from './constants';
 
-export type LogoVariantKey = keyof typeof VARIANT_CONFIG;
+export type LogoVariantKey = keyof typeof VARIANT_CONFIG | 'full';
+export type SizeKey = keyof typeof SIZE_CONFIG;
 
 export interface ILogoProps {
-  width?: number;
+  size?: SizeKey;
   variant?: LogoVariantKey;
 }
 
@@ -12,4 +13,5 @@ export interface LogoGraphicProps {
   baseHeight: number;
   viewBoxMinX: number;
   width?: number;
+  height?: number;
 }

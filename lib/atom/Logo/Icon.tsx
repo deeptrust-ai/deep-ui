@@ -1,14 +1,10 @@
 import type { LogoGraphicProps } from './types';
 
-const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) => {
-  const finalWidth = width ?? baseWidth;
-  const scale = finalWidth / baseWidth;
-  const finalHeight = baseHeight * scale;
-
+const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width, height }: LogoGraphicProps) => {
   return (
     <svg
-      width={finalWidth}
-      height={finalHeight}
+      width={width}
+      height={height}
       viewBox={`${viewBoxMinX} 0 ${baseWidth} ${baseHeight}`}
       preserveAspectRatio="xMidYMid meet"
       fill="none"
@@ -39,8 +35,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="1.877"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="c"
@@ -50,8 +46,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="5.701"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="d"
@@ -61,8 +57,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="17.175"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="e"
@@ -72,8 +68,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="21"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="f"
@@ -83,8 +79,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="9.526"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="g"
@@ -94,8 +90,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="9.526"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="h"
@@ -105,8 +101,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="13.351"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="i"
@@ -116,8 +112,8 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) =
           y2="13.351"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <clipPath id="a">
           <rect width={baseWidth} height={baseHeight} fill="#fff" />

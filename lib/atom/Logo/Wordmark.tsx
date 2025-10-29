@@ -1,14 +1,10 @@
 import type { LogoGraphicProps } from './types';
 
-const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) => {
-  const finalWidth = width ?? baseWidth;
-  const scale = finalWidth / baseWidth;
-  const finalHeight = baseHeight * scale;
-
+const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width, height }: LogoGraphicProps) => {
   return (
     <svg
-      width={finalWidth}
-      height={finalHeight}
+      width={width}
+      height={height}
       viewBox={`${viewBoxMinX} 0 ${baseWidth} ${baseHeight}`}
       preserveAspectRatio="xMidYMid meet"
       fill="none"
@@ -61,8 +57,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_9"
@@ -72,8 +68,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_10"
@@ -83,8 +79,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_11"
@@ -94,8 +90,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="21"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_12"
@@ -105,8 +101,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_13"
@@ -116,8 +112,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.198"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_14"
@@ -127,8 +123,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_15"
@@ -138,8 +134,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <linearGradient
           id="logo_wordmark_16"
@@ -149,8 +145,8 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProp
           y2="17.398"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset=".215" stop-color="#5DB0FE" />
-          <stop offset=".828" stop-color="#008CF9" />
+          <stop offset=".215" stopColor="#5DB0FE" />
+          <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <clipPath id="deeptrust-logo-wordmark">
           <rect x={viewBoxMinX} width={baseWidth} height={baseHeight} fill="#fff" />

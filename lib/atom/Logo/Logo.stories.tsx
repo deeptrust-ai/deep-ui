@@ -19,19 +19,19 @@ export const Default: Story = {};
 
 export const Large: Story = {
   args: {
-    width: 300,
+    size: 'large',
   },
 };
 
 export const IconOnly: Story = {
   args: {
     variant: 'icon',
-    width: 200,
   },
 };
 
 export const WordmarkOnly: Story = {
   args: {
     variant: 'wordmark',
+    size: 'small',
   },
 };

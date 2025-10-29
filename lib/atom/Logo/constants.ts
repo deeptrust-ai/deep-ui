@@ -1,11 +1,14 @@
-export const WORDMARK_OFFSET = 28;
+export const LOGO_BASE_WIDTH = 130;
+export const WORDMARK_OFFSET = 28.6494;
+export const ICON_BASE_WIDTH = 21.6856;
+export const ICON_BASE_HEIGHT = 21;
 
 export const VARIANT_CONFIG = {
   full: {},
   wordmark: {
-    baseWidth: 130 - WORDMARK_OFFSET,
-    baseHeight: 21,
+    baseWidth: LOGO_BASE_WIDTH - WORDMARK_OFFSET,
+    baseHeight: ICON_BASE_HEIGHT,
     viewBoxMinX: WORDMARK_OFFSET,
   },
-  icon: { baseWidth: 21, baseHeight: 21, viewBoxMinX: 0 },
+  icon: { baseWidth: ICON_BASE_WIDTH, baseHeight: ICON_BASE_HEIGHT, viewBoxMinX: 0 },
 } as const;

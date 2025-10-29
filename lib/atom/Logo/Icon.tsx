@@ -1,4 +1,6 @@
-const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }) => {
+import type { LogoGraphicProps } from './types';
+
+const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) => {
   const finalWidth = width ?? baseWidth;
   const scale = finalWidth / baseWidth;
   const finalHeight = baseHeight * scale;
@@ -12,7 +14,7 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#a)">
+      <g clipPath="url(#a)">
         <path
           fill="url(#b)"
           d="M.786 0H20.9c.434 0 .786.34.786.76v1.117H0V.76C0 .34.352 0 .786 0Z"
@@ -118,7 +120,7 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width }) => {
           <stop offset=".828" stop-color="#008CF9" />
         </linearGradient>
         <clipPath id="a">
-          <path fill="#fff" d="M0 0h21v21H0z" />
+          <rect width={baseWidth} height={baseHeight} fill="#fff" />
         </clipPath>
       </defs>
     </svg>

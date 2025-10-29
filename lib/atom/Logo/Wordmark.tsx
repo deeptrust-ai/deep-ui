@@ -1,4 +1,6 @@
-const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }) => {
+import type { LogoGraphicProps } from './types';
+
+const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }: LogoGraphicProps) => {
   const finalWidth = width ?? baseWidth;
   const scale = finalWidth / baseWidth;
   const finalHeight = baseHeight * scale;
@@ -12,7 +14,7 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#deeptrust-logo-wordmark)">
+      <g clipPath="url(#deeptrust-logo-wordmark)">
         <path
           fill="url(#logo_wordmark_8)"
           d="M37.716.563h2.118v16.635H38l-.154-1.15h-.052c-.5.45-1.11.791-1.834 1.025-.706.216-1.524.325-2.454.325-1.74 0-2.988-.5-3.746-1.5-.74-1.002-1.11-2.636-1.11-4.904s.456-3.902 1.369-4.903c.912-1 2.436-1.5 4.572-1.5.602 0 1.162.05 1.679.15a6.989 6.989 0 0 1 1.446.375V.563ZM34.85 6.441c-1.601 0-2.686.326-3.255.976-.55.65-.826 1.843-.826 3.577 0 1.684.24 2.86.723 3.527.5.65 1.42.976 2.764.976.637 0 1.248-.075 1.834-.225a6.182 6.182 0 0 0 1.627-.726V6.942a6.644 6.644 0 0 0-1.317-.375 8.812 8.812 0 0 0-1.55-.126Z"
@@ -151,14 +153,7 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width }) => {
           <stop offset=".828" stop-color="#008CF9" />
         </linearGradient>
         <clipPath id="deeptrust-logo-wordmark">
-          {' '}
-          <rect
-            x={viewBoxMinX}
-            width={baseWidth}
-            height={baseHeight}
-            fill="white"
-            d="M28 0h102v21H28z"
-          />
+          <rect x={viewBoxMinX} width={baseWidth} height={baseHeight} fill="#fff" />
         </clipPath>
       </defs>
     </svg>

@@ -8,6 +8,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
+  args: { variant: 'full' },
   tags: ['autodocs'],
 } satisfies Meta<ILogoProps>;
 
@@ -24,13 +25,13 @@ export const Large: Story = {
 
 export const IconOnly: Story = {
   args: {
-    variant: 'icon-only',
+    variant: 'icon',
     width: 200,
   },
 };
 
 export const WordmarkOnly: Story = {
   args: {
-    variant: 'wordmark-only',
+    variant: 'wordmark',
   },
 };

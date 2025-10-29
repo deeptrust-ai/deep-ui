@@ -1,5 +1,6 @@
+import { VARIANT_CONFIG } from './constants';
+
 export interface ILogoProps {
   width?: number;
-  height?: number;
-  variant?: 'full' | 'icon-only' | 'wordmark-only';
+  variant?: keyof typeof VARIANT_CONFIG;
 }

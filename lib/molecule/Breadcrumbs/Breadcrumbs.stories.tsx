@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Breadcrumbs, type IBreadcrumbsProps } from '../..';
 
-const defaultCrumbs = [
+const defaultCrumbs: NonNullable<IBreadcrumbsProps['crumbs']> = [
   {
     label: 'Projects',
     href: '/projects',
@@ -23,14 +23,13 @@ const defaultCrumbs = [
     label: 'Settings',
     href: '/projects/alpha/datasets/42/settings',
   },
-  ,
   {
     label: 'Profile',
     href: '/projects/alpha/datasets/42/settings/profile',
   },
 ];
 
-const defaultArgs = {
+const defaultArgs: IBreadcrumbsProps = {
   organizations: [
     { name: 'Acme, Inc', isTrial: true, selected: true },
     { name: 'Monsters Inc', isTrial: true },
@@ -72,13 +71,6 @@ export const TwoCrumbs: Story = {
 };
 
 export const EllipsisCrumbs: Story = Default;
-
-export const ThresholdCrumbs: Story = {
-  args: {
-    ...defaultArgs,
-    overflowThreshold: 3,
-  },
-};
 
 export const NoCrumbs: Story = {
   args: {

@@ -1,51 +1,46 @@
-import { forwardRef } from 'react';
-import { DropdownMenu as FrostedDropdown, Text as FrostedText } from 'frosted-ui';
+import {
+  DropdownMenu as FrostedDropdown,
+  Text as FrostedText,
+  Button as FrostedButton,
+} from 'frosted-ui';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
-import Badge from '../Badge';
 import type { IOrganizationDropdownProps } from './types';
 
 /**
  * OrganizationDropdown component allows users to select an organization from a dropdown menu.
  *
  * It displays the selected organization's name along with an icon and a "Trial" badge if applicable.
- *
- * This component passes through the [`asChild` composition prop](https://www.radix-ui.com/primitives/docs/guides/composition#composing-multiple-primitives) to the underlying button element.
  */
-const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdownProps>(
-  ({ organizations, ...restProps }: IOrganizationDropdownProps, forwardedRef) => {
-    const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
+const OrganizationDropdown = ({ organizations }: IOrganizationDropdownProps) => {
+  const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
 
-    return (
-      <FrostedDropdown.Root>
-        <FrostedDropdown.Trigger>
-          <button type="button" {...restProps} ref={forwardedRef}>
-            <FrostedText size="1" className={styles.orgName} weight="medium">
-              <BuildingsIcon size={16} className={styles.icon} weight="bold" /> {selectedOrg.name}
-              {selectedOrg.isTrial ? <Badge label="Trial" /> : null}
-              <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
-            </FrostedText>
-          </button>
-        </FrostedDropdown.Trigger>
-        <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
-          <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
-          <FrostedDropdown.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
-            {organizations.map((org) => (
-              <FrostedDropdown.RadioItem
-                key={org.name}
-                value={org.name}
-                className={styles.radioItem}
-              >
-                {org.name} {org.isTrial ? <Badge label="Trial" /> : null}
-              </FrostedDropdown.RadioItem>
-            ))}
-          </FrostedDropdown.RadioGroup>
-        </FrostedDropdown.Content>
-      </FrostedDropdown.Root>
-    );
-  }
-);
+  return (
+    <FrostedDropdown.Root>
+      <FrostedDropdown.Trigger>
+        <FrostedButton variant="ghost" color="gray" className={styles.triggerButton} type="button">
+          <FrostedText color="gray" size="1">
+            <BuildingsIcon size={16} className={styles.icon} weight="bold" />
+            {selectedOrg.name}
+            <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
+          </FrostedText>
+        </FrostedButton>
+      </FrostedDropdown.Trigger>
+      <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
+        <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
+        <FrostedDropdown.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
+          {organizations.map((org) => (
+            <FrostedDropdown.RadioItem key={org.name} value={org.name} className={styles.radioItem}>
+              {org.name}
+            </FrostedDropdown.RadioItem>
+          ))}
+        </FrostedDropdown.RadioGroup>
+      </FrostedDropdown.Content>
+    </FrostedDropdown.Root>
+  );
+};
 
 OrganizationDropdown.displayName = 'OrganizationDropdown';
 
 export default OrganizationDropdown;
+export type { IOrganizationDropdownProps } from './types';

@@ -37,3 +37,4 @@ const MenuItem = ({
   );
 };
 export default MenuItem;
+export type { IMenuItemProps };

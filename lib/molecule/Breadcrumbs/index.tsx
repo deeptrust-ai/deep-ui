@@ -29,7 +29,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
   const lastCrumb = hasCrumbs ? crumbs[crumbs.length - 1] : undefined;
 
   const children = [
-    <FrostedBreadcrumbs.Item asChild key="org">
+    <FrostedBreadcrumbs.Item key="org">
       <OrganizationDropdown organizations={organizations} />
     </FrostedBreadcrumbs.Item>,
     <FrostedBreadcrumbs.Item asChild key="workspace" className={styles.crumb}>

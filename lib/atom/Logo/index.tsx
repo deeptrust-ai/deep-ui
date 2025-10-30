@@ -8,17 +8,13 @@ import styles from './styles.module.css';
 const Logo = ({ variant = 'full', size = 'medium' }: ILogoProps) => {
   const width = SIZE_CONFIG[size].baseWidth;
 
-  const wordmarkWidth = width ?? WORDMARK_CONFIG.baseWidth;
-  const scale = wordmarkWidth / WORDMARK_CONFIG.baseWidth;
+  const scale = width / WORDMARK_CONFIG.baseWidth;
   const wordmarkHeight = WORDMARK_CONFIG.baseHeight * scale;
-
-  const iconWidth = wordmarkHeight;
-  const iconHeight = wordmarkHeight;
 
   return (
     <div className={cn(styles.logo, styles[size])}>
-      {variant !== 'wordmark' && <Icon width={iconWidth} height={iconHeight} />}
-      {variant !== 'icon' && <Wordmark width={wordmarkWidth} height={wordmarkHeight} />}
+      {variant !== 'wordmark' && <Icon width={wordmarkHeight} height={wordmarkHeight} />}
+      {variant !== 'icon' && <Wordmark width={width} height={wordmarkHeight} />}
     </div>
   );
 };

@@ -20,3 +20,4 @@ const Logo = ({ variant = 'full', size = 'medium' }: ILogoProps) => {
 };
 
 export default Logo;
+export type { ILogoProps } from './types';

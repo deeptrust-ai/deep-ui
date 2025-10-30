@@ -21,3 +21,4 @@ const Breadcrumbs = ({ organizations }: IBreadcrumbsProps) => {
 };
 
 export default Breadcrumbs;
+export type { IBreadcrumbsProps } from './types';

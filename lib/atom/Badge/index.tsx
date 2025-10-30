@@ -13,3 +13,4 @@ const Chip = ({ label }: IBadgeProps) => {
 };
 
 export default Chip;
+export type { IBadgeProps } from './types';

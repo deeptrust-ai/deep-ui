@@ -6,3 +6,4 @@ const Avatar = ({ name, pfp }: IAvatarProps) => {
 };
 
 export default Avatar;
+export type { IAvatarProps };

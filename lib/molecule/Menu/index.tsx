@@ -26,3 +26,4 @@ const Menu = ({ pages }: IMenuProps) => {
 };
 
 export default Menu;
+export type { IMenuProps } from './types';

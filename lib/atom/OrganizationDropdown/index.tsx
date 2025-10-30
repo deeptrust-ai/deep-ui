@@ -49,3 +49,4 @@ const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdown
 OrganizationDropdown.displayName = 'OrganizationDropdown';
 
 export default OrganizationDropdown;
+export type { IOrganizationDropdownProps } from './types';

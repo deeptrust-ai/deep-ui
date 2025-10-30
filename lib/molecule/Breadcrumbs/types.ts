@@ -1,6 +1,6 @@
 import type { IOrganizationDropdown } from '../../atom/OrganizationDropdown/types';
 
-type Crumb = {
+export type Crumb = {
   label: string;
   href: string;
 };

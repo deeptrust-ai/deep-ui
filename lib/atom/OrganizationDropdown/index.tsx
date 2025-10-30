@@ -1,5 +1,8 @@
-import { forwardRef } from 'react';
-import { DropdownMenu as FrostedDropdown, Text as FrostedText } from 'frosted-ui';
+import {
+  DropdownMenu as FrostedDropdown,
+  Text as FrostedText,
+  Button as FrostedButton,
+} from 'frosted-ui';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
 import type { IOrganizationDropdownProps } from './types';
@@ -11,36 +14,33 @@ import type { IOrganizationDropdownProps } from './types';
  *
  * This component passes through the [`asChild` composition prop](https://www.radix-ui.com/primitives/docs/guides/composition#composing-multiple-primitives) to the underlying button element.
  */
-const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdownProps>(
-  ({ organizations, ...restProps }: IOrganizationDropdownProps, forwardedRef) => {
-    const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
+const OrganizationDropdown = ({ organizations }: IOrganizationDropdownProps) => {
+  const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
 
-    return (
-      <FrostedDropdown.Root>
-        <FrostedDropdown.Trigger ref={forwardedRef} {...restProps}>
-          <FrostedText size="1" className={styles.orgName} weight="medium">
-            <BuildingsIcon size={16} className={styles.icon} weight="bold" /> {selectedOrg.name}
+  return (
+    <FrostedDropdown.Root>
+      <FrostedDropdown.Trigger>
+        <FrostedButton variant="ghost" color="gray" className={styles.triggerButton} type="button">
+          <FrostedText color="gray" size="1">
+            <BuildingsIcon size={16} className={styles.icon} weight="bold" />
+            {selectedOrg.name}
             <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
           </FrostedText>
-        </FrostedDropdown.Trigger>
-        <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
-          <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
-          <FrostedDropdown.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
-            {organizations.map((org) => (
-              <FrostedDropdown.RadioItem
-                key={org.name}
-                value={org.name}
-                className={styles.radioItem}
-              >
-                {org.name}
-              </FrostedDropdown.RadioItem>
-            ))}
-          </FrostedDropdown.RadioGroup>
-        </FrostedDropdown.Content>
-      </FrostedDropdown.Root>
-    );
-  }
-);
+        </FrostedButton>
+      </FrostedDropdown.Trigger>
+      <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
+        <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
+        <FrostedDropdown.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
+          {organizations.map((org) => (
+            <FrostedDropdown.RadioItem key={org.name} value={org.name} className={styles.radioItem}>
+              {org.name}
+            </FrostedDropdown.RadioItem>
+          ))}
+        </FrostedDropdown.RadioGroup>
+      </FrostedDropdown.Content>
+    </FrostedDropdown.Root>
+  );
+};
 
 OrganizationDropdown.displayName = 'OrganizationDropdown';
 

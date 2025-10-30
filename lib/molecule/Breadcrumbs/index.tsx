@@ -1,4 +1,4 @@
-import { Breadcrumbs as FrostedBreadcrumbs } from 'frosted-ui';
+import { Breadcrumbs as FrostedBreadcrumbs, Text as FrostedText } from 'frosted-ui';
 import { HeadphonesIcon } from '@phosphor-icons/react';
 import type { IBreadcrumbsProps } from './types';
 import styles from './styles.module.css';
@@ -28,9 +28,6 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
   const lastCrumb = hasCrumbs ? crumbs[crumbs.length - 1] : undefined;
 
   const children = [
-    <FrostedBreadcrumbs.Item key="org">
-      <OrganizationDropdown organizations={organizations} />
-    </FrostedBreadcrumbs.Item>,
     <FrostedBreadcrumbs.Item asChild key="workspace" className={styles.crumb}>
       <a href="#/workspace" className={styles.workspaceCrumbLink}>
         <HeadphonesIcon className={styles.icon} weight="bold" size={16} /> Workspace
@@ -51,7 +48,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
     children.push(...buildCrumbElements(withoutFirstLastCrumb));
   }
 
-  if (lastCrumb) {
+  if (lastCrumb && crumbs.length > 1) {
     children.push(
       <FrostedBreadcrumbs.Item key={lastCrumb.href} asChild className={styles.crumb}>
         <a href={lastCrumb.href}>{lastCrumb.label}</a>
@@ -60,7 +57,20 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
   }
 
   return (
-    <div>
+    <div className={styles.breadcrumbsContainer}>
+      <OrganizationDropdown organizations={organizations} />
+      <FrostedText color="gray" size="1" className={styles.separator}>
+        <svg
+          width="6"
+          height="10"
+          viewBox="0 0 6 10"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="var(--accent-a8)"
+          className="fui-BreadcrumbsSeparator"
+        >
+          <path d="M1.25 9.625C1.07422 9.625 0.917969 9.56641 0.800781 9.44922C0.546875 9.21484 0.546875 8.80469 0.800781 8.57031L4.10156 5.25L0.800781 1.94922C0.546875 1.71484 0.546875 1.30469 0.800781 1.07031C1.03516 0.816406 1.44531 0.816406 1.67969 1.07031L5.42969 4.82031C5.68359 5.05469 5.68359 5.46484 5.42969 5.69922L1.67969 9.44922C1.5625 9.56641 1.40625 9.625 1.25 9.625Z"></path>
+        </svg>
+      </FrostedText>
       <FrostedBreadcrumbs.Root color="gray">{children}</FrostedBreadcrumbs.Root>
     </div>
   );

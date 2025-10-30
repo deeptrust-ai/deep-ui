@@ -22,7 +22,7 @@ const buildCrumbElements = (crumbs: NonNullable<IBreadcrumbsProps['crumbs']>) =>
  *
  * **Open Question:** does Workspace ever change? Should it link somewhere dynamic or always the same link? Does icon ever change?
  *
- * **Open Issues:** Ally concerns with currently used colors, need to align with design team on final colors (Expected contrast ratio of 4.5:1)
+ * **Open Issues:** A11y concerns with currently used colors, need to align with design team on final colors (Expected contrast ratio of 4.5:1)
  */
 const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
   const hasCrumbs = crumbs.length > 0;
@@ -45,9 +45,22 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
     );
   }
 
-  if (crumbs.length > MANY_CRUMBS_THRESHOLD) {
+  if (crumbs.length >= MANY_CRUMBS_THRESHOLD) {
     const withoutFirstLastCrumb = crumbs.slice(1, crumbs.length - 1);
-    children.push(...buildCrumbElements(withoutFirstLastCrumb));
+
+    if (withoutFirstLastCrumb.length > 1) {
+      children.push(...buildCrumbElements(withoutFirstLastCrumb));
+    } else {
+      children.push(
+        <FrostedBreadcrumbs.Item
+          key={withoutFirstLastCrumb[0].href}
+          asChild
+          className={styles.crumb}
+        >
+          <a href={withoutFirstLastCrumb[0].href}>{withoutFirstLastCrumb[0].label}</a>
+        </FrostedBreadcrumbs.Item>
+      );
+    }
   }
 
   if (lastCrumb && crumbs.length > 1) {

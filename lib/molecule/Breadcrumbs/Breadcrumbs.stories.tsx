@@ -75,4 +75,11 @@ export const TwoCrumbs: Story = {
   },
 };
 
-export const OverflowCrumbs: Story = {};
+export const ThreeCrumbs: Story = {
+  args: {
+    ...defaultArgs,
+    crumbs: [defaultCrumbs[0], defaultCrumbs[1], defaultCrumbs[2]],
+  },
+};
+
+export const FourOrMoreCrumbs: Story = {};

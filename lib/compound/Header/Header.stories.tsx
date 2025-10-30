@@ -12,7 +12,7 @@ const meta = {
     organizations: [
       { name: 'Organization 1', selected: true },
       { name: 'Organization 2' },
-      { name: 'Organization 3', isTrial: true },
+      { name: 'Organization 3' },
     ],
     userName: 'Jane Doe',
     userPfp: 'https://i.pravatar.cc/150?img=70',

@@ -1,6 +1,5 @@
 import { Breadcrumbs as FrostedBreadcrumbs } from 'frosted-ui';
 import { HeadphonesIcon } from '@phosphor-icons/react';
-import cn from 'classnames';
 import type { IBreadcrumbsProps } from './types';
 import styles from './styles.module.css';
 import OrganizationDropdown from '../../atom/OrganizationDropdown';

@@ -20,7 +20,9 @@ const buildCrumbElements = (crumbs: NonNullable<IBreadcrumbsProps['crumbs']>) =>
 /**
  * Breadcrumbs component for navigation within the application.
  *
- * Open Question: does Workspace ever change? Should it link somewhere dynamic or always the same link?
+ * **Open Question:** does Workspace ever change? Should it link somewhere dynamic or always the same link? Does icon ever change?
+ *
+ * **Open Issues:** Ally concerns with currently used colors, need to align with design team on final colors (Expected contrast ratio of 4.5:1)
  */
 const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
   const hasCrumbs = crumbs.length > 0;

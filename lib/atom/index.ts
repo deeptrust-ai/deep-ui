@@ -9,3 +9,6 @@ export type { IOrganizationDropdownProps } from './OrganizationDropdown/types';
 
 export { default as Logo } from './Logo';
 export type { ILogoProps } from './Logo/types';
+
+export { default as Avatar } from './Avatar';
+export type { IAvatarProps } from './Avatar/types';

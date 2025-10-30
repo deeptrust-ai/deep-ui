@@ -8,7 +8,15 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  args: {},
+  args: {
+    organizations: [
+      { name: 'Organization 1', selected: true },
+      { name: 'Organization 2' },
+      { name: 'Organization 3', isTrial: true },
+    ],
+    userName: 'Jane Doe',
+    userPfp: 'https://i.pravatar.cc/150?img=70',
+  },
   tags: ['autodocs'],
 } satisfies Meta<React.ComponentProps<typeof Header>>;
 

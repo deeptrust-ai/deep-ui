@@ -31,9 +31,9 @@ const defaultCrumbs: NonNullable<IBreadcrumbsProps['crumbs']> = [
 
 const defaultArgs: IBreadcrumbsProps = {
   organizations: [
-    { name: 'Acme, Inc', isTrial: true, selected: true },
-    { name: 'Monsters Inc', isTrial: true },
-    { name: 'Stark Industries', isTrial: false },
+    { name: 'Acme, Inc', selected: true },
+    { name: 'Monsters Inc' },
+    { name: 'Stark Industries' },
   ],
   crumbs: defaultCrumbs,
 };
@@ -70,7 +70,14 @@ export const TwoCrumbs: Story = {
   },
 };
 
-export const EllipsisCrumbs: Story = Default;
+export const OverflowCrumbs: Story = Default;
+
+export const OverflowThresholdCrumbs: Story = {
+  args: {
+    ...defaultArgs,
+    overflowThreshold: 3,
+  },
+};
 
 export const NoCrumbs: Story = {
   args: {

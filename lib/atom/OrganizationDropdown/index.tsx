@@ -1,5 +1,9 @@
 import { forwardRef } from 'react';
-import { DropdownMenu as FrostedDropdown, Text as FrostedText } from 'frosted-ui';
+import {
+  Button as FrostedButton,
+  DropdownMenu as FrostedDropdown,
+  Text as FrostedText,
+} from 'frosted-ui';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
 import Badge from '../Badge';
@@ -19,13 +23,12 @@ const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdown
     return (
       <FrostedDropdown.Root>
         <FrostedDropdown.Trigger>
-          <button type="button" {...restProps} ref={forwardedRef}>
+          <FrostedButton type="button" variant="ghost" color="gray">
             <FrostedText size="1" className={styles.orgName} weight="medium">
               <BuildingsIcon size={16} className={styles.icon} weight="bold" /> {selectedOrg.name}
-              {selectedOrg.isTrial ? <Badge label="Trial" /> : null}
               <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
             </FrostedText>
-          </button>
+          </FrostedButton>
         </FrostedDropdown.Trigger>
         <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
           <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
@@ -36,7 +39,7 @@ const OrganizationDropdown = forwardRef<HTMLButtonElement, IOrganizationDropdown
                 value={org.name}
                 className={styles.radioItem}
               >
-                {org.name} {org.isTrial ? <Badge label="Trial" /> : null}
+                {org.name}
               </FrostedDropdown.RadioItem>
             ))}
           </FrostedDropdown.RadioGroup>

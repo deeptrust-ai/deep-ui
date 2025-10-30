@@ -6,3 +6,18 @@
   display: inline-flex;
   gap: var(--space-1);
 }
+
+.crumb {
+  font-weight: var(--font-weight-medium);
+
+  a {
+    color: var(--gray-10);
+    text-decoration: none;
+  }
+}
+
+:global(.fui-BreadcrumbsLastItem) {
+  a {
+    color: var(--gray-12);
+  }
+}

@@ -54,7 +54,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const OverflowCrumbs: Story = {};
 
 export const SingleCrumb: Story = {
   args: {
@@ -67,15 +67,6 @@ export const TwoCrumbs: Story = {
   args: {
     ...defaultArgs,
     crumbs: [defaultCrumbs[0], defaultCrumbs[1]],
-  },
-};
-
-export const OverflowCrumbs: Story = Default;
-
-export const OverflowThresholdCrumbs: Story = {
-  args: {
-    ...defaultArgs,
-    overflowThreshold: 3,
   },
 };
 

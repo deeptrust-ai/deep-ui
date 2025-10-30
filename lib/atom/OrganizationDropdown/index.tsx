@@ -6,7 +6,6 @@ import {
 } from 'frosted-ui';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
-import Badge from '../Badge';
 import type { IOrganizationDropdownProps } from './types';
 
 /**

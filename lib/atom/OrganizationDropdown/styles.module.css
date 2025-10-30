@@ -8,3 +8,7 @@
 .orgDropdown {
   min-width: 250px;
 }
+
+.icon {
+  color: var(--accent-a12);
+}

@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     layout: 'centered',
   },
-  args: { variant: 'full' },
+  args: { variant: 'full', size: 'medium' },
   tags: ['autodocs'],
 } satisfies Meta<ILogoProps>;
 

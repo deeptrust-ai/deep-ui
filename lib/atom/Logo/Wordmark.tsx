@@ -1,11 +1,14 @@
-import type { LogoGraphicProps } from './types';
+import { LOGO_BASE_HEIGHT, LOGO_BASE_WIDTH, WORDMARK_OFFSET } from './constants';
+import type { ILogoPartProps } from './types';
 
-const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width, height }: LogoGraphicProps) => {
+const wordmarkBaseWidth = LOGO_BASE_WIDTH - WORDMARK_OFFSET;
+
+const Wordmark = ({ width, height }: ILogoPartProps) => {
   return (
     <svg
       width={width}
       height={height}
-      viewBox={`${viewBoxMinX} 0 ${baseWidth} ${baseHeight}`}
+      viewBox={`${WORDMARK_OFFSET} 0 ${wordmarkBaseWidth} ${LOGO_BASE_HEIGHT}`}
       preserveAspectRatio="xMidYMid meet"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +152,7 @@ const Wordmark = ({ baseWidth, baseHeight, viewBoxMinX, width, height }: LogoGra
           <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <clipPath id="deeptrust-logo-wordmark">
-          <rect x={viewBoxMinX} width={baseWidth} height={baseHeight} fill="#fff" />
+          <rect x={WORDMARK_OFFSET} width={LOGO_BASE_WIDTH} height={LOGO_BASE_HEIGHT} fill="#fff" />
         </clipPath>
       </defs>
     </svg>

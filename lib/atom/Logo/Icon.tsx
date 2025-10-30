@@ -1,11 +1,12 @@
-import type { LogoGraphicProps } from './types';
+import { LOGO_BASE_HEIGHT, ICON_BASE_WIDTH } from './constants';
+import type { ILogoPartProps } from './types';
 
-const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width, height }: LogoGraphicProps) => {
+const Icon = ({ width, height }: ILogoPartProps) => {
   return (
     <svg
       width={width}
       height={height}
-      viewBox={`${viewBoxMinX} 0 ${baseWidth} ${baseHeight}`}
+      viewBox={`0 0 ${ICON_BASE_WIDTH} ${LOGO_BASE_HEIGHT}`}
       preserveAspectRatio="xMidYMid meet"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +117,7 @@ const Icon = ({ baseWidth, baseHeight, viewBoxMinX, width, height }: LogoGraphic
           <stop offset=".828" stopColor="#008CF9" />
         </linearGradient>
         <clipPath id="a">
-          <rect width={baseWidth} height={baseHeight} fill="#fff" />
+          <rect width={ICON_BASE_WIDTH} height={LOGO_BASE_HEIGHT} fill="#fff" />
         </clipPath>
       </defs>
     </svg>

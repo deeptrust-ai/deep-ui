@@ -2,7 +2,7 @@ import type { IOrganizationDropdown } from '../../atom/OrganizationDropdown/type
 import type { IAvatarProps } from '../../atom/Avatar/types';
 import type { Crumb } from '../../molecule/Breadcrumbs/types';
 
-export interface IHeaderProps {
+export interface ITopbarProps {
   readonly breadcrumbs?: Crumb[];
   readonly organizations: IOrganizationDropdown[];
   readonly userName: IAvatarProps['name'];

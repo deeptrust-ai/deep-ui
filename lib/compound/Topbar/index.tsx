@@ -1,15 +1,15 @@
 import { Avatar } from '../../atom';
 import { Breadcrumbs } from '../../molecule';
 import styles from './styles.module.css';
-import type { IHeaderProps } from './types';
+import type { ITopbarProps } from './types';
 
-const Header = ({ breadcrumbs, organizations, userName, userPfp }: IHeaderProps) => {
+const Topbar = ({ breadcrumbs, organizations, userName, userPfp }: ITopbarProps) => {
   return (
-    <div className={styles.header}>
+    <div className={styles.topbar}>
       <Breadcrumbs organizations={organizations} crumbs={breadcrumbs} />
       <Avatar name={userName} pfp={userPfp} />
     </div>
   );
 };
 
-export default Header;
+export default Topbar;

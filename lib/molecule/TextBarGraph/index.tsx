@@ -3,7 +3,9 @@ import cn from 'classnames';
 import type { ITextBarGraphProps } from './types';
 import styles from './styles.module.css';
 
-const TextBarGraph = ({ percentage, label, Icon, variant }: ITextBarGraphProps) => {
+const TextBarGraph = ({ percentage: percentageProp, label, Icon, variant }: ITextBarGraphProps) => {
+  const percentage = Math.max(0, Math.min(100, percentageProp));
+
   return (
     <div className={styles.container}>
       <FrostedCard
@@ -23,7 +25,7 @@ const TextBarGraph = ({ percentage, label, Icon, variant }: ITextBarGraphProps) 
         <FrostedText size="2" className={styles.label}>
           {label}
         </FrostedText>
-        <FrostedText size="2">{percentage}</FrostedText>
+        <FrostedText size="2">{percentage}%</FrostedText>
       </div>
     </div>
   );

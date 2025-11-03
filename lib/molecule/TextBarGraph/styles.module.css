@@ -10,6 +10,10 @@
   height: var(--bar-graph-height);
   transform: translateY(-25%);
 
+  &.default {
+    background-color: var(--gray-3);
+    border-color: var(--gray-11);
+  }
   &.info {
     background-color: var(--info-3);
     border-color: var(--info-11);

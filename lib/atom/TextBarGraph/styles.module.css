@@ -1,0 +1,44 @@
+:root {
+  --bar-graph-height: 36px;
+}
+
+.barGraph {
+  --card-border-radius: 6px; /* override Frosted Card border radius */
+  border-radius: 6px;
+  position: absolute;
+  inset: 0;
+  height: var(--bar-graph-height);
+  transform: translateY(-25%);
+
+  &.info {
+    background-color: var(--info-3);
+    border-color: var(--info-11);
+  }
+  &.warning {
+    background-color: var(--warning-3);
+    border-color: var(--warning-11);
+  }
+  &.danger {
+    background-color: var(--danger-3);
+    border-color: var(--danger-11);
+  }
+}
+
+.barGraphLabel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-2);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: var(--bar-graph-height);
+}
+
+.label {
+  flex: 1;
+}

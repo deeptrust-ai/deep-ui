@@ -5,10 +5,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
-  stories: [
-    './stories/**/*.mdx',
-    '../lib/**/*.stories.@(ts|tsx)',
-  ],
+  stories: ['./stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
   addons: [
     '@chromatic-com/storybook',
     '@storybook/addon-docs',

@@ -4,10 +4,10 @@ import { CalendarChips, type ICalendarChipsProps } from '../..';
 
 const defaultArgs: ICalendarChipsProps = {
   numberDaysShown: 7,
-  selectedDate: new Date('2025-10-31'),
+  endDate: new Date('2025-11-03T00:00:00'),
+  selectedDate: new Date('2025-10-31T00:00:00'),
 };
 
-// More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
   title: 'Molecule/CalendarChips',
   component: CalendarChips,

@@ -4,7 +4,7 @@ import { CalendarChips, type ICalendarChipsProps } from '../..';
 
 const defaultArgs: ICalendarChipsProps = {
   numberDaysShown: 7,
-  selectedDate: new Date(),
+  selectedDate: new Date('2025-10-31'),
 };
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export

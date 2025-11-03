@@ -1,4 +1,6 @@
 import { Button as FrostedButton, Text as FrostedText } from 'frosted-ui';
+import { useMemo } from 'react';
+import { getDateRange } from './hooks';
 import type { ICalendarChipsProps } from './types';
 import styles from './styles.module.css';
 
@@ -7,8 +9,12 @@ const CalendarChip = ({ date }: { date: Date }) => {
 
   return (
     <FrostedButton className={styles.calendarChip} variant={isToday ? 'solid' : 'ghost'}>
-      <FrostedText size="2">{date.toLocaleDateString('en-US', { day: '2-digit' })}</FrostedText>
-      <FrostedText size="2">{date.toLocaleDateString('en-US', { weekday: 'short' })}</FrostedText>
+      <FrostedText size="2">
+        {date.toLocaleDateString('en-US', { day: '2-digit', timeZone: 'UTC' })}
+      </FrostedText>
+      <FrostedText size="2">
+        {date.toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' })}
+      </FrostedText>
     </FrostedButton>
   );
 };
@@ -17,20 +23,27 @@ const CalendarChips = ({
   numberDaysShown = 1,
   selectedDate: selectedDateProp,
 }: ICalendarChipsProps) => {
-  const selectedDate = new Date(selectedDateProp);
+  const selectedDate = useMemo(
+    () => (selectedDateProp ? new Date(selectedDateProp) : new Date()),
+    [selectedDateProp]
+  );
 
-  const chips = [];
-  for (let i = numberDaysShown - 1; i >= 0; i--) {
-    const date = new Date(selectedDate);
-    date.setDate(selectedDate.getDate() - i);
-    chips.push(<CalendarChip key={date.toISOString()} date={date} />);
-  }
+  const dates = useMemo(
+    () =>
+      getDateRange({
+        endDate: selectedDate,
+        days: numberDaysShown,
+      }),
+    [selectedDate, numberDaysShown]
+  );
+
+  const chips = dates.map((date) => <CalendarChip key={date.toISOString()} date={date} />);
 
   if (chips.length > 1) {
     return <div className={styles.container}>{chips}</div>;
   }
 
-  return <CalendarChip date={selectedDate} />;
+  return chips[0];
 };
 
 export default CalendarChips;

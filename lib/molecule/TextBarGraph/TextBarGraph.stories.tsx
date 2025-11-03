@@ -1,10 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { TextBarGraph, type ITextBarGraphProps } from '..';
-import { AcornIcon, HeadphonesIcon, SealWarningIcon } from '@phosphor-icons/react';
+import { TextBarGraph, type ITextBarGraphProps } from '../..';
+import {
+  AcornIcon,
+  CloudWarningIcon,
+  HeadphonesIcon,
+  SealWarningIcon,
+} from '@phosphor-icons/react';
 
 const meta = {
-  title: 'Atom/TextBarGraph',
+  title: 'Molecule/TextBarGraph',
   component: TextBarGraph,
   parameters: {
     layout: 'centered',
@@ -12,7 +17,7 @@ const meta = {
   args: {
     percentage: 75,
     label: 'Percentile Bar Graph',
-    icon: <AcornIcon />,
+    Icon: AcornIcon,
   },
   tags: ['autodocs'],
   render: (args) => (
@@ -34,7 +39,7 @@ export const Overview: Story = {
         disable: true,
       },
     },
-    icon: {
+    Icon: {
       table: {
         disable: true,
       },
@@ -56,28 +61,28 @@ export const Overview: Story = {
         {...args}
         percentage={100}
         label="Total Organization Calls"
-        icon={<HeadphonesIcon />}
+        Icon={HeadphonesIcon}
         variant="default"
       />
       <TextBarGraph
         {...args}
         percentage={70}
         label="Total Protected Calls"
-        icon={<HeadphonesIcon />}
+        Icon={HeadphonesIcon}
         variant="info"
       />
       <TextBarGraph
         {...args}
         percentage={30}
         label="Unknown Calls"
-        icon={<HeadphonesIcon />}
+        Icon={CloudWarningIcon}
         variant="warning"
       />
       <TextBarGraph
         {...args}
         percentage={10}
         label="Suspicious Calls"
-        icon={<SealWarningIcon />}
+        Icon={SealWarningIcon}
         variant="danger"
       />
     </div>

@@ -3,7 +3,7 @@ import cn from 'classnames';
 import type { ITextBarGraphProps } from './types';
 import styles from './styles.module.css';
 
-const TextBarGraph = ({ percentage, label, icon, variant }: ITextBarGraphProps) => {
+const TextBarGraph = ({ percentage, label, Icon, variant }: ITextBarGraphProps) => {
   return (
     <div className={styles.container}>
       <FrostedCard
@@ -19,7 +19,7 @@ const TextBarGraph = ({ percentage, label, icon, variant }: ITextBarGraphProps) 
         }}
       />
       <div className={styles.barGraphLabel}>
-        {icon}
+        {Icon && <Icon weight="bold" />}
         <FrostedText size="2" className={styles.label}>
           {label}
         </FrostedText>

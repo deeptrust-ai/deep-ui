@@ -4,11 +4,14 @@ import { Button, Text } from 'frosted-ui';
 import type { IToastProps } from './types';
 import styles from './styles.module.css';
 
-export default ({ message, title, duration, variant }: IToastProps) => {
+export default ({ message, title, duration: durationProp, variant }: IToastProps) => {
   if (!message) {
     // If there's no message, don't render anything
     return null;
   }
+
+  const durationMs = durationProp === 0 ? 3.6e6 : durationProp; // 1 hour for "stay until dismissed"
+  const duration = durationMs ?? 5000; // Default to 5 seconds overwise
 
   return (
     <Toast.Provider>

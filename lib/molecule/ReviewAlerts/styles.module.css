@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-block-end: 8px;
+}
+
+.title {
+  flex: 1;
+}
+
+.viewAll {
+  align-self: flex-end;
+
+  :global(.fui-Link) {
+    color: #687d96;
+  }
+}

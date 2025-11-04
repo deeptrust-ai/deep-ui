@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+
+  > span {
+    display: flex;
+    flex-direction: column;
+
+    span + span {
+      color: var(--gray-11);
+    }
+  }
+}

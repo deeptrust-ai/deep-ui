@@ -11,3 +11,4 @@ export { default as Logo, type ILogoProps } from './Logo';
 
 export { default as Avatar, type IAvatarProps } from './Avatar';
 export { default as Header, type IHeaderProps } from './Header';
+export { default as User, type IUserProps } from './User';

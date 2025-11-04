@@ -1,4 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import {
+  Provider as RadixToastProvider,
+  Viewport as RadixToastViewport,
+} from '@radix-ui/react-toast';
 
 import { Toast, type IToastProps } from '..';
 
@@ -11,6 +15,14 @@ const meta = {
     variant: 'error',
   },
   tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <RadixToastProvider>
+        <Story />
+        <RadixToastViewport />
+      </RadixToastProvider>
+    ),
+  ],
 } satisfies Meta<IToastProps>;
 
 export default meta;

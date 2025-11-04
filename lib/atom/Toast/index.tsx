@@ -10,6 +10,7 @@ import {
 import { Text } from 'frosted-ui';
 import type { IToastProps } from './types';
 import styles from './styles.module.css';
+import { PERSIST_DURATION, DEFAULT_DURATION } from './constants';
 
 const Toast = ({ message, title, duration: durationProp, variant = 'info' }: IToastProps) => {
   if (!message) {
@@ -17,13 +18,13 @@ const Toast = ({ message, title, duration: durationProp, variant = 'info' }: ITo
     return null;
   }
 
-  const durationMs = durationProp === 0 ? 3.6e6 : durationProp; // 1 hour for "stay until dismissed"
-  const duration = durationMs ?? 5000; // Default to 5 seconds otherwise
+  const durationMs = durationProp === 0 ? PERSIST_DURATION : durationProp; // 1 hour for "stay until dismissed"
+  const duration = durationMs ?? DEFAULT_DURATION; // Default to 5 seconds otherwise
 
   const variantClass = variant ? styles[variant] : '';
 
   return (
-    <RadixToast.Provider>
+    <>
       <RadixToast.Root duration={duration} className={cn(styles.toast, variantClass)}>
         <span className={styles.icon}>
           {variant === 'success' && <CheckCircleIcon weight="bold" />}
@@ -44,9 +45,7 @@ const Toast = ({ message, title, duration: durationProp, variant = 'info' }: ITo
           </button>
         </RadixToast.Close>
       </RadixToast.Root>
-
-      <RadixToast.Viewport />
-    </RadixToast.Provider>
+    </>
   );
 };
 

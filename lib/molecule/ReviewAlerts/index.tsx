@@ -4,7 +4,7 @@ import Toast from '../../atom/Toast';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';
 
-const ImmediateReview = (props: IReviewAlertsProps) => {
+const ImmediateReview = ({ alerts }: IReviewAlertsProps) => {
   return (
     <div>
       <div className={styles.header}>
@@ -18,7 +18,7 @@ const ImmediateReview = (props: IReviewAlertsProps) => {
           </FrostedLink>
         </FrostedText>
       </div>
-      <Toast message="This is an immediate review alert!" variant="error" duration={0} />
+      <Toast message={alerts[0].message} variant={alerts[0].variant} duration={0} />
     </div>
   );
 };

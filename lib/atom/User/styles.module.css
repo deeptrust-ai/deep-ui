@@ -3,12 +3,8 @@
   gap: var(--space-3);
   align-items: center;
 
-  > span {
+  > div {
     display: flex;
     flex-direction: column;
-
-    span + span {
-      color: var(--gray-11);
-    }
   }
 }

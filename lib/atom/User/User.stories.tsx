@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { User, type IUserProps } from '..';
-import pkg from '../../../package.json';
 
 const meta = {
   title: 'Atom/User',

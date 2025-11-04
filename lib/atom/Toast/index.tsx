@@ -11,7 +11,7 @@ import { Text } from 'frosted-ui';
 import type { IToastProps } from './types';
 import styles from './styles.module.css';
 
-const Toast = ({ message, title, duration: durationProp, variant }: IToastProps) => {
+const Toast = ({ message, title, duration: durationProp, variant = 'info' }: IToastProps) => {
   if (!message) {
     // If there's no message, don't render anything
     return null;

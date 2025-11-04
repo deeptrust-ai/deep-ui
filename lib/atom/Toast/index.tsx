@@ -1,4 +1,4 @@
-import { Toast as RadixToast } from 'radix-ui';
+import * as RadixToast from '@radix-ui/react-toast';
 import cn from 'classnames';
 import {
   CaretDoubleRightIcon,
@@ -18,7 +18,7 @@ const Toast = ({ message, title, duration: durationProp, variant = 'info' }: ITo
   }
 
   const durationMs = durationProp === 0 ? 3.6e6 : durationProp; // 1 hour for "stay until dismissed"
-  const duration = durationMs ?? 5000; // Default to 5 seconds overwise
+  const duration = durationMs ?? 5000; // Default to 5 seconds otherwise
 
   const variantClass = variant ? styles[variant] : '';
 
@@ -31,13 +31,13 @@ const Toast = ({ message, title, duration: durationProp, variant = 'info' }: ITo
           {variant === 'info' && <InfoIcon weight="bold" />}
           {variant === 'warning' && <WarningDiamondIcon weight="bold" />}
         </span>
-        {title && <RadixToast.Title>title</RadixToast.Title>}
+        {title && <RadixToast.Title>{title}</RadixToast.Title>}
         <RadixToast.Description asChild>
           <Text size="2" weight="bold" className={styles.message}>
             {message}
           </Text>
         </RadixToast.Description>
-        {/* <RadixToast.Action altText="">/RadixToast.Action> // COMING SOON */}
+        {/* <RadixToast.Action altText="">COMING SOON</RadixToast.Action> */}
         <RadixToast.Close aria-label="Close" asChild>
           <button className={styles.closeBtn}>
             <CaretDoubleRightIcon weight="bold" />

@@ -18,7 +18,11 @@ const ImmediateReview = ({ alerts }: IReviewAlertsProps) => {
           </FrostedLink>
         </FrostedText>
       </div>
-      <Toast message={alerts[0].message} variant={alerts[0].variant} duration={0} />
+      {alerts.length > 0 ? (
+        <Toast message={alerts[0].message} variant={alerts[0].variant} duration={0} />
+      ) : (
+        <FrostedText as="p">No alerts to review.</FrostedText>
+      )}
     </div>
   );
 };

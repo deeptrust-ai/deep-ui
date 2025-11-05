@@ -58,7 +58,7 @@ module.exports = (plop) => {
       actions.push({
         type: 'add',
         path: path.posix.join(basePath, 'index.tsx'),
-        templateFile: 'plop-templates/component/index.tsx.hbs',
+        templateFile: '.plop/component/index.tsx.hbs',
         data: {
           useTypes: answers.useTypes,
           useStyles: answers.useStyles,
@@ -70,7 +70,7 @@ module.exports = (plop) => {
         actions.push({
           type: 'add',
           path: path.posix.join(basePath, 'types.ts'),
-          templateFile: 'plop-templates/component/types.ts.hbs',
+          templateFile: '.plop/component/types.ts.hbs',
         });
       }
 
@@ -78,7 +78,7 @@ module.exports = (plop) => {
         actions.push({
           type: 'add',
           path: path.posix.join(basePath, 'styles.module.css'),
-          templateFile: 'plop-templates/component/styles.module.css.hbs',
+          templateFile: '.plop/component/styles.module.css.hbs',
         });
       }
 
@@ -86,7 +86,7 @@ module.exports = (plop) => {
         actions.push({
           type: 'add',
           path: path.posix.join(basePath, `${pascalName}.stories.tsx`),
-          templateFile: 'plop-templates/component/stories.tsx.hbs',
+          templateFile: '.plop/component/stories.tsx.hbs',
           data: {
             useTypes: answers.useTypes,
             componentType: answers.componentType,

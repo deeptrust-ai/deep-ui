@@ -7,3 +7,5 @@ export { default as CalendarChips, type ICalendarChipsProps } from './CalendarCh
 export { default as TextBarGraph, type ITextBarGraphProps } from './TextBarGraph';
 
 export { default as ReviewAlerts, type IReviewAlertsProps } from './ReviewAlerts';
+
+export { default as Pagination, type IPaginationProps } from './Pagination';

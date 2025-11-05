@@ -5,7 +5,6 @@ import {
   Text as FrostedText,
 } from 'frosted-ui';
 import type { ITableProps } from './types';
-import { NextButton, PageButton, Pagination, PrevButton } from 'react-headless-pagination';
 
 const Table = (props: ITableProps) => {
   return (
@@ -44,24 +43,7 @@ const Table = (props: ITableProps) => {
             </FrostedTable.Body>
           </FrostedTable.Table>
         </FrostedScrollArea>
-        <FrostedTable.BottomBar>
-          <Pagination
-            className=""
-            currentPage={0}
-            edgePageCount={2}
-            middlePagesSiblingCount={1}
-            setCurrentPage={function noRefCheck() {}}
-            totalPages={10}
-            truncableClassName=""
-            truncableText="..."
-          >
-            <PrevButton className="">Previous</PrevButton>
-            <div className="flex items-center justify-center flex-grow">
-              <PageButton activeClassName="" className="" inactiveClassName="" />
-            </div>
-            <NextButton className="">Next</NextButton>
-          </Pagination>
-        </FrostedTable.BottomBar>
+        <FrostedTable.BottomBar></FrostedTable.BottomBar>
       </FrostedTable.Root>
     </div>
   );

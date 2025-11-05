@@ -39,13 +39,13 @@
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
     "@radix-ui/react-toast": "^1.2.15",
-    "frosted-ui": "0.0.1-canary.85",
-    "react-headless-pagination": "^1.1.6"
+    "frosted-ui": "0.0.1-canary.85"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "4.1.2",
     "@eslint/js": "9.38.0",
     "@frosted-ui/colors": "^0.0.1-canary.85",
+    "@mantine/hooks": "^8.3.6",
     "@storybook/addon-a11y": "10.0.2",
     "@storybook/addon-docs": "10.0.2",
     "@storybook/addon-vitest": "10.0.2",

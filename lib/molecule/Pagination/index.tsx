@@ -1,0 +1,111 @@
+import {
+  Text as FrostedText,
+  Select as FrostedSelect,
+  Button as FrostedButton,
+  IconButton as FrostedIconButton,
+} from 'frosted-ui';
+import cn from 'classnames';
+import { useState } from 'react';
+import { usePagination } from '@mantine/hooks';
+
+import type { IPaginationProps } from './types';
+import styles from './styles.module.css';
+import { PAGE_SIZE_OPTIONS } from './constants';
+import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
+
+const Pagination = ({
+  currentPage = 1,
+  totalItems,
+  defaultItemsPerPage = '10',
+  onPageChange,
+}: IPaginationProps) => {
+  const pager = usePagination({
+    total: totalItems,
+    initialPage: currentPage,
+    boundaries: 1,
+    siblings: 1,
+    onChange: (page) => onPageChange(page),
+  });
+
+  const [itemsPerPage, setItemsPerPage] = useState(Number(defaultItemsPerPage));
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const itemFrom = (currentPage - 1) * itemsPerPage + 1;
+  const itemTo = Math.min(currentPage * itemsPerPage, totalItems);
+
+  return (
+    <div className={styles.container}>
+      <div>
+        <FrostedText size="3" color="gray">
+          Showing {itemFrom} &mdash; {itemTo} of {totalItems}
+        </FrostedText>
+      </div>
+
+      <FrostedIconButton
+        variant="surface"
+        size="3"
+        disabled={pager.active === 1}
+        onClick={pager.previous}
+      >
+        <CaretLeftIcon />
+      </FrostedIconButton>
+      <ul>
+        {pager.range.map((page, index) => {
+          const isCurrent = page === pager.active;
+          if (page === 'dots') {
+            return (
+              <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
+                &hellip;
+              </li>
+            );
+          }
+          return (
+            <li key={page}>
+              <FrostedButton
+                variant={isCurrent ? 'soft' : 'ghost'}
+                color={isCurrent ? 'gray' : undefined}
+                size="3"
+                onClick={() => pager.setPage(page)}
+              >
+                {page}
+              </FrostedButton>
+            </li>
+          );
+        })}
+      </ul>
+      <FrostedIconButton
+        variant="surface"
+        size="3"
+        disabled={currentPage === totalPages}
+        onClick={pager.next}
+      >
+        <CaretRightIcon />
+      </FrostedIconButton>
+
+      <div className={styles.itemsPerPage}>
+        <FrostedText size="3" color="gray">
+          Show
+        </FrostedText>
+        <FrostedSelect.Root
+          defaultValue={`${itemsPerPage}`}
+          size="3"
+          onValueChange={(value) => {
+            setItemsPerPage(Number(value));
+            pager.setPage(1); // Reset to first page when items per page changes
+          }}
+        >
+          <FrostedSelect.Trigger variant="surface" />
+          <FrostedSelect.Content>
+            {PAGE_SIZE_OPTIONS.map((size) => (
+              <FrostedSelect.Item key={size} value={size}>
+                {size}
+              </FrostedSelect.Item>
+            ))}
+          </FrostedSelect.Content>
+        </FrostedSelect.Root>
+      </div>
+    </div>
+  );
+};
+
+export default Pagination;
+export type { IPaginationProps };

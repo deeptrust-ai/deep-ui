@@ -19,18 +19,18 @@ const Pagination = ({
   defaultItemsPerPage = '10',
   onPageChange,
 }: IPaginationProps) => {
+  const [itemsPerPage, setItemsPerPage] = useState(Number(defaultItemsPerPage));
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const itemFrom = (currentPage - 1) * itemsPerPage + 1;
+  const itemTo = Math.min(currentPage * itemsPerPage, totalItems);
+
   const pager = usePagination({
-    total: totalItems,
+    total: totalPages,
     initialPage: currentPage,
     boundaries: 1,
     siblings: 1,
     onChange: (page) => onPageChange(page),
   });
-
-  const [itemsPerPage, setItemsPerPage] = useState(Number(defaultItemsPerPage));
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const itemFrom = (currentPage - 1) * itemsPerPage + 1;
-  const itemTo = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
     <div className={styles.container}>
@@ -40,46 +40,51 @@ const Pagination = ({
         </FrostedText>
       </div>
 
-      <FrostedIconButton
-        variant="surface"
-        size="3"
-        disabled={pager.active === 1}
-        onClick={pager.previous}
-      >
-        <CaretLeftIcon />
-      </FrostedIconButton>
-      <ul>
-        {pager.range.map((page, index) => {
-          const isCurrent = page === pager.active;
-          if (page === 'dots') {
+      <div className={styles.pages}>
+        <FrostedIconButton
+          variant="ghost"
+          size="2"
+          disabled={pager.active === 1}
+          onClick={pager.previous}
+          color="gray"
+        >
+          <CaretLeftIcon />
+        </FrostedIconButton>
+
+        <ul className={styles.pageList}>
+          {pager.range.map((page, index) => {
+            const isCurrent = page === pager.active;
+            if (page === 'dots') {
+              return (
+                <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
+                  &hellip;
+                </li>
+              );
+            }
             return (
-              <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
-                &hellip;
+              <li key={page}>
+                <FrostedButton
+                  variant={isCurrent ? 'soft' : 'ghost'}
+                  color={isCurrent ? 'gray' : undefined}
+                  size="2"
+                  onClick={() => pager.setPage(page)}
+                >
+                  {page}
+                </FrostedButton>
               </li>
             );
-          }
-          return (
-            <li key={page}>
-              <FrostedButton
-                variant={isCurrent ? 'soft' : 'ghost'}
-                color={isCurrent ? 'gray' : undefined}
-                size="3"
-                onClick={() => pager.setPage(page)}
-              >
-                {page}
-              </FrostedButton>
-            </li>
-          );
-        })}
-      </ul>
-      <FrostedIconButton
-        variant="surface"
-        size="3"
-        disabled={currentPage === totalPages}
-        onClick={pager.next}
-      >
-        <CaretRightIcon />
-      </FrostedIconButton>
+          })}
+        </ul>
+        <FrostedIconButton
+          variant="ghost"
+          size="2"
+          disabled={currentPage === totalPages}
+          onClick={pager.next}
+          color="gray"
+        >
+          <CaretRightIcon />
+        </FrostedIconButton>
+      </div>
 
       <div className={styles.itemsPerPage}>
         <FrostedText size="3" color="gray">

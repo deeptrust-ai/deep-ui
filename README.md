@@ -20,6 +20,20 @@ This README explains how to build the library, consume the package locally or fr
 
 - "build" — builds component library artifacts
 - "storybook" — spins up local Storybook instance
+- "generate" — scaffolds a component package via Plop
+
+## Component scaffolding
+
+1. Run the generator:
+
+   ```
+   bun run generate
+   ```
+
+2. Choose the component layer (atom / molecule / compound) and provide the component name.
+3. Opt in or out of the optional files (types, CSS module, Storybook story) when prompted.
+
+The generator creates the selected files under `lib/<layer>/<Component>/` and appends an export to the relevant `lib/<layer>/index.ts`. Regenerate is safe — existing files or exports are skipped.
 
 ## Quick setup
 

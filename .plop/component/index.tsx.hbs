@@ -1,0 +1,16 @@
+{{#if useTypes}}import type { I{{pascalCase name}}Props } from './types';
+{{/if}}{{#if useStyles}}import styles from './styles.module.css';
+{{/if}}{{#if hasImports}}
+
+{{/if}}const {{pascalCase name}} = {{#if useTypes}}(_props: I{{pascalCase name}}Props){{else}}(){{/if}} => {
+  return (
+    <div{{#if useStyles}} className={styles.container}{{/if}}>
+      {{pascalCase name}} component
+    </div>
+  );
+};
+
+export default {{pascalCase name}};
+{{#if useTypes}}
+export type { I{{pascalCase name}}Props };
+{{/if}}

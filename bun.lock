@@ -7,6 +7,7 @@
         "@phosphor-icons/react": "2.1.10",
         "@radix-ui/react-toast": "^1.2.15",
         "frosted-ui": "0.0.1-canary.85",
+        "react-headless-pagination": "^1.1.6",
       },
       "devDependencies": {
         "@chromatic-com/storybook": "4.1.2",
@@ -1136,6 +1137,8 @@
     "react-docgen-typescript": ["react-docgen-typescript@2.4.0", "", { "peerDependencies": { "typescript": ">= 4.3.x" } }, ""],
 
     "react-dom": ["react-dom@19.2.0", "", { "dependencies": { "scheduler": "^0.27.0" }, "peerDependencies": { "react": "^19.2.0" } }, "sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ=="],
+
+    "react-headless-pagination": ["react-headless-pagination@1.1.6", "", { "dependencies": { "clsx": "^2.1.0" }, "peerDependencies": { "react": ">=16" } }, "sha512-t7L/Q4xpyZszw8iC8ALERs/G2644JESmssahUkRp65WFWvw2k9HXVmfI6VbXvTXrqy+a8fbKT6BQ6SgS2ULNOA=="],
 
     "react-is": ["react-is@17.0.2", "", {}, ""],
 

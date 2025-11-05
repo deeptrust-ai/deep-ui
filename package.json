@@ -38,7 +38,8 @@
   "dependencies": {
     "@phosphor-icons/react": "2.1.10",
     "@radix-ui/react-toast": "^1.2.15",
-    "frosted-ui": "0.0.1-canary.85"
+    "frosted-ui": "0.0.1-canary.85",
+    "react-headless-pagination": "^1.1.6"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "4.1.2",

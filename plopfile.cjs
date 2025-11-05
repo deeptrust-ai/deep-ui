@@ -53,7 +53,7 @@ module.exports = (plop) => {
     actions: (answers) => {
       const actions = [];
       const pascalName = plop.getHelper('pascalCase')(answers.name);
-      const basePath = path.posix.join(componentRoot, answers.componentType, '{{pascalCase name}}');
+      const basePath = path.posix.join(componentRoot, answers.componentType, pascalName);
 
       actions.push({
         type: 'add',
@@ -102,7 +102,7 @@ module.exports = (plop) => {
         plop.getPlopfilePath(),
         componentRoot,
         answers.componentType,
-        'index.ts',
+        'index.ts'
       );
 
       if (!fs.existsSync(indexPath)) {

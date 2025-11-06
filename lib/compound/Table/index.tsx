@@ -3,14 +3,18 @@ import {
   ScrollArea as FrostedScrollArea,
   Badge as FrostedBadge,
   Text as FrostedText,
+  IconButton as FrostedIconButton,
 } from 'frosted-ui';
 import type { ITableProps } from './types';
+import { Pagination } from '../..';
+import styles from './styles.module.css';
+import { CaretDoubleRightIcon } from '@phosphor-icons/react';
 
 const Table = (props: ITableProps) => {
   return (
-    <div>
+    <div className={styles.container}>
       <FrostedTable.Root
-        size="2"
+        size="1"
         style={{
           minWidth: 400,
           whiteSpace: 'nowrap',
@@ -31,20 +35,31 @@ const Table = (props: ITableProps) => {
             </FrostedTable.Header>
             <FrostedTable.Body>
               <FrostedTable.Row>
-                <FrostedTable.RowHeaderCell>Pizza</FrostedTable.RowHeaderCell>
                 <FrostedTable.Cell>
-                  <FrostedBadge color="green">In stock</FrostedBadge>
+                  <FrostedText size="3" weight="medium" as="p">
+                    Deepfake Detected
+                  </FrostedText>
+                  <FrostedText size="2" weight="regular">
+                    Attendees: Sean, Noah, Aman
+                  </FrostedText>
                 </FrostedTable.Cell>
-                <FrostedTable.Cell>Tesco</FrostedTable.Cell>
-                <FrostedTable.Cell>$20</FrostedTable.Cell>
-                <FrostedTable.Cell>$2</FrostedTable.Cell>
-                <FrostedTable.Cell></FrostedTable.Cell>
+                <FrostedTable.Cell>
+                  <FrostedBadge color="danger">Critical</FrostedBadge>
+                </FrostedTable.Cell>
+                <FrostedTable.Cell>Dec 26th, 2024</FrostedTable.Cell>
+                <FrostedTable.Cell>Exclusive</FrostedTable.Cell>
+                <FrostedTable.Cell>Default</FrostedTable.Cell>
+                <FrostedTable.Cell align="right">
+                  <FrostedIconButton color="blue" variant="soft" className={styles.actionButton}>
+                    <CaretDoubleRightIcon />
+                  </FrostedIconButton>
+                </FrostedTable.Cell>
               </FrostedTable.Row>
             </FrostedTable.Body>
           </FrostedTable.Table>
         </FrostedScrollArea>
-        <FrostedTable.BottomBar></FrostedTable.BottomBar>
       </FrostedTable.Root>
+      <Pagination totalItems={100} onPageChange={(page) => console.log(page)} />
     </div>
   );
 };

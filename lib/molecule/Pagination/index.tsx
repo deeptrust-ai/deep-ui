@@ -8,30 +8,31 @@ import {
 import cn from 'classnames';
 import { useState } from 'react';
 import { usePagination } from '@mantine/hooks';
+import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 
 import type { IPaginationProps } from './types';
 import styles from './styles.module.css';
 import { PAGE_SIZE_OPTIONS } from './constants';
-import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 
 const Pagination = ({
-  currentPage = 1,
+  initialPage = 1,
   totalItems,
   defaultItemsPerPage = '10',
-  onPageChange,
+  onPageChange = () => {},
 }: IPaginationProps) => {
   const [itemsPerPage, setItemsPerPage] = useState(Number(defaultItemsPerPage));
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const itemFrom = (currentPage - 1) * itemsPerPage + 1;
-  const itemTo = Math.min(currentPage * itemsPerPage, totalItems);
 
   const pager = usePagination({
     total: totalPages,
-    initialPage: currentPage,
+    initialPage,
     boundaries: 1,
     siblings: 1,
     onChange: (page) => onPageChange(page),
   });
+
+  const itemFrom = (pager.active - 1) * itemsPerPage + 1;
+  const itemTo = Math.min(pager.active * itemsPerPage, totalItems);
 
   return (
     <div className={styles.container}>
@@ -67,7 +68,7 @@ const Pagination = ({
                 <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
                   <FrostedDropdownMenu.Root>
                     <FrostedDropdownMenu.Trigger>
-                      <FrostedButton variant="soft">&hellip;</FrostedButton>
+                      <FrostedButton variant="ghost">&hellip;</FrostedButton>
                     </FrostedDropdownMenu.Trigger>
                     <FrostedDropdownMenu.Content size="2" variant="translucent">
                       {pagesBetween.map((p) => (
@@ -97,7 +98,7 @@ const Pagination = ({
         <FrostedIconButton
           variant="ghost"
           size="2"
-          disabled={currentPage === totalPages}
+          disabled={pager.active === totalPages}
           onClick={pager.next}
           color="gray"
         >

@@ -6,6 +6,6 @@
 
 .headerRow {
   :global(.fui-TableCell) {
-    background-color: var(--gray-a1);
+    background-color: #fefefe;
   }
 }

@@ -39,7 +39,7 @@ const Pagination = ({
   useEffect(() => {
     onItemsPerPageChange(itemsPerPage); // Notify parent of items per page change
     pager.setPage(1); // Reset to first page when items per page changes
-  }, [itemsPerPage]);
+  }, [itemsPerPage, onItemsPerPageChange, pager]);
 
   return (
     <div className={styles.container}>
@@ -75,7 +75,9 @@ const Pagination = ({
                 <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
                   <FrostedDropdownMenu.Root>
                     <FrostedDropdownMenu.Trigger>
-                      <FrostedButton variant="ghost">&hellip;</FrostedButton>
+                      <FrostedButton variant="ghost" color="gray">
+                        &hellip;
+                      </FrostedButton>
                     </FrostedDropdownMenu.Trigger>
                     <FrostedDropdownMenu.Content size="2" variant="translucent">
                       {pagesBetween.map((p) => (

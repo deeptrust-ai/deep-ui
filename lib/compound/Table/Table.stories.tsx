@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
 
 import { Table, type ITableProps } from '../..';
+import { ReactNode } from 'react';
 
 function generateDate() {
   const start = new Date('2025-01-01');
@@ -17,10 +18,10 @@ function generateRows(numRows: number) {
   ];
   const orgs = ['Executive', 'Finance', 'HR', 'Engineering', 'Marketing'];
   const status = ['Exclusive', 'Default', 'Critical', 'Info'];
-  const randomItem = (items: any[]) => items[Math.floor(Math.random() * items.length)];
+  const randomItem = (items: unknown[]): ReactNode =>
+    items[Math.floor(Math.random() * items.length)] as ReactNode;
 
   return Array.from({ length: numRows }).map((_, index) => ({
-    key: `row-${index}`,
     cells: [
       <>
         <FrostedText size="3" weight="medium" as="p">

@@ -2,7 +2,7 @@ import { Table as FrostedTable, ScrollArea as FrostedScrollArea } from 'frosted-
 import type { ITableProps } from './types';
 import { Pagination, TableRow } from '../..';
 import styles from './styles.module.css';
-import { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { PAGE_SIZE_OPTIONS } from '../../molecule/Pagination/constants';
 import type { TPaginationItemsPerPage } from '../../molecule/Pagination/types';
 
@@ -16,6 +16,7 @@ const Table = ({
   defaultItemsPerPage: defaultItemsPerPageProp,
 }: ITableProps) => {
   const [itemsPerPage, setItemsPerPage] = useState(defaultItemsPerPageProp);
+  const [currentPage, setCurrentPage] = useState(initialPageProp ?? 1);
 
   rows.forEach((row, index) => {
     if (!row.cells || row.cells.length !== headers.length) {
@@ -27,15 +28,24 @@ const Table = ({
 
   const totalItemsMemo = totalItems ?? rows.length;
 
-  const rowsPerPage = rows.slice(0, Number(itemsPerPage));
+  const numericItemsPerPage = Number(itemsPerPage);
+  const startIndex = Math.max(0, (currentPage - 1) * numericItemsPerPage);
+  const endIndex = startIndex + numericItemsPerPage;
+  const rowsPerPage = rows.slice(startIndex, endIndex);
 
-  const handleItemsPerPageChange = useCallback((newItemsPerPage: TPaginationItemsPerPage) => {
+  const handleItemsPerPageChange = (newItemsPerPage: TPaginationItemsPerPage) => {
     // Check if value is a valid TPaginationItemsPerPage
     if (PAGE_SIZE_OPTIONS.includes(newItemsPerPage)) {
       setItemsPerPage(newItemsPerPage);
-      onItemsPerPageChangeProp(newItemsPerPage as TPaginationItemsPerPage);
+      setCurrentPage(1);
+      onItemsPerPageChangeProp?.(newItemsPerPage as TPaginationItemsPerPage);
     }
-  }, []);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+    onPageChangeProp?.(newPage);
+  };
 
   return (
     <div className={styles.container}>
@@ -68,7 +78,7 @@ const Table = ({
       </FrostedTable.Root>
       <Pagination
         totalItems={totalItemsMemo}
-        onPageChange={onPageChangeProp}
+        onPageChange={handlePageChange}
         onItemsPerPageChange={handleItemsPerPageChange}
         initialPage={initialPageProp}
         defaultItemsPerPage={itemsPerPage}

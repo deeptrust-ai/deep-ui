@@ -20,7 +20,6 @@ const Table = ({
 
   rows.forEach((row, index) => {
     if (!row.cells || row.cells.length !== headers.length) {
-      // eslint-disable-next-line no-console
       console.warn(`TableRow with index "${index}" has cell/header mismatch`, row);
       return null;
     }

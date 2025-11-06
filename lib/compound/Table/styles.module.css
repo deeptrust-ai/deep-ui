@@ -7,3 +7,9 @@
 .actionButton {
   border: 1px solid var(--accent-a11);
 }
+
+.headerRow {
+  :global(.fui-TableCell) {
+    background-color: var(--gray-a1);
+  }
+}

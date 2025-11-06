@@ -24,7 +24,7 @@ const Table = (props: ITableProps) => {
         <FrostedScrollArea scrollbars="horizontal">
           <FrostedTable.Table>
             <FrostedTable.Header>
-              <FrostedTable.Row>
+              <FrostedTable.Row className={styles.headerRow}>
                 <FrostedTable.ColumnHeaderCell>Event</FrostedTable.ColumnHeaderCell>
                 <FrostedTable.ColumnHeaderCell>Severity</FrostedTable.ColumnHeaderCell>
                 <FrostedTable.ColumnHeaderCell>Date</FrostedTable.ColumnHeaderCell>

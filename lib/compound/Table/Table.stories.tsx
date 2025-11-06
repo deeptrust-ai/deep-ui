@@ -3,6 +3,7 @@ import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
 
 import { Table, type ITableProps } from '../..';
 import type { ReactNode } from 'react';
+import { CaretDoubleRightIcon } from '@phosphor-icons/react';
 
 function generateDate() {
   const start = new Date('2025-01-01');
@@ -41,7 +42,13 @@ function generateRows(numRows: number) {
       { id: `date-${index}`, content: generateDate().toLocaleDateString() },
       { id: `orgs-${index}`, content: randomItem(orgs) },
       { id: `status-${index}`, content: randomItem(status) },
-      { id: `action-${index}`, content: () => alert(`Viewing details for row ${index}`) },
+    ],
+    actions: [
+      {
+        label: 'View Details',
+        onClick: () => alert(`Viewing details for row ${index}`),
+        icon: CaretDoubleRightIcon,
+      },
     ],
   }));
 }
@@ -50,7 +57,7 @@ const meta = {
   title: 'Compound/Table',
   component: Table,
   args: {
-    headers: ['Event', 'Severity', 'Date', 'Organization', 'Status', ''],
+    headers: ['Event', 'Severity', 'Date', 'Organization', 'Status'],
     rows: generateRows(25),
     totalItems: 25,
   },

@@ -1,10 +1,13 @@
-import { Table as FrostedTable, IconButton as FrostedIconButton } from 'frosted-ui';
-import { CaretDoubleRightIcon } from '@phosphor-icons/react';
+import {
+  Table as FrostedTable,
+  IconButton as FrostedIconButton,
+  Button as FrostedButton,
+} from 'frosted-ui';
 
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
 
-const TableRow = ({ id, cells }: ITableRowProps) => {
+const TableRow = ({ id, cells, actions }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
@@ -12,24 +15,37 @@ const TableRow = ({ id, cells }: ITableRowProps) => {
   return (
     <FrostedTable.Row data-row-id={id}>
       {cells.map((cell) => {
-        if (typeof cell.content === 'function') {
-          return (
-            <FrostedTable.Cell key={cell.id}>
+        return <FrostedTable.Cell key={cell.id}>{cell.content}</FrostedTable.Cell>;
+      })}
+
+      {actions && actions.length > 0 && (
+        <FrostedTable.Cell className={styles.actionsCell}>
+          {actions.map((action) =>
+            action.icon ? (
               <FrostedIconButton
+                key={action.label}
                 color="blue"
                 variant="soft"
                 className={styles.actionButton}
-                onClick={cell.content}
-                aria-label="Perform action"
+                onClick={action.onClick}
+                aria-label={action.label}
               >
-                <CaretDoubleRightIcon />
+                {<action.icon size={16} />}
               </FrostedIconButton>
-            </FrostedTable.Cell>
-          );
-        }
-
-        return <FrostedTable.Cell key={cell.id}>{cell.content}</FrostedTable.Cell>;
-      })}
+            ) : (
+              <FrostedButton
+                key={action.label}
+                color="blue"
+                variant="soft"
+                className={styles.actionButton}
+                onClick={action.onClick}
+              >
+                {action.label}
+              </FrostedButton>
+            )
+          )}
+        </FrostedTable.Cell>
+      )}
     </FrostedTable.Row>
   );
 };

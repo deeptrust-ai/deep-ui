@@ -13,7 +13,7 @@ const Table = ({
   onItemsPerPageChange: onItemsPerPageChangeProp,
   onPageChange: onPageChangeProp,
   initialPage: initialPageProp,
-  defaultItemsPerPage: defaultItemsPerPageProp,
+  defaultItemsPerPage: defaultItemsPerPageProp = PAGE_SIZE_OPTIONS[1],
 }: ITableProps) => {
   const [itemsPerPage, setItemsPerPage] = useState(defaultItemsPerPageProp);
   const [currentPage, setCurrentPage] = useState(initialPageProp ?? 1);
@@ -29,7 +29,7 @@ const Table = ({
     if (PAGE_SIZE_OPTIONS.includes(newItemsPerPage)) {
       setItemsPerPage(newItemsPerPage);
       setCurrentPage(1);
-      onItemsPerPageChangeProp?.(newItemsPerPage as TPaginationItemsPerPage);
+      onItemsPerPageChangeProp?.(newItemsPerPage);
     }
   };
 
@@ -51,6 +51,13 @@ const Table = ({
   );
   const rowsPerPage = validRows.slice(startIndex, endIndex);
 
+  console.log(startIndex, endIndex, rowsPerPage);
+
+  const showActionsColumns = useMemo(
+    () => validRows.some((row) => row.actions && row.actions.length > 0),
+    [validRows]
+  );
+
   return (
     <div className={styles.container}>
       <FrostedTable.Root size="1" className={styles.table} variant="surface">
@@ -58,11 +65,12 @@ const Table = ({
           <FrostedTable.Table>
             <FrostedTable.Header>
               <FrostedTable.Row className={styles.headerRow}>
-                {headers.map((header, index) => (
-                  <FrostedTable.ColumnHeaderCell key={index}>
+                {headers.map((header) => (
+                  <FrostedTable.ColumnHeaderCell key={header.toString()}>
                     {header}
                   </FrostedTable.ColumnHeaderCell>
                 ))}
+                {showActionsColumns && <FrostedTable.ColumnHeaderCell />}
               </FrostedTable.Row>
             </FrostedTable.Header>
             <FrostedTable.Body>
@@ -78,7 +86,6 @@ const Table = ({
         onPageChange={handlePageChange}
         onItemsPerPageChange={handleItemsPerPageChange}
         initialPage={initialPageProp}
-        defaultItemsPerPage={itemsPerPage}
       />
     </div>
   );

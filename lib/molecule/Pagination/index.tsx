@@ -41,11 +41,11 @@ const Pagination = ({
       // Check if value is a valid TPaginationItemsPerPage
       if (PAGE_SIZE_OPTIONS.includes(value)) {
         setItemsPerPage(value);
-        onItemsPerPageChange(itemsPerPage); // Notify parent of items per page change
+        onItemsPerPageChange(value); // Notify parent of items per page change
         pager.setPage(1); // Reset to first page when items per page changes
       }
     },
-    [itemsPerPage, onItemsPerPageChange, pager]
+    [onItemsPerPageChange, pager]
   );
 
   return (
@@ -63,6 +63,7 @@ const Pagination = ({
           disabled={pager.active === 1}
           onClick={pager.previous}
           color="gray"
+          aria-label="Previous page"
         >
           <CaretLeftIcon />
         </FrostedIconButton>
@@ -82,7 +83,7 @@ const Pagination = ({
                 <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
                   <FrostedDropdownMenu.Root>
                     <FrostedDropdownMenu.Trigger>
-                      <FrostedButton variant="ghost" color="gray">
+                      <FrostedButton variant="ghost" color="gray" aria-label="More pages">
                         &hellip;
                       </FrostedButton>
                     </FrostedDropdownMenu.Trigger>
@@ -104,6 +105,8 @@ const Pagination = ({
                   color="gray"
                   size="2"
                   onClick={() => pager.setPage(page)}
+                  aria-label={`Page ${page}`}
+                  aria-current={isCurrent ? 'page' : undefined}
                 >
                   {page}
                 </FrostedButton>
@@ -117,6 +120,7 @@ const Pagination = ({
           disabled={pager.active === totalPages}
           onClick={pager.next}
           color="gray"
+          aria-label="Next page"
         >
           <CaretRightIcon />
         </FrostedIconButton>

@@ -6,11 +6,11 @@
 
 .headerRow {
   :global(.fui-TableCell) {
-    background-color: #fefefe;
+    background-color: var(--color-background-header);
   }
 }
 
 .table {
-  min-width: 400;
+  min-width: 400px;
   white-space: nowrap;
 }

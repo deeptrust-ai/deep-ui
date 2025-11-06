@@ -12,15 +12,14 @@ const Table = ({
   totalItems,
   onItemsPerPageChange: onItemsPerPageChangeProp,
   onPageChange: onPageChangeProp,
-  initialPage: initialPageProp,
-  defaultItemsPerPage: defaultItemsPerPageProp = PAGE_SIZE_OPTIONS[1],
+  defaultItemsPerPage: defaultItemsPerPageProp,
 }: ITableProps) => {
-  const [itemsPerPage, setItemsPerPage] = useState(defaultItemsPerPageProp);
-  const [currentPage, setCurrentPage] = useState(initialPageProp ?? 1);
+  const [itemsPerPage, setItemsPerPage] = useState(defaultItemsPerPageProp ?? PAGE_SIZE_OPTIONS[1]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const totalItemsMemo = totalItems ?? rows.length;
+  const numericItemsPerPage = Number(itemsPerPage) || Number(PAGE_SIZE_OPTIONS[1]);
 
-  const numericItemsPerPage = Number(itemsPerPage);
   const startIndex = Math.max(0, (currentPage - 1) * numericItemsPerPage);
   const endIndex = startIndex + numericItemsPerPage;
 
@@ -66,7 +65,7 @@ const Table = ({
             <FrostedTable.Header>
               <FrostedTable.Row className={styles.headerRow}>
                 {headers.map((header) => (
-                  <FrostedTable.ColumnHeaderCell key={header.toString()}>
+                  <FrostedTable.ColumnHeaderCell key={`${header}`}>
                     {header}
                   </FrostedTable.ColumnHeaderCell>
                 ))}
@@ -85,7 +84,6 @@ const Table = ({
         totalItems={totalItemsMemo}
         onPageChange={handlePageChange}
         onItemsPerPageChange={handleItemsPerPageChange}
-        initialPage={initialPageProp}
       />
     </div>
   );

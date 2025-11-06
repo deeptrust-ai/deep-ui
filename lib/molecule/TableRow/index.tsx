@@ -11,15 +11,24 @@ const TableRow = ({ cells }: ITableRowProps) => {
 
   return (
     <FrostedTable.Row>
-      {cells.map((cell, index) => (
-        <FrostedTable.Cell key={index}>{cell}</FrostedTable.Cell>
-      ))}
+      {cells.map((cell, index) => {
+        if (typeof cell === 'function') {
+          return (
+            <FrostedTable.Cell key={index}>
+              <FrostedIconButton
+                color="blue"
+                variant="soft"
+                className={styles.actionButton}
+                onClick={cell}
+              >
+                <CaretDoubleRightIcon />
+              </FrostedIconButton>
+            </FrostedTable.Cell>
+          );
+        }
 
-      <FrostedTable.Cell align="right">
-        <FrostedIconButton color="blue" variant="soft" className={styles.actionButton}>
-          <CaretDoubleRightIcon />
-        </FrostedIconButton>
-      </FrostedTable.Cell>
+        return <FrostedTable.Cell key={index}>{cell}</FrostedTable.Cell>;
+      })}
     </FrostedTable.Row>
   );
 };

@@ -6,11 +6,11 @@ import {
   DropdownMenu as FrostedDropdownMenu,
 } from 'frosted-ui';
 import cn from 'classnames';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePagination } from '@mantine/hooks';
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 
-import type { IPaginationProps } from './types';
+import type { IPaginationProps, TPaginationItemsPerPage } from './types';
 import styles from './styles.module.css';
 import { PAGE_SIZE_OPTIONS } from './constants';
 
@@ -19,9 +19,11 @@ const Pagination = ({
   totalItems,
   defaultItemsPerPage = '10',
   onPageChange = () => {},
+  onItemsPerPageChange = () => {},
 }: IPaginationProps) => {
-  const [itemsPerPage, setItemsPerPage] = useState(Number(defaultItemsPerPage));
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const [itemsPerPage, setItemsPerPage] = useState<TPaginationItemsPerPage>(defaultItemsPerPage);
+  const numItemsPerPage = Number(itemsPerPage);
+  const totalPages = Math.ceil(totalItems / numItemsPerPage);
 
   const pager = usePagination({
     total: totalPages,
@@ -31,8 +33,13 @@ const Pagination = ({
     onChange: (page) => onPageChange(page),
   });
 
-  const itemFrom = (pager.active - 1) * itemsPerPage + 1;
-  const itemTo = Math.min(pager.active * itemsPerPage, totalItems);
+  const itemFrom = (pager.active - 1) * numItemsPerPage + 1;
+  const itemTo = Math.min(pager.active * numItemsPerPage, totalItems);
+
+  useEffect(() => {
+    onItemsPerPageChange(itemsPerPage); // Notify parent of items per page change
+    pager.setPage(1); // Reset to first page when items per page changes
+  }, [itemsPerPage]);
 
   return (
     <div className={styles.container}>
@@ -111,11 +118,13 @@ const Pagination = ({
           Show
         </FrostedText>
         <FrostedSelect.Root
-          defaultValue={`${itemsPerPage}`}
+          value={itemsPerPage}
           size="3"
           onValueChange={(value) => {
-            setItemsPerPage(Number(value));
-            pager.setPage(1); // Reset to first page when items per page changes
+            // Check if value is a valid TPaginationItemsPerPage
+            if (PAGE_SIZE_OPTIONS.includes(value as TPaginationItemsPerPage)) {
+              setItemsPerPage(value as TPaginationItemsPerPage);
+            }
           }}
         >
           <FrostedSelect.Trigger variant="surface" />

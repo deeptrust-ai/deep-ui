@@ -1,3 +1,7 @@
 export interface ITableRowProps {
-  readonly cells: (React.ReactNode | (() => void))[];
+  readonly id: string;
+  readonly cells: {
+    id: string;
+    content: React.ReactNode | (() => void);
+  }[];
 }

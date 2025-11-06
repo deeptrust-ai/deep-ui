@@ -9,3 +9,8 @@
     background-color: #fefefe;
   }
 }
+
+.table {
+  min-width: 400;
+  white-space: nowrap;
+}

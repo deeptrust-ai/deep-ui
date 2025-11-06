@@ -4,22 +4,23 @@ import { CaretDoubleRightIcon } from '@phosphor-icons/react';
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
 
-const TableRow = ({ cells }: ITableRowProps) => {
+const TableRow = ({ id, cells }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
 
   return (
-    <FrostedTable.Row>
-      {cells.map((cell, index) => {
-        if (typeof cell === 'function') {
+    <FrostedTable.Row data-row-id={id}>
+      {cells.map((cell) => {
+        if (typeof cell.content === 'function') {
           return (
-            <FrostedTable.Cell key={index}>
+            <FrostedTable.Cell key={cell.id}>
               <FrostedIconButton
                 color="blue"
                 variant="soft"
                 className={styles.actionButton}
-                onClick={cell}
+                onClick={cell.content}
+                aria-label="Perform action"
               >
                 <CaretDoubleRightIcon />
               </FrostedIconButton>
@@ -27,7 +28,7 @@ const TableRow = ({ cells }: ITableRowProps) => {
           );
         }
 
-        return <FrostedTable.Cell key={index}>{cell}</FrostedTable.Cell>;
+        return <FrostedTable.Cell key={cell.id}>{cell.content}</FrostedTable.Cell>;
       })}
     </FrostedTable.Row>
   );

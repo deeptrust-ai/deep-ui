@@ -6,7 +6,7 @@ import {
   DropdownMenu as FrostedDropdownMenu,
 } from 'frosted-ui';
 import cn from 'classnames';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { usePagination } from '@mantine/hooks';
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 
@@ -30,16 +30,23 @@ const Pagination = ({
     initialPage,
     boundaries: 1,
     siblings: 1,
-    onChange: (page) => onPageChange(page),
+    onChange: onPageChange,
   });
 
   const itemFrom = (pager.active - 1) * numItemsPerPage + 1;
   const itemTo = Math.min(pager.active * numItemsPerPage, totalItems);
 
-  useEffect(() => {
-    onItemsPerPageChange(itemsPerPage); // Notify parent of items per page change
-    pager.setPage(1); // Reset to first page when items per page changes
-  }, [itemsPerPage, onItemsPerPageChange, pager]);
+  const handlePerPageChange = useCallback(
+    (value: TPaginationItemsPerPage) => {
+      // Check if value is a valid TPaginationItemsPerPage
+      if (PAGE_SIZE_OPTIONS.includes(value)) {
+        setItemsPerPage(value);
+        onItemsPerPageChange(itemsPerPage); // Notify parent of items per page change
+        pager.setPage(1); // Reset to first page when items per page changes
+      }
+    },
+    [itemsPerPage, onItemsPerPageChange, pager]
+  );
 
   return (
     <div className={styles.container}>
@@ -119,16 +126,7 @@ const Pagination = ({
         <FrostedText size="3" color="gray">
           Show
         </FrostedText>
-        <FrostedSelect.Root
-          value={itemsPerPage}
-          size="3"
-          onValueChange={(value) => {
-            // Check if value is a valid TPaginationItemsPerPage
-            if (PAGE_SIZE_OPTIONS.includes(value as TPaginationItemsPerPage)) {
-              setItemsPerPage(value as TPaginationItemsPerPage);
-            }
-          }}
-        >
+        <FrostedSelect.Root value={itemsPerPage} size="3" onValueChange={handlePerPageChange}>
           <FrostedSelect.Trigger variant="surface" />
           <FrostedSelect.Content>
             {PAGE_SIZE_OPTIONS.map((size) => (

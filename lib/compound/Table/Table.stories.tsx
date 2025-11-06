@@ -22,20 +22,26 @@ function generateRows(numRows: number) {
     items[Math.floor(Math.random() * items.length)] as ReactNode;
 
   return Array.from({ length: numRows }).map((_, index) => ({
+    id: `row-${index}`,
     cells: [
-      <>
-        <FrostedText size="3" weight="medium" as="p">
-          Deepfake Detected
-        </FrostedText>
-        <FrostedText size="2" weight="regular">
-          Attendees: Sean, Noah, Aman
-        </FrostedText>
-      </>,
-      randomItem(severity),
-      generateDate().toLocaleDateString(),
-      randomItem(orgs),
-      randomItem(status),
-      () => alert(`Viewing details for row ${index}`),
+      {
+        id: `event-${index}`,
+        content: (
+          <>
+            <FrostedText size="3" weight="medium" as="p">
+              Deepfake Detected
+            </FrostedText>
+            <FrostedText size="2" weight="regular">
+              Attendees: Sean, Noah, Aman
+            </FrostedText>
+          </>
+        ),
+      },
+      { id: `severity-${index}`, content: randomItem(severity) },
+      { id: `date-${index}`, content: generateDate().toLocaleDateString() },
+      { id: `orgs-${index}`, content: randomItem(orgs) },
+      { id: `status-${index}`, content: randomItem(status) },
+      { id: `action-${index}`, content: () => alert(`Viewing details for row ${index}`) },
     ],
   }));
 }

@@ -9,3 +9,5 @@ export { default as TextBarGraph, type ITextBarGraphProps } from './TextBarGraph
 export { default as ReviewAlerts, type IReviewAlertsProps } from './ReviewAlerts';
 
 export { default as Pagination, type IPaginationProps } from './Pagination';
+
+export { default as TableRow, type ITableRowProps } from './TableRow';

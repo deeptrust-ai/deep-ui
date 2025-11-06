@@ -3,12 +3,10 @@ import {
   ScrollArea as FrostedScrollArea,
   Badge as FrostedBadge,
   Text as FrostedText,
-  IconButton as FrostedIconButton,
 } from 'frosted-ui';
 import type { ITableProps } from './types';
-import { Pagination } from '../..';
+import { Pagination, TableRow } from '../..';
 import styles from './styles.module.css';
-import { CaretDoubleRightIcon } from '@phosphor-icons/react';
 
 const Table = (props: ITableProps) => {
   return (
@@ -34,27 +32,22 @@ const Table = (props: ITableProps) => {
               </FrostedTable.Row>
             </FrostedTable.Header>
             <FrostedTable.Body>
-              <FrostedTable.Row>
-                <FrostedTable.Cell>
-                  <FrostedText size="3" weight="medium" as="p">
-                    Deepfake Detected
-                  </FrostedText>
-                  <FrostedText size="2" weight="regular">
-                    Attendees: Sean, Noah, Aman
-                  </FrostedText>
-                </FrostedTable.Cell>
-                <FrostedTable.Cell>
-                  <FrostedBadge color="danger">Critical</FrostedBadge>
-                </FrostedTable.Cell>
-                <FrostedTable.Cell>Dec 26th, 2024</FrostedTable.Cell>
-                <FrostedTable.Cell>Exclusive</FrostedTable.Cell>
-                <FrostedTable.Cell>Default</FrostedTable.Cell>
-                <FrostedTable.Cell align="right">
-                  <FrostedIconButton color="blue" variant="soft" className={styles.actionButton}>
-                    <CaretDoubleRightIcon />
-                  </FrostedIconButton>
-                </FrostedTable.Cell>
-              </FrostedTable.Row>
+              <TableRow
+                cells={[
+                  <>
+                    <FrostedText size="3" weight="medium" as="p">
+                      Deepfake Detected
+                    </FrostedText>
+                    <FrostedText size="2" weight="regular">
+                      Attendees: Sean, Noah, Aman
+                    </FrostedText>
+                  </>,
+                  <FrostedBadge color="danger">Critical</FrostedBadge>,
+                  'Dec 26th, 2024',
+                  'Exclusive',
+                  'Default',
+                ]}
+              />
             </FrostedTable.Body>
           </FrostedTable.Table>
         </FrostedScrollArea>

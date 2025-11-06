@@ -21,15 +21,9 @@
 .itemsPerPage {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
-.currentPage,
-.pageItem,
-.pageInactive,
-.prevPage,
-.nextPage,
-.truncated,
 .dots {
   margin: 0;
 }

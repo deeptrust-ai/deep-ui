@@ -3,6 +3,7 @@ import {
   Select as FrostedSelect,
   Button as FrostedButton,
   IconButton as FrostedIconButton,
+  DropdownMenu as FrostedDropdownMenu,
 } from 'frosted-ui';
 import cn from 'classnames';
 import { useState } from 'react';
@@ -55,9 +56,27 @@ const Pagination = ({
           {pager.range.map((page, index) => {
             const isCurrent = page === pager.active;
             if (page === 'dots') {
+              const pageBeforeDot = Number(pager.range[index - 1]) + 1;
+              const pageAfterDot = Number(pager.range[index + 1]) - 1;
+              const pagesBetween = [];
+              for (let i = pageBeforeDot; i <= pageAfterDot; i++) {
+                pagesBetween.push(i);
+              }
+
               return (
                 <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
-                  &hellip;
+                  <FrostedDropdownMenu.Root>
+                    <FrostedDropdownMenu.Trigger>
+                      <FrostedButton variant="soft">&hellip;</FrostedButton>
+                    </FrostedDropdownMenu.Trigger>
+                    <FrostedDropdownMenu.Content size="2" variant="translucent">
+                      {pagesBetween.map((p) => (
+                        <FrostedDropdownMenu.Item key={p} onClick={() => pager.setPage(p)}>
+                          {p}
+                        </FrostedDropdownMenu.Item>
+                      ))}
+                    </FrostedDropdownMenu.Content>
+                  </FrostedDropdownMenu.Root>
                 </li>
               );
             }
@@ -65,7 +84,7 @@ const Pagination = ({
               <li key={page}>
                 <FrostedButton
                   variant={isCurrent ? 'soft' : 'ghost'}
-                  color={isCurrent ? 'gray' : undefined}
+                  color="gray"
                   size="2"
                   onClick={() => pager.setPage(page)}
                 >

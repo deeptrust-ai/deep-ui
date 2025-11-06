@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
 
 import { Table, type ITableProps } from '../..';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 function generateDate() {
   const start = new Date('2025-01-01');

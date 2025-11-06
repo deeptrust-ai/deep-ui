@@ -6,7 +6,7 @@ const meta = {
   component: Pagination,
   tags: ['autodocs'],
   args: {
-    currentPage: 1,
+    initialPage: 1,
     totalItems: 100,
     defaultItemsPerPage: '10',
     onPageChange: (page: number) => {

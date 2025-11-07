@@ -20,28 +20,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-export const FiftyFifty: Story = {
+export const Single: Story = {};
+export const Half: Story = {
   args: {
     columns: {
       Content: <Container size="1">Item 2</Container>,
-      split: '50-50',
+      split: 'half',
     },
   },
 };
-export const ThirtySeventy: Story = {
+
+export const Thirds: Story = {
   args: {
     columns: {
       Content: <Container size="1">Item 2</Container>,
-      split: '30-70',
-    },
-  },
-};
-export const SeventyThirty: Story = {
-  args: {
-    columns: {
-      Content: <Container size="1">Item 2</Container>,
-      split: '70-30',
+      split: 'third',
     },
   },
 };

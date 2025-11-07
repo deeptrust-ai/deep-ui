@@ -1,17 +1,16 @@
 import { Box, Flex, Grid } from '@radix-ui/themes';
 import styles from './styles.module.css';
-import { Sidebar, Topbar } from '../compound';
+import { Sidebar as LayoutSidebar, Topbar } from '../compound';
 import { ILayoutComponent } from './types';
 
-const Layout = ({ children, columns }: ILayoutComponent) => {
-  console.log('Layout columns:', columns);
-  const hasTwoColumns = !!columns && columns.Content;
+const Layout = ({ children, sidebar }: ILayoutComponent) => {
+  const hasTwoColumns = !!sidebar;
 
-  const splitRows = hasTwoColumns ? (columns.split === 'half' ? '1fr 1fr' : '6fr 4fr') : '1fr';
+  const splitRows = hasTwoColumns ? '1fr auto' : '1fr';
 
   return (
     <Grid columns="280px 1fr">
-      <Sidebar />
+      <LayoutSidebar />
 
       <Flex direction="column">
         <Topbar
@@ -27,7 +26,7 @@ const Layout = ({ children, columns }: ILayoutComponent) => {
         <Box height="100%" px="4" mb="4">
           <Grid columns={splitRows} gap="4" width="auto" height="100%">
             <Box className={styles.contentContainer}>{children}</Box>
-            {hasTwoColumns && <Box className={styles.contentContainer}>{columns.Content}</Box>}
+            {hasTwoColumns && <Box className={styles.contentContainer}>{sidebar}</Box>}
           </Grid>
         </Box>
       </Flex>

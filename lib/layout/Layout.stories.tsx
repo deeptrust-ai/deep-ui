@@ -11,7 +11,7 @@ const meta = {
     chromatic: { disableSnapshot: true },
   },
   args: {
-    columns: undefined,
+    sidebar: undefined,
     children: <Container size="1">Item 1</Container>,
   },
   tags: ['autodocs'],
@@ -23,18 +23,10 @@ type Story = StoryObj<typeof meta>;
 export const Single: Story = {};
 export const Half: Story = {
   args: {
-    columns: {
-      Content: <Container size="1">Item 2</Container>,
-      split: 'half',
-    },
-  },
-};
-
-export const Thirds: Story = {
-  args: {
-    columns: {
-      Content: <Container size="1">Item 2</Container>,
-      split: 'third',
-    },
+    sidebar: (
+      <Container size="1" width="150px">
+        Item 2
+      </Container>
+    ),
   },
 };

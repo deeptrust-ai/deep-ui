@@ -50,8 +50,6 @@ const Table = ({
   );
   const rowsPerPage = validRows.slice(startIndex, endIndex);
 
-  console.log(startIndex, endIndex, rowsPerPage);
-
   const showActionsColumns = useMemo(
     () => validRows.some((row) => row.actions && row.actions.length > 0),
     [validRows]

@@ -1,7 +1,7 @@
 import { Box, Flex, Grid } from '@radix-ui/themes';
 import styles from './styles.module.css';
 import { Sidebar as LayoutSidebar, Topbar } from '../compound';
-import { ILayoutComponent } from './types';
+import type { ILayoutComponent } from './types';
 
 const Layout = ({ children, sidebar }: ILayoutComponent) => {
   const hasTwoColumns = !!sidebar;

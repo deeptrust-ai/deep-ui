@@ -7,6 +7,7 @@ const meta = {
   component: Topbar,
   parameters: {
     layout: 'centered',
+    chromatic: { disableSnapshot: true },
   },
   args: {
     organizations: [

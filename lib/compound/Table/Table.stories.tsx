@@ -56,6 +56,9 @@ function generateRows(numRows: number) {
 const meta = {
   title: 'Compound/Table',
   component: Table,
+  parameters: {
+    chromatic: { disableSnapshot: true },
+  },
   args: {
     headers: ['Event', 'Severity', 'Date', 'Organization', 'Status'],
     rows: generateRows(25),

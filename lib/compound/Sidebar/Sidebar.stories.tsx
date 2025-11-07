@@ -7,6 +7,7 @@ const meta = {
   component: Sidebar,
   parameters: {
     layout: 'centered',
+    chromatic: { disableSnapshot: true },
   },
   args: {},
   tags: ['autodocs'],

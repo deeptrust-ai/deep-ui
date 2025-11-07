@@ -1,0 +1,7 @@
+.actionButton {
+  border: 1px solid var(--accent-a11);
+}
+
+.actionsCell {
+  text-align: right;
+}

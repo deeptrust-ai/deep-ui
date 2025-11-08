@@ -8,7 +8,9 @@ const meta = {
   title: 'Atom/MenuItem',
   component: MenuItem,
   args: {
-    subItem: false,
+    link: '#',
+    subpage: false,
+    label: 'Menu Item',
   },
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
@@ -21,42 +23,30 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const defaultArgs: IMenuItemProps = {
-  label: 'Menu Item',
-};
-
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Default: Story = {
-  args: {
-    ...defaultArgs,
-  },
-};
+export const Default: Story = {};
 
 export const Icon: Story = {
   args: {
-    ...defaultArgs,
-    icon: <AcornIcon />,
+    icon: AcornIcon,
   },
 };
 
 export const SubItem: Story = {
   args: {
-    ...defaultArgs,
-    subItem: true,
+    subpage: true,
   },
 };
 
 export const Selected: Story = {
   args: {
-    ...defaultArgs,
     selected: true,
   },
 };
 
 export const SelectedSubItem: Story = {
   args: {
-    ...defaultArgs,
-    subItem: true,
+    subpage: true,
     selected: true,
   },
 };

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import { Sidebar as LayoutSidebar, Topbar } from '../compound';
 import type { ILayoutComponent } from './types';
 
-const Layout = ({ children, sidebar, menuPages }: ILayoutComponent) => {
+const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayoutComponent) => {
   const hasTwoColumns = !!sidebar;
 
   const splitRows = hasTwoColumns ? '1fr auto' : '1fr';
@@ -13,15 +13,7 @@ const Layout = ({ children, sidebar, menuPages }: ILayoutComponent) => {
       <LayoutSidebar menuPages={menuPages} />
 
       <Flex direction="column">
-        <Topbar
-          userName="Chewbacca"
-          organizations={[
-            {
-              name: 'Organization 1',
-              selected: true,
-            },
-          ]}
-        />
+        <Topbar userName={userName} organizations={organizations} />
 
         <Box height="100%" px="4" mb="4">
           <Grid columns={splitRows} gap="4" width="auto" height="100%">

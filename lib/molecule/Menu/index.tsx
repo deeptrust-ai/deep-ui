@@ -13,7 +13,7 @@ const Menu = ({ pages }: IMenuProps) => {
               <ul>
                 {page.subPages.map((subPage) => (
                   <li key={subPage.label}>
-                    <MenuItem {...subPage} subItem />
+                    <MenuItem {...subPage} subpage />
                   </li>
                 ))}
               </ul>

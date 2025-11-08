@@ -9,24 +9,26 @@ const MenuItem = ({
   icon = menuItemDefaults.icon,
   link = menuItemDefaults.link,
   selected = menuItemDefaults.selected,
-  subItem = menuItemDefaults.subItem,
+  subpage = menuItemDefaults.subpage,
 }: IMenuItemProps) => {
   return (
     <div
       className={cn(styles.item, {
-        [styles.subItem]: subItem,
+        [styles.subItem]: subpage,
       })}
     >
-      {subItem && (
+      {subpage && (
         <div
-          className={cn(styles.subItemIndicator, { [styles.selectedSubItem]: subItem && selected })}
+          className={cn(styles.subItemIndicator, {
+            [styles.selectedSubItem]: subpage && selected,
+          })}
         />
       )}
 
       <a
         href={link}
         className={cn(styles.anchor, {
-          [styles.subItem]: subItem,
+          [styles.subItem]: subpage,
           [styles.selected]: selected,
         })}
       >

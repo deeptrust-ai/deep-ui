@@ -1,6 +1,6 @@
 export const menuItemDefaults = {
   link: '#',
-  subItem: false,
+  subpage: false,
   selected: false,
   icon: null,
 };

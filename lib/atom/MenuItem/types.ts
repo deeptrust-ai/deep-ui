@@ -7,9 +7,9 @@ export type ButtonProps = Omit<FrostButtonProps, 'color'> & {
 };
 
 export interface IMenuItemProps {
-  readonly label: string;
   readonly icon?: ReactNode;
-  readonly link?: string;
+  readonly label: string;
+  readonly link: string;
   readonly selected?: boolean;
-  readonly subItem?: boolean;
+  readonly subpage?: boolean;
 }

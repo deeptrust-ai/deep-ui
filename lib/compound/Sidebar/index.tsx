@@ -10,7 +10,7 @@ const Sidebar = ({ menuPages }: ISidebarMenu) => {
   return (
     <div className={styles.sidebar}>
       <Logo />
-      <Menu pages={menuPages} />
+      {menuPages && <Menu pages={menuPages} />}
     </div>
   );
 };

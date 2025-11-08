@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Container } from '@radix-ui/themes';
 
 import Layout from './Layout.tsx';
+import { AcornIcon } from '@phosphor-icons/react';
 
 const meta = {
   title: 'Guides/03. Layout',
@@ -13,6 +14,20 @@ const meta = {
   args: {
     sidebar: undefined,
     children: <Container size="1">Item 1</Container>,
+    menuPages: [
+      { label: 'Home', link: '/', icon: AcornIcon, selected: false },
+      { label: 'About', link: '/about', icon: AcornIcon, selected: false },
+      {
+        label: 'Services',
+        link: '/services',
+        icon: AcornIcon,
+        subPages: [
+          { label: 'Consulting', link: '/services/consulting', selected: false },
+          { label: 'Development', link: '/services/development', selected: false },
+        ],
+      },
+      { label: 'Contact', link: '/contact', icon: AcornIcon, selected: false },
+    ],
   },
   tags: ['!dev'],
 } satisfies Meta<React.ComponentProps<typeof Layout>>;

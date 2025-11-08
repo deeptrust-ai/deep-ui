@@ -14,6 +14,21 @@ const meta = {
   args: {
     sidebar: undefined,
     children: <Container size="1">Item 1</Container>,
+    userName: 'Chewbacca',
+    organizations: [
+      {
+        name: 'Millennium Falcon',
+        selected: true,
+      },
+      {
+        name: 'Death Star',
+        selected: false,
+      },
+      {
+        name: 'X-Wing',
+        selected: false,
+      },
+    ],
     menuPages: [
       { label: 'Home', link: '/', icon: AcornIcon, selected: false },
       { label: 'About', link: '/about', icon: AcornIcon, selected: false },

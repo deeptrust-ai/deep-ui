@@ -1,9 +1,5 @@
+import type { IMenuProps } from '../../molecule/Menu/types';
+
 export interface ISidebarMenu {
-  readonly menuPages: {
-    label: string;
-    link: string;
-    icon?: React.ReactNode;
-    selected?: boolean;
-    subPages?: ISubPage[];
-  }[];
+  readonly menuPages: IMenuProps['pages'];
 }

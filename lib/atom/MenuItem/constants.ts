@@ -1,10 +1,3 @@
-export const menuItemDefaults = {
-  link: '#',
-  subpage: false,
-  selected: false,
-  icon: undefined,
-};
-
 export const buttonColors = [
   'gray',
   'danger',

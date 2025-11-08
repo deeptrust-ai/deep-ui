@@ -6,7 +6,6 @@ const meta = {
   title: 'Compound/Topbar',
   component: Topbar,
   parameters: {
-    layout: 'centered',
     chromatic: { disableSnapshot: true },
   },
   args: {

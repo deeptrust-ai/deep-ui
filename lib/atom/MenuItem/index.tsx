@@ -2,35 +2,39 @@ import { Text } from 'frosted-ui';
 import cn from 'classnames';
 import styles from './styles.module.css';
 import type { IMenuItemProps } from './types';
-import { menuItemDefaults } from './constants';
 
+/**
+ * MenuItem component represents a single item in a menu, which can optionally be a subpage and can indicate selection state.
+ */
 const MenuItem = ({
   label,
-  icon = menuItemDefaults.icon,
-  link = menuItemDefaults.link,
-  selected = menuItemDefaults.selected,
-  subItem = menuItemDefaults.subItem,
+  icon: Icon,
+  link,
+  selected = false,
+  subpage = false,
 }: IMenuItemProps) => {
   return (
     <div
       className={cn(styles.item, {
-        [styles.subItem]: subItem,
+        [styles.subItem]: !!subpage,
       })}
     >
-      {subItem && (
+      {!!subpage && (
         <div
-          className={cn(styles.subItemIndicator, { [styles.selectedSubItem]: subItem && selected })}
+          className={cn(styles.subItemIndicator, {
+            [styles.selectedSubItem]: !!subpage && !!selected,
+          })}
         />
       )}
 
       <a
         href={link}
         className={cn(styles.anchor, {
-          [styles.subItem]: subItem,
-          [styles.selected]: selected,
+          [styles.subItem]: !!subpage,
+          [styles.selected]: !!selected,
         })}
       >
-        {icon}
+        {Icon && <Icon size="20" />}
         <Text size="3">{label}</Text>
       </a>
     </div>

@@ -4,7 +4,7 @@ import { Container } from '@radix-ui/themes';
 import Layout from './Layout.tsx';
 
 const meta = {
-  title: 'Layout',
+  title: 'Guides/03. Layout',
   component: Layout,
   parameters: {
     layout: 'fullscreen',
@@ -14,7 +14,7 @@ const meta = {
     sidebar: undefined,
     children: <Container size="1">Item 1</Container>,
   },
-  tags: ['autodocs'],
+  tags: ['!dev'],
 } satisfies Meta<React.ComponentProps<typeof Layout>>;
 
 export default meta;

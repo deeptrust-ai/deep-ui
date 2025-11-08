@@ -1,0 +1,17 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as LayoutStories from '../../lib/layout/Layout.stories';
+
+<Meta of={LayoutStories} />
+
+# Layout
+
+The `Layout` component provides a flexible structure for arranging content and sidebars within your application. It supports various configurations to suit different layout needs.
+
+## Single Column Layout
+
+<Canvas of={LayoutStories.Single} />
+
+## Two Column Layout
+
+<Canvas of={LayoutStories.Half} />

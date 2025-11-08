@@ -2,6 +2,9 @@ import MenuItem from '../../atom/MenuItem';
 import type { IMenuProps } from './types';
 import styles from './styles.module.css';
 
+/**
+ * Menu component renders a navigation menu based on the provided pages.
+ */
 const Menu = ({ pages }: IMenuProps) => {
   return (
     <nav className={styles.menu}>

@@ -28,7 +28,7 @@ export const Default: Story = {};
 
 export const Icon: Story = {
   args: {
-    icon: <AcornIcon />,
+    icon: AcornIcon,
   },
 };
 

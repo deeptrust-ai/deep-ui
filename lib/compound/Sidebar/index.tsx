@@ -3,6 +3,9 @@ import Menu from '../../molecule/Menu';
 import styles from './styles.module.css';
 import type { ISidebarMenu } from './types';
 
+/**
+ * Sidebar component that includes a Logo and a Menu.
+ */
 const Sidebar = ({ menuPages }: ISidebarMenu) => {
   return (
     <div className={styles.sidebar}>

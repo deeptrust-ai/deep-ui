@@ -2,7 +2,7 @@ export const menuItemDefaults = {
   link: '#',
   subpage: false,
   selected: false,
-  icon: null,
+  icon: undefined,
 };
 
 export const buttonColors = [

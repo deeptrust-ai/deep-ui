@@ -21,14 +21,14 @@ export default defineConfig({
         find: '@deeptrust/deep-ui/styles.css',
         replacement: resolve(__dirname, 'lib', 'styles.css'),
       },
-      { find: '@deeptrust/deep-ui', replacement: resolve(__dirname, 'lib', 'main.ts') },
+      { find: '@deeptrust/deep-ui', replacement: resolve(__dirname, 'lib', 'index.ts') },
       { find: /^@deeptrust\/deep-ui\/(.*)$/, replacement: resolve(__dirname, 'lib') + '/$1' },
     ],
   },
   build: {
     copyPublicDir: false,
     lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
+      entry: resolve(__dirname, 'lib/index.ts'),
       formats: ['es'],
     },
     rollupOptions: {

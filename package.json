@@ -1,14 +1,17 @@
 {
   "name": "@deeptrust/deep-ui",
-  "license": "UNLICENSED",
-  "private": true,
+  "author": {
+    "name": "DeepTrust",
+    "url": "https://www.deeptrust.ai/"
+  },
+  "license": "MIT",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "version": "0.0.1-dev",
   "type": "module",
-  "main": "dist/main.js",
-  "types": "dist/main.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -18,7 +21,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "build": "vite build",
     "generate": "plop",
     "lint:library": "eslint \"lib/**/*.@(ts|tsx)\"",
     "lint:stories": "eslint \"**/*.stories.@(ts|tsx|mdx)\"",
@@ -27,7 +30,7 @@
     "tsc:stories": "tsc -p tsconfig.stories.json --pretty",
     "tsc": "npm run tsc:library && npm run tsc:stories",
     "format": "prettier --write .",
-    "prepublishOnly": "bun run build",
+    "prepublishOnly": "npm run build",
     "chromatic": "npx chromatic"
   },
   "peerDependencies": {
@@ -36,11 +39,21 @@
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deeptrust-ai/deep-ui.git"
+  },
+  "homepage": "https://github.com/deeptrust-ai/deep-ui#readme",
   "dependencies": {
-    "@phosphor-icons/react": "2.1.10",
     "@radix-ui/react-toast": "1.2.15",
-    "@radix-ui/themes": "3.2.1",
-    "frosted-ui": "0.0.1-canary.85"
+    "@radix-ui/themes": "3.2.1"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "4.1.2",

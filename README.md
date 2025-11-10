@@ -1,123 +1,194 @@
 # DeepUI — README
 
-This README explains how to build the library, consume the package locally or from a tarball, and run Storybook for local component development.
+This README explains how to build the component library, scaffold new components, validate a developer release, and consume the package locally or from a tarball.
 
-### Prerequisites
+---
 
-- Node.js (14+ recommended)
+## Prerequisites
+
+- Node.js 18+ (React 19 requires modern runtimes)
 - bun
-- Ensure peerDependencies (React, ReactDOM, etc.) required by the package are installed in the consuming project
-  - ```
+- Peer dependencies that must exist in any consuming project:
+
+  ```json
+  {
     "peerDependencies": {
-      "react": "18",
-      "react-dom": "18",
-      "@phosphor-icons/react": "2",
-      "frosted-ui": "0.0.1"
-    },
-    ```
+      "react": "19.2.0",
+      "react-dom": "19.2.0",
+      "@phosphor-icons/react": "2.1.10",
+      "frosted-ui": "0.0.1-canary.85"
+    }
+  }
+  ```
 
-### Common scripts:
+## Common scripts
 
-- "build" — builds component library artifacts
-- "storybook" — spins up local Storybook instance
-- "generate" — scaffolds a component package via Plop
+| Script | Description |
+| --- | --- |
+| `bun run build` | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
+| `bun run storybook` | Starts Storybook locally on port 6006. |
+| `bun run build-storybook` | Emits the static Storybook build to `storybook-static/`. |
+| `bun run generate` | Plop generator that scaffolds new components. |
+| `bun run lint` / `bun run tsc` | Type-checks & lints the source before release. |
+
+---
+
+## Developer release workflow
+
+Use this checklist whenever you cut a `0.0.x-dev` build or validate changes before promotion to a stable release.
+
+1. **Install dependencies**
+
+   ```bash
+   bun install
+   ```
+
+2. **Preflight quality gates (optional but recommended)**
+
+   ```bash
+   bun run lint
+   bun run tsc
+   ```
+
+3. **Build the distributable**
+
+   ```bash
+   bun run build
+   ```
+
+4. **Create the tarball**
+
+   ```bash
+   mkdir -p .npm-cache
+   npm_config_cache=./.npm-cache npm pack
+   ```
+
+   > _Why the custom cache?_ Some dev machines (including macOS with Brew-installed Node) keep a root-owned cache under `~/.npm`. Pointing `npm_config_cache` inside the repo avoids permission errors while still producing `deeptrust-deep-ui-<version>.tgz`.
+
+---
+
+## Validate install & usage from the tarball
+
+Smoke-test the generated package in a throwaway project to ensure `@deeptrust/deep-ui` installs cleanly and renders at least one component.
+
+```bash
+TMP_DIR=$(mktemp -d)
+TARBALL=$(pwd)/deeptrust-deep-ui-0.0.1-dev.tgz   # adjust if you bump the version
+
+pushd "$TMP_DIR"
+npm init -y >/dev/null
+npm install react@19.2.0 react-dom@19.2.0 \
+  @phosphor-icons/react@2.1.10 frosted-ui@0.0.1-canary.85
+npm install "$TARBALL"
+
+cat <<'EOF' > smoke.mjs
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { Avatar } from '@deeptrust/deep-ui';
+
+const html = renderToString(
+  React.createElement(Avatar, {
+    name: 'DeepTrust',
+    email: 'hello@deeptrust.ai'
+  })
+);
+
+console.log('Rendered Avatar markup bytes:', html.length);
+EOF
+
+node smoke.mjs
+popd
+rm -rf "$TMP_DIR"
+```
+
+The script simply ensures an import, render, and peer dependency resolution all succeed. Expand it as needed (e.g., render a table, check CSS availability) before tagging the release.
+
+---
 
 ## Component scaffolding
 
 1. Run the generator:
 
-   ```
+   ```bash
    bun run generate
    ```
 
 2. Choose the component layer (atom / molecule / compound) and provide the component name.
-3. Opt in or out of the optional files (types, CSS module, Storybook story) when prompted.
+3. Opt in or out of optional files (types, CSS module, Storybook story) when prompted.
 
-The generator creates the selected files under `lib/<layer>/<Component>/` and appends an export to the relevant `lib/<layer>/index.ts`. Regenerate is safe — existing files or exports are skipped.
+The generator creates files under `lib/<layer>/<Component>/` and adds the export to the matching `lib/<layer>/index.ts`. Regenerating is safe—existing files or exports are skipped.
 
-## Quick setup
+---
 
-1. Clone and enter the repo:
+## Quick setup (cloning the repo)
 
-```
+```bash
 git clone <repo-url>
-cd <directoy-cloned-into>
-```
-
-2. Install dependencies:
-
-```
+cd <directory>
 bun install
 ```
 
-Build the library
+Build artifacts live in `dist/`; verify `package.json` `main`/`types` point there after running `bun run build`.
 
-- Standard build (run the script defined in package.json):
-  ```
-  bun run build
-  ```
-- Verify output in `lib/` and that package.json `main`/`module`/`types` point to the built files.
+---
 
 ## Consume the package locally
 
-### Option A — pack (recommended for deterministic installs)
+### Option A — Tarball (deterministic)
 
-1. From the package root:
-
-```
-bun pack
-```
-
-This produces `<package-name>-<version>.tgz` (scoped names become a tarball named without the scope). 2. In the consumer project:
-
-```
-bun add /full/path/to/@deeptrust-deep-ui-1.2.3.tgz
-```
-
-3. Import as usual:
-
-```js
-import { Button } from '@deeptrust/deep-ui';
-```
-
-### Option B — bun link (fast local dev)
-
-1. In DeepUI repo:
-
-```
-bun link
-```
-
+1. Run `npm pack` as shown above to produce `deeptrust-deep-ui-<version>.tgz`.
 2. In the consumer project:
 
-```
+   ```bash
+   npm install /absolute/path/to/deeptrust-deep-ui-<version>.tgz
+   ```
+
+3. Import components normally:
+
+   ```tsx
+   import { Avatar } from '@deeptrust/deep-ui';
+   ```
+
+### Option B — `bun link` (fast local dev)
+
+```bash
+# In DeepUI
+bun link
+
+# In the consumer project
 bun link @deeptrust/deep-ui
 ```
 
-3. When testing changes, rebuild DeepUI (`bun run build`).
+Rebuild DeepUI (`bun run build`) before testing changes in the consumer app.
 
-### Option C — local file reference (monorepo / workspaces)
+### Option C — Local file reference / monorepo
 
-- Use package.json dependency like:
-  ```
-  "dependencies": {
-    "@deeptrust/deep-ui": "file:../your-DeepUI-directory"
-  }
-  ```
-- Then run install in consumer project (`bun install`).
+Add the dependency in the consumer `package.json`:
 
-## Storybook (local development)
+```json
+"dependencies": {
+  "@deeptrust/deep-ui": "file:../path-to-deepui"
+}
+```
 
-- Start Storybook (dev server):
+Then run the workspace install (`bun install`, `npm install`, etc.).
 
-  ```
+---
+
+## Storybook (local component development)
+
+- Dev server:
+
+  ```bash
   bun run storybook
   ```
 
-  Default port: 6006 (open http://localhost:6006)
+  Opens http://localhost:6006.
 
-- Build Storybook (static output):
+- Static build:
+
+  ```bash
+  bun run build-storybook
   ```
-  bun run build:storybook
-  ```
-  Output in `storybook-static/`.
+
+  Outputs to `storybook-static/`.

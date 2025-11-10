@@ -30,8 +30,8 @@ const config: StorybookConfig = {
 
     config.resolve.alias = {
       ...base,
-      '@deeptrust/deep-ui/styles.css': resolve(__dirname, '..', 'lib', 'styles.css'),
-      '@deeptrust/deep-ui': resolve(__dirname, '..', 'lib', 'main.ts'),
+      '@deeptrust-ai/deep-ui/styles.css': resolve(__dirname, '..', 'lib', 'styles.css'),
+      '@deeptrust-ai/deep-ui': resolve(__dirname, '..', 'lib', 'main.ts'),
     };
     return config;
   },

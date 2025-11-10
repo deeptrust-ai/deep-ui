@@ -23,13 +23,13 @@ This README explains how to build the component library, scaffold new components
 
 ## Common scripts
 
-| Script | Description |
-| --- | --- |
-| `bun run build` | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
-| `bun run storybook` | Starts Storybook locally on port 6006. |
-| `bun run build-storybook` | Emits the static Storybook build to `storybook-static/`. |
-| `bun run generate` | Plop generator that scaffolds new components. |
-| `bun run lint` / `bun run tsc` | Type-checks & lints the source before release. |
+| Script                         | Description                                                         |
+| ------------------------------ | ------------------------------------------------------------------- |
+| `bun run build`                | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
+| `bun run storybook`            | Starts Storybook locally on port 6006.                              |
+| `bun run build-storybook`      | Emits the static Storybook build to `storybook-static/`.            |
+| `bun run generate`             | Plop generator that scaffolds new components.                       |
+| `bun run lint` / `bun run tsc` | Type-checks & lints the source before release.                      |
 
 ---
 
@@ -69,7 +69,7 @@ Use this checklist whenever you cut a `0.0.x-dev` build or validate changes befo
 
 ## Validate install & usage from the tarball
 
-Smoke-test the generated package in a throwaway project to ensure `@deeptrust/deep-ui` installs cleanly and renders at least one component.
+Smoke-test the generated package in a throwaway project to ensure `@deeptrust-ai/deep-ui` installs cleanly and renders at least one component.
 
 ```bash
 TMP_DIR=$(mktemp -d)
@@ -84,12 +84,12 @@ npm install "$TARBALL"
 cat <<'EOF' > smoke.mjs
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Avatar } from '@deeptrust/deep-ui';
+import { Avatar } from '@deeptrust-ai/deep-ui';
 
 const html = renderToString(
   React.createElement(Avatar, {
     name: 'DeepTrust',
-    email: 'hello@deeptrust.ai'
+    email: 'hello@deeptrust-ai.ai'
   })
 );
 
@@ -146,7 +146,7 @@ Build artifacts live in `dist/`; verify `package.json` `main`/`types` point ther
 3. Import components normally:
 
    ```tsx
-   import { Avatar } from '@deeptrust/deep-ui';
+   import { Avatar } from '@deeptrust-ai/deep-ui';
    ```
 
 ### Option B — `bun link` (fast local dev)
@@ -156,7 +156,7 @@ Build artifacts live in `dist/`; verify `package.json` `main`/`types` point ther
 bun link
 
 # In the consumer project
-bun link @deeptrust/deep-ui
+bun link @deeptrust-ai/deep-ui
 ```
 
 Rebuild DeepUI (`bun run build`) before testing changes in the consumer app.
@@ -167,7 +167,7 @@ Add the dependency in the consumer `package.json`:
 
 ```json
 "dependencies": {
-  "@deeptrust/deep-ui": "file:../path-to-deepui"
+  "@deeptrust-ai/deep-ui": "file:../path-to-deepui"
 }
 ```
 

@@ -7,7 +7,7 @@ const preview: Preview = {
     (Story) => (
       <Theme
         appearance="light"
-        accentColor="blue"
+        accentColor="crimson"
         grayColor="gray"
         dangerColor="red"
         successColor="green"

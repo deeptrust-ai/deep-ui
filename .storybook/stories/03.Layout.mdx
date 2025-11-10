@@ -1,0 +1,44 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks';
+
+import * as LayoutStories from '../../lib/layout/Layout.stories';
+
+<Meta of={LayoutStories} />
+
+# Layout
+
+The `Layout` component builds on the [Radix Themes layout primitives](https://www.radix-ui.com/themes/docs/overview/layout)—notably `Grid`, `Flex`, and `Box`—to give our product pages a predictable shell. Use it when you need DeepTrust’s global chrome (sidebar navigation + topbar) and a responsive content region that can optionally host a contextual sidebar.
+
+## Structure and usage
+
+- `children`: the primary content column; wrap sections in Radix `Container` components to inherit spacing tokens.
+- `sidebar`: optional secondary column rendered to the right; pass any JSX such as contextual help or tables.
+- `LayoutSidebar` and `Topbar`: compound elements already wired into `Layout`, so you only supply the main content and optional sidebar.
+
+```tsx
+import { Container } from '@radix-ui/themes';
+import Layout from '@/layout/Layout';
+
+<Layout
+  sidebar={
+    <Container size="1" width="200px">
+      Insights, filters, or quick actions
+    </Container>
+  }
+>
+  <Container size="2">Primary workflow content</Container>
+</Layout>;
+```
+
+## Single Column Layout
+
+Use this when a page needs only the primary content stream—`sidebar` remains undefined and the layout collapses to a single column.
+
+<Canvas of={LayoutStories.Single} />
+
+## Two Column Layout
+
+Provide the `sidebar` prop to split the grid into two columns. Keep sidebar content lightweight so it complements the main experience.
+
+Second column width can be controlled via the wrapper `Container` component.
+
+<Canvas of={LayoutStories.Half} />

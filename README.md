@@ -89,7 +89,7 @@ import { Avatar } from '@deeptrust-ai/deep-ui';
 const html = renderToString(
   React.createElement(Avatar, {
     name: 'DeepTrust',
-    email: 'hello@deeptrust-ai.ai'
+    email: 'hello@deeptrust.ai'
   })
 );
 

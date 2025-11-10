@@ -15,14 +15,14 @@ export default defineConfig({
   ),
   resolve: {
     // Map the package name to the local lib entry so bare imports like
-    // `import { Button } from '@deeptrust/deep-ui'` resolve during dev.
+    // `import { Button } from '@deeptrust-ai/deep-ui'` resolve during dev.
     alias: [
       {
-        find: '@deeptrust/deep-ui/styles.css',
+        find: '@deeptrust-ai/deep-ui/styles.css',
         replacement: resolve(__dirname, 'lib', 'styles.css'),
       },
-      { find: '@deeptrust/deep-ui', replacement: resolve(__dirname, 'lib', 'index.ts') },
-      { find: /^@deeptrust\/deep-ui\/(.*)$/, replacement: resolve(__dirname, 'lib') + '/$1' },
+      { find: '@deeptrust-ai/deep-ui', replacement: resolve(__dirname, 'lib', 'index.ts') },
+      { find: /^@deeptrust-ai\/deep-ui\/(.*)$/, replacement: resolve(__dirname, 'lib') + '/$1' },
     ],
   },
   build: {
@@ -36,7 +36,7 @@ export default defineConfig({
         'react',
         'react/jsx-runtime',
         /^frosted-ui(\/.*)?$/,
-        /^@deeptrust\/deep-ui(\/.*)?$/,
+        /^@deeptrust-ai\/deep-ui(\/.*)?$/,
       ],
       input: (() => {
         const entries = Object.fromEntries(

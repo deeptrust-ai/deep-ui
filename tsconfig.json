@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@deeptrust/deep-ui": ["lib"],
-      "@deeptrust/deep-ui/*": ["lib/*"]
+      "@deeptrust-ai/deep-ui": ["lib"],
+      "@deeptrust-ai/deep-ui/*": ["lib/*"]
     },
     "module": "esnext",
     "moduleResolution": "bundler",

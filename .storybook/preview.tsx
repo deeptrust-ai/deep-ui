@@ -13,10 +13,9 @@ const preview: Preview = {
         successColor="green"
         warningColor="yellow"
         infoColor="blue"
+        style={{ position: 'relative' }}
       >
-        <div style={{ position: 'relative' }}>
-          <Story />
-        </div>
+        <Story />
       </Theme>
     ),
   ],

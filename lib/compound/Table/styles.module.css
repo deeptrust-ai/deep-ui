@@ -1,18 +1,16 @@
-:root {
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
 
-  .headerRow {
-    :global(.fui-TableCell) {
-      background-color: var(--color-background-header);
-    }
+.headerRow {
+  :global(.fui-TableCell) {
+    background-color: var(--color-background-header);
   }
+}
 
-  .table {
-    min-width: 400px;
-    white-space: nowrap;
-  }
+.table {
+  min-width: 400px;
+  white-space: nowrap;
 }

@@ -1,7 +1,5 @@
-:root {
-  .header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-  }
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }

@@ -1,31 +1,29 @@
-:root {
-  .container {
-    display: flex;
-    align-items: center;
-  }
+.container {
+  display: flex;
+  align-items: center;
+}
 
-  .pages {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.pages {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .pageList {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-  }
+.pageList {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
 
-  .itemsPerPage {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
+.itemsPerPage {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
 
-  .dots {
-    margin: 0;
-  }
+.dots {
+  margin: 0;
 }

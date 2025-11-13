@@ -1,17 +1,15 @@
-:root {
-  .logo {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
-    &.small {
-      gap: var(--space-1);
-    }
-    &.medium {
-      gap: var(--space-2);
-    }
-    &.large {
-      gap: var(--space-4);
-    }
+  &.small {
+    gap: var(--space-1);
+  }
+  &.medium {
+    gap: var(--space-2);
+  }
+  &.large {
+    gap: var(--space-4);
   }
 }

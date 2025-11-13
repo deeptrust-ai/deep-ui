@@ -21,6 +21,12 @@ export default defineConfig({
       }),
     libInjectCss(),
   ].filter(Boolean),
+  css: {
+    modules: {
+      // Keep module class names identical in dev and build so styles match.
+      generateScopedName: '_[local]_[hash:base64:5]',
+    },
+  },
   resolve: {
     // Map the package name to the local lib entry so bare imports like
     // `import { Button } from '@deeptrust-ai/deep-ui'` resolve during dev.

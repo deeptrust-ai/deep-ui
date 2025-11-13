@@ -1,10 +1,12 @@
-.container {
-  display: flex;
-  gap: var(--space-3);
-  align-items: center;
-
-  > div {
+:root {
+  .container {
     display: flex;
-    flex-direction: column;
+    gap: var(--space-3);
+    align-items: center;
+
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

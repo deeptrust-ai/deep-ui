@@ -7,4 +7,5 @@ export * from './layout';
 export { Box, Flex, Grid, Container, Section } from '@radix-ui/themes';
 
 // Re-export Frosted UI components for convenience
+export { Theme } from 'frosted-ui';
 export * as Frosted from 'frosted-ui';

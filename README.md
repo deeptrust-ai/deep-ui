@@ -67,6 +67,50 @@ Use this checklist whenever you cut a `0.0.x-dev` build or validate changes befo
 
 ---
 
+## Publishing the package
+
+DeepUI now ships via an automated GitHub Actions workflow plus a documented manual fallback. Both flows expect the version in `package.json` to be final before publishing (use `npm version patch`, `npm version prerelease --preid rc`, etc., so the git tag and npm version stay in sync).
+
+### Automated deploy (preferred)
+
+1. Commit the version bump and associated release notes.
+2. Create a git tag that matches `v*` (for example `git tag v1.2.3`).
+3. Push the branch _and_ the tag (`git push origin main --tags`).
+4. The `Publish Package` workflow (`.github/workflows/publish.yml`) runs automatically:
+   - Sets up Node 20 + Bun 1.3.
+   - Installs dependencies, lints, type-checks, and builds the library.
+   - Publishes to npm using `NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }}`.
+5. Monitor the run in GitHub Actions. When it completes, `@deeptrust-ai/deep-ui@<version>` is live on npm.
+
+### Manual npm publish (fallback)
+
+Use this only when CI is unavailable, and ideally from a clean clone.
+
+```bash
+rm -rf dist node_modules
+bun install
+bun run lint:library
+bun run tsc:library
+bun run build
+
+# Authenticate (once per machine or set NODE_AUTH_TOKEN in the environment)
+npm login --scope=@deeptrust-ai
+
+# Publish the contents of dist/ (publishConfig already sets access=public)
+npm publish
+```
+
+Afterwards, validate the release:
+
+```bash
+npm info @deeptrust-ai/deep-ui version
+npm dist-tag ls @deeptrust-ai/deep-ui
+```
+
+Finally, recreate the tarball (`npm pack`) and run the install smoke test below so consumers get a verified build.
+
+---
+
 ## Validate install & usage from the tarball
 
 Smoke-test the generated package in a throwaway project to ensure `@deeptrust-ai/deep-ui` installs cleanly and renders at least one component.

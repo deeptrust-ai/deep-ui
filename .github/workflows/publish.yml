@@ -24,8 +24,12 @@ jobs:
         with:
           bun-version: "1.3.0"
 
-      # Ensure npm 11.5.1 or later is installed
       - run: bun install
       - run: bun run lint:library
       - run: bun run tsc:library
       - run: bun run build
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

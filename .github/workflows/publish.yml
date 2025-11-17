@@ -24,7 +24,7 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
       - run: npm ci
-      - run: npm run build --if-present
+      - run: npm run build
       - run: npm run tsc:library --if-present
       - run: npm run lint:library --if-present
       - name: Verify build artifacts exist

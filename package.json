@@ -9,7 +9,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,6 @@
     "tsc:stories": "tsc -p tsconfig.stories.json --pretty",
     "tsc": "npm run tsc:library && npm run tsc:stories",
     "format": "prettier --write .",
-    "prepublishOnly": "npm run build",
     "chromatic": "npx chromatic"
   },
   "exports": {

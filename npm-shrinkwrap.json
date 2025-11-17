@@ -1,12 +1,12 @@
 {
   "name": "@deeptrust-ai/deep-ui",
-  "version": "0.0.6-rc3",
+  "version": "0.1.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@deeptrust-ai/deep-ui",
-      "version": "0.0.6-rc3",
+      "version": "0.1.0",
       "license": "MIT",
       "dependencies": {
         "@radix-ui/react-toast": "1.2.15",

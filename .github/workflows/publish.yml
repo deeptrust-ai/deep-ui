@@ -43,6 +43,10 @@ jobs:
             echo "Error: dist/index.d.ts not found"
             exit 1
           fi
+          if [ ! -f "dist/styles.css" ]; then
+            echo "Error: dist/styles.css not found"
+            exit 1
+          fi
           echo "✓ Build artifacts verified"
 
       - name: Publish to npm

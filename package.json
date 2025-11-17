@@ -9,7 +9,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.6",
+  "version": "0.0.6-rc3",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

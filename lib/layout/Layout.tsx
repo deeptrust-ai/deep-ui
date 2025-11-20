@@ -9,7 +9,7 @@ const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayo
   const splitRows = hasTwoColumns ? '1fr auto' : '1fr';
 
   return (
-    <Grid columns="auto 1fr">
+    <Grid columns="auto 1fr" height="100%">
       <LayoutSidebar menuPages={menuPages} />
 
       <Flex direction="column">

@@ -6,13 +6,36 @@ import type { IMenuItemProps } from './types';
 /**
  * MenuItem component represents a single item in a menu, which can optionally be a subpage and can indicate selection state.
  */
-const MenuItem = ({
+const MenuItem = <TAnchor extends React.ElementType = 'a'>({
+  anchorComponent,
+  anchorProps,
   label,
   icon: Icon,
   link,
   selected = false,
   subpage = false,
-}: IMenuItemProps) => {
+}: IMenuItemProps<TAnchor>) => {
+  const AnchorComponent = anchorComponent ?? 'a';
+  const anchorClassName = cn(
+    styles.anchor,
+    anchorProps?.className,
+    {
+      [styles.subItem]: !!subpage,
+      [styles.selected]: !!selected,
+    },
+  );
+
+  const href =
+    AnchorComponent === 'a'
+      ? anchorProps?.href ?? link
+      : undefined;
+
+  const combinedAnchorProps = {
+    ...anchorProps,
+    className: anchorClassName,
+    ...(href ? { href } : {}),
+  } as React.ComponentPropsWithoutRef<TAnchor>;
+
   return (
     <div
       className={cn(styles.item, {
@@ -27,16 +50,10 @@ const MenuItem = ({
         />
       )}
 
-      <a
-        href={link}
-        className={cn(styles.anchor, {
-          [styles.subItem]: !!subpage,
-          [styles.selected]: !!selected,
-        })}
-      >
+      <AnchorComponent {...combinedAnchorProps}>
         {Icon && <Icon size="20" />}
         <Text size="3">{label}</Text>
-      </a>
+      </AnchorComponent>
     </div>
   );
 };

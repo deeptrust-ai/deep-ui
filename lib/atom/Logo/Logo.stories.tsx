@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Logo, type ILogoProps } from '..';
+import { Logo, type ILogoProps } from '../..';
 
 const meta = {
   title: 'Atom/Logo',

@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AcornIcon } from '@phosphor-icons/react';
 
-import { Sidebar } from '..';
+import { Sidebar } from '../..';
 
 const meta = {
   title: 'Compound/Sidebar',

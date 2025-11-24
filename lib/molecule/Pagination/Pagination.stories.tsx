@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Pagination, type IPaginationProps } from '..';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Pagination, type IPaginationProps } from '../..';
 
 const meta = {
   title: 'Molecule/Pagination',

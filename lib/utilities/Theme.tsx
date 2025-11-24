@@ -1,6 +1,5 @@
 import React from 'react';
 import { Theme as FrostedTheme } from 'frosted-ui';
-import '../styles.css';
 
 type FrostedThemeProps = React.ComponentProps<typeof FrostedTheme>;
 

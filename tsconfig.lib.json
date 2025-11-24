@@ -24,5 +24,18 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["lib"]
+  "include": ["lib"],
+  "exclude": [
+    "node_modules",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "**/*.stories.js",
+    "**/*.stories.jsx",
+    "**/*.story.ts",
+    "**/*.story.tsx",
+    "**/*.story.js",
+    "**/*.story.jsx",
+    "stories/**",
+    ".storybook"
+  ]
 }

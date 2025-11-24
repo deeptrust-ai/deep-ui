@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Provider as RadixToastProvider,
   Viewport as RadixToastViewport,
 } from '@radix-ui/react-toast';
 
-import { Toast, type IToastProps } from '..';
+import { Toast, type IToastProps } from '../..';
 
 const meta = {
   title: 'Atom/Toast',

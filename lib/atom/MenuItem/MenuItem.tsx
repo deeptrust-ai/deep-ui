@@ -17,19 +17,12 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
   subpage = false,
 }: IMenuItemProps<TAnchor>) => {
   const AnchorComponent = anchorComponent ?? 'a';
-  const anchorClassName = cn(
-    styles.anchor,
-    anchorProps?.className,
-    {
-      [styles.subItem]: !!subpage,
-      [styles.selected]: !!selected,
-    },
-  );
+  const anchorClassName = cn(styles.anchor, anchorProps?.className, {
+    [styles.subItem]: !!subpage,
+    [styles.selected]: !!selected,
+  });
 
-  const href =
-    AnchorComponent === 'a'
-      ? anchorProps?.href ?? link
-      : undefined;
+  const href = AnchorComponent === 'a' ? (anchorProps?.href ?? link) : undefined;
 
   const combinedAnchorProps = {
     ...anchorProps,

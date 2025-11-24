@@ -5,7 +5,7 @@ import type { ILogoProps } from './types';
 import { SIZE_CONFIG, WORDMARK_CONFIG } from './constants';
 import styles from './styles.module.css';
 
-const Logo = ({ variant = 'full', size = 'medium' }: ILogoProps) => {
+export const Logo = ({ variant = 'full', size = 'medium' }: ILogoProps) => {
   const width = SIZE_CONFIG[size].baseWidth;
 
   const scale = width / WORDMARK_CONFIG.baseWidth;

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
 
 import { Table, type ITableProps } from '../..';

@@ -6,7 +6,7 @@ import type { ISidebarMenu } from './types';
 /**
  * Sidebar component that includes a Logo and a Menu.
  */
-const Sidebar = ({ menuPages }: ISidebarMenu) => {
+export const Sidebar = ({ menuPages }: ISidebarMenu) => {
   return (
     <div className={styles.sidebar}>
       <Logo />

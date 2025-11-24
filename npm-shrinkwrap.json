@@ -9,8 +9,10 @@
       "version": "0.1.0",
       "license": "MIT",
       "dependencies": {
+        "@phosphor-icons/react": "2.1.10",
         "@radix-ui/react-toast": "1.2.15",
-        "@radix-ui/themes": "3.2.1"
+        "@radix-ui/themes": "3.2.1",
+        "frosted-ui": "0.0.1-canary.88"
       },
       "devDependencies": {
         "@chromatic-com/storybook": "4.1.2",
@@ -36,8 +38,7 @@
         "eslint-plugin-react-hooks": "7.0.1",
         "eslint-plugin-react-refresh": "0.4.24",
         "eslint-plugin-storybook": "10.0.2",
-        "frosted-ui": "^0.0.1-canary.85",
-        "glob": "11.0.3",
+        "glob": "13.0.0",
         "globals": "16.4.0",
         "playwright": "1.56.1",
         "plop": "4.0.1",
@@ -47,7 +48,7 @@
         "storybook": "10.0.2",
         "typescript": "5.9.3",
         "typescript-eslint": "8.46.2",
-        "vite": "7.1.12",
+        "vite": "7.2.4",
         "vite-plugin-dts": "4.5.4",
         "vite-plugin-lib-inject-css": "2.2.2"
       },
@@ -1199,7 +1200,6 @@
     },
     "node_modules/@formatjs/ecma402-abstract": {
       "version": "2.3.6",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "@formatjs/fast-memoize": "2.2.7",
@@ -1210,7 +1210,6 @@
     },
     "node_modules/@formatjs/fast-memoize": {
       "version": "2.2.7",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "tslib": "^2.8.0"
@@ -1218,7 +1217,6 @@
     },
     "node_modules/@formatjs/icu-messageformat-parser": {
       "version": "2.11.4",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "@formatjs/ecma402-abstract": "2.3.6",
@@ -1228,7 +1226,6 @@
     },
     "node_modules/@formatjs/icu-skeleton-parser": {
       "version": "1.8.16",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "@formatjs/ecma402-abstract": "2.3.6",
@@ -1237,7 +1234,6 @@
     },
     "node_modules/@formatjs/intl-localematcher": {
       "version": "0.6.2",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "tslib": "^2.8.0"
@@ -1322,7 +1318,6 @@
     },
     "node_modules/@internationalized/date": {
       "version": "3.10.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -1330,7 +1325,6 @@
     },
     "node_modules/@internationalized/message": {
       "version": "3.1.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0",
@@ -1339,7 +1333,6 @@
     },
     "node_modules/@internationalized/number": {
       "version": "3.6.5",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -1347,7 +1340,6 @@
     },
     "node_modules/@internationalized/string": {
       "version": "3.2.7",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -1429,7 +1421,9 @@
       }
     },
     "node_modules/@joshwooding/vite-plugin-react-docgen-typescript/node_modules/glob": {
-      "version": "10.4.5",
+      "version": "10.5.0",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-10.5.0.tgz",
+      "integrity": "sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==",
       "dev": true,
       "license": "ISC",
       "dependencies": {
@@ -1687,11 +1681,6 @@
         "url": "https://github.com/sponsors/epoberezkin"
       }
     },
-    "node_modules/@microsoft/tsdoc-config/node_modules/ajv/node_modules/json-schema-traverse": {
-      "version": "1.0.0",
-      "dev": true,
-      "license": "MIT"
-    },
     "node_modules/@neoconfetti/react": {
       "version": "1.0.0",
       "dev": true,
@@ -1732,7 +1721,6 @@
     "node_modules/@phosphor-icons/react": {
       "version": "2.1.10",
       "license": "MIT",
-      "peer": true,
       "engines": {
         "node": ">=10"
       },
@@ -3158,7 +3146,6 @@
     },
     "node_modules/@react-aria/breadcrumbs": {
       "version": "3.5.29",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3175,7 +3162,6 @@
     },
     "node_modules/@react-aria/button": {
       "version": "3.14.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3193,7 +3179,6 @@
     },
     "node_modules/@react-aria/button/node_modules/@react-aria/toolbar": {
       "version": "3.0.0-beta.21",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3209,7 +3194,6 @@
     },
     "node_modules/@react-aria/calendar": {
       "version": "3.9.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -3230,7 +3214,6 @@
     },
     "node_modules/@react-aria/checkbox": {
       "version": "3.16.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/form": "^3.1.2",
@@ -3252,7 +3235,6 @@
     },
     "node_modules/@react-aria/color": {
       "version": "3.0.0-beta.33",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.11.1",
@@ -3276,7 +3258,6 @@
     },
     "node_modules/@react-aria/combobox": {
       "version": "3.14.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3303,7 +3284,6 @@
     },
     "node_modules/@react-aria/datepicker": {
       "version": "3.15.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -3332,7 +3312,6 @@
     },
     "node_modules/@react-aria/dialog": {
       "version": "3.5.31",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3349,7 +3328,6 @@
     },
     "node_modules/@react-aria/disclosure": {
       "version": "3.1.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/ssr": "^3.9.10",
@@ -3365,7 +3343,6 @@
     },
     "node_modules/@react-aria/dnd": {
       "version": "3.11.3",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/string": "^3.2.7",
@@ -3387,7 +3364,6 @@
     },
     "node_modules/@react-aria/focus": {
       "version": "3.21.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3403,7 +3379,6 @@
     },
     "node_modules/@react-aria/form": {
       "version": "3.1.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3419,7 +3394,6 @@
     },
     "node_modules/@react-aria/grid": {
       "version": "3.14.5",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3443,7 +3417,6 @@
     },
     "node_modules/@react-aria/gridlist": {
       "version": "3.14.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3464,7 +3437,6 @@
     },
     "node_modules/@react-aria/i18n": {
       "version": "3.12.13",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -3483,7 +3455,6 @@
     },
     "node_modules/@react-aria/interactions": {
       "version": "3.25.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/ssr": "^3.9.10",
@@ -3499,7 +3470,6 @@
     },
     "node_modules/@react-aria/label": {
       "version": "3.7.22",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/utils": "^3.31.0",
@@ -3513,7 +3483,6 @@
     },
     "node_modules/@react-aria/landmark": {
       "version": "3.0.7",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/utils": "^3.31.0",
@@ -3528,7 +3497,6 @@
     },
     "node_modules/@react-aria/link": {
       "version": "3.8.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3544,7 +3512,6 @@
     },
     "node_modules/@react-aria/listbox": {
       "version": "3.15.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3564,7 +3531,6 @@
     },
     "node_modules/@react-aria/live-announcer": {
       "version": "3.4.4",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -3572,7 +3538,6 @@
     },
     "node_modules/@react-aria/menu": {
       "version": "3.19.3",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3597,7 +3562,6 @@
     },
     "node_modules/@react-aria/meter": {
       "version": "3.4.27",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/progress": "^3.4.27",
@@ -3612,7 +3576,6 @@
     },
     "node_modules/@react-aria/numberfield": {
       "version": "3.12.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3634,7 +3597,6 @@
     },
     "node_modules/@react-aria/overlays": {
       "version": "3.30.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3656,7 +3618,6 @@
     },
     "node_modules/@react-aria/progress": {
       "version": "3.4.27",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3673,7 +3634,6 @@
     },
     "node_modules/@react-aria/radio": {
       "version": "3.12.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3694,7 +3654,6 @@
     },
     "node_modules/@react-aria/searchfield": {
       "version": "3.8.9",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3713,7 +3672,6 @@
     },
     "node_modules/@react-aria/select": {
       "version": "3.17.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/form": "^3.1.2",
@@ -3738,7 +3696,6 @@
     },
     "node_modules/@react-aria/selection": {
       "version": "3.26.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3756,7 +3713,6 @@
     },
     "node_modules/@react-aria/separator": {
       "version": "3.4.13",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/utils": "^3.31.0",
@@ -3770,7 +3726,6 @@
     },
     "node_modules/@react-aria/slider": {
       "version": "3.8.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3789,7 +3744,6 @@
     },
     "node_modules/@react-aria/spinbutton": {
       "version": "3.6.19",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3806,7 +3760,6 @@
     },
     "node_modules/@react-aria/ssr": {
       "version": "3.9.10",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -3820,7 +3773,6 @@
     },
     "node_modules/@react-aria/switch": {
       "version": "3.7.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/toggle": "^3.12.2",
@@ -3836,7 +3788,6 @@
     },
     "node_modules/@react-aria/table": {
       "version": "3.17.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3862,7 +3813,6 @@
     },
     "node_modules/@react-aria/tabs": {
       "version": "3.10.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.21.2",
@@ -3881,7 +3831,6 @@
     },
     "node_modules/@react-aria/tag": {
       "version": "3.7.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/gridlist": "^3.14.1",
@@ -3902,7 +3851,6 @@
     },
     "node_modules/@react-aria/textfield": {
       "version": "3.18.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/form": "^3.1.2",
@@ -3922,7 +3870,6 @@
     },
     "node_modules/@react-aria/toast": {
       "version": "3.0.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -3941,7 +3888,6 @@
     },
     "node_modules/@react-aria/toggle": {
       "version": "3.12.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3958,7 +3904,6 @@
     },
     "node_modules/@react-aria/toolbar": {
       "version": "3.0.0-beta.5",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/focus": "^3.17.1",
@@ -3973,7 +3918,6 @@
     },
     "node_modules/@react-aria/tooltip": {
       "version": "3.8.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -3990,7 +3934,6 @@
     },
     "node_modules/@react-aria/tree": {
       "version": "3.0.0-alpha.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/gridlist": "^3.8.1",
@@ -4009,7 +3952,6 @@
     },
     "node_modules/@react-aria/utils": {
       "version": "3.31.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/ssr": "^3.9.10",
@@ -4026,7 +3968,6 @@
     },
     "node_modules/@react-aria/visually-hidden": {
       "version": "3.8.28",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/interactions": "^3.25.6",
@@ -4041,7 +3982,6 @@
     },
     "node_modules/@react-stately/calendar": {
       "version": "3.9.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -4056,7 +3996,6 @@
     },
     "node_modules/@react-stately/checkbox": {
       "version": "3.7.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/form": "^3.2.2",
@@ -4071,7 +4010,6 @@
     },
     "node_modules/@react-stately/collections": {
       "version": "3.12.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1",
@@ -4083,7 +4021,6 @@
     },
     "node_modules/@react-stately/color": {
       "version": "3.9.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/number": "^3.6.5",
@@ -4102,7 +4039,6 @@
     },
     "node_modules/@react-stately/color/node_modules/@react-types/color": {
       "version": "3.1.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1",
@@ -4114,7 +4050,6 @@
     },
     "node_modules/@react-stately/combobox": {
       "version": "3.12.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/collections": "^3.12.8",
@@ -4132,7 +4067,6 @@
     },
     "node_modules/@react-stately/data": {
       "version": "3.14.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1",
@@ -4144,7 +4078,6 @@
     },
     "node_modules/@react-stately/datepicker": {
       "version": "3.15.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -4162,7 +4095,6 @@
     },
     "node_modules/@react-stately/disclosure": {
       "version": "3.0.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/utils": "^3.10.8",
@@ -4175,7 +4107,6 @@
     },
     "node_modules/@react-stately/dnd": {
       "version": "3.7.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/selection": "^3.20.6",
@@ -4188,7 +4119,6 @@
     },
     "node_modules/@react-stately/flags": {
       "version": "3.1.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -4196,7 +4126,6 @@
     },
     "node_modules/@react-stately/form": {
       "version": "3.2.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1",
@@ -4208,7 +4137,6 @@
     },
     "node_modules/@react-stately/grid": {
       "version": "3.11.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/collections": "^3.12.8",
@@ -4223,7 +4151,6 @@
     },
     "node_modules/@react-stately/list": {
       "version": "3.13.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/collections": "^3.12.8",
@@ -4238,7 +4165,6 @@
     },
     "node_modules/@react-stately/menu": {
       "version": "3.9.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/overlays": "^3.6.20",
@@ -4252,7 +4178,6 @@
     },
     "node_modules/@react-stately/numberfield": {
       "version": "3.10.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/number": "^3.6.5",
@@ -4267,7 +4192,6 @@
     },
     "node_modules/@react-stately/overlays": {
       "version": "3.6.20",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/utils": "^3.10.8",
@@ -4280,7 +4204,6 @@
     },
     "node_modules/@react-stately/radio": {
       "version": "3.11.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/form": "^3.2.2",
@@ -4295,7 +4218,6 @@
     },
     "node_modules/@react-stately/searchfield": {
       "version": "3.5.16",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/utils": "^3.10.8",
@@ -4308,7 +4230,6 @@
     },
     "node_modules/@react-stately/select": {
       "version": "3.8.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/form": "^3.2.2",
@@ -4325,7 +4246,6 @@
     },
     "node_modules/@react-stately/selection": {
       "version": "3.20.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/collections": "^3.12.8",
@@ -4339,7 +4259,6 @@
     },
     "node_modules/@react-stately/slider": {
       "version": "3.7.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/utils": "^3.10.8",
@@ -4353,7 +4272,6 @@
     },
     "node_modules/@react-stately/table": {
       "version": "3.15.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/collections": "^3.12.8",
@@ -4372,7 +4290,6 @@
     },
     "node_modules/@react-stately/tabs": {
       "version": "3.8.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/list": "^3.13.1",
@@ -4386,7 +4303,6 @@
     },
     "node_modules/@react-stately/toast": {
       "version": "3.1.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0",
@@ -4398,7 +4314,6 @@
     },
     "node_modules/@react-stately/toggle": {
       "version": "3.9.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/utils": "^3.10.8",
@@ -4412,7 +4327,6 @@
     },
     "node_modules/@react-stately/tooltip": {
       "version": "3.5.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/overlays": "^3.6.20",
@@ -4425,7 +4339,6 @@
     },
     "node_modules/@react-stately/tree": {
       "version": "3.9.3",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/collections": "^3.12.8",
@@ -4440,7 +4353,6 @@
     },
     "node_modules/@react-stately/utils": {
       "version": "3.10.8",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@swc/helpers": "^0.5.0"
@@ -4451,7 +4363,6 @@
     },
     "node_modules/@react-types/breadcrumbs": {
       "version": "3.7.17",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/link": "^3.6.5",
@@ -4463,7 +4374,6 @@
     },
     "node_modules/@react-types/button": {
       "version": "3.14.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4474,7 +4384,6 @@
     },
     "node_modules/@react-types/calendar": {
       "version": "3.8.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -4486,7 +4395,6 @@
     },
     "node_modules/@react-types/checkbox": {
       "version": "3.10.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4497,7 +4405,6 @@
     },
     "node_modules/@react-types/color": {
       "version": "3.0.0-beta.25",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.23.1",
@@ -4509,7 +4416,6 @@
     },
     "node_modules/@react-types/combobox": {
       "version": "3.13.9",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4520,7 +4426,6 @@
     },
     "node_modules/@react-types/datepicker": {
       "version": "3.13.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.10.0",
@@ -4534,7 +4439,6 @@
     },
     "node_modules/@react-types/dialog": {
       "version": "3.5.22",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/overlays": "^3.9.2",
@@ -4546,7 +4450,6 @@
     },
     "node_modules/@react-types/form": {
       "version": "3.7.16",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4557,7 +4460,6 @@
     },
     "node_modules/@react-types/grid": {
       "version": "3.3.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4568,7 +4470,6 @@
     },
     "node_modules/@react-types/link": {
       "version": "3.6.5",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4579,7 +4480,6 @@
     },
     "node_modules/@react-types/listbox": {
       "version": "3.7.4",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4590,7 +4490,6 @@
     },
     "node_modules/@react-types/menu": {
       "version": "3.10.5",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/overlays": "^3.9.2",
@@ -4602,7 +4501,6 @@
     },
     "node_modules/@react-types/meter": {
       "version": "3.4.13",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/progress": "^3.5.16"
@@ -4613,7 +4511,6 @@
     },
     "node_modules/@react-types/numberfield": {
       "version": "3.8.15",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4624,7 +4521,6 @@
     },
     "node_modules/@react-types/overlays": {
       "version": "3.9.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4635,7 +4531,6 @@
     },
     "node_modules/@react-types/progress": {
       "version": "3.5.16",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4646,7 +4541,6 @@
     },
     "node_modules/@react-types/radio": {
       "version": "3.9.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4657,7 +4551,6 @@
     },
     "node_modules/@react-types/searchfield": {
       "version": "3.6.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1",
@@ -4669,7 +4562,6 @@
     },
     "node_modules/@react-types/select": {
       "version": "3.11.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4680,7 +4572,6 @@
     },
     "node_modules/@react-types/shared": {
       "version": "3.32.1",
-      "dev": true,
       "license": "Apache-2.0",
       "peerDependencies": {
         "react": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1"
@@ -4688,7 +4579,6 @@
     },
     "node_modules/@react-types/slider": {
       "version": "3.8.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4699,7 +4589,6 @@
     },
     "node_modules/@react-types/switch": {
       "version": "3.5.15",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4710,7 +4599,6 @@
     },
     "node_modules/@react-types/table": {
       "version": "3.13.4",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/grid": "^3.3.6",
@@ -4722,7 +4610,6 @@
     },
     "node_modules/@react-types/tabs": {
       "version": "3.3.19",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4733,7 +4620,6 @@
     },
     "node_modules/@react-types/textfield": {
       "version": "3.12.6",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1"
@@ -4744,7 +4630,6 @@
     },
     "node_modules/@react-types/tooltip": {
       "version": "3.4.21",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/overlays": "^3.9.2",
@@ -5123,11 +5008,6 @@
         "type": "github",
         "url": "https://github.com/sponsors/epoberezkin"
       }
-    },
-    "node_modules/@rushstack/node-core-library/node_modules/ajv/node_modules/json-schema-traverse": {
-      "version": "1.0.0",
-      "dev": true,
-      "license": "MIT"
     },
     "node_modules/@rushstack/node-core-library/node_modules/semver": {
       "version": "7.5.4",
@@ -5648,9 +5528,7 @@
     },
     "node_modules/@swc/helpers": {
       "version": "0.5.17",
-      "dev": true,
       "license": "Apache-2.0",
-      "peer": true,
       "dependencies": {
         "tslib": "^2.8.0"
       }
@@ -6171,11 +6049,6 @@
         "vite": "^4 || ^5 || ^6 || ^7"
       }
     },
-    "node_modules/@vitejs/plugin-react-swc/node_modules/@rolldown/pluginutils": {
-      "version": "1.0.0-beta.43",
-      "dev": true,
-      "license": "MIT"
-    },
     "node_modules/@vitest/expect": {
       "version": "3.2.4",
       "dev": true,
@@ -6426,26 +6299,6 @@
           "optional": true
         }
       }
-    },
-    "node_modules/ajv-formats/node_modules/ajv": {
-      "version": "8.13.0",
-      "dev": true,
-      "license": "MIT",
-      "dependencies": {
-        "fast-deep-equal": "^3.1.3",
-        "json-schema-traverse": "^1.0.0",
-        "require-from-string": "^2.0.2",
-        "uri-js": "^4.4.1"
-      },
-      "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/epoberezkin"
-      }
-    },
-    "node_modules/ajv-formats/node_modules/ajv/node_modules/json-schema-traverse": {
-      "version": "1.0.0",
-      "dev": true,
-      "license": "MIT"
     },
     "node_modules/alien-signals": {
       "version": "0.4.14",
@@ -6800,7 +6653,6 @@
     },
     "node_modules/client-only": {
       "version": "0.0.1",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/clone": {
@@ -6813,7 +6665,6 @@
     },
     "node_modules/clsx": {
       "version": "2.1.1",
-      "dev": true,
       "license": "MIT",
       "engines": {
         "node": ">=6"
@@ -6901,7 +6752,6 @@
     },
     "node_modules/decimal.js": {
       "version": "10.6.0",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/deep-eql": {
@@ -7512,8 +7362,9 @@
       }
     },
     "node_modules/frosted-ui": {
-      "version": "0.0.1-canary.85",
-      "dev": true,
+      "version": "0.0.1-canary.88",
+      "resolved": "https://registry.npmjs.org/frosted-ui/-/frosted-ui-0.0.1-canary.88.tgz",
+      "integrity": "sha512-GS9z667ovp6aJJGOeA2twto1HhXuTKmOQL8hU6E2KUrQ/9mtr8NcWjqDtutZYXpzIp7pZxgkPjB5p/aefV95Xg==",
       "license": "MIT",
       "dependencies": {
         "@frosted-ui/colors": "0.0.1-canary.61",
@@ -7556,7 +7407,6 @@
     },
     "node_modules/frosted-ui/node_modules/@frosted-ui/colors": {
       "version": "0.0.1-canary.61",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/fs-extra": {
@@ -7619,19 +7469,15 @@
       }
     },
     "node_modules/glob": {
-      "version": "11.0.3",
+      "version": "13.0.0",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-13.0.0.tgz",
+      "integrity": "sha512-tvZgpqk6fz4BaNZ66ZsRaZnbHvP/jG3uKJvAZOwEVUL4RTA5nJeeLYfyN9/VA8NX/V3IBG+hkeuGpKjvELkVhA==",
       "dev": true,
-      "license": "ISC",
+      "license": "BlueOak-1.0.0",
       "dependencies": {
-        "foreground-child": "^3.3.1",
-        "jackspeak": "^4.1.1",
-        "minimatch": "^10.0.3",
+        "minimatch": "^10.1.1",
         "minipass": "^7.1.2",
-        "package-json-from-dist": "^1.0.0",
         "path-scurry": "^2.0.0"
-      },
-      "bin": {
-        "glob": "dist/esm/bin.mjs"
       },
       "engines": {
         "node": "20 || >=22"
@@ -7652,9 +7498,11 @@
       }
     },
     "node_modules/glob/node_modules/minimatch": {
-      "version": "10.0.3",
+      "version": "10.1.1",
+      "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-10.1.1.tgz",
+      "integrity": "sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==",
       "dev": true,
-      "license": "ISC",
+      "license": "BlueOak-1.0.0",
       "dependencies": {
         "@isaacs/brace-expansion": "^5.0.0"
       },
@@ -7889,7 +7737,6 @@
     },
     "node_modules/input-otp": {
       "version": "1.4.2",
-      "dev": true,
       "license": "MIT",
       "peerDependencies": {
         "react": "^16.8 || ^17.0 || ^18.0 || ^19.0.0 || ^19.0.0-rc",
@@ -8076,7 +7923,6 @@
     },
     "node_modules/intl-messageformat": {
       "version": "10.7.18",
-      "dev": true,
       "license": "BSD-3-Clause",
       "dependencies": {
         "@formatjs/ecma402-abstract": "2.3.6",
@@ -8230,20 +8076,6 @@
         "node": ">=0.10.0"
       }
     },
-    "node_modules/jackspeak": {
-      "version": "4.1.1",
-      "dev": true,
-      "license": "BlueOak-1.0.0",
-      "dependencies": {
-        "@isaacs/cliui": "^8.0.2"
-      },
-      "engines": {
-        "node": "20 || >=22"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/isaacs"
-      }
-    },
     "node_modules/jju": {
       "version": "1.4.0",
       "dev": true,
@@ -8255,7 +8087,9 @@
       "license": "MIT"
     },
     "node_modules/js-yaml": {
-      "version": "4.1.0",
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.1.tgz",
+      "integrity": "sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==",
       "dev": true,
       "license": "MIT",
       "dependencies": {
@@ -9223,7 +9057,6 @@
     },
     "node_modules/react-aria": {
       "version": "3.44.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/string": "^3.2.7",
@@ -9276,7 +9109,6 @@
     },
     "node_modules/react-aria-components": {
       "version": "1.2.1",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@internationalized/date": "^3.5.4",
@@ -9310,7 +9142,6 @@
     },
     "node_modules/react-aria/node_modules/@react-aria/color": {
       "version": "3.1.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/i18n": "^3.12.13",
@@ -9334,7 +9165,6 @@
     },
     "node_modules/react-aria/node_modules/@react-aria/color/node_modules/@react-types/color": {
       "version": "3.1.2",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-types/shared": "^3.32.1",
@@ -9346,7 +9176,6 @@
     },
     "node_modules/react-aria/node_modules/@react-aria/tree": {
       "version": "3.1.4",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-aria/gridlist": "^3.14.1",
@@ -9460,7 +9289,6 @@
     },
     "node_modules/react-stately": {
       "version": "3.42.0",
-      "dev": true,
       "license": "Apache-2.0",
       "dependencies": {
         "@react-stately/calendar": "^3.9.0",
@@ -10047,7 +9875,6 @@
     },
     "node_modules/tailwindcss": {
       "version": "4.1.17",
-      "dev": true,
       "license": "MIT"
     },
     "node_modules/tiny-invariant": {
@@ -10345,7 +10172,6 @@
     },
     "node_modules/vaul": {
       "version": "0.9.9",
-      "dev": true,
       "license": "MIT",
       "dependencies": {
         "@radix-ui/react-dialog": "^1.1.1"
@@ -10356,7 +10182,9 @@
       }
     },
     "node_modules/vite": {
-      "version": "7.1.12",
+      "version": "7.2.4",
+      "resolved": "https://registry.npmjs.org/vite/-/vite-7.2.4.tgz",
+      "integrity": "sha512-NL8jTlbo0Tn4dUEXEsUg8KeyG/Lkmc4Fnzb8JXN/Ykm9G4HNImjtABMJgkQoVjOBN/j2WAwDTRytdqJbZsah7w==",
       "dev": true,
       "license": "MIT",
       "peer": true,

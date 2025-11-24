@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef, ElementType } from 'react';
 import { Text } from 'frosted-ui';
 import cn from 'classnames';
 import styles from './styles.module.css';
@@ -6,7 +7,7 @@ import type { IMenuItemProps } from './types';
 /**
  * MenuItem component represents a single item in a menu, which can optionally be a subpage and can indicate selection state.
  */
-const MenuItem = <TAnchor extends React.ElementType = 'a'>({
+const MenuItem = <TAnchor extends ElementType = 'a'>({
   anchorComponent,
   anchorProps,
   label,
@@ -34,7 +35,7 @@ const MenuItem = <TAnchor extends React.ElementType = 'a'>({
     ...anchorProps,
     className: anchorClassName,
     ...(href ? { href } : {}),
-  } as React.ComponentPropsWithoutRef<TAnchor>;
+  } as ComponentPropsWithoutRef<TAnchor>;
 
   return (
     <div

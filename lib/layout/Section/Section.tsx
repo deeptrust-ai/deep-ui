@@ -1,7 +1,6 @@
 import React from 'react';
 import { Section as RadixSection } from '@radix-ui/themes';
-
-export type SectionProps = React.ComponentPropsWithoutRef<typeof RadixSection>;
+import type { SectionProps } from './types';
 
 const Section = React.forwardRef<HTMLDivElement, SectionProps>((props, ref) => {
   return (

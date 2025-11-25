@@ -24,7 +24,6 @@ const Table = ({
   const endIndex = startIndex + numericItemsPerPage;
 
   const handleItemsPerPageChange = (newItemsPerPage: TPaginationItemsPerPage) => {
-    // Check if value is a valid TPaginationItemsPerPage
     if (PAGE_SIZE_OPTIONS.includes(newItemsPerPage)) {
       setItemsPerPage(newItemsPerPage);
       setCurrentPage(1);

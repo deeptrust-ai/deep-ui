@@ -12,7 +12,7 @@ import type { IOrganizationDropdownProps } from './types';
  *
  * It displays the selected organization's name along with an icon and a "Trial" badge if applicable.
  */
-const OrganizationDropdown = ({ organizations }: IOrganizationDropdownProps) => {
+export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownProps) => {
   const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
 
   return (

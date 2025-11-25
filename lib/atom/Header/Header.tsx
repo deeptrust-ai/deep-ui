@@ -2,7 +2,7 @@ import { Text as FrostedText, Heading as FrostedHeading } from 'frosted-ui';
 import type { IHeaderProps } from './types';
 import styles from './styles.module.css';
 
-const index = ({ title, subtitle, metaInfo, headerAs }: IHeaderProps) => {
+export const Header = ({ title, subtitle, metaInfo, headerAs }: IHeaderProps) => {
   return (
     <div className={styles.header}>
       <FrostedText size="2" color="gray" as="p">
@@ -18,5 +18,5 @@ const index = ({ title, subtitle, metaInfo, headerAs }: IHeaderProps) => {
   );
 };
 
-export default index;
+export default Header;
 export type { IHeaderProps } from './types';

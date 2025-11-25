@@ -1,6 +1,7 @@
-import { Box, Flex, Grid } from '@radix-ui/themes';
+import { Box, Flex } from '@radix-ui/themes';
 import styles from './styles.module.css';
 import { Sidebar as LayoutSidebar, Topbar } from '../compound';
+import { Grid } from '../layout';
 import type { ILayoutComponent } from './types';
 
 const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayoutComponent) => {
@@ -9,7 +10,7 @@ const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayo
   const splitRows = hasTwoColumns ? '1fr auto' : '1fr';
 
   return (
-    <Grid columns="auto 1fr">
+    <Grid columns="auto 1fr" height="100%">
       <LayoutSidebar menuPages={menuPages} />
 
       <Flex direction="column">

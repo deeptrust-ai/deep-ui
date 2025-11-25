@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Header, type IHeaderProps } from '..';
+import { Header, type IHeaderProps } from '../..';
 import pkg from '../../../package.json';
 
 const meta = {

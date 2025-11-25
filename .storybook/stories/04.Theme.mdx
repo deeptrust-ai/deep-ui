@@ -1,0 +1,24 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import React from 'react';
+import Theme from '../../lib/utilities/Theme';
+
+<Meta title="Guides/04. Theme" />
+
+# Theme
+
+**Basic usage**
+
+Handles importing all necessary CSS variables and setting up theme context for DeepUI components. Wrap your application root (for example in `src/main.tsx` or your app entry):
+
+```jsx
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import Theme from '@deeptrust-ai/deep-ui';
+import App from './App';
+
+createRoot(document.getElementById('root')).render(
+  <Theme>
+    <App />
+  </Theme>
+);
+```

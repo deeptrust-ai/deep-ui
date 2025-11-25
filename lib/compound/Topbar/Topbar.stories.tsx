@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Topbar } from '../index.ts';
+import { Topbar } from '../..';
 
 const meta = {
   title: 'Compound/Topbar',

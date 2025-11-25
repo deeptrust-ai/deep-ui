@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { User, type IUserProps } from '..';
+import { User, type IUserProps } from '../..';
 
 const meta = {
   title: 'Atom/User',

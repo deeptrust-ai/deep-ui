@@ -1,2 +1,2 @@
 export { default } from './Flex';
-export * from './types';
+export type * from './types';

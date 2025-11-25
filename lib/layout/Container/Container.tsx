@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container as RadixContainer } from '@radix-ui/themes';
-
-export type ContainerProps = React.ComponentPropsWithoutRef<typeof RadixContainer>;
+import type { ContainerProps } from './types';
 
 const Container = React.forwardRef<HTMLDivElement, ContainerProps>((props, ref) => {
   return (

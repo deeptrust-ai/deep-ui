@@ -1,7 +1,6 @@
-import React from 'react';
 import { Box as RadixBox } from '@radix-ui/themes';
-
-export type BoxProps = React.ComponentPropsWithoutRef<typeof RadixBox>;
+import React from 'react';
+import type { BoxProps } from './types';
 
 const Box = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   return (

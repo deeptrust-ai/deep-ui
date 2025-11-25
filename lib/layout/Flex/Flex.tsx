@@ -1,7 +1,6 @@
 import React from 'react';
 import { Flex as RadixFlex } from '@radix-ui/themes';
-
-export type FlexProps = React.ComponentPropsWithoutRef<typeof RadixFlex>;
+import type { FlexProps } from './types';
 
 const Flex = React.forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   return (

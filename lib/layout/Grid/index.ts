@@ -1,2 +1,2 @@
 export { default } from './Grid';
-export * from './types';
+export type * from './types';

@@ -17,8 +17,8 @@ importers:
         specifier: 3.2.1
         version: 3.2.1(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       frosted-ui:
-        specifier: 0.0.1-canary.88
-        version: 0.0.1-canary.88(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.0.1-canary.90
+        version: 0.0.1-canary.90(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     devDependencies:
       '@chromatic-com/storybook':
         specifier: 4.1.2
@@ -4572,10 +4572,10 @@ packages:
       }
     engines: { node: '>=14' }
 
-  frosted-ui@0.0.1-canary.88:
+  frosted-ui@0.0.1-canary.90:
     resolution:
       {
-        integrity: sha512-GS9z667ovp6aJJGOeA2twto1HhXuTKmOQL8hU6E2KUrQ/9mtr8NcWjqDtutZYXpzIp7pZxgkPjB5p/aefV95Xg==,
+        integrity: sha512-dwKdHikRWyGxa/bT+qbhQ1QxoFUOCThvMKzuQfIMejpQw/zE0r7KtiFH2NMd4TC80teR0CcWkpGIgYdppk2GGg==,
       }
     peerDependencies:
       '@types/react': '*'
@@ -9827,7 +9827,7 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  frosted-ui@0.0.1-canary.88(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  frosted-ui@0.0.1-canary.90(@types/react-dom@18.3.7(@types/react@18.3.27))(@types/react@18.3.27)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@frosted-ui/colors': 0.0.1-canary.61
       '@internationalized/date': 3.10.0

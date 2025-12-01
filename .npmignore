@@ -9,4 +9,3 @@ src/**/*.story.*
 .vitest
 .chromatic
 node_modules
-dist

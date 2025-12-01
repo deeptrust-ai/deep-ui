@@ -8,7 +8,9 @@ export type MenuItemAnchorProps<TAnchor extends ElementType> = Omit<
   /** Additional className is merged into MenuItem styles */
   readonly className?: string;
   /** Optional href that falls back to `link` when anchor renders an <a> */
-  readonly href?: ComponentPropsWithoutRef<TAnchor> extends { href?: infer THref } ? THref : unknown;
+  readonly href?: ComponentPropsWithoutRef<TAnchor> extends { href?: infer THref }
+    ? THref
+    : unknown;
 };
 
 export interface IMenuItemProps<TAnchor extends ElementType = 'a'> {

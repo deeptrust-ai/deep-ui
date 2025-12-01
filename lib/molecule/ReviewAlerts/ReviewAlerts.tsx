@@ -8,7 +8,7 @@ import Toast from '../../atom/Toast';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';
 
-const ImmediateReview = ({ alerts }: IReviewAlertsProps) => {
+const ReviewAlerts = ({ alerts }: IReviewAlertsProps) => {
   return (
     <div>
       <div className={styles.header}>
@@ -35,5 +35,5 @@ const ImmediateReview = ({ alerts }: IReviewAlertsProps) => {
   );
 };
 
-export default ImmediateReview;
+export default ReviewAlerts;
 export { type IReviewAlertsProps };

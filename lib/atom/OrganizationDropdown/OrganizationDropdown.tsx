@@ -18,13 +18,20 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
   return (
     <FrostedDropdown.Root>
       <FrostedDropdown.Trigger>
-        <FrostedButton variant="ghost" color="gray" className={styles.triggerButton} type="button">
-          <FrostedText color="gray" size="1">
-            <BuildingsIcon size={16} className={styles.icon} weight="bold" />
-            {selectedOrg.name}
-            <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
-          </FrostedText>
-        </FrostedButton>
+        <div>
+          <FrostedButton
+            variant="ghost"
+            color="gray"
+            className={styles.triggerButton}
+            type="button"
+          >
+            <FrostedText color="gray" size="1">
+              <BuildingsIcon size={16} className={styles.icon} weight="bold" />
+              {selectedOrg.name}
+              <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
+            </FrostedText>
+          </FrostedButton>
+        </div>
       </FrostedDropdown.Trigger>
       <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
         <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>

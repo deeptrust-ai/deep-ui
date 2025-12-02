@@ -22,4 +22,6 @@ export interface IMenuItemProps<TAnchor extends ElementType = 'a'> {
   readonly selected?: boolean;
   /** Whether the menu item is a subpage */
   readonly subpage?: boolean;
+  /** If it's the heading of a set of subpages */
+  readonly heading?: boolean;
 }

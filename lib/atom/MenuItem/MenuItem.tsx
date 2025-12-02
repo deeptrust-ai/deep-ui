@@ -14,11 +14,12 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
   icon: Icon,
   selected = false,
   subpage = false,
+  heading = false,
 }: IMenuItemProps<TAnchor>) => {
   const AnchorComponent = anchorComponent ?? 'a';
+
   const anchorClassName = cn(styles.anchor, anchorProps?.className, {
-    [styles.subItem]: !!subpage,
-    [styles.selected]: !!selected,
+    [styles.heading]: !!heading,
   });
 
   const combinedAnchorProps = {

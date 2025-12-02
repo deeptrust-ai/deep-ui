@@ -20,7 +20,8 @@
   box-shadow: 0 0 2px 0 #00000008;
   width: 100%;
 
-  &.selected {
+  &.selected,
+  &[data-status='active'] {
     background-color: var(--blue-a3);
     box-shadow: 0 0 2px 0 #0000001a inset;
   }
@@ -40,6 +41,15 @@
       background-color: var(--blue-6);
       width: 6px;
       height: 100%;
+    }
+  }
+}
+
+.heading {
+  &.anchor {
+    &[data-status='active'] {
+      background: var(--white-a12) !important;
+      box-shadow: 0 0 2px 0 #00000008 !important;
     }
   }
 }

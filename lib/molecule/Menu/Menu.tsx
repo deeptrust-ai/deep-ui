@@ -15,7 +15,11 @@ const Menu = <TAnchor extends ElementType = 'a'>({
       <ul>
         {pages.map((page) => (
           <li key={page.label}>
-            <MenuItem {...page} anchorComponent={anchorComponent} />
+            <MenuItem
+              {...page}
+              heading={page.subPages?.length > 0}
+              anchorComponent={anchorComponent}
+            />
             {page.subPages && (
               <ul>
                 {page.subPages.map((subPage) => (

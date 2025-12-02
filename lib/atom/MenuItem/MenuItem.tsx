@@ -12,7 +12,6 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
   anchorProps,
   label,
   icon: Icon,
-  link,
   selected = false,
   subpage = false,
 }: IMenuItemProps<TAnchor>) => {
@@ -22,12 +21,9 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
     [styles.selected]: !!selected,
   });
 
-  const href = AnchorComponent === 'a' ? (anchorProps?.href ?? link) : undefined;
-
   const combinedAnchorProps = {
     ...anchorProps,
     className: anchorClassName,
-    ...(href ? { href } : {}),
   } as ComponentPropsWithoutRef<TAnchor>;
 
   return (

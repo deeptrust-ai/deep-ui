@@ -1,5 +1,4 @@
-.contentContainer {
-  padding: var(--space-4) var(--space-5);
+.wrapper {
   background: var(--gray-1);
   border-radius: var(--radius-5);
   border: 1px solid var(--gray-6);

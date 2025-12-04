@@ -13,3 +13,4 @@ export { default as Avatar, type IAvatarProps } from './Avatar';
 export { default as Header, type IHeaderProps } from './Header';
 export { default as User, type IUserProps } from './User';
 export { default as Toast, type IToastProps } from './Toast';
+export { default as ContentWrapper, type IContentWrapperProps } from './ContentWrapper';

@@ -7,7 +7,7 @@ This README explains how to build the component library, scaffold new components
 ## Prerequisites
 
 - Node.js 18+ (React 19 requires modern runtimes)
-- bun
+- pnpm
 - Peer dependencies that must exist in any consuming project:
 
   ```json
@@ -23,13 +23,13 @@ This README explains how to build the component library, scaffold new components
 
 ## Common scripts
 
-| Script                         | Description                                                         |
-| ------------------------------ | ------------------------------------------------------------------- |
-| `bun run build`                | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
-| `bun run storybook`            | Starts Storybook locally on port 6006.                              |
-| `bun run build-storybook`      | Emits the static Storybook build to `storybook-static/`.            |
-| `bun run generate`             | Plop generator that scaffolds new components.                       |
-| `bun run lint` / `bun run tsc` | Type-checks & lints the source before release.                      |
+| Script                           | Description                                                         |
+| -------------------------------- | ------------------------------------------------------------------- |
+| `pnpm run build`                 | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
+| `pnpm run storybook`             | Starts Storybook locally on port 6006.                              |
+| `pnpm run build-storybook`       | Emits the static Storybook build to `storybook-static/`.            |
+| `pnpm run generate`              | Plop generator that scaffolds new components.                       |
+| `pnpm run lint` / `pnpm run tsc` | Type-checks & lints the source before release.                      |
 
 ---
 
@@ -39,22 +39,22 @@ Use this checklist whenever you cut a `0.0.x-dev` build or validate changes befo
 
 1. **Install dependencies**
 
-   ```bash
-   bun install
-   ```
+```bash
+pnpm install
+```
 
 2. **Preflight quality gates (optional but recommended)**
 
-   ```bash
-   bun run lint
-   bun run tsc
-   ```
+```bash
+pnpm run lint
+pnpm run tsc
+```
 
 3. **Build the distributable**
 
-   ```bash
-   bun run build
-   ```
+```bash
+pnpm run build
+```
 
 4. **Create the tarball**
 
@@ -77,9 +77,11 @@ DeepUI now ships via an automated GitHub Actions workflow plus a documented manu
 2. Create a git tag that matches `v*` (for example `git tag v1.2.3`).
 3. Push the branch _and_ the tag (`git push origin main --tags`).
 4. The `Publish Package` workflow (`.github/workflows/publish.yml`) runs automatically:
-   - Sets up Node 20 + Bun 1.3.
-   - Installs dependencies, lints, type-checks, and builds the library.
-   - Publishes to npm using `NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }}`.
+
+- Sets up Node 20 and pnpm.
+- Installs dependencies, lints, type-checks, and builds the library.
+- Publishes to npm using `NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }}`.
+
 5. Monitor the run in GitHub Actions. When it completes, `@deeptrust-ai/deep-ui@<version>` is live on npm.
 
 ### Manual npm publish (fallback)
@@ -88,10 +90,10 @@ Use this only when CI is unavailable, and ideally from a clean clone.
 
 ```bash
 rm -rf dist node_modules
-bun install
-bun run lint:library
-bun run tsc:library
-bun run build
+pnpm install
+pnpm run lint:library
+pnpm run tsc:library
+pnpm run build
 
 # Authenticate (once per machine or set NODE_AUTH_TOKEN in the environment)
 npm login --scope=@deeptrust-ai
@@ -153,9 +155,9 @@ The script simply ensures an import, render, and peer dependency resolution all 
 
 1. Run the generator:
 
-   ```bash
-   bun run generate
-   ```
+```bash
+pnpm run generate
+```
 
 2. Choose the component layer (atom / molecule / compound) and provide the component name.
 3. Opt in or out of optional files (types, CSS module, Storybook story) when prompted.
@@ -169,10 +171,10 @@ The generator creates files under `lib/<layer>/<Component>/` and adds the export
 ```bash
 git clone <repo-url>
 cd <directory>
-bun install
+pnpm install
 ```
 
-Build artifacts live in `dist/`; verify `package.json` `main`/`types` point there after running `bun run build`.
+Build artifacts live in `dist/`; verify `package.json` `main`/`types` point there after running `pnpm run build`.
 
 ---
 
@@ -193,17 +195,17 @@ Build artifacts live in `dist/`; verify `package.json` `main`/`types` point ther
    import { Avatar } from '@deeptrust-ai/deep-ui';
    ```
 
-### Option B — `bun link` (fast local dev)
+### Option B — `pnpm link` (fast local dev)
 
 ```bash
 # In DeepUI
-bun link
+pnpm link --global
 
 # In the consumer project
-bun link @deeptrust-ai/deep-ui
+pnpm link @deeptrust-ai/deep-ui
 ```
 
-Rebuild DeepUI (`bun run build`) before testing changes in the consumer app.
+Rebuild DeepUI (`pnpm run build`) before testing changes in the consumer app.
 
 ### Option C — Local file reference / monorepo
 
@@ -215,7 +217,7 @@ Add the dependency in the consumer `package.json`:
 }
 ```
 
-Then run the workspace install (`bun install`, `npm install`, etc.).
+Then run the workspace install (`pnpm install`, `npm install`, etc.).
 
 ---
 
@@ -224,7 +226,7 @@ Then run the workspace install (`bun install`, `npm install`, etc.).
 - Dev server:
 
   ```bash
-  bun run storybook
+  pnpm run storybook
   ```
 
   Opens http://localhost:6006.
@@ -232,7 +234,7 @@ Then run the workspace install (`bun install`, `npm install`, etc.).
 - Static build:
 
   ```bash
-  bun run build-storybook
+  pnpm run build-storybook
   ```
 
   Outputs to `storybook-static/`.

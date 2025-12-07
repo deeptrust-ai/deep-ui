@@ -12,7 +12,12 @@ import type { IToastProps } from './types';
 import styles from './styles.module.css';
 import { PERSIST_DURATION, DEFAULT_DURATION } from './constants';
 
-const Toast = ({ message, title, duration: durationProp, variant = 'info' }: IToastProps) => {
+export const Toast = ({
+  message,
+  title,
+  duration: durationProp,
+  variant = 'info',
+}: IToastProps) => {
   if (!message) {
     // If there's no message, don't render anything
     return null;

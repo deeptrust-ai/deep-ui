@@ -3,19 +3,19 @@ import {
   Viewport as RadixToastViewport,
 } from '@radix-ui/react-toast';
 import { ListChecksIcon } from '@phosphor-icons/react';
-import { Link as FrostedLink, Text as FrostedText } from 'frosted-ui';
+import { Link as FrostedLink, Text as FrostedText, Heading as FrostedHeading } from 'frosted-ui';
 import Toast from '../../atom/Toast';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';
 
-const ImmediateReview = ({ alerts }: IReviewAlertsProps) => {
+const ReviewAlerts = ({ alerts }: IReviewAlertsProps) => {
   return (
     <div>
       <div className={styles.header}>
         <ListChecksIcon weight="bold" size="24px" />
-        <FrostedText size="4" weight="medium" className={styles.title}>
+        <FrostedHeading as="h2" size="4" weight="medium" className={styles.title}>
           Requires Immediate Attention!
-        </FrostedText>
+        </FrostedHeading>
         <FrostedText size="2" className={styles.viewAll}>
           <FrostedLink href="#" underline="hover">
             View All
@@ -35,5 +35,5 @@ const ImmediateReview = ({ alerts }: IReviewAlertsProps) => {
   );
 };
 
-export default ImmediateReview;
+export default ReviewAlerts;
 export { type IReviewAlertsProps };

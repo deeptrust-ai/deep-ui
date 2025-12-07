@@ -9,7 +9,7 @@ import { PAGE_SIZE_OPTIONS } from './constants';
 import RowsPerPage from './parts/RowsPerPage';
 import Pager from './parts/Pager';
 
-const Pagination = ({
+export const Pagination = ({
   initialPage = 1,
   totalItems,
   defaultItemsPerPage = '10',
@@ -33,11 +33,10 @@ const Pagination = ({
 
   const handlePerPageChange = useCallback(
     (value: TPaginationItemsPerPage) => {
-      // Check if value is a valid TPaginationItemsPerPage
       if (PAGE_SIZE_OPTIONS.includes(value)) {
         setItemsPerPage(value);
-        onItemsPerPageChange(value); // Notify parent of items per page change
-        pager.setPage(1); // Reset to first page when items per page changes
+        onItemsPerPageChange(value);
+        pager.setPage(1);
       }
     },
     [onItemsPerPageChange, pager]

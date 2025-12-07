@@ -1,0 +1,11 @@
+**/*.stories.*
+.storybook/
+storybook-static/
+**/*.story.*
+src/**/*.stories.*
+src/**/*.story.*
+
+# keep local dev files out
+.vitest
+.chromatic
+node_modules

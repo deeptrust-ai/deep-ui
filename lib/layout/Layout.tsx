@@ -1,15 +1,24 @@
 import { Box, Flex, Grid } from '@radix-ui/themes';
-import styles from './styles.module.css';
 import { Sidebar as LayoutSidebar, Topbar } from '../compound';
 import type { ILayoutComponent } from './types';
+import { ContentWrapper } from '../atom';
 
-const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayoutComponent) => {
+const Layout = ({
+  children,
+  sidebar,
+  menuPages,
+  userName,
+  organizations,
+  title,
+  subtitle,
+  metaInfo,
+}: ILayoutComponent) => {
   const hasTwoColumns = !!sidebar;
 
   const splitRows = hasTwoColumns ? '1fr auto' : '1fr';
 
   return (
-    <Grid columns="auto 1fr">
+    <Grid columns="auto 1fr" height="100%">
       <LayoutSidebar menuPages={menuPages} />
 
       <Flex direction="column">
@@ -17,8 +26,14 @@ const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayo
 
         <Box height="100%" px="4" mb="4">
           <Grid columns={splitRows} gap="4" height="100%">
-            <Box className={styles.contentContainer}>{children}</Box>
-            {hasTwoColumns && <Box className={styles.contentContainer}>{sidebar}</Box>}
+            <ContentWrapper title={title} subtitle={subtitle} metaInfo={metaInfo}>
+              {children}
+            </ContentWrapper>
+            {hasTwoColumns && (
+              <ContentWrapper title={title} sidebar>
+                {sidebar}
+              </ContentWrapper>
+            )}
           </Grid>
         </Box>
       </Flex>

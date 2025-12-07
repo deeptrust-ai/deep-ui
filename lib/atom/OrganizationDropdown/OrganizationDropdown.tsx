@@ -12,19 +12,26 @@ import type { IOrganizationDropdownProps } from './types';
  *
  * It displays the selected organization's name along with an icon and a "Trial" badge if applicable.
  */
-const OrganizationDropdown = ({ organizations }: IOrganizationDropdownProps) => {
+export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownProps) => {
   const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
 
   return (
     <FrostedDropdown.Root>
       <FrostedDropdown.Trigger>
-        <FrostedButton variant="ghost" color="gray" className={styles.triggerButton} type="button">
-          <FrostedText color="gray" size="1">
-            <BuildingsIcon size={16} className={styles.icon} weight="bold" />
-            {selectedOrg.name}
-            <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
-          </FrostedText>
-        </FrostedButton>
+        <div>
+          <FrostedButton
+            variant="ghost"
+            color="gray"
+            className={styles.triggerButton}
+            type="button"
+          >
+            <FrostedText color="gray" size="1">
+              <BuildingsIcon size={16} className={styles.icon} weight="bold" />
+              {selectedOrg.name}
+              <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
+            </FrostedText>
+          </FrostedButton>
+        </div>
       </FrostedDropdown.Trigger>
       <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
         <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>

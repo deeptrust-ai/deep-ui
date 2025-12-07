@@ -2,7 +2,7 @@ import { Avatar as FrostedAvatar, Text as FrostedText } from 'frosted-ui';
 import type { IUserProps } from './types';
 import styles from './styles.module.css';
 
-const User = ({ name, position, pictureSrc }: IUserProps) => {
+export const User = ({ name, position, pictureSrc }: IUserProps) => {
   return (
     <div className={styles.container}>
       <FrostedAvatar

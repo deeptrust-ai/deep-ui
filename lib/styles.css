@@ -3,4 +3,4 @@
 
 @import url('@radix-ui/themes/layout.css') layer(radix);
 @import url('frosted-ui/styles.css') layer(frosted);
-@import url('./styles/colors.css') layer(deep-ui);
+@import url('./styles/deep-ui.css') layer(deep-ui);

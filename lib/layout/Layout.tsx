@@ -4,7 +4,16 @@ import { Grid } from '../layout';
 import type { ILayoutComponent } from './types';
 import { ContentWrapper } from '../atom';
 
-const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayoutComponent) => {
+const Layout = ({
+  children,
+  sidebar,
+  menuPages,
+  userName,
+  organizations,
+  title,
+  subtitle,
+  metaInfo,
+}: ILayoutComponent) => {
   const hasTwoColumns = !!sidebar;
 
   const splitRows = hasTwoColumns ? '1fr auto' : '1fr';
@@ -18,8 +27,14 @@ const Layout = ({ children, sidebar, menuPages, userName, organizations }: ILayo
 
         <Box height="100%" px="4" mb="4">
           <Grid columns={splitRows} gap="4" height="100%">
-            <ContentWrapper>{children}</ContentWrapper>
-            {hasTwoColumns && <ContentWrapper>{sidebar}</ContentWrapper>}
+            <ContentWrapper title={title} subtitle={subtitle} metaInfo={metaInfo}>
+              {children}
+            </ContentWrapper>
+            {hasTwoColumns && (
+              <ContentWrapper title={title} sidebar>
+                {sidebar}
+              </ContentWrapper>
+            )}
           </Grid>
         </Box>
       </Flex>

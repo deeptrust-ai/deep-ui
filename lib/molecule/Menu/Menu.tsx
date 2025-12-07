@@ -17,7 +17,7 @@ const Menu = <TAnchor extends ElementType = 'a'>({
           <li key={page.label}>
             <MenuItem
               {...page}
-              heading={page.subPages?.length > 0}
+              heading={page.subPages && page.subPages?.length > 0}
               anchorComponent={anchorComponent}
             />
             {page.subPages && (

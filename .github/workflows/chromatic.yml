@@ -1,5 +1,5 @@
 # Workflow name
-name: "Chromatic"
+name: 'Chromatic'
 
 # Events for the workflow
 on:
@@ -7,12 +7,12 @@ on:
     branches:
       - main
     paths:
-      - "lib/**"
+      - 'lib/**'
   pull_request:
     branches:
       - main
     paths:
-      - "lib/**"
+      - 'lib/**'
 
 # List of jobs
 jobs:
@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: "1.3.0"
+          bun-version: '1.3.0'
       - uses: actions/setup-node@v4
         with:
           node-version: 20

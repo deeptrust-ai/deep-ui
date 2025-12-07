@@ -1,6 +1,5 @@
-import { Box, Flex } from '@radix-ui/themes';
+import { Box, Flex, Grid } from '@radix-ui/themes';
 import { Sidebar as LayoutSidebar, Topbar } from '../compound';
-import { Grid } from '../layout';
 import type { ILayoutComponent } from './types';
 import { ContentWrapper } from '../atom';
 

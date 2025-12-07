@@ -21,7 +21,7 @@
   width: 100%;
 
   &.selected,
-  &[data-status='active'] {
+  &[data-status='active'] /*.data attribute set by Link component */ {
     background-color: var(--blue-a3);
     box-shadow: 0 0 2px 0 #0000001a inset;
   }

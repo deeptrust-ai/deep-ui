@@ -29,7 +29,7 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm run ${{ matrix.script }}
 
   typecheck:
@@ -50,5 +50,5 @@ jobs:
         with:
           version: 8
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm run ${{ matrix.script }}

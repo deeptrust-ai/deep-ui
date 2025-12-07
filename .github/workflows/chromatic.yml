@@ -33,7 +33,7 @@ jobs:
         with:
           version: 8
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm run build
       #👇 Chromatic check for pull requests
       - name: Chromatic PR Check

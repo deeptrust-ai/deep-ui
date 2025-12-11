@@ -6,7 +6,7 @@ import Header from '../Header';
 
 const ContentWrapper = ({ children, title, subtitle, metaInfo, sidebar }: IContentWrapperProps) => {
   return (
-    <Box className={styles.wrapper}>
+    <Box className={styles.wrapper} height="100%">
       {sidebar ? (
         <Flex direction="row" justify="between" px="5" pt="4">
           <Heading as="h3" weight="bold" size="4">

@@ -4,4 +4,6 @@ export interface IContentWrapperProps {
   metaInfo?: string;
   sidebar?: boolean;
   children?: React.ReactNode;
+  onExpand?: () => void;
+  onClose?: () => void;
 }

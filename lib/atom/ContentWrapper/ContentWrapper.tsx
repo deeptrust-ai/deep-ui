@@ -4,7 +4,15 @@ import styles from './ContentWrapper.styles.module.css';
 import type { IContentWrapperProps } from './ContentWrapper.types';
 import Header from '../Header';
 
-const ContentWrapper = ({ children, title, subtitle, metaInfo, sidebar }: IContentWrapperProps) => {
+const ContentWrapper = ({
+  children,
+  title,
+  subtitle,
+  metaInfo,
+  sidebar,
+  onClose,
+  onExpand,
+}: IContentWrapperProps) => {
   return (
     <Box className={styles.wrapper} height="100%">
       {sidebar ? (
@@ -12,6 +20,8 @@ const ContentWrapper = ({ children, title, subtitle, metaInfo, sidebar }: IConte
           <Heading as="h3" weight="bold" size="4">
             {title}
           </Heading>
+          {onExpand && <button onClick={onExpand}>Expand</button>}
+          {onClose && <button onClick={onClose}>Close</button>}
         </Flex>
       ) : (
         <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />

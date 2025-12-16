@@ -1,0 +1,33 @@
+.dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: content-box;
+}
+
+.critical {
+  background-color: var(--severity-critical);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-critical) 30%, transparent);
+}
+.high {
+  background-color: var(--severity-high);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-high) 30%, transparent);
+}
+.medium {
+  background-color: var(--severity-medium);
+  box-shadow: 0 0 0 2px rgba(12, 137, 214, 0.3);
+}
+.low {
+  background-color: var(--severity-low);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-low) 30%, transparent);
+}
+.info {
+  background-color: var(--severity-info);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-info) 30%, transparent);
+}
+.success {
+  background-color: var(--severity-success);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-success) 30%, transparent);
+}

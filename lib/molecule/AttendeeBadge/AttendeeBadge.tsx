@@ -1,7 +1,7 @@
 import type { IAttendeeBadgeProps } from './AttendeeBadge.types';
 import styles from './AttendeeBadge.module.css';
 import { Badge } from 'frosted-ui';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 import Chip from '../../atom/Chip/Chip';
 
 const AttendeeBadge = ({

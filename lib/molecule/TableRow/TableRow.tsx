@@ -7,13 +7,13 @@ import {
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
 
-const TableRow = ({ id, cells, actions }: ITableRowProps) => {
+const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
 
   return (
-    <FrostedTable.Row data-row-id={id}>
+    <FrostedTable.Row data-row-id={id} className={active ? styles.activeRow : undefined}>
       {cells.map((cell) => {
         return <FrostedTable.Cell key={cell.id}>{cell.content}</FrostedTable.Cell>;
       })}

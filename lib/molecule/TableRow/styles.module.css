@@ -5,3 +5,7 @@
 .actionsCell {
   text-align: right;
 }
+
+.activeRow {
+  background-color: var(--gray-a5);
+}

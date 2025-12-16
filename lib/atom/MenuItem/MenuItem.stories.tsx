@@ -8,7 +8,7 @@ const meta = {
   title: 'Atom/MenuItem',
   component: MenuItem,
   args: {
-    link: '#',
+    anchorProps: { href: '#' },
     subpage: false,
     label: 'Menu Item',
   },

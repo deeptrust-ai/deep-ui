@@ -1,0 +1,5 @@
+.container {
+  padding: var(--space-2) var(--space-3);
+  display: inline-flex;
+  gap: var(--space-1);
+}

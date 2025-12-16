@@ -1,6 +1,1 @@
-/* Keep vendor styles in low-priority layers so Deep UI always wins */
-@layer radix, frosted, deep-ui;
-
-@import url('@radix-ui/themes/layout.css') layer(radix);
-@import url('frosted-ui/styles.css') layer(frosted);
-@import url('./styles/deep-ui.css') layer(deep-ui);
+@import url('./styles/deep-ui.css');

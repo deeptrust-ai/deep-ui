@@ -15,3 +15,5 @@ export { default as User, type IUserProps } from './User';
 export { default as Toast, type IToastProps } from './Toast';
 export { default as ContentWrapper, type IContentWrapperProps } from './ContentWrapper';
 export { default as Severity, type ISeverityProps } from './Severity/Severity';
+
+export { default as Chip, type IChipProps } from './Chip/Chip';

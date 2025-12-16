@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 import { Theme } from 'frosted-ui';
+import '@radix-ui/themes/styles.css';
+import 'frosted-ui/styles.css';
 import '../lib/styles.css';
 
 const preview: Preview = {

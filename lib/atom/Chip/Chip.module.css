@@ -1,0 +1,7 @@
+.container {
+  color: #fff;
+  background: #454546;
+  border-radius: var(--radius-3);
+  padding: calc(var(--space-1) / 2) calc(var(--space-3) / 2);
+  display: inline-block;
+}

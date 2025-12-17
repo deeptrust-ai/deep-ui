@@ -10,10 +10,6 @@ const preview: Preview = {
         appearance="light"
         accentColor="crimson"
         grayColor="gray"
-        // dangerColor="red"
-        // successColor="green"
-        // warningColor="yellow"
-        // infoColor="blue"
         style={{ position: 'relative' }}
       >
         <Story />

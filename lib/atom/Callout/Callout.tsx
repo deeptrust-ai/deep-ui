@@ -6,10 +6,19 @@ import {
   CaretDoubleRightIcon,
 } from '@phosphor-icons/react';
 import { Callout as RadixCallout, Flex, Text, IconButton } from '@radix-ui/themes';
-import type { ICalloutProps } from './Callout.types';
+import type { CalloutVariant, ICalloutProps } from './Callout.types';
 import styles from './Callout.module.css';
 import cn from 'classnames';
-// import { PERSIST_DURATION, DEFAULT_DURATION } from './constants';
+import type { ComponentProps } from 'react';
+
+type CalloutColor = ComponentProps<typeof RadixCallout.Root>['color'];
+
+const calloutVariantColor: Record<CalloutVariant, CalloutColor> = {
+  success: 'green',
+  error: 'red',
+  info: 'blue',
+  warning: 'yellow',
+};
 
 export const Callout = ({ message, variant = 'info', onClick }: ICalloutProps) => {
   if (!message) {
@@ -21,7 +30,12 @@ export const Callout = ({ message, variant = 'info', onClick }: ICalloutProps) =
   const actionButtonClassNames = cn(styles.actionButton, styles[variant]);
 
   return (
-    <RadixCallout.Root size="2" variant="surface" className={styles.container}>
+    <RadixCallout.Root
+      size="2"
+      color={calloutVariantColor[variant]}
+      variant="surface"
+      className={styles.container}
+    >
       <Flex direction="row" align="center" gap="3">
         <RadixCallout.Icon className={iconClassNames}>
           {variant === 'success' && <CheckCircleIcon weight="bold" size="14px" />}
@@ -35,7 +49,12 @@ export const Callout = ({ message, variant = 'info', onClick }: ICalloutProps) =
       </Flex>
 
       {onClick && (
-        <IconButton variant="surface" onClick={onClick} className={actionButtonClassNames}>
+        <IconButton
+          variant="surface"
+          onClick={onClick}
+          className={actionButtonClassNames}
+          color={calloutVariantColor[variant]}
+        >
           <CaretDoubleRightIcon weight="bold" size="14px" />
         </IconButton>
       )}

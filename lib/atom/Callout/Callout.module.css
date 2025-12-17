@@ -4,52 +4,6 @@
   align-items: center;
 }
 
-/* .toast {
-  border-radius: var(--radius-4);
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(16px);
-
-  &.success {
-    background: var(--success-3);
-    border: 1px solid var(--success-11);
-
-    .closeBtn {
-      border: 1px solid var(--success-11);
-      color: var(--success-11);
-    }
-  }
-
-  &.error {
-    background: var(--danger-3);
-    border: 1px solid var(--danger-11);
-
-    .closeBtn {
-      border: 1px solid var(--danger-11);
-      color: var(--danger-11);
-    }
-  }
-
-  &.info {
-    background: var(--info-3);
-    border: 1px solid var(--info-11);
-
-    .closeBtn {
-      border: 1px solid var(--info-11);
-      color: var(--info-11);
-    }
-  }
-
-  &.warning {
-    background: var(--warning-3);
-    border: 1px solid var(--warning-11);
-
-    .closeBtn {
-      border: 1px solid var(--warning-11);
-      color: var(--warning-11);
-    }
-  }
-} */
-
 .icon {
   border-radius: var(--radius-2);
   width: 30px;
@@ -57,11 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &.error {
-    color: var(--danger-11);
-    background: var(--accent-a6);
-  }
+  background: var(--accent-a5);
 }
 
 .closeBtn {
@@ -76,16 +26,5 @@
 }
 
 .actionButton {
-  &.success {
-    color: var(--green-11);
-  }
-  &.error {
-    color: var(--red-11);
-  }
-  &.info {
-    color: var(--blue-11);
-  }
-  &.warning {
-    color: var(--yellow-11);
-  }
+  background: var(--accent-2);
 }

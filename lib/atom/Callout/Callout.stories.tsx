@@ -24,10 +24,34 @@ export const Default: Story = {};
 export const Overview: Story = {
   render: () => (
     <Flex direction="column" gap="4">
-      <Callout message="This is a success toast!" variant="success" />
-      <Callout message="This is an error toast!" variant="error" />
-      <Callout message="This is an info toast!" variant="info" />
-      <Callout message="This is a warning toast!" variant="warning" />
+      <Callout
+        message="This is a success toast!"
+        variant="success"
+        onClick={() => {
+          alert('Callout action clicked!');
+        }}
+      />
+      <Callout
+        message="This is an error toast!"
+        variant="error"
+        onClick={() => {
+          alert('Callout action clicked!');
+        }}
+      />
+      <Callout
+        message="This is an info toast!"
+        variant="info"
+        onClick={() => {
+          alert('Callout action clicked!');
+        }}
+      />
+      <Callout
+        message="This is a warning toast!"
+        variant="warning"
+        onClick={() => {
+          alert('Callout action clicked!');
+        }}
+      />
     </Flex>
   ),
 };

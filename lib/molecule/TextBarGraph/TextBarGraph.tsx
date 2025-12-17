@@ -1,4 +1,4 @@
-import { Card as FrostedCard, Text as FrostedText } from 'frosted-ui';
+import { Card as FrostedCard, Text as FrostedText } from '@radix-ui/themes';
 import cn from 'classnames';
 import type { ITextBarGraphProps } from './types';
 import styles from './styles.module.css';

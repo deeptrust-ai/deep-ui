@@ -1,6 +1,6 @@
 import type { IAttendeeBadgeProps } from './AttendeeBadge.types';
 import styles from './AttendeeBadge.module.css';
-import { Badge } from 'frosted-ui';
+import { Badge } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 import Chip from '../../atom/Chip/Chip';
 

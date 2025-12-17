@@ -1,4 +1,4 @@
-import { Text as FrostedText, IconButton as FrostedIconButton } from 'frosted-ui';
+import { Text as FrostedText, IconButton as FrostedIconButton } from '@radix-ui/themes';
 import { useCallback, useState } from 'react';
 import { usePagination } from '@mantine/hooks';
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';

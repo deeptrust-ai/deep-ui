@@ -24,4 +24,6 @@ export interface IMenuItemProps<TAnchor extends ElementType = 'a'> {
   readonly subpage?: boolean;
   /** If it's the heading of a set of subpages */
   readonly heading?: boolean;
+  /** Class name used by routing tools to dynamically mark active routes */
+  readonly activeClassName?: string;
 }

@@ -1,4 +1,4 @@
-import { Button as FrostedButton, Text as FrostedText } from 'frosted-ui';
+import { Button as FrostedButton, Text as FrostedText } from '@radix-ui/themes';
 import { useMemo } from 'react';
 import { useCalendarChips } from './hooks';
 import type { ICalendarChipsProps } from './types';

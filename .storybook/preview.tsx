@@ -1,7 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
-import { Theme } from 'frosted-ui';
+import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
-import 'frosted-ui/styles.css';
 import '../lib/styles.css';
 
 const preview: Preview = {
@@ -11,10 +10,10 @@ const preview: Preview = {
         appearance="light"
         accentColor="crimson"
         grayColor="gray"
-        dangerColor="red"
-        successColor="green"
-        warningColor="yellow"
-        infoColor="blue"
+        // dangerColor="red"
+        // successColor="green"
+        // warningColor="yellow"
+        // infoColor="blue"
         style={{ position: 'relative' }}
       >
         <Story />

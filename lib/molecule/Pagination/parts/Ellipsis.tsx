@@ -1,4 +1,4 @@
-import { Button as FrostedButton, DropdownMenu as FrostedDropdownMenu } from 'frosted-ui';
+import { Button as FrostedButton, DropdownMenu as FrostedDropdownMenu } from '@radix-ui/themes';
 
 interface IEllipsisProps {
   pages: number[];
@@ -13,7 +13,7 @@ const Ellipsis = ({ pages, setPage }: IEllipsisProps) => {
           &hellip;
         </FrostedButton>
       </FrostedDropdownMenu.Trigger>
-      <FrostedDropdownMenu.Content size="2" variant="translucent">
+      <FrostedDropdownMenu.Content size="2" variant="soft">
         {pages.map((p) => (
           <FrostedDropdownMenu.Item key={p} onClick={() => setPage(p)}>
             {p}

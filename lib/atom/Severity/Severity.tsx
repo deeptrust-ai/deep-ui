@@ -1,5 +1,5 @@
 import { Flex } from '@radix-ui/themes';
-import { Text } from 'frosted-ui';
+import { Text } from '@radix-ui/themes';
 import cn from 'classnames';
 import type { ISeverityProps } from './Severity.types';
 import styles from './Severity.module.css';

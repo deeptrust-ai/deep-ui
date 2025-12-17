@@ -54,7 +54,6 @@
     "react": "^18.2.0",
     "@radix-ui/react-toast": "1.2.15",
     "@radix-ui/themes": "3.2.1",
-    "frosted-ui": "0.0.1-canary.90",
     "react-dom": "^18.2.0"
   },
   "repository": {
@@ -64,7 +63,6 @@
   "devDependencies": {
     "@chromatic-com/storybook": "4.1.2",
     "@eslint/js": "9.38.0",
-    "@frosted-ui/colors": "0.0.1-canary.85",
     "@mantine/hooks": "8.3.6",
     "@storybook/addon-a11y": "10.0.2",
     "@storybook/addon-docs": "10.0.2",

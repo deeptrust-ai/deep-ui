@@ -2,7 +2,7 @@ import {
   DropdownMenu as FrostedDropdown,
   Text as FrostedText,
   Button as FrostedButton,
-} from 'frosted-ui';
+} from '@radix-ui/themes';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
 import type { IOrganizationDropdownProps } from './types';
@@ -33,7 +33,7 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
           </FrostedButton>
         </div>
       </FrostedDropdown.Trigger>
-      <FrostedDropdown.Content size="2" variant="translucent" className={styles.orgDropdown}>
+      <FrostedDropdown.Content size="2" variant="soft" className={styles.orgDropdown}>
         <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
         <FrostedDropdown.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
           {organizations.map((org) => (

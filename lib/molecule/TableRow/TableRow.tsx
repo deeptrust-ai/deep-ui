@@ -2,7 +2,7 @@ import {
   Table as FrostedTable,
   IconButton as FrostedIconButton,
   Button as FrostedButton,
-} from 'frosted-ui';
+} from '@radix-ui/themes';
 
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
+import { Badge as FrostedBadge, Text as FrostedText } from '@radix-ui/themes';
 
 import { Table, type ITableProps } from '../..';
 import type { ReactNode } from 'react';

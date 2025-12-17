@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ContentWrapper, type IContentWrapperProps } from '../..';
 import pkg from '../../../package.json';
 import { Box } from '@radix-ui/themes';
-import { Text } from 'frosted-ui';
+import { Text } from '@radix-ui/themes';
 
 const meta = {
   title: 'Atom/ContentWrapper',

@@ -3,7 +3,11 @@ import {
   Viewport as RadixToastViewport,
 } from '@radix-ui/react-toast';
 import { ListChecksIcon } from '@phosphor-icons/react';
-import { Link as FrostedLink, Text as FrostedText, Heading as FrostedHeading } from 'frosted-ui';
+import {
+  Link as FrostedLink,
+  Text as FrostedText,
+  Heading as FrostedHeading,
+} from '@radix-ui/themes';
 import Toast from '../../atom/Toast';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';

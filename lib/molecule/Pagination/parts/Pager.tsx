@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import Ellipsis from './Ellipsis';
-import { Button as FrostedButton } from 'frosted-ui';
+import { Button as FrostedButton } from '@radix-ui/themes';
 import styles from '../styles.module.css';
 
 type PagerRangeItem = number | 'dots';

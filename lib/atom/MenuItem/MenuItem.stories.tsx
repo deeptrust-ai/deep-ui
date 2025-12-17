@@ -44,9 +44,22 @@ export const Selected: Story = {
   },
 };
 
+export const SelectedDynamically: Story = {
+  args: {
+    anchorProps: { href: '#', className: 'active' },
+  },
+};
+
 export const SelectedSubItem: Story = {
   args: {
     subpage: true,
     selected: true,
+  },
+};
+
+export const SelectedSubItemDynamically: Story = {
+  args: {
+    subpage: true,
+    anchorProps: { href: '#', className: 'active' },
   },
 };

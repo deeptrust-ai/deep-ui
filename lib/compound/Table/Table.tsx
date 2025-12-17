@@ -1,4 +1,4 @@
-import { Table as FrostedTable, ScrollArea as FrostedScrollArea } from 'frosted-ui';
+import { Table as FrostedTable, ScrollArea as FrostedScrollArea } from '@radix-ui/themes';
 import type { ITableProps } from './types';
 import { Pagination, TableRow } from '../..';
 import styles from './styles.module.css';
@@ -58,7 +58,7 @@ const Table = ({
     <div className={styles.container}>
       <FrostedTable.Root size="1" className={styles.table} variant="surface">
         <FrostedScrollArea scrollbars="horizontal">
-          <FrostedTable.Table>
+          <FrostedTable.Root>
             <FrostedTable.Header>
               <FrostedTable.Row className={styles.headerRow}>
                 {headers.map((header) => (
@@ -74,7 +74,7 @@ const Table = ({
                 <TableRow key={row.id} {...row} />
               ))}
             </FrostedTable.Body>
-          </FrostedTable.Table>
+          </FrostedTable.Root>
         </FrostedScrollArea>
       </FrostedTable.Root>
       <Pagination

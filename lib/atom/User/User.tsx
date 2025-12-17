@@ -1,4 +1,4 @@
-import { Avatar as FrostedAvatar, Text as FrostedText } from 'frosted-ui';
+import { Avatar as FrostedAvatar, Text as FrostedText } from '@radix-ui/themes';
 import type { IUserProps } from './types';
 import styles from './styles.module.css';
 
@@ -6,7 +6,7 @@ export const User = ({ name, position, pictureSrc }: IUserProps) => {
   return (
     <div className={styles.container}>
       <FrostedAvatar
-        shape="square"
+        // shape="square"
         fallback={name}
         src={pictureSrc}
         alt={pictureSrc ? `${name}'s Avatar` : undefined}

@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
-import { Text } from 'frosted-ui';
+import { Text } from '@radix-ui/themes';
 import cn from 'classnames';
 import styles from './styles.module.css';
 import type { IMenuItemProps } from './types';
@@ -15,17 +15,22 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
   selected = false,
   subpage = false,
   heading = false,
+  activeClassName = 'active',
 }: IMenuItemProps<TAnchor>) => {
   const AnchorComponent = anchorComponent ?? 'a';
 
   const anchorClassName = cn(styles.anchor, anchorProps?.className, {
     [styles.heading]: !!heading,
+    [styles.active]: !subpage && (!!selected || anchorProps?.className?.includes(activeClassName)),
   });
 
   const combinedAnchorProps = {
     ...anchorProps,
     className: anchorClassName,
   } as ComponentPropsWithoutRef<TAnchor>;
+
+  const selectedSubItem =
+    (!!selected || combinedAnchorProps.className?.includes(activeClassName)) && !!subpage;
 
   return (
     <div
@@ -36,7 +41,7 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
       {!!subpage && (
         <div
           className={cn(styles.subItemIndicator, {
-            [styles.selectedSubItem]: !!subpage && !!selected,
+            [styles.selectedSubItem]: selectedSubItem,
           })}
         />
       )}

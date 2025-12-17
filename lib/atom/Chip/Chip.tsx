@@ -6,7 +6,7 @@ const Chip = ({ text }: IChipProps) => {
   if (!text) return null;
 
   return (
-    <Text className={styles.container} weight="medium" size="1">
+    <Text className={styles.container} weight="medium">
       {String(text).toUpperCase()}
     </Text>
   );

@@ -7,48 +7,48 @@
   box-sizing: content-box;
 
   &.critical {
-    background-color: var(--severity-critical);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-critical) 30%, transparent);
+    background-color: var(--red-9);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--red-a9) 30%, transparent);
   }
   &.high {
-    background-color: var(--severity-high);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-high) 30%, transparent);
+    background-color: var(--orange-8);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--orange-a8) 30%, transparent);
   }
   &.medium {
-    background-color: var(--severity-medium);
-    box-shadow: 0 0 0 2px rgba(12, 137, 214, 0.3);
+    background-color: var(--blue-9);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--blue-a9) 30%, transparent);
   }
   &.low {
-    background-color: var(--severity-low);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-low) 30%, transparent);
+    background-color: var(--gray-11);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gray-a11) 30%, transparent);
   }
   &.info {
-    background-color: var(--severity-info);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-info) 30%, transparent);
+    background-color: var(--gray-9);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--gray-a9) 30%, transparent);
   }
   &.success {
-    background-color: var(--severity-success);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--severity-success) 30%, transparent);
+    background-color: var(--green-9);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--green-a9) 30%, transparent);
   }
 }
 
 .text {
   &.critical {
-    color: var(--severity-critical);
+    color: var(--red-9);
   }
   &.high {
-    color: var(--severity-high);
+    color: var(--orange-8);
   }
   &.medium {
-    color: var(--severity-medium);
+    color: var(--blue-9);
   }
   &.low {
-    color: var(--severity-low);
+    color: var(--gray-11);
   }
   &.info {
-    color: var(--severity-info);
+    color: var(--gray-9);
   }
   &.success {
-    color: var(--severity-success);
+    color: var(--green-9);
   }
 }

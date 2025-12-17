@@ -1,6 +1,5 @@
 import type { IAttendeeBadgeProps } from './AttendeeBadge.types';
-import styles from './AttendeeBadge.module.css';
-import { Badge } from '@radix-ui/themes';
+import { Badge, Flex, Text } from '@radix-ui/themes';
 import type { PropsWithChildren } from 'react';
 import Chip from '../../atom/Chip/Chip';
 
@@ -11,11 +10,13 @@ const AttendeeBadge = ({
   ...rest
 }: PropsWithChildren<IAttendeeBadgeProps>) => {
   return (
-    <Badge className={styles.container} color="gray" variant="surface" highContrast {...rest}>
-      {Icon && <Icon weight="bold" size="16px" />}
-      {children}
-      {chip && <Chip text={chip} />}
-    </Badge>
+    <Flex display="inline-flex" align="center" gap="2" py="2" px="3" asChild>
+      <Badge color="gray" variant="surface" radius="large" {...rest}>
+        {Icon && <Icon weight="bold" size="16px" />}
+        <Text size="1">{children}</Text>
+        {chip && <Chip text={chip} />}
+      </Badge>
+    </Flex>
   );
 };
 

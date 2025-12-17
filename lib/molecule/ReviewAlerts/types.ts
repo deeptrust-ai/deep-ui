@@ -1,4 +1,4 @@
-import type { IToastProps } from '../../atom/Toast';
+import type { IToastProps } from '../../atom/Callout';
 
 export type ReviewAlert = Pick<IToastProps, 'message' | 'variant'>;
 

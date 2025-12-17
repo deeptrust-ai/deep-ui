@@ -1,8 +1,10 @@
-.toast {
+.container {
+  justify-content: space-between;
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-4);
+}
+
+/* .toast {
   border-radius: var(--radius-4);
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(16px);
@@ -10,11 +12,6 @@
   &.success {
     background: var(--success-3);
     border: 1px solid var(--success-11);
-
-    .icon {
-      color: var(--success-11);
-      background: var(--jade-7);
-    }
 
     .closeBtn {
       border: 1px solid var(--success-11);
@@ -26,11 +23,6 @@
     background: var(--danger-3);
     border: 1px solid var(--danger-11);
 
-    .icon {
-      color: var(--danger-11);
-      background: var(--tomato-7);
-    }
-
     .closeBtn {
       border: 1px solid var(--danger-11);
       color: var(--danger-11);
@@ -40,11 +32,6 @@
   &.info {
     background: var(--info-3);
     border: 1px solid var(--info-11);
-
-    .icon {
-      color: var(--info-11);
-      background: var(--indigo-7);
-    }
 
     .closeBtn {
       border: 1px solid var(--info-11);
@@ -56,21 +43,25 @@
     background: var(--warning-3);
     border: 1px solid var(--warning-11);
 
-    .icon {
-      color: var(--warning-11);
-      background: var(--amber-7);
-    }
-
     .closeBtn {
       border: 1px solid var(--warning-11);
       color: var(--warning-11);
     }
   }
-}
+} */
 
 .icon {
   border-radius: var(--radius-2);
-  padding: var(--space-2);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.error {
+    color: var(--danger-11);
+    background: var(--accent-a6);
+  }
 }
 
 .closeBtn {
@@ -82,4 +73,19 @@
 
 .message {
   flex: 1;
+}
+
+.actionButton {
+  &.success {
+    color: var(--green-11);
+  }
+  &.error {
+    color: var(--red-11);
+  }
+  &.info {
+    color: var(--blue-11);
+  }
+  &.warning {
+    color: var(--yellow-11);
+  }
 }

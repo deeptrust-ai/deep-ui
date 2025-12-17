@@ -8,7 +8,7 @@ import {
   Text as FrostedText,
   Heading as FrostedHeading,
 } from '@radix-ui/themes';
-import Toast from '../../atom/Toast';
+import Toast from '../../atom/Callout';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';
 

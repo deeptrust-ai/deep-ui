@@ -2,6 +2,7 @@ import {
   DropdownMenu as FrostedDropdown,
   Text as FrostedText,
   Button as FrostedButton,
+  Flex,
 } from '@radix-ui/themes';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
@@ -18,7 +19,7 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
   return (
     <FrostedDropdown.Root>
       <FrostedDropdown.Trigger>
-        <div>
+        <Flex align="center">
           <FrostedButton
             variant="ghost"
             color="gray"
@@ -31,7 +32,7 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
               <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
             </FrostedText>
           </FrostedButton>
-        </div>
+        </Flex>
       </FrostedDropdown.Trigger>
       <FrostedDropdown.Content size="2" variant="soft" className={styles.orgDropdown}>
         <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>

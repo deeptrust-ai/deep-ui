@@ -1,15 +1,26 @@
-import { Button as FrostedButton, Text as FrostedText } from '@radix-ui/themes';
+import { Flex, Button, Text } from '@radix-ui/themes';
 import { useMemo } from 'react';
 import { useCalendarChips } from './hooks';
-import type { ICalendarChipsProps } from './types';
-import styles from './styles.module.css';
+import type { ICalendarChipsProps } from './CalendarChips.types';
 
 const CalendarChip = ({ date, selected }: { readonly date: Date; readonly selected?: boolean }) => {
   return (
-    <FrostedButton className={styles.calendarChip} variant={selected ? 'solid' : 'ghost'}>
-      <FrostedText size="2">{date.toLocaleDateString('en-US', { day: '2-digit' })}</FrostedText>
-      <FrostedText size="2">{date.toLocaleDateString('en-US', { weekday: 'short' })}</FrostedText>
-    </FrostedButton>
+    <Flex
+      asChild
+      align="center"
+      justify="center"
+      direction="column"
+      gap="0"
+      py="0"
+      px="0"
+      width="42px"
+      height="56px"
+    >
+      <Button variant={selected ? 'solid' : 'surface'} color={selected ? 'blue' : 'gray'}>
+        <Text size="2">{date.toLocaleDateString('en-US', { day: '2-digit' })}</Text>
+        <Text size="2">{date.toLocaleDateString('en-US', { weekday: 'short' })}</Text>
+      </Button>
+    </Flex>
   );
 };
 
@@ -36,8 +47,12 @@ const CalendarChips = ({
     );
   });
 
-  return <div className={styles.container}>{chips}</div>;
+  return (
+    <Flex gap="2" align="center">
+      {chips}
+    </Flex>
+  );
 };
 
 export default CalendarChips;
-export type { ICalendarChipsProps } from './types';
+export type { ICalendarChipsProps } from './CalendarChips.types';

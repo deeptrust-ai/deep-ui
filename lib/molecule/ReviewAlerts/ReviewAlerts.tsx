@@ -28,7 +28,7 @@ const ReviewAlerts = ({ alerts }: IReviewAlertsProps) => {
       </div>
       {alerts.length > 0 ? (
         <RadixToastProvider>
-          <Toast message={alerts[0].message} variant={alerts[0].variant} duration={0} />
+          <Toast message={alerts[0].message} variant={alerts[0].variant} />
 
           <RadixToastViewport />
         </RadixToastProvider>

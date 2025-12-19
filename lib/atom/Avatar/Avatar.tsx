@@ -10,7 +10,7 @@ const Avatar = ({ name, pfp }: IAvatarProps) => {
       radius="full"
       color="blue"
       size="3"
-      fallback={fallback}
+      fallback={<>{fallback}</>}
       src={pfp}
       alt={pfp ? `${name}'s Avatar` : undefined}
       className={styles.avatar}

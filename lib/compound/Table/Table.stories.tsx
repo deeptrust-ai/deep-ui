@@ -13,9 +13,9 @@ function generateDate() {
 
 function generateRows(numRows: number) {
   const severity = [
-    <FrostedBadge color="danger">Critical</FrostedBadge>,
-    <FrostedBadge color="warning">Warning</FrostedBadge>,
-    <FrostedBadge color="info">Info</FrostedBadge>,
+    <FrostedBadge color="red">Critical</FrostedBadge>,
+    <FrostedBadge color="yellow">Warning</FrostedBadge>,
+    <FrostedBadge color="blue">Info</FrostedBadge>,
   ];
   const orgs = ['Executive', 'Finance', 'HR', 'Engineering', 'Marketing'];
   const status = ['Exclusive', 'Default', 'Critical', 'Info'];

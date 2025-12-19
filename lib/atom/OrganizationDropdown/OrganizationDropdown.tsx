@@ -1,9 +1,4 @@
-import {
-  DropdownMenu as FrostedDropdown,
-  Text as FrostedText,
-  Button as FrostedButton,
-  Flex,
-} from '@radix-ui/themes';
+import { DropdownMenu, Text, Button, Flex } from '@radix-ui/themes';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
 import styles from './styles.module.css';
 import type { IOrganizationDropdownProps } from './types';
@@ -17,38 +12,31 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
   const selectedOrg = organizations.find((org) => org.selected) || organizations[0];
 
   return (
-    <FrostedDropdown.Root>
-      <FrostedDropdown.Trigger>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
         <Flex align="center">
-          <FrostedButton
-            variant="ghost"
-            color="gray"
-            className={styles.triggerButton}
-            type="button"
-          >
-            <FrostedText color="gray" size="1">
+          <Button variant="ghost" color="gray" className={styles.triggerButton} type="button">
+            <Text color="gray" size="1">
               <BuildingsIcon size={16} className={styles.icon} weight="bold" />
               {selectedOrg.name}
               <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
-            </FrostedText>
-          </FrostedButton>
+            </Text>
+          </Button>
         </Flex>
-      </FrostedDropdown.Trigger>
-      <FrostedDropdown.Content size="2" variant="soft" className={styles.orgDropdown}>
-        <FrostedDropdown.Label>Organizations</FrostedDropdown.Label>
-        <FrostedDropdown.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content size="2" variant="soft" className={styles.orgDropdown}>
+        <DropdownMenu.Label>Organizations</DropdownMenu.Label>
+        <DropdownMenu.RadioGroup onValueChange={() => {}} value={selectedOrg.name}>
           {organizations.map((org) => (
-            <FrostedDropdown.RadioItem key={org.name} value={org.name} className={styles.radioItem}>
+            <DropdownMenu.RadioItem key={org.name} value={org.name} className={styles.radioItem}>
               {org.name}
-            </FrostedDropdown.RadioItem>
+            </DropdownMenu.RadioItem>
           ))}
-        </FrostedDropdown.RadioGroup>
-      </FrostedDropdown.Content>
-    </FrostedDropdown.Root>
+        </DropdownMenu.RadioGroup>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   );
 };
-
-OrganizationDropdown.displayName = 'OrganizationDropdown';
 
 export default OrganizationDropdown;
 export type { IOrganizationDropdownProps } from './types';

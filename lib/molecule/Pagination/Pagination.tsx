@@ -1,10 +1,11 @@
-import { Text as FrostedText, IconButton as FrostedIconButton } from '@radix-ui/themes';
+import { Text, IconButton, Flex } from '@radix-ui/themes';
 import { useCallback, useState } from 'react';
 import { usePagination } from '@mantine/hooks';
 import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
+import styles from './Pagination.module.css';
 
 import type { IPaginationProps, TPaginationItemsPerPage } from './types';
-import styles from './styles.module.css';
+
 import { PAGE_SIZE_OPTIONS } from './constants';
 import RowsPerPage from './parts/RowsPerPage';
 import Pager from './parts/Pager';
@@ -43,43 +44,43 @@ export const Pagination = ({
   );
 
   return (
-    <div className={styles.container}>
-      <div>
-        <FrostedText size="3" color="gray">
-          Showing {itemFrom} &mdash; {itemTo} of {totalItems}
-        </FrostedText>
-      </div>
+    <Flex align="center">
+      <Text size="3" color="gray">
+        Showing {itemFrom} &mdash; {itemTo} of {totalItems}
+      </Text>
 
-      <div className={styles.pages}>
-        <FrostedIconButton
-          variant="ghost"
+      <Flex justify="center" align="center" gap="1" flexGrow="1">
+        <IconButton
+          variant="outline"
           size="2"
           disabled={pager.active === 1}
           onClick={pager.previous}
           color="gray"
           aria-label="Previous page"
+          className={styles.button}
         >
           <CaretLeftIcon />
-        </FrostedIconButton>
+        </IconButton>
 
         <Pager pager={pager} totalPages={totalPages} />
 
-        <FrostedIconButton
-          variant="ghost"
+        <IconButton
+          variant="outline"
           size="2"
           disabled={pager.active === totalPages}
           onClick={pager.next}
           color="gray"
           aria-label="Next page"
+          className={styles.button}
         >
           <CaretRightIcon />
-        </FrostedIconButton>
-      </div>
+        </IconButton>
+      </Flex>
 
-      <div className={styles.itemsPerPage}>
+      <Flex gap="1" align="center">
         <RowsPerPage itemsPerPage={itemsPerPage} onChange={handlePerPageChange} />
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 };
 

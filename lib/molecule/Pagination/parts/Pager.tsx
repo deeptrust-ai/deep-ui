@@ -1,8 +1,7 @@
 import React from 'react';
-import cn from 'classnames';
 import Ellipsis from './Ellipsis';
-import { Button as FrostedButton } from '@radix-ui/themes';
-import styles from '../styles.module.css';
+import { Flex, IconButton } from '@radix-ui/themes';
+import styles from '../Pagination.module.css';
 
 type PagerRangeItem = number | 'dots';
 
@@ -19,7 +18,7 @@ interface PagerProps {
 
 const Pager: React.FC<PagerProps> = ({ pager, totalPages }) => {
   return (
-    <ul className={styles.pageList} aria-label={`Pagination, ${totalPages} pages`}>
+    <Flex align="center" gap="1" aria-label={`Pagination, ${totalPages} pages`}>
       {pager.range.map((page, index) => {
         const isCurrent = page === pager.active;
         if (page === 'dots') {
@@ -31,28 +30,29 @@ const Pager: React.FC<PagerProps> = ({ pager, totalPages }) => {
           }
 
           return (
-            <li key={`dots-${index}`} className={cn(styles.button, styles.dots)}>
+            <Flex key={`dots-${index}`} align="center" justify="center" height="32px" asChild>
               <Ellipsis pages={pagesBetween} setPage={pager.setPage} />
-            </li>
+            </Flex>
           );
         }
 
         return (
-          <li key={page}>
-            <FrostedButton
-              variant={isCurrent ? 'soft' : 'ghost'}
+          <Flex key={page} asChild align="center" justify="center">
+            <IconButton
+              variant={isCurrent ? 'soft' : 'outline'}
               color="gray"
               size="2"
               onClick={() => pager.setPage(page as number)}
               aria-label={`Page ${page}`}
               aria-current={isCurrent ? 'page' : undefined}
+              className={styles.button}
             >
               {page}
-            </FrostedButton>
-          </li>
+            </IconButton>
+          </Flex>
         );
       })}
-    </ul>
+    </Flex>
   );
 };
 

@@ -7,7 +7,7 @@ const TextBarGraph = ({
   percentage: percentageProp,
   label,
   Icon,
-  variant = 'info',
+  variant = 'default',
 }: ITextBarGraphProps) => {
   const percentage = Math.max(0, Math.min(100, percentageProp));
 

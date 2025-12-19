@@ -1,0 +1,36 @@
+:root {
+  --bar-graph-height: 36px;
+}
+
+.barGraph {
+  height: var(--bar-graph-height);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: attr(data-graph-width %);
+    border-radius: var(--radius-2);
+    background-color: orange;
+    height: var(--bar-graph-height);
+  }
+
+  &.default::before {
+    background-color: var(--gray-a2);
+    box-shadow: 0 0 1px var(--gray-11);
+  }
+  &.info::before {
+    background-color: var(--blue-a2);
+    box-shadow: 0 0 1px var(--blue-11);
+  }
+  &.warning::before {
+    background-color: var(--yellow-a2);
+    box-shadow: 0 0 1px var(--yellow-11);
+  }
+  &.danger::before {
+    background-color: var(--red-a2);
+    box-shadow: 0 0 1px var(--red-11);
+  }
+}

@@ -5,8 +5,3 @@ body {
   padding: 0;
   margin: 0;
 }
-
-/* Adjust Frosted UI TabsList to not stretch across */
-.fui-BaseTabsList.fui-TabsList {
-  width: fit-content;
-}

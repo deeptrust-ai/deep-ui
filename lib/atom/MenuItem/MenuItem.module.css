@@ -20,7 +20,7 @@
   box-shadow: 0 0 2px 0 #00000008;
   width: 100%;
 
-  &.active /*.data attribute set by Link component */ {
+  &.active {
     background-color: var(--blue-a3);
     box-shadow: 0 0 2px 0 #0000001a inset;
   }
@@ -46,10 +46,8 @@
 
 .heading {
   &.anchor {
-    &[data-status='active'] {
-      background: var(--white-a12) !important;
-      box-shadow: 0 0 2px 0 #00000008 !important;
-    }
+    background-color: var(--blue-a3);
+    box-shadow: 0 0 2px 0 #0000001a inset;
   }
 }
 

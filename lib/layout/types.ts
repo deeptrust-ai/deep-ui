@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { IMenuProps } from '../molecule/Menu/types';
+import type { IMenuProps } from '../molecule/Menu/Menu.types';
 import type { IOrganizationDropdown } from '../atom/OrganizationDropdown/types';
 import type { IContentWrapperProps } from '../atom';
 

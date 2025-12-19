@@ -1,2 +1,2 @@
 export { default } from './MenuItem';
-export type * from './types';
+export type * from './MenuItem.types';

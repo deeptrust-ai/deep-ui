@@ -1,12 +1,3 @@
-:root {
-  --severity-critical: #fb3a3a;
-  --severity-high: #f48200;
-  --severity-medium: #bce5ff;
-  --severity-low: #454546;
-  --severity-info: #a3a4a5;
-  --severity-success: #509b50;
-}
-
 /** Manually generated using https://www.radix-ui.com/colors/custom **/
 
 /* :root,

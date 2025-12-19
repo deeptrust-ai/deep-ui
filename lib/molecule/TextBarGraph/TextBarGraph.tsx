@@ -3,7 +3,12 @@ import cn from 'classnames';
 import type { ITextBarGraphProps } from './TextBarGraph.types';
 import styles from './TextBarGraph.module.css';
 
-const TextBarGraph = ({ percentage: percentageProp, label, Icon, variant }: ITextBarGraphProps) => {
+const TextBarGraph = ({
+  percentage: percentageProp,
+  label,
+  Icon,
+  variant = 'info',
+}: ITextBarGraphProps) => {
   const percentage = Math.max(0, Math.min(100, percentageProp));
 
   return (

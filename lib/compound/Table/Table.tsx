@@ -5,11 +5,12 @@ import styles from './Table.module.css';
 import { useMemo, useState } from 'react';
 import { PAGE_SIZE_OPTIONS } from '../../molecule/Pagination/constants';
 import type { TPaginationItemsPerPage } from '../../molecule/Pagination/types';
+import TableEmpty from '../../molecule/TableRow/TableEmpty';
 
 const Table = ({
   headers,
   rows,
-  totalItems,
+  totalItems = 0,
   onItemsPerPageChange: onItemsPerPageChangeProp,
   onPageChange: onPageChangeProp,
   defaultItemsPerPage: defaultItemsPerPageProp,
@@ -66,9 +67,11 @@ const Table = ({
           </RadixTable.Row>
         </RadixTable.Header>
         <RadixTable.Body>
-          {rowsPerPage.map((row) => (
-            <TableRow key={row.id} {...row} />
-          ))}
+          {rowsPerPage.length ? (
+            rowsPerPage.map((row) => <TableRow key={row.id} {...row} />)
+          ) : (
+            <TableEmpty colSpan={headers.length + (showActionsColumns ? 1 : 0)} />
+          )}
         </RadixTable.Body>
       </RadixTable.Root>
       <Pagination

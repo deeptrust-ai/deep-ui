@@ -1,8 +1,4 @@
-import {
-  Table as FrostedTable,
-  IconButton as FrostedIconButton,
-  Button as FrostedButton,
-} from '@radix-ui/themes';
+import { Table as RadixTable, IconButton, Button } from '@radix-ui/themes';
 
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
@@ -13,16 +9,16 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
   }
 
   return (
-    <FrostedTable.Row data-row-id={id} className={active ? styles.activeRow : undefined}>
+    <RadixTable.Row data-row-id={id} className={active ? styles.activeRow : undefined}>
       {cells.map((cell) => {
-        return <FrostedTable.Cell key={cell.id}>{cell.content}</FrostedTable.Cell>;
+        return <RadixTable.Cell key={cell.id}>{cell.content}</RadixTable.Cell>;
       })}
 
       {actions && actions.length > 0 && (
-        <FrostedTable.Cell className={styles.actionsCell}>
+        <RadixTable.Cell className={styles.actionsCell}>
           {actions.map((action) =>
             action.icon ? (
-              <FrostedIconButton
+              <IconButton
                 key={action.label}
                 color="blue"
                 variant="soft"
@@ -31,9 +27,9 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
                 aria-label={action.label}
               >
                 {<action.icon size={16} />}
-              </FrostedIconButton>
+              </IconButton>
             ) : (
-              <FrostedButton
+              <Button
                 key={action.label}
                 color="blue"
                 variant="soft"
@@ -41,12 +37,12 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
                 onClick={action.onClick}
               >
                 {action.label}
-              </FrostedButton>
+              </Button>
             )
           )}
-        </FrostedTable.Cell>
+        </RadixTable.Cell>
       )}
-    </FrostedTable.Row>
+    </RadixTable.Row>
   );
 };
 

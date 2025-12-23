@@ -22,7 +22,7 @@
 :global(.rdp-day.rdp-selected.rdp-range_end button),
 :global(.rdp-day.rdp-selected.rdp-range_start button) {
   background-color: var(--accent-9);
-  color: #fff;
+  color: var(--gray-1);
   font-weight: normal;
   border-radius: 6px;
   border: 0;

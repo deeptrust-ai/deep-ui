@@ -136,8 +136,7 @@ const DateRangePicker = ({
           {displayDate?.from ? (
             displayDate.to ? (
               <>
-                {format(displayDate.from, 'LLL dd, y')} -{' '}
-                {format(displayDate.to, 'LLL dd, y')}
+                {format(displayDate.from, 'LLL dd, y')} - {format(displayDate.to, 'LLL dd, y')}
               </>
             ) : (
               format(displayDate.from, 'LLL dd, y')
@@ -148,7 +147,7 @@ const DateRangePicker = ({
         </Button>
       </PopoverTrigger>
       <PopoverContent align="start">
-        <ContentWrapper>
+        <ContentWrapper mt="2">
           <DayPicker
             mode="range"
             captionLayout="dropdown"

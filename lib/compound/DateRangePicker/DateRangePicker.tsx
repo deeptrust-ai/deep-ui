@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Button, Flex } from '@radix-ui/themes';
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
@@ -11,68 +11,51 @@ import {
   CaretRightIcon,
   CaretUpIcon,
 } from '@phosphor-icons/react';
-import { type DateRange, type DayPickerProps, DayPicker } from 'react-day-picker';
+import {
+  type DateRange,
+  type DayPickerProps,
+  type ChevronProps,
+  DayPicker,
+} from 'react-day-picker';
 
 import './DateRangePicker.module.css';
 import type { IDateRangePickerProps } from './DateRangePicker.types';
 
 import { ContentWrapper } from '../../atom';
 
-type _Components = NonNullable<DayPickerProps['components']>;
-type ChevronComponent = _Components extends { Chevron: infer C } ? C : never;
-type ChevronProps = ChevronComponent extends (props: infer P) => unknown ? P : never;
-
-const ChevronWrap = React.forwardRef<HTMLSpanElement, ChevronProps>(
-  ({ style, orientation, ...props }, ref) => {
-    switch (orientation) {
-      case 'left':
-        return (
-          <span
-            ref={ref}
-            style={style as React.CSSProperties}
-            {...(props as unknown as Record<string, unknown>)}
-          >
-            <CaretLeftIcon weight="bold" {...props} />
-          </span>
-        );
-      case 'up':
-        return (
-          <span
-            ref={ref}
-            style={style as React.CSSProperties}
-            {...(props as unknown as Record<string, unknown>)}
-          >
-            <CaretUpIcon weight="bold" {...props} size="12" />
-          </span>
-        );
-      case 'down':
-        return (
-          <span
-            ref={ref}
-            style={style as React.CSSProperties}
-            {...(props as unknown as Record<string, unknown>)}
-          >
-            <CaretDownIcon weight="bold" {...props} size="12" />
-          </span>
-        );
-      case 'right':
-      default:
-        return (
-          <span
-            ref={ref}
-            style={style as React.CSSProperties}
-            {...(props as unknown as Record<string, unknown>)}
-          >
-            <CaretRightIcon weight="bold" {...props} />
-          </span>
-        );
-    }
+const ChevronWrap = ({ orientation, className, size }: ChevronProps) => {
+  switch (orientation) {
+    case 'left':
+      return (
+        <span className={className}>
+          <CaretLeftIcon weight="bold" size={size} />
+        </span>
+      );
+    case 'up':
+      return (
+        <span className={className}>
+          <CaretUpIcon weight="bold" size={12} />
+        </span>
+      );
+    case 'down':
+      return (
+        <span className={className}>
+          <CaretDownIcon weight="bold" size={12} />
+        </span>
+      );
+    case 'right':
+    default:
+      return (
+        <span className={className}>
+          <CaretRightIcon weight="bold" size={size} />
+        </span>
+      );
   }
-);
+};
 
 // Use DayPicker's component map type so we don't retype the Chevron signature.
 const components: DayPickerProps['components'] = {
-  Chevron: ChevronWrap as unknown as ChevronComponent,
+  Chevron: ChevronWrap,
 };
 
 const fallbackStartDate = new Date();

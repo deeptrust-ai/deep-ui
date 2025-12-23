@@ -1,4 +1,4 @@
-import { Text as FrostedText, Heading as FrostedHeading, Separator } from 'frosted-ui';
+import { Text as FrostedText, Heading as FrostedHeading, Separator } from '@radix-ui/themes';
 import { Flex } from '@radix-ui/themes';
 import type { IHeaderProps } from './Header.types';
 

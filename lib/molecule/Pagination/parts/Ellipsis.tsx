@@ -1,4 +1,6 @@
-import { Button as FrostedButton, DropdownMenu as FrostedDropdownMenu } from 'frosted-ui';
+import { DotsThreeIcon } from '@phosphor-icons/react';
+import { DropdownMenu as FrostedDropdownMenu, IconButton } from '@radix-ui/themes';
+import styles from '../Pagination.module.css';
 
 interface IEllipsisProps {
   pages: number[];
@@ -9,11 +11,16 @@ const Ellipsis = ({ pages, setPage }: IEllipsisProps) => {
   return (
     <FrostedDropdownMenu.Root>
       <FrostedDropdownMenu.Trigger>
-        <FrostedButton variant="ghost" color="gray" aria-label="More pages">
-          &hellip;
-        </FrostedButton>
+        <IconButton
+          variant="outline"
+          color="gray"
+          aria-label="More pages"
+          className={styles.button}
+        >
+          <DotsThreeIcon weight="bold" />
+        </IconButton>
       </FrostedDropdownMenu.Trigger>
-      <FrostedDropdownMenu.Content size="2" variant="translucent">
+      <FrostedDropdownMenu.Content size="2" variant="soft">
         {pages.map((p) => (
           <FrostedDropdownMenu.Item key={p} onClick={() => setPage(p)}>
             {p}

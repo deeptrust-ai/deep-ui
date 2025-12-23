@@ -1,0 +1,5 @@
+.avatar {
+  border: 1px solid var(--blue-a5);
+  background: var(--blue-a3);
+  color: var(--blue-a11);
+}

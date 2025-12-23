@@ -1,5 +1,5 @@
 # Workflow name
-name: "Chromatic"
+name: 'Chromatic'
 
 # Events for the workflow
 on:
@@ -7,12 +7,12 @@ on:
     branches:
       - main
     paths:
-      - "lib/**"
+      - 'lib/**'
   pull_request:
     branches:
       - main
     paths:
-      - "lib/**"
+      - 'lib/**'
 
 # List of jobs
 jobs:

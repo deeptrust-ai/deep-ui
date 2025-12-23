@@ -1,5 +1,5 @@
 import React from 'react';
-import { Theme as FrostedTheme } from 'frosted-ui';
+import { Theme as FrostedTheme } from '@radix-ui/themes';
 
 type FrostedThemeProps = React.ComponentProps<typeof FrostedTheme>;
 
@@ -7,10 +7,10 @@ const defaultThemeProps: Partial<FrostedThemeProps> = {
   appearance: 'light',
   accentColor: 'crimson',
   grayColor: 'gray',
-  dangerColor: 'red',
-  successColor: 'green',
-  warningColor: 'yellow',
-  infoColor: 'blue',
+  // dangerColor: 'red',
+  // successColor: 'green',
+  // warningColor: 'yellow',
+  // infoColor: 'blue',
 };
 
 export const Theme: React.FC<FrostedThemeProps> = ({ children, style, ...rest }) => {

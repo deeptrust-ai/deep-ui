@@ -1,2 +1,2 @@
 export { default } from './Menu';
-export type * from './types';
+export type * from './Menu.types';

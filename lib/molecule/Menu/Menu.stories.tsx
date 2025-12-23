@@ -20,18 +20,18 @@ type Story = StoryObj<typeof meta>;
 
 const defaultArgs = {
   pages: [
-    { label: 'Home', link: '/', icon: AcornIcon, selected: false },
-    { label: 'About', link: '/about', icon: AcornIcon, selected: false },
+    { label: 'Home', anchorProps: { href: '/' }, icon: AcornIcon, selected: false },
+    { label: 'About', anchorProps: { href: '/about' }, icon: AcornIcon, selected: false },
     {
       label: 'Services',
-      link: '/services',
+      anchorProps: { href: '/services' },
       icon: AcornIcon,
       subPages: [
-        { label: 'Consulting', link: '/services/consulting', selected: false },
-        { label: 'Development', link: '/services/development', selected: false },
+        { label: 'Consulting', anchorProps: { href: '/services/consulting' }, selected: false },
+        { label: 'Development', anchorProps: { href: '/services/development' }, selected: false },
       ],
     },
-    { label: 'Contact', link: '/contact', icon: AcornIcon, selected: false },
+    { label: 'Contact', anchorProps: { href: '/contact' }, icon: AcornIcon, selected: false },
   ],
 };
 

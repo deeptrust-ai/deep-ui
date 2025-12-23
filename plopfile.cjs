@@ -57,7 +57,7 @@ module.exports = (plop) => {
 
       actions.push({
         type: 'add',
-        path: path.posix.join(basePath, 'index.tsx'),
+        path: path.posix.join(basePath, `${pascalName}.tsx`),
         templateFile: '.plop/component/index.tsx.hbs',
         data: {
           useTypes: answers.useTypes,
@@ -69,7 +69,7 @@ module.exports = (plop) => {
       if (answers.useTypes) {
         actions.push({
           type: 'add',
-          path: path.posix.join(basePath, 'types.ts'),
+          path: path.posix.join(basePath, `${pascalName}.types.ts`),
           templateFile: '.plop/component/types.ts.hbs',
         });
       }
@@ -77,8 +77,8 @@ module.exports = (plop) => {
       if (answers.useStyles) {
         actions.push({
           type: 'add',
-          path: path.posix.join(basePath, 'styles.module.css'),
-          templateFile: '.plop/component/styles.module.css.hbs',
+          path: path.posix.join(basePath, `${pascalName}.module.css`),
+          templateFile: '.plop/component/module.css.hbs',
         });
       }
 

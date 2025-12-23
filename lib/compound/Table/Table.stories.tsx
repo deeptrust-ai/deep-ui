@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
+import { Badge as FrostedBadge, Text as FrostedText } from '@radix-ui/themes';
 
 import { Table, type ITableProps } from '../..';
 import type { ReactNode } from 'react';
@@ -13,9 +13,9 @@ function generateDate() {
 
 function generateRows(numRows: number) {
   const severity = [
-    <FrostedBadge color="danger">Critical</FrostedBadge>,
-    <FrostedBadge color="warning">Warning</FrostedBadge>,
-    <FrostedBadge color="info">Info</FrostedBadge>,
+    <FrostedBadge color="red">Critical</FrostedBadge>,
+    <FrostedBadge color="yellow">Warning</FrostedBadge>,
+    <FrostedBadge color="blue">Info</FrostedBadge>,
   ];
   const orgs = ['Executive', 'Finance', 'HR', 'Engineering', 'Marketing'];
   const status = ['Exclusive', 'Default', 'Critical', 'Info'];

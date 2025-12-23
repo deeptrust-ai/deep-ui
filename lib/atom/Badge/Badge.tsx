@@ -1,14 +1,11 @@
-import { Badge as FrostedBadge, Text as FrostedText } from 'frosted-ui';
-import styles from './styles.module.css';
+import { Badge as RadixBadge } from '@radix-ui/themes';
 import type { IBadgeProps } from './types';
 
-const Badge = ({ label }: IBadgeProps) => {
+const Badge = ({ label, ...rest }: IBadgeProps) => {
   return (
-    <FrostedBadge size="1" className={styles.badge}>
-      <FrostedText size="0" color="blue">
-        {label}
-      </FrostedText>
-    </FrostedBadge>
+    <RadixBadge size="1" variant="surface" radius="large" {...rest}>
+      {label}
+    </RadixBadge>
   );
 };
 

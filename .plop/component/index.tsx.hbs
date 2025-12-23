@@ -1,5 +1,5 @@
-{{#if useTypes}}import type { I{{pascalCase name}}Props } from './types';
-{{/if}}{{#if useStyles}}import styles from './styles.module.css';
+{{#if useTypes}}import type { I{{pascalCase name}}Props } from './{{pascalCase name}}.types';
+{{/if}}{{#if useStyles}}import styles from './{{pascalCase name}}.module.css';
 {{/if}}{{#if hasImports}}
 
 {{/if}}const {{pascalCase name}} = {{#if useTypes}}(_props: I{{pascalCase name}}Props){{else}}(){{/if}} => {

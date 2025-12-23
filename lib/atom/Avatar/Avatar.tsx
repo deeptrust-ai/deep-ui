@@ -1,15 +1,19 @@
-import { Avatar as FrostedAvatar } from 'frosted-ui';
+import { Avatar as RadixAvatar } from '@radix-ui/themes';
 import type { IAvatarProps } from './types';
+import styles from './Avatar.module.css';
 
 const Avatar = ({ name, pfp }: IAvatarProps) => {
+  const fallback = name ? name.charAt(0).toUpperCase() : undefined;
+
   return (
-    <FrostedAvatar
-      shape="circle"
+    <RadixAvatar
+      radius="full"
       color="blue"
       size="3"
-      fallback={name}
+      fallback={<>{fallback}</>}
       src={pfp}
       alt={pfp ? `${name}'s Avatar` : undefined}
+      className={styles.avatar}
     />
   );
 };

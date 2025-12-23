@@ -1,0 +1,30 @@
+.container {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  border-radius: var(--radius-2);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-a5);
+}
+
+.closeBtn {
+  background: #ffffff1a;
+  font-size: var(--font-size-2);
+  border-radius: var(--radius-2);
+  padding: var(--space-2);
+}
+
+.message {
+  flex: 1;
+}
+
+.actionButton {
+  background: var(--accent-2);
+}

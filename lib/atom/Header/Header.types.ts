@@ -1,4 +1,4 @@
-import type { HeadingProps } from 'frosted-ui';
+import type { HeadingProps } from '@radix-ui/themes';
 
 export interface IHeaderProps {
   readonly title: string;

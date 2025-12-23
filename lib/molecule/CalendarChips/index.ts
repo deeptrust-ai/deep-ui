@@ -1,2 +1,2 @@
 export { default } from './CalendarChips';
-export type * from './types';
+export type * from './CalendarChips.types';

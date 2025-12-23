@@ -1,21 +1,12 @@
-import { Box, Flex } from '@radix-ui/themes';
-import { Heading } from 'frosted-ui';
+import { Box } from '@radix-ui/themes';
 import styles from './ContentWrapper.styles.module.css';
 import type { IContentWrapperProps } from './ContentWrapper.types';
 import Header from '../Header';
 
-const ContentWrapper = ({ children, title, subtitle, metaInfo, sidebar }: IContentWrapperProps) => {
+const ContentWrapper = ({ children, title, subtitle, metaInfo, ...rest }: IContentWrapperProps) => {
   return (
-    <Box className={styles.wrapper}>
-      {sidebar ? (
-        <Flex direction="row" justify="between" px="5" pt="4">
-          <Heading as="h3" weight="bold" size="4">
-            {title}
-          </Heading>
-        </Flex>
-      ) : (
-        <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />
-      )}
+    <Box className={styles.wrapper} height="100%" {...rest}>
+      {title && <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />}
       <Box py="4" px="5">
         {children}
       </Box>

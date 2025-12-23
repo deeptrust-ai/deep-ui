@@ -49,7 +49,7 @@ export default defineConfig({
       external: [
         'react',
         'react/jsx-runtime',
-        /^frosted-ui(\/.*)?$/,
+        /^@radix-ui\/themes(\/.*)?$/,
         /^@deeptrust-ai\/deep-ui(\/.*)?$/,
       ],
       input: (() => {

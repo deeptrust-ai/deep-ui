@@ -1,5 +1,5 @@
 import type { ElementType } from 'react';
-import type { IMenuItemProps } from '../../atom/MenuItem/types';
+import type { IMenuItemProps } from '../../atom/MenuItem/MenuItem.types';
 
 interface IExtendedMenuItemProps<TAnchor extends ElementType = 'a'>
   extends IMenuItemProps<TAnchor> {

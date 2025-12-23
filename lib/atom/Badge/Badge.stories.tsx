@@ -8,6 +8,7 @@ const meta = {
   component: Badge,
   args: {
     label: 'Badge',
+    color: 'blue',
   },
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout

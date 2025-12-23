@@ -1,4 +1,4 @@
-import { Text as FrostedText, Select as FrostedSelect } from 'frosted-ui';
+import { Text as FrostedText, Select as FrostedSelect } from '@radix-ui/themes';
 import { PAGE_SIZE_OPTIONS } from '../constants';
 import type { TPaginationItemsPerPage } from '../types';
 

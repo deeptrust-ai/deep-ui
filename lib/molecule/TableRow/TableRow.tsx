@@ -1,28 +1,24 @@
-import {
-  Table as FrostedTable,
-  IconButton as FrostedIconButton,
-  Button as FrostedButton,
-} from 'frosted-ui';
+import { Table as RadixTable, IconButton, Button } from '@radix-ui/themes';
 
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
 
-const TableRow = ({ id, cells, actions }: ITableRowProps) => {
+const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
 
   return (
-    <FrostedTable.Row data-row-id={id}>
+    <RadixTable.Row data-row-id={id} className={active ? styles.activeRow : undefined}>
       {cells.map((cell) => {
-        return <FrostedTable.Cell key={cell.id}>{cell.content}</FrostedTable.Cell>;
+        return <RadixTable.Cell key={cell.id}>{cell.content}</RadixTable.Cell>;
       })}
 
       {actions && actions.length > 0 && (
-        <FrostedTable.Cell className={styles.actionsCell}>
+        <RadixTable.Cell className={styles.actionsCell}>
           {actions.map((action) =>
             action.icon ? (
-              <FrostedIconButton
+              <IconButton
                 key={action.label}
                 color="blue"
                 variant="soft"
@@ -31,9 +27,9 @@ const TableRow = ({ id, cells, actions }: ITableRowProps) => {
                 aria-label={action.label}
               >
                 {<action.icon size={16} />}
-              </FrostedIconButton>
+              </IconButton>
             ) : (
-              <FrostedButton
+              <Button
                 key={action.label}
                 color="blue"
                 variant="soft"
@@ -41,12 +37,12 @@ const TableRow = ({ id, cells, actions }: ITableRowProps) => {
                 onClick={action.onClick}
               >
                 {action.label}
-              </FrostedButton>
+              </Button>
             )
           )}
-        </FrostedTable.Cell>
+        </RadixTable.Cell>
       )}
-    </FrostedTable.Row>
+    </RadixTable.Row>
   );
 };
 

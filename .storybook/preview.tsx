@@ -6,12 +6,7 @@ import '../lib/styles.css';
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <Theme
-        appearance="light"
-        accentColor="crimson"
-        grayColor="gray"
-        style={{ position: 'relative' }}
-      >
+      <Theme appearance="light" style={{ position: 'relative' }}>
         <Story />
       </Theme>
     ),

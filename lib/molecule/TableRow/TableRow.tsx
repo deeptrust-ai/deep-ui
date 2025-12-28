@@ -11,7 +11,11 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
   return (
     <RadixTable.Row data-row-id={id} className={active ? styles.activeRow : undefined}>
       {cells.map((cell) => {
-        return <RadixTable.Cell key={cell.id}>{cell.content}</RadixTable.Cell>;
+        return (
+          <RadixTable.Cell key={cell.id} align="center" className={styles.contentCell}>
+            {cell.content}
+          </RadixTable.Cell>
+        );
       })}
 
       {actions && actions.length > 0 && (
@@ -25,8 +29,9 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
                 className={styles.actionButton}
                 onClick={action.onClick}
                 aria-label={action.label}
+                size="1"
               >
-                {<action.icon size={16} />}
+                {<action.icon size={14} />}
               </IconButton>
             ) : (
               <Button
@@ -35,6 +40,7 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
                 variant="soft"
                 className={styles.actionButton}
                 onClick={action.onClick}
+                size="1"
               >
                 {action.label}
               </Button>

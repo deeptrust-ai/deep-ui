@@ -4,6 +4,11 @@
 
 .actionsCell {
   text-align: right;
+  vertical-align: middle;
+}
+
+.contentCell {
+  vertical-align: middle;
 }
 
 .activeRow {

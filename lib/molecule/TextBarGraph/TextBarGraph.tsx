@@ -1,4 +1,4 @@
-import { Flex, Text as FrostedText } from '@radix-ui/themes';
+import { Box, Flex, Text as FrostedText } from '@radix-ui/themes';
 import cn from 'classnames';
 import type { ITextBarGraphProps } from './TextBarGraph.types';
 import styles from './TextBarGraph.module.css';
@@ -12,13 +12,14 @@ const TextBarGraph = ({
   const percentage = Math.max(0, Math.min(100, percentageProp));
 
   return (
-    <Flex
-      align="center"
-      px="2"
-      style={{ width: `${percentage}%` }}
-      className={cn(styles.barGraph, styles[variant])}
-    >
-      <Flex align="center" gap="2">
+    <Flex align="center" pr="2" className={styles.barGraph}>
+      <Box
+        width={`${percentage}%`}
+        position="absolute"
+        height="100%"
+        className={cn(styles.filledBar, styles[variant])}
+      />
+      <Flex align="center" gap="2" pl="2">
         {Icon && <Icon weight="bold" />}
         <FrostedText size="2">{label}</FrostedText>
       </Flex>

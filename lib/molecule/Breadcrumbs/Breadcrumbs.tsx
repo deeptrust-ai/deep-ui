@@ -3,7 +3,7 @@ import type { IBreadcrumbsProps } from './Breadcrumbs.types';
 import OrganizationDropdown from '../../atom/OrganizationDropdown';
 import { DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
 import { MANY_CRUMBS_THRESHOLD } from './constants';
-import { Fragment } from 'react/jsx-runtime';
+import React from 'react';
 
 const BreadcrumbSeparator = () => (
   <Text color="gray" size="1">
@@ -45,7 +45,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
 
     if (withoutFirstLastCrumb.length > 1) {
       children.push(
-        <Fragment key="many-crumbs-dropdown">
+        <React.Fragment key="many-crumbs-dropdown">
           <BreadcrumbSeparator />,
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
@@ -61,7 +61,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
               ))}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
-        </Fragment>
+        </React.Fragment>
       );
     } else {
       children.push(

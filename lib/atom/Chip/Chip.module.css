@@ -1,0 +1,7 @@
+.container {
+  color: var(--gray-1);
+  background: var(--gray-12);
+  border-radius: var(--radius-1);
+  padding: calc(var(--space-1) / 2) calc(var(--space-3) / 2);
+  font-size: 10px;
+}

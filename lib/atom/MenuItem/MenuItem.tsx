@@ -1,8 +1,8 @@
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
-import { Text } from 'frosted-ui';
+import { Link, Text } from '@radix-ui/themes';
 import cn from 'classnames';
-import styles from './styles.module.css';
-import type { IMenuItemProps } from './types';
+import styles from './MenuItem.module.css';
+import type { IMenuItemProps } from './MenuItem.types';
 
 /**
  * MenuItem component represents a single item in a menu, which can optionally be a subpage and can indicate selection state.
@@ -15,12 +15,21 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
   selected = false,
   subpage = false,
   heading = false,
+  activeClassName = 'active',
 }: IMenuItemProps<TAnchor>) => {
   const AnchorComponent = anchorComponent ?? 'a';
 
+  // Treat `className` as a space-separated list and check for an exact match
+  // to avoid false positives (e.g. "interactive" matching "active").
+  const anchorClassList = anchorProps?.className?.split(/\s+/) ?? [];
+  const hasActiveClass = anchorClassList.includes(activeClassName);
+  const selectedPage = !!selected || hasActiveClass;
+
   const anchorClassName = cn(styles.anchor, anchorProps?.className, {
     [styles.heading]: !!heading,
+    [styles.active]: !subpage && selectedPage,
   });
+  const selectedSubItem = selectedPage && !!subpage;
 
   const combinedAnchorProps = {
     ...anchorProps,
@@ -36,15 +45,17 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
       {!!subpage && (
         <div
           className={cn(styles.subItemIndicator, {
-            [styles.selectedSubItem]: !!subpage && !!selected,
+            [styles.selectedSubItem]: selectedSubItem,
           })}
         />
       )}
 
-      <AnchorComponent {...combinedAnchorProps}>
-        {Icon && <Icon size="20" />}
-        <Text size="3">{label}</Text>
-      </AnchorComponent>
+      <Link asChild>
+        <AnchorComponent {...combinedAnchorProps}>
+          {Icon && <Icon size="20" />}
+          <Text size="3">{label}</Text>
+        </AnchorComponent>
+      </Link>
     </div>
   );
 };

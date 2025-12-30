@@ -1,15 +1,16 @@
-import { Table as FrostedTable, ScrollArea as FrostedScrollArea } from 'frosted-ui';
-import type { ITableProps } from './types';
+import { Flex, Table as RadixTable } from '@radix-ui/themes';
+import type { ITableProps } from './Table.types';
 import { Pagination, TableRow } from '../..';
-import styles from './styles.module.css';
+import styles from './Table.module.css';
 import { useMemo, useState } from 'react';
 import { PAGE_SIZE_OPTIONS } from '../../molecule/Pagination/constants';
 import type { TPaginationItemsPerPage } from '../../molecule/Pagination/types';
+import TableEmpty from '../../molecule/TableRow/TableEmpty';
 
 const Table = ({
   headers,
   rows,
-  totalItems,
+  totalItems = 0,
   onItemsPerPageChange: onItemsPerPageChangeProp,
   onPageChange: onPageChangeProp,
   defaultItemsPerPage: defaultItemsPerPageProp,
@@ -55,34 +56,30 @@ const Table = ({
   );
 
   return (
-    <div className={styles.container}>
-      <FrostedTable.Root size="1" className={styles.table} variant="surface">
-        <FrostedScrollArea scrollbars="horizontal">
-          <FrostedTable.Table>
-            <FrostedTable.Header>
-              <FrostedTable.Row className={styles.headerRow}>
-                {headers.map((header) => (
-                  <FrostedTable.ColumnHeaderCell key={`${header}`}>
-                    {header}
-                  </FrostedTable.ColumnHeaderCell>
-                ))}
-                {showActionsColumns && <FrostedTable.ColumnHeaderCell />}
-              </FrostedTable.Row>
-            </FrostedTable.Header>
-            <FrostedTable.Body>
-              {rowsPerPage.map((row) => (
-                <TableRow key={row.id} {...row} />
-              ))}
-            </FrostedTable.Body>
-          </FrostedTable.Table>
-        </FrostedScrollArea>
-      </FrostedTable.Root>
+    <Flex direction="column" gap="2">
+      <RadixTable.Root size="1" className={styles.table} variant="surface">
+        <RadixTable.Header>
+          <RadixTable.Row className={styles.headerRow}>
+            {headers.map((header) => (
+              <RadixTable.ColumnHeaderCell key={`${header}`}>{header}</RadixTable.ColumnHeaderCell>
+            ))}
+            {showActionsColumns && <RadixTable.ColumnHeaderCell />}
+          </RadixTable.Row>
+        </RadixTable.Header>
+        <RadixTable.Body>
+          {rowsPerPage.length ? (
+            rowsPerPage.map((row) => <TableRow key={row.id} {...row} />)
+          ) : (
+            <TableEmpty colSpan={headers.length + (showActionsColumns ? 1 : 0)} />
+          )}
+        </RadixTable.Body>
+      </RadixTable.Root>
       <Pagination
         totalItems={totalItemsMemo}
         onPageChange={handlePageChange}
         onItemsPerPageChange={handleItemsPerPageChange}
       />
-    </div>
+    </Flex>
   );
 };
 

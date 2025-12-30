@@ -1,7 +1,7 @@
-import MenuItem from '../../atom/MenuItem';
 import type { ElementType } from 'react';
-import type { IMenuProps } from './types';
-import styles from './styles.module.css';
+import MenuItem from '../../atom/MenuItem';
+import type { IMenuProps } from './Menu.types';
+import styles from './Menu.module.css';
 
 /**
  * Menu component renders a navigation menu based on the provided pages.
@@ -11,15 +11,18 @@ const Menu = <TAnchor extends ElementType = 'a'>({
   anchorComponent,
 }: IMenuProps<TAnchor>) => {
   return (
-    <nav className={styles.menu}>
-      <ul>
-        {pages.map((page) => (
+    <ul className={styles.menu}>
+      {pages.map((page) => {
+        const hasSelectedSubPage = page.subPages
+          ? page.subPages.some((subPage) => {
+              const classList = subPage.anchorProps?.className?.split(/\s+/) ?? [];
+              return subPage.selected || classList.includes('active');
+            })
+          : false;
+
+        return (
           <li key={page.label}>
-            <MenuItem
-              {...page}
-              heading={page.subPages && page.subPages?.length > 0}
-              anchorComponent={anchorComponent}
-            />
+            <MenuItem {...page} heading={hasSelectedSubPage} anchorComponent={anchorComponent} />
             {page.subPages && (
               <ul>
                 {page.subPages.map((subPage) => (
@@ -30,11 +33,11 @@ const Menu = <TAnchor extends ElementType = 'a'>({
               </ul>
             )}
           </li>
-        ))}
-      </ul>
-    </nav>
+        );
+      })}
+    </ul>
   );
 };
 
 export default Menu;
-export type { IMenuProps } from './types';
+export type { IMenuProps } from './Menu.types';

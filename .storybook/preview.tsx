@@ -1,20 +1,12 @@
 import type { Preview } from '@storybook/react-vite';
-import { Theme } from 'frosted-ui';
+import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 import '../lib/styles.css';
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <Theme
-        appearance="light"
-        accentColor="crimson"
-        grayColor="gray"
-        dangerColor="red"
-        successColor="green"
-        warningColor="yellow"
-        infoColor="blue"
-        style={{ position: 'relative' }}
-      >
+      <Theme appearance="light" style={{ position: 'relative', minHeight: '50vh' }}>
         <Story />
       </Theme>
     ),

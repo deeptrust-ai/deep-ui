@@ -15,4 +15,5 @@ export interface ITableRowProps {
   readonly id: string;
   readonly cells: ITableRowCell[];
   readonly actions?: IITableRowAction[];
+  readonly active?: boolean;
 }

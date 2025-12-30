@@ -29,11 +29,7 @@ const Layout = ({
             <ContentWrapper title={title} subtitle={subtitle} metaInfo={metaInfo}>
               {children}
             </ContentWrapper>
-            {hasTwoColumns && (
-              <ContentWrapper title={title} sidebar>
-                {sidebar}
-              </ContentWrapper>
-            )}
+            {hasTwoColumns && <ContentWrapper>{sidebar}</ContentWrapper>}
           </Grid>
         </Box>
       </Flex>

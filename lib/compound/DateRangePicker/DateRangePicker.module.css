@@ -1,0 +1,36 @@
+.dayPicker {
+  --rdp-day-width: 36px;
+  --rdp-day-height: 36px;
+  --rdp-day_button-width: 32px;
+  --rdp-day_button-height: 32px;
+  --rdp-nav-height: 32px;
+  font-size: 14px;
+}
+
+.today {
+  background-color: var(--gray-3);
+  color: var(--gray-12);
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.rangeEnd,
+.rangeStart {
+  background-color: var(--accent-9);
+  color: var(--gray-1);
+  font-weight: normal;
+  border-radius: 6px;
+  border: 0;
+}
+
+.rangeMiddle {
+  background-color: var(--blue-2);
+}
+
+.rangeButton {
+  border: none;
+}
+
+.popoverContent {
+  z-index: 2;
+}

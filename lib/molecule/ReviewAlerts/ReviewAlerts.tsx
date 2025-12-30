@@ -1,10 +1,10 @@
-import {
-  Provider as RadixToastProvider,
-  Viewport as RadixToastViewport,
-} from '@radix-ui/react-toast';
 import { ListChecksIcon } from '@phosphor-icons/react';
-import { Link as FrostedLink, Text as FrostedText, Heading as FrostedHeading } from 'frosted-ui';
-import Toast from '../../atom/Toast';
+import {
+  Link as FrostedLink,
+  Text as FrostedText,
+  Heading as FrostedHeading,
+} from '@radix-ui/themes';
+import Callout from '../../atom/Callout';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';
 
@@ -23,11 +23,7 @@ const ReviewAlerts = ({ alerts }: IReviewAlertsProps) => {
         </FrostedText>
       </div>
       {alerts.length > 0 ? (
-        <RadixToastProvider>
-          <Toast message={alerts[0].message} variant={alerts[0].variant} duration={0} />
-
-          <RadixToastViewport />
-        </RadixToastProvider>
+        <Callout message={alerts[0].message} variant={alerts[0].variant} />
       ) : (
         <FrostedText as="p">No alerts to review.</FrostedText>
       )}

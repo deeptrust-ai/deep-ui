@@ -1,2 +1,2 @@
 export { default } from './Table';
-export type * from './types';
+export type * from './Table.types';

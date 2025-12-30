@@ -1,5 +1,5 @@
 # Workflow name
-name: "Quality Checks"
+name: 'Quality Checks'
 
 # Events for the workflow
 on:
@@ -13,11 +13,11 @@ on:
 # List of jobs
 jobs:
   lint:
-    name: "Lint (${{ matrix.script }})"
+    name: 'Lint (${{ matrix.script }})'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        script: ["lint:library", "lint:stories"]
+        script: ['lint:library', 'lint:stories']
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,11 +33,11 @@ jobs:
       - run: pnpm run ${{ matrix.script }}
 
   typecheck:
-    name: "Typecheck (${{ matrix.script }})"
+    name: 'Typecheck (${{ matrix.script }})'
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        script: ["tsc:library", "tsc:stories"]
+        script: ['tsc:library', 'tsc:stories']
     steps:
       - uses: actions/checkout@v4
         with:

@@ -46,7 +46,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
     if (withoutFirstLastCrumb.length > 1) {
       children.push(
         <React.Fragment key="many-crumbs-dropdown">
-          <BreadcrumbSeparator />,
+          <BreadcrumbSeparator />
           <DropdownMenu.Root>
             <DropdownMenu.Trigger>
               <Flex align="center">

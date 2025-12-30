@@ -14,7 +14,6 @@ import { ContentWrapper } from '../../atom';
 import DateSelection from './parts/DateSelection';
 import NextMonthButton from './parts/NextMonthButton';
 
-// Use DayPicker's component map type so we don't retype the Chevron signature.
 const components: DayPickerProps['components'] = {
   YearsDropdown: DateSelection,
   MonthsDropdown: DateSelection,

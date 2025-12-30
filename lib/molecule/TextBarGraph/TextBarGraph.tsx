@@ -15,7 +15,7 @@ const TextBarGraph = ({
     <Flex
       align="center"
       px="2"
-      data-graph-width={`${percentage}`}
+      style={{ width: `${percentage}%` }}
       className={cn(styles.barGraph, styles[variant])}
     >
       <Flex align="center" gap="2">
@@ -31,27 +31,3 @@ const TextBarGraph = ({
 
 export default TextBarGraph;
 export type { ITextBarGraphProps };
-
-{
-  /* <div className={styles.container}>
-  <FrostedCard
-    size="2"
-    className={cn(styles.barGraph, {
-      [styles.default]: variant === 'default' || !variant,
-      [styles.danger]: variant === 'danger',
-      [styles.info]: variant === 'info',
-      [styles.warning]: variant === 'warning',
-    })}
-    style={{
-      width: `${percentage}%`,
-    }}
-  />
-  <div className={styles.barGraphLabel}>
-    {Icon && <Icon weight="bold" />}
-    <FrostedText size="2" className={styles.label}>
-      {label}
-    </FrostedText>
-    <FrostedText size="2">{percentage}%</FrostedText>
-  </div>
-</div> */
-}

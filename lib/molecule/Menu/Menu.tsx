@@ -14,9 +14,10 @@ const Menu = <TAnchor extends ElementType = 'a'>({
     <ul className={styles.menu}>
       {pages.map((page) => {
         const hasSelectedSubPage = page.subPages
-          ? page.subPages.some(
-              (subPage) => subPage.selected || subPage.anchorProps?.className?.includes('active')
-            )
+          ? page.subPages.some((subPage) => {
+              const classList = subPage.anchorProps?.className?.split(/\s+/) ?? [];
+              return subPage.selected || classList.includes('active');
+            })
           : false;
 
         return (

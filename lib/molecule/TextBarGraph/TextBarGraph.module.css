@@ -11,9 +11,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: attr(data-graph-width %);
     border-radius: var(--radius-2);
-    background-color: orange;
     height: var(--bar-graph-height);
   }
 

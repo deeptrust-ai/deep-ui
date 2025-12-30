@@ -19,7 +19,11 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
 }: IMenuItemProps<TAnchor>) => {
   const AnchorComponent = anchorComponent ?? 'a';
 
-  const selectedPage = !!selected || anchorProps?.className?.includes(activeClassName);
+  // Treat `className` as a space-separated list and check for an exact match
+  // to avoid false positives (e.g. "interactive" matching "active").
+  const anchorClassList = anchorProps?.className?.split(/\s+/) ?? [];
+  const hasActiveClass = anchorClassList.includes(activeClassName);
+  const selectedPage = !!selected || hasActiveClass;
 
   const anchorClassName = cn(styles.anchor, anchorProps?.className, {
     [styles.heading]: !!heading,

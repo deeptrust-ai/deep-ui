@@ -3,6 +3,7 @@ import type { IBreadcrumbsProps } from './Breadcrumbs.types';
 import OrganizationDropdown from '../../atom/OrganizationDropdown';
 import { DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
 import { MANY_CRUMBS_THRESHOLD } from './constants';
+import { Fragment } from 'react/jsx-runtime';
 
 const BreadcrumbSeparator = () => (
   <Text color="gray" size="1">
@@ -32,7 +33,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
     children.push(
       <Flex display="inline-flex" gap="1" key={firstCrumb.href}>
         <BreadcrumbSeparator />
-        <Link color="gray" size="1" underline="hover" href={firstCrumb.href} key={firstCrumb.href}>
+        <Link color="gray" size="1" underline="hover" href={firstCrumb.href}>
           {firstCrumb.label}
         </Link>
       </Flex>
@@ -44,33 +45,29 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
 
     if (withoutFirstLastCrumb.length > 1) {
       children.push(
-        <BreadcrumbSeparator />,
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger>
-            <Flex align="center">
-              <IconButton variant="ghost" color="gray" size="2">
-                <DotsThreeIcon size={16} weight="bold" />
-              </IconButton>
-            </Flex>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Content size="2" variant="soft">
-            {crumbs.map((crumb) => (
-              <DropdownMenu.Item key={crumb.label}>{crumb.label}</DropdownMenu.Item>
-            ))}
-          </DropdownMenu.Content>
-        </DropdownMenu.Root>
+        <Fragment key="many-crumbs-dropdown">
+          <BreadcrumbSeparator />,
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger>
+              <Flex align="center">
+                <IconButton variant="ghost" color="gray" size="2">
+                  <DotsThreeIcon size={16} weight="bold" />
+                </IconButton>
+              </Flex>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content size="2" variant="soft">
+              {withoutFirstLastCrumb.map((crumb) => (
+                <DropdownMenu.Item key={crumb.label}>{crumb.label}</DropdownMenu.Item>
+              ))}
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
+        </Fragment>
       );
     } else {
       children.push(
         <Flex display="inline-flex" gap="1" key={withoutFirstLastCrumb[0].href}>
           <BreadcrumbSeparator />
-          <Link
-            color="gray"
-            size="1"
-            underline="hover"
-            href={withoutFirstLastCrumb[0].href}
-            key={withoutFirstLastCrumb[0].href}
-          >
+          <Link color="gray" size="1" underline="hover" href={withoutFirstLastCrumb[0].href}>
             {withoutFirstLastCrumb[0].label}
           </Link>
         </Flex>
@@ -82,7 +79,7 @@ const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
     children.push(
       <Flex display="inline-flex" gap="1" key={lastCrumb.href}>
         <BreadcrumbSeparator />
-        <Link color="gray" size="1" underline="hover" href={lastCrumb.href} key={lastCrumb.href}>
+        <Link color="gray" size="1" underline="hover" href={lastCrumb.href}>
           {lastCrumb.label}
         </Link>
       </Flex>

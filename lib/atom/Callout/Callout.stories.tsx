@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Flex } from '@radix-ui/themes';
 
 import { Callout, type ICalloutProps } from '../..';
-import { Flex } from '@radix-ui/themes';
 
 const meta = {
   title: 'Atom/Callout',
@@ -25,28 +25,28 @@ export const Overview: Story = {
   render: () => (
     <Flex direction="column" gap="4">
       <Callout
-        message="This is a success toast!"
+        message="This is a success callout!"
         variant="success"
         onClick={() => {
           alert('Callout action clicked!');
         }}
       />
       <Callout
-        message="This is an error toast!"
+        message="This is an error callout!"
         variant="error"
         onClick={() => {
           alert('Callout action clicked!');
         }}
       />
       <Callout
-        message="This is an info toast!"
+        message="This is an info callout!"
         variant="info"
         onClick={() => {
           alert('Callout action clicked!');
         }}
       />
       <Callout
-        message="This is a warning toast!"
+        message="This is a warning callout!"
         variant="warning"
         onClick={() => {
           alert('Callout action clicked!');

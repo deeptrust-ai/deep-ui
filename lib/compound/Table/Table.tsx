@@ -30,6 +30,12 @@ const Table = ({
       setCurrentPage(1);
       onItemsPerPageChangeProp?.(newItemsPerPage);
     }
+
+    // scroll to top of table on items per page change
+    const tableElement = document.querySelector(`.${styles.table}`);
+    if (tableElement) {
+      tableElement.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handlePageChange = (newPage: number) => {

@@ -12,7 +12,7 @@ const TableRow = ({ id, cells, actions, active }: ITableRowProps) => {
     <RadixTable.Row data-row-id={id} className={active ? styles.activeRow : undefined}>
       {cells.map((cell) => {
         return (
-          <RadixTable.Cell key={cell.id} align="center" className={styles.contentCell}>
+          <RadixTable.Cell key={cell.id} className={styles.contentCell}>
             {cell.content}
           </RadixTable.Cell>
         );

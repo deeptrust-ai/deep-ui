@@ -9,7 +9,7 @@ if (!fs.existsSync(pkgDir)) {
 }
 
 // Find any CSS files in the package
-const cssFiles = fs.readdirSync(pkgDir).filter(f => f.endsWith('.css') || f.endsWith('.min.css'));
+const cssFiles = fs.readdirSync(pkgDir).filter((f) => f.endsWith('.css') || f.endsWith('.min.css'));
 if (cssFiles.length === 0) {
   console.error('No .css files found in @radix-ui/themes package.');
   process.exit(1);
@@ -27,7 +27,7 @@ while ((m = re.exec(css))) {
   props.push({
     name: m[1],
     description: `From @radix-ui/themes/${cssPath}`,
-    values: [m[2].trim()]
+    values: [m[2].trim()],
   });
 }
 

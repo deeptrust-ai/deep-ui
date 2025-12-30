@@ -4,61 +4,38 @@ import { useCallback, useMemo, useState } from 'react';
 import { Button, Flex } from '@radix-ui/themes';
 import { Popover, PopoverContent, PopoverTrigger } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
-import {
-  CalendarIcon,
-  CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  CaretUpIcon,
-} from '@phosphor-icons/react';
-import {
-  type DateRange,
-  type DayPickerProps,
-  type ChevronProps,
-  DayPicker,
-} from 'react-day-picker';
+import { CalendarIcon } from '@phosphor-icons/react';
+import { type DateRange, type DayPickerProps, DayPicker } from 'react-day-picker';
 
-import './DateRangePicker.module.css';
+import styles from './DateRangePicker.module.css';
 import type { IDateRangePickerProps } from './DateRangePicker.types';
 
 import { ContentWrapper } from '../../atom';
-
-const ChevronWrap = ({ orientation, className, size }: ChevronProps) => {
-  switch (orientation) {
-    case 'left':
-      return (
-        <span className={className}>
-          <CaretLeftIcon weight="bold" size={size} />
-        </span>
-      );
-    case 'up':
-      return (
-        <span className={className}>
-          <CaretUpIcon weight="bold" size={12} />
-        </span>
-      );
-    case 'down':
-      return (
-        <span className={className}>
-          <CaretDownIcon weight="bold" size={12} />
-        </span>
-      );
-    case 'right':
-    default:
-      return (
-        <span className={className}>
-          <CaretRightIcon weight="bold" size={size} />
-        </span>
-      );
-  }
-};
+import DateSelection from './parts/DateSelection';
+import NextMonthButton from './parts/NextMonthButton';
 
 // Use DayPicker's component map type so we don't retype the Chevron signature.
 const components: DayPickerProps['components'] = {
-  Chevron: ChevronWrap,
+  YearsDropdown: DateSelection,
+  MonthsDropdown: DateSelection,
+  NextMonthButton: NextMonthButton,
+  PreviousMonthButton: NextMonthButton,
 };
 
 const fallbackStartDate = new Date();
+const formatDateRangeLabel = (range: DateRange | undefined) => {
+  if (!range?.from) return null;
+
+  if (!range.to) {
+    return format(range.from, 'LLL dd, y');
+  }
+
+  const sameYear = range.from.getFullYear() === range.to.getFullYear();
+  const fromFormat = sameYear ? 'LLL dd' : 'LLL dd, y';
+
+  return `${format(range.from, fromFormat)} - ${format(range.to, 'LLL dd, y')}`;
+};
+
 const DateRangePicker = ({
   fromDate: fromDateProp,
   toDate: toDateProp,
@@ -116,27 +93,26 @@ const DateRangePicker = ({
       <PopoverTrigger asChild>
         <Button type="button" variant="outline" disabled={disabled}>
           <CalendarIcon />
-          {displayDate?.from ? (
-            displayDate.to ? (
-              <>
-                {format(displayDate.from, 'LLL dd, y')} - {format(displayDate.to, 'LLL dd, y')}
-              </>
-            ) : (
-              format(displayDate.from, 'LLL dd, y')
-            )
-          ) : (
-            <span>Pick a date range</span>
-          )}
+          {displayDate?.from ? formatDateRangeLabel(displayDate) : <span>Pick a date range</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start">
-        <ContentWrapper mt="2">
+      <PopoverContent align="start" sideOffset={4} className={styles.popoverContent}>
+        <ContentWrapper>
           <DayPicker
             mode="range"
             captionLayout="dropdown"
             components={components}
             selected={draftDate}
             onSelect={handleSelect}
+            className={styles.dayPicker}
+            modifiersClassNames={{
+              today: styles.today,
+              day_button: styles.dayBtn,
+              range_start: styles.rangeStart,
+              range_end: styles.rangeEnd,
+              range_middle: styles.rangeMiddle,
+              selected: styles.rangeButton,
+            }}
           />
           <Flex gap="1" justify="end" mt="2">
             <Button variant="outline" color="crimson" onClick={handleReset} size="1">

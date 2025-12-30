@@ -97,5 +97,8 @@
     "vite": "7.2.4",
     "vite-plugin-dts": "4.5.4",
     "vite-plugin-lib-inject-css": "2.2.2"
+  },
+  "dependencies": {
+    "@radix-ui/react-popover": "^1.1.15"
   }
 }

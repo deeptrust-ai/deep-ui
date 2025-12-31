@@ -3,11 +3,11 @@ name: Publish Package
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   id-token: write # Required for OIDC
-  contents: read
+  contents: write
 
 jobs:
   publish:
@@ -17,8 +17,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
 
       # Ensure npm 11.5.1 or later is installed
       - name: Update npm
@@ -33,4 +33,12 @@ jobs:
           test -e dist/index.js
           test -e dist/index.d.ts
           test -e dist/styles.css
-      - run: npm publish
+      - name: Clean up old tarballs
+        run: rm -f ./*.tgz
+      - name: Create package tarball
+        run: echo "TARBALL=$(npm pack --silent)" >> $GITHUB_ENV
+      # - run: npm publish
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.TARBALL }}

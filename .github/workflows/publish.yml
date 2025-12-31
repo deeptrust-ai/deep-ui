@@ -20,13 +20,15 @@ jobs:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
-      # Ensure npm 11.5.1 or later is installed
-      - name: Update npm
-        run: npm install -g npm@latest
-      - run: npm ci
-      - run: npm run tsc:library --if-present
-      - run: npm run lint:library --if-present
-      - run: npm run build
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.15.0
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run tsc:library --if-present
+      - run: pnpm run lint:library --if-present
+      - run: pnpm run build
       - name: Verify build artifacts exist
         run: |
           test -d dist
@@ -36,8 +38,8 @@ jobs:
       - name: Clean up old tarballs
         run: rm -f ./*.tgz
       - name: Create package tarball
-        run: echo "TARBALL=$(npm pack --silent)" >> $GITHUB_ENV
-      # - run: npm publish
+        run: echo "TARBALL=$(pnpm pack --silent)" >> $GITHUB_ENV
+      - run: pnpm publish --provenance --no-git-checks
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:

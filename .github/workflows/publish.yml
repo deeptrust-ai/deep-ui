@@ -26,8 +26,8 @@ jobs:
           version: 9.15.0
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run tsc:library --if-present
-      - run: pnpm run lint:library --if-present
+      - run: pnpm run tsc:library
+      - run: pnpm run lint:library
       - run: pnpm run build
       - name: Verify build artifacts exist
         run: |

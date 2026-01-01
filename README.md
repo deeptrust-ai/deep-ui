@@ -67,11 +67,11 @@ pnpm run build
 
 ---
 
-## Publishing the package
+## Release workflow
 
-DeepUI now ships via an automated GitHub Actions workflow plus a documented manual fallback. Both flows expect the version in `package.json` to be final before publishing (use `npm version patch`, `npm version prerelease --preid rc`, etc., so the git tag and npm version stay in sync).
+DeepUI releases are handled by a GitHub Actions workflow plus a documented local fallback. Both flows expect the version in `package.json` to be final before release (use `npm version patch`, `npm version prerelease --preid rc`, etc., so the git tag and version stay in sync).
 
-### Automated deploy (preferred)
+### Automated release (preferred)
 
 1. Commit the version bump and associated release notes.
 2. Create a git tag that matches `v*` (for example `git tag v1.2.3`).
@@ -80,13 +80,14 @@ DeepUI now ships via an automated GitHub Actions workflow plus a documented manu
 
 - Sets up Node 20 and pnpm.
 - Installs dependencies, lints, type-checks, and builds the library.
-- Publishes to npm using `NODE_AUTH_TOKEN=${{ secrets.NPM_TOKEN }}`.
+- Creates a GitHub release for tag-based runs.
+- Builds a `.tgz` and moves it into `builds/` in the job workspace.
 
-5. Monitor the run in GitHub Actions. When it completes, `@deeptrust-ai/deep-ui@<version>` is live on npm.
+5. Monitor the run in GitHub Actions. The tarball lives in `builds/` during the run and is uploaded as an artifact (`deepui-tarball`) for easy download.
 
-### Manual npm publish (fallback)
+### Manual release (fallback)
 
-Use this only when CI is unavailable, and ideally from a clean clone.
+Use this when CI is unavailable.
 
 ```bash
 rm -rf dist node_modules
@@ -94,22 +95,12 @@ pnpm install
 pnpm run lint:library
 pnpm run tsc:library
 pnpm run build
-
-# Authenticate (once per machine or set NODE_AUTH_TOKEN in the environment)
-npm login --scope=@deeptrust-ai
-
-# Publish the contents of dist/ (publishConfig already sets access=public)
-npm publish
+mkdir -p builds
+TARBALL=$(npm pack --silent | tail -n 1)
+mv "$TARBALL" builds/
 ```
 
-Afterwards, validate the release:
-
-```bash
-npm info @deeptrust-ai/deep-ui version
-npm dist-tag ls @deeptrust-ai/deep-ui
-```
-
-Finally, recreate the tarball (`npm pack`) and run the install smoke test below so consumers get a verified build.
+Afterwards, run the install smoke test below so consumers get a verified build.
 
 ---
 

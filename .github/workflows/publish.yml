@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: "Publish to npm and create a GitHub release"
+        description: "Publish to npm and create a GitHub release (manual runs only)"
         type: boolean
         default: false
 
@@ -46,9 +46,9 @@ jobs:
       - name: Create package tarball
         run: echo "TARBALL=$(pnpm pack --silent | tail -n 1)" >> $GITHUB_ENV
       - run: pnpm publish --provenance --no-git-checks
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish == 'true' || inputs.publish == true }}
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish }}
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.TARBALL }}
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish == 'true' || inputs.publish == true }}
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish }}

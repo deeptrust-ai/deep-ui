@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: "Publish to npm and create a GitHub release"
+        type: boolean
+        default: false
 
 permissions:
   id-token: write # Required for OIDC
@@ -38,9 +44,11 @@ jobs:
       - name: Clean up old tarballs
         run: rm -f ./*.tgz
       - name: Create package tarball
-        run: echo "TARBALL=$(pnpm pack --silent)" >> $GITHUB_ENV
+        run: echo "TARBALL=$(pnpm pack --silent | tail -n 1)" >> $GITHUB_ENV
       - run: pnpm publish --provenance --no-git-checks
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish == 'true' }}
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.TARBALL }}
+        if: ${{ (github.event_name != 'workflow_dispatch' || inputs.publish == 'true') && startsWith(github.ref, 'refs/tags/') }}

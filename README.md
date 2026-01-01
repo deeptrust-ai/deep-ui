@@ -85,6 +85,10 @@ DeepUI releases are handled by a GitHub Actions workflow plus a documented local
 
 5. Monitor the run in GitHub Actions. The tarball lives in `builds/` during the run and is uploaded as an artifact (`deepui-tarball`) for easy download.
 
+### Manual workflow dispatch (tarball-only)
+
+Use the `Publish Package` workflow's `Run workflow` button to generate a tarball without creating a GitHub release. This is useful for quick verification builds or sharing a one-off package snapshot. The workflow will build the library, move the `.tgz` into `builds/`, and upload it as the `deepui-tarball` artifact.
+
 ### Manual release (fallback)
 
 Use this when CI is unavailable.
@@ -96,7 +100,7 @@ pnpm run lint:library
 pnpm run tsc:library
 pnpm run build
 mkdir -p builds
-TARBALL=$(npm pack --silent | tail -n 1)
+TARBALL=$(pnpm pack --silent | tail -n 1)
 mv "$TARBALL" builds/
 ```
 

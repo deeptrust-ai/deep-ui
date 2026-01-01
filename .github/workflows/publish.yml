@@ -51,4 +51,4 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ env.TARBALL }}
-        if: ${{ github.event_name != 'workflow_dispatch' || inputs.publish == 'true' }}
+        if: ${{ (github.event_name != 'workflow_dispatch' || inputs.publish == 'true') && startsWith(github.ref, 'refs/tags/') }}

@@ -14,8 +14,7 @@ This README explains how to build the component library, scaffold new components
     "peerDependencies": {
       "react": "19.2.0",
       "react-dom": "19.2.0",
-      "@phosphor-icons/react": "2.1.10",
-      "frosted-ui": "0.0.1-canary.85"
+      "@phosphor-icons/react": "2.1.10"
     }
   }
   ```

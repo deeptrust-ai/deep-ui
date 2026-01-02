@@ -1,10 +1,7 @@
-import type { StorybookConfig } from '@storybook/react-vite';
-import { resolve, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+const { resolve } = require('node:path');
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const config: StorybookConfig = {
+/** @type {import('@storybook/react-vite').StorybookConfig} */
+const config = {
   stories: ['./stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
   addons: [
     '@chromatic-com/storybook',
@@ -21,9 +18,7 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     const base = Array.isArray(config.resolve?.alias)
-      ? Object.fromEntries(
-          (config.resolve!.alias as Array<any>).map((a) => [a.find, a.replacement])
-        )
+      ? Object.fromEntries(config.resolve.alias.map((a) => [a.find, a.replacement]))
       : config.resolve?.alias || {};
 
     config.resolve = config.resolve || {};
@@ -36,4 +31,4 @@ const config: StorybookConfig = {
     return config;
   },
 };
-export default config;
+module.exports = config;

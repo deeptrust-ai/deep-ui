@@ -22,13 +22,13 @@ This README explains how to build the component library, scaffold new components
 
 ## Common scripts
 
-| Script                           | Description                                                         |
-| -------------------------------- | ------------------------------------------------------------------- |
-| `npm run build`                  | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
-| `npm run storybook`              | Starts Storybook locally on port 6006.                              |
-| `npm run build-storybook`        | Emits the static Storybook build to `storybook-static/`.            |
-| `npm run generate`               | Plop generator that scaffolds new components.                       |
-| `npm run lint` / `npm run tsc`   | Type-checks & lints the source before release.                      |
+| Script                         | Description                                                         |
+| ------------------------------ | ------------------------------------------------------------------- |
+| `npm run build`                | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
+| `npm run storybook`            | Starts Storybook locally on port 6006.                              |
+| `npm run build-storybook`      | Emits the static Storybook build to `storybook-static/`.            |
+| `npm run generate`             | Plop generator that scaffolds new components.                       |
+| `npm run lint` / `npm run tsc` | Type-checks & lints the source before release.                      |
 
 ---
 

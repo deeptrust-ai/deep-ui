@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
   workflow_dispatch:
     # Manual runs build a tarball and upload it as an artifact; releases are tag-only.
 
@@ -19,8 +19,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          registry-url: "https://registry.npmjs.org"
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v2

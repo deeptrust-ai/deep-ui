@@ -12,18 +12,18 @@ const meta = {
   },
   args: {
     menuPages: [
-      { label: 'Home', link: '/', icon: AcornIcon, selected: true },
-      { label: 'About', link: '/about', icon: AcornIcon },
+      { label: 'Home', anchorProps: { href: '/' }, icon: AcornIcon, selected: true },
+      { label: 'About', anchorProps: { href: '/about' }, icon: AcornIcon },
       {
         label: 'Services',
-        link: '/services',
+        anchorProps: { href: '/services' },
         icon: AcornIcon,
         subPages: [
-          { label: 'Consulting', link: '/services/consulting' },
-          { label: 'Development', link: '/services/development' },
+          { label: 'Consulting', anchorProps: { href: '/services/consulting' } },
+          { label: 'Development', anchorProps: { href: '/services/development' } },
         ],
       },
-      { label: 'Contact', link: '/contact', icon: AcornIcon },
+      { label: 'Contact', anchorProps: { href: '/contact' }, icon: AcornIcon },
     ],
   },
   tags: ['autodocs'],

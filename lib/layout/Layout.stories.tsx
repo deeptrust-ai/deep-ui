@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Container } from '@radix-ui/themes';
 
-import Layout from './Layout.tsx';
+import Layout from './Layout';
 import { AcornIcon } from '@phosphor-icons/react';
 
 const meta = {

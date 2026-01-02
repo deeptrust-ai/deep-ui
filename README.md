@@ -7,7 +7,6 @@ This README explains how to build the component library, scaffold new components
 ## Prerequisites
 
 - Node.js 18+ (React 19 requires modern runtimes)
-- pnpm
 - Peer dependencies that must exist in any consuming project:
 
   ```json
@@ -25,11 +24,11 @@ This README explains how to build the component library, scaffold new components
 
 | Script                           | Description                                                         |
 | -------------------------------- | ------------------------------------------------------------------- |
-| `pnpm run build`                 | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
-| `pnpm run storybook`             | Starts Storybook locally on port 6006.                              |
-| `pnpm run build-storybook`       | Emits the static Storybook build to `storybook-static/`.            |
-| `pnpm run generate`              | Plop generator that scaffolds new components.                       |
-| `pnpm run lint` / `pnpm run tsc` | Type-checks & lints the source before release.                      |
+| `npm run build`                  | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
+| `npm run storybook`              | Starts Storybook locally on port 6006.                              |
+| `npm run build-storybook`        | Emits the static Storybook build to `storybook-static/`.            |
+| `npm run generate`               | Plop generator that scaffolds new components.                       |
+| `npm run lint` / `npm run tsc`   | Type-checks & lints the source before release.                      |
 
 ---
 
@@ -40,20 +39,20 @@ Use this checklist whenever you cut a `0.0.x-dev` build or validate changes befo
 1. **Install dependencies**
 
 ```bash
-pnpm install
+npm install
 ```
 
 2. **Preflight quality gates (optional but recommended)**
 
 ```bash
-pnpm run lint
-pnpm run tsc
+npm run lint
+npm run tsc
 ```
 
 3. **Build the distributable**
 
 ```bash
-pnpm run build
+npm run build
 ```
 
 4. **Create the tarball**
@@ -78,7 +77,7 @@ DeepUI releases are handled by a GitHub Actions workflow plus a documented local
 3. Push the branch _and_ the tag (`git push origin main --tags`).
 4. The `Publish Package` workflow (`.github/workflows/publish.yml`) runs automatically:
 
-- Sets up Node 20 and pnpm.
+- Sets up Node 20 and npm.
 - Installs dependencies, lints, type-checks, and builds the library.
 - Creates a GitHub release for tag-based runs.
 - Builds a `.tgz` and moves it into `builds/` in the job workspace.
@@ -95,12 +94,12 @@ Use this when CI is unavailable.
 
 ```bash
 rm -rf dist node_modules
-pnpm install
-pnpm run lint:library
-pnpm run tsc:library
-pnpm run build
+npm install
+npm run lint:library
+npm run tsc:library
+npm run build
 mkdir -p builds
-TARBALL=$(pnpm pack --silent | tail -n 1)
+TARBALL=$(npm pack --silent | tail -n 1)
 mv "$TARBALL" builds/
 ```
 
@@ -151,7 +150,7 @@ The script simply ensures an import, render, and peer dependency resolution all 
 1. Run the generator:
 
 ```bash
-pnpm run generate
+npm run generate
 ```
 
 2. Choose the component layer (atom / molecule / compound) and provide the component name.
@@ -166,10 +165,10 @@ The generator creates files under `lib/<layer>/<Component>/` and adds the export
 ```bash
 git clone <repo-url>
 cd <directory>
-pnpm install
+npm install
 ```
 
-Build artifacts live in `dist/`; verify `package.json` `main`/`types` point there after running `pnpm run build`.
+Build artifacts live in `dist/`; verify `package.json` `main`/`types` point there after running `npm run build`.
 
 ---
 
@@ -190,17 +189,17 @@ Build artifacts live in `dist/`; verify `package.json` `main`/`types` point ther
    import { Avatar } from '@deeptrust-ai/deep-ui';
    ```
 
-### Option B — `pnpm link` (fast local dev)
+### Option B — `npm link` (fast local dev)
 
 ```bash
 # In DeepUI
-pnpm link --global
+npm link
 
 # In the consumer project
-pnpm link @deeptrust-ai/deep-ui
+npm link @deeptrust-ai/deep-ui
 ```
 
-Rebuild DeepUI (`pnpm run build`) before testing changes in the consumer app.
+Rebuild DeepUI (`npm run build`) before testing changes in the consumer app.
 
 ### Option C — Local file reference / monorepo
 
@@ -212,7 +211,7 @@ Add the dependency in the consumer `package.json`:
 }
 ```
 
-Then run the workspace install (`pnpm install`, `npm install`, etc.).
+Then run the workspace install (`npm install`, etc.).
 
 ---
 
@@ -221,7 +220,7 @@ Then run the workspace install (`pnpm install`, `npm install`, etc.).
 - Dev server:
 
   ```bash
-  pnpm run storybook
+  npm run storybook
   ```
 
   Opens http://localhost:6006.
@@ -229,7 +228,7 @@ Then run the workspace install (`pnpm install`, `npm install`, etc.).
 - Static build:
 
   ```bash
-  pnpm run build-storybook
+  npm run build-storybook
   ```
 
   Outputs to `storybook-static/`.

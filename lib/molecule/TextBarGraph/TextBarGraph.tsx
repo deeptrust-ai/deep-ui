@@ -1,4 +1,4 @@
-import { Box, Flex, Text as FrostedText } from '@radix-ui/themes';
+import { Box, Flex, Text as RadixText } from '@radix-ui/themes';
 import cn from 'classnames';
 import type { ITextBarGraphProps } from './TextBarGraph.types';
 import styles from './TextBarGraph.module.css';
@@ -21,11 +21,11 @@ const TextBarGraph = ({
       />
       <Flex align="center" gap="2" pl="2">
         {Icon && <Icon weight="bold" />}
-        <FrostedText size="2">{label}</FrostedText>
+        <RadixText size="2">{label}</RadixText>
       </Flex>
-      <FrostedText size="2" ml="auto">
+      <RadixText size="2" ml="auto">
         {percentage}%
-      </FrostedText>
+      </RadixText>
     </Flex>
   );
 };

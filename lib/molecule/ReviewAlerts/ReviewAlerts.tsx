@@ -1,9 +1,5 @@
 import { ListChecksIcon } from '@phosphor-icons/react';
-import {
-  Link as FrostedLink,
-  Text as FrostedText,
-  Heading as FrostedHeading,
-} from '@radix-ui/themes';
+import { Link as RadixLink, Text as RadixText, Heading as RadixHeading } from '@radix-ui/themes';
 import Callout from '../../atom/Callout';
 import type { IReviewAlertsProps } from './types';
 import styles from './styles.module.css';
@@ -13,19 +9,19 @@ const ReviewAlerts = ({ alerts }: IReviewAlertsProps) => {
     <div>
       <div className={styles.header}>
         <ListChecksIcon weight="bold" size="24px" />
-        <FrostedHeading as="h2" size="4" weight="medium" className={styles.title}>
+        <RadixHeading as="h2" size="4" weight="medium" className={styles.title}>
           Requires Immediate Attention!
-        </FrostedHeading>
-        <FrostedText size="2" className={styles.viewAll}>
-          <FrostedLink href="#" underline="hover">
+        </RadixHeading>
+        <RadixText size="2" className={styles.viewAll}>
+          <RadixLink href="#" underline="hover">
             View All
-          </FrostedLink>
-        </FrostedText>
+          </RadixLink>
+        </RadixText>
       </div>
       {alerts.length > 0 ? (
         <Callout message={alerts[0].message} variant={alerts[0].variant} />
       ) : (
-        <FrostedText as="p">No alerts to review.</FrostedText>
+        <RadixText as="p">No alerts to review.</RadixText>
       )}
     </div>
   );

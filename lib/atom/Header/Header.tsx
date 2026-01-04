@@ -1,4 +1,4 @@
-import { Text as FrostedText, Heading as FrostedHeading, Separator } from '@radix-ui/themes';
+import { Text as RadixText, Heading as RadixHeading, Separator } from '@radix-ui/themes';
 import { Flex } from '@radix-ui/themes';
 import type { IHeaderProps } from './Header.types';
 
@@ -13,17 +13,17 @@ export const Header = ({
     <>
       <Flex direction="column" gap="1" px="5" py="4">
         {metaInfo && (
-          <FrostedText size="2" color="gray" as="p">
+          <RadixText size="2" color="gray" as="p">
             {metaInfo}
-          </FrostedText>
+          </RadixText>
         )}
-        <FrostedHeading size={headerSize} as={headerAs}>
+        <RadixHeading size={headerSize} as={headerAs}>
           {title}
-        </FrostedHeading>
+        </RadixHeading>
         {subtitle && (
-          <FrostedText size="2" color="gray" as="p">
+          <RadixText size="2" color="gray" as="p">
             {subtitle}
-          </FrostedText>
+          </RadixText>
         )}
       </Flex>
       <Separator color="gray" orientation="horizontal" size="4" />

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge as FrostedBadge, Text as FrostedText } from '@radix-ui/themes';
+import { Badge as RadixBadge, Text as RadixText } from '@radix-ui/themes';
 
 import { Table, type ITableProps } from '../..';
 import type { ReactNode } from 'react';
@@ -13,9 +13,9 @@ function generateDate() {
 
 function generateRows(numRows: number) {
   const severity = [
-    <FrostedBadge color="red">Critical</FrostedBadge>,
-    <FrostedBadge color="yellow">Warning</FrostedBadge>,
-    <FrostedBadge color="blue">Info</FrostedBadge>,
+    <RadixBadge color="red">Critical</RadixBadge>,
+    <RadixBadge color="yellow">Warning</RadixBadge>,
+    <RadixBadge color="blue">Info</RadixBadge>,
   ];
   const orgs = ['Executive', 'Finance', 'HR', 'Engineering', 'Marketing'];
   const status = ['Exclusive', 'Default', 'Critical', 'Info'];
@@ -29,12 +29,12 @@ function generateRows(numRows: number) {
         id: `event-${index}`,
         content: (
           <>
-            <FrostedText size="3" weight="medium" as="p">
+            <RadixText size="3" weight="medium" as="p">
               Deepfake Detected
-            </FrostedText>
-            <FrostedText size="2" weight="regular">
+            </RadixText>
+            <RadixText size="2" weight="regular">
               Attendees: Sean, Noah, Aman
-            </FrostedText>
+            </RadixText>
           </>
         ),
       },

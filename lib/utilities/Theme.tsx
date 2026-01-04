@@ -1,9 +1,9 @@
 import React from 'react';
-import { Theme as FrostedTheme } from '@radix-ui/themes';
+import { Theme as RadixTheme } from '@radix-ui/themes';
 
-type FrostedThemeProps = React.ComponentProps<typeof FrostedTheme>;
+type RadixThemeProps = React.ComponentProps<typeof RadixTheme>;
 
-const defaultThemeProps: Partial<FrostedThemeProps> = {
+const defaultThemeProps: Partial<RadixThemeProps> = {
   appearance: 'light',
   accentColor: 'crimson',
   grayColor: 'gray',
@@ -13,12 +13,12 @@ const defaultThemeProps: Partial<FrostedThemeProps> = {
   // infoColor: 'blue',
 };
 
-export const Theme: React.FC<FrostedThemeProps> = ({ children, style, ...rest }) => {
-  const merged = { ...defaultThemeProps, ...rest } as FrostedThemeProps;
+export const Theme: React.FC<RadixThemeProps> = ({ children, style, ...rest }) => {
+  const merged = { ...defaultThemeProps, ...rest } as RadixThemeProps;
   // If caller passes a style prop, allow it to override or extend any defaults.
   if (style) merged.style = { ...(merged.style as React.CSSProperties | undefined), ...style };
 
-  return <FrostedTheme {...merged}>{children}</FrostedTheme>;
+  return <RadixTheme {...merged}>{children}</RadixTheme>;
 };
 
 export default Theme;

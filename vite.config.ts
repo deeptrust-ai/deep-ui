@@ -40,6 +40,9 @@ export default defineConfig({
     ],
   },
   build: {
+    // Prevent the watch build from deleting dist between rebuilds,
+    // which breaks consumers during HMR.
+    emptyOutDir: false,
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, 'lib/index.ts'),

@@ -1,6 +1,6 @@
 # DeepUI — README
 
-This README explains how to build the component library, scaffold new components, validate a developer release, and consume the package locally or from a tarball.
+This README explains how to build the component library, scaffold new components, validate a developer release, and consume the package locally or from a tarball. DeepUI is also used as a git submodule in VoxGuard.
 
 ---
 
@@ -14,8 +14,7 @@ This README explains how to build the component library, scaffold new components
     "peerDependencies": {
       "react": "19.2.0",
       "react-dom": "19.2.0",
-      "@phosphor-icons/react": "2.1.10",
-      "frosted-ui": "0.0.1-canary.85"
+      "@phosphor-icons/react": "2.1.10"
     }
   }
   ```
@@ -25,6 +24,7 @@ This README explains how to build the component library, scaffold new components
 | Script                         | Description                                                         |
 | ------------------------------ | ------------------------------------------------------------------- |
 | `npm run build`                | Builds library artifacts to `dist/` (runs during `prepublishOnly`). |
+| `npm run build:watch`          | Builds `dist/` in watch mode for local dev.                         |
 | `npm run storybook`            | Starts Storybook locally on port 6006.                              |
 | `npm run build-storybook`      | Emits the static Storybook build to `storybook-static/`.            |
 | `npm run generate`             | Plop generator that scaffolds new components.                       |
@@ -117,8 +117,8 @@ TARBALL=$(pwd)/deeptrust-deep-ui-0.0.1-dev.tgz   # adjust if you bump the versio
 
 pushd "$TMP_DIR"
 npm init -y >/dev/null
-npm install react@19.2.0 react-dom@19.2.0 \
-  @phosphor-icons/react@2.1.10 frosted-ui@0.0.1-canary.85
+  npm install react@19.2.0 react-dom@19.2.0 \
+  @phosphor-icons/react@2.1.10
 npm install "$TARBALL"
 
 cat <<'EOF' > smoke.mjs
@@ -200,6 +200,18 @@ npm link @deeptrust-ai/deep-ui
 ```
 
 Rebuild DeepUI (`npm run build`) before testing changes in the consumer app.
+
+### Option D — VoxGuard submodule (local dev)
+
+When working in the VoxGuard repo, DeepUI is a submodule at `packages/deep-ui`.
+To see changes immediately:
+
+```bash
+# in VoxGuard
+npm run deep-ui:build:watch
+```
+
+Then run the VoxGuard dev server in another terminal.
 
 ### Option C — Local file reference / monorepo
 

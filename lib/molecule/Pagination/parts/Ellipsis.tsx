@@ -1,5 +1,5 @@
 import { DotsThreeIcon } from '@phosphor-icons/react';
-import { DropdownMenu as FrostedDropdownMenu, IconButton } from '@radix-ui/themes';
+import { DropdownMenu as RadixDropdownMenu, IconButton } from '@radix-ui/themes';
 import styles from '../Pagination.module.css';
 
 interface IEllipsisProps {
@@ -9,8 +9,8 @@ interface IEllipsisProps {
 
 const Ellipsis = ({ pages, setPage }: IEllipsisProps) => {
   return (
-    <FrostedDropdownMenu.Root>
-      <FrostedDropdownMenu.Trigger>
+    <RadixDropdownMenu.Root>
+      <RadixDropdownMenu.Trigger>
         <IconButton
           variant="outline"
           color="gray"
@@ -19,15 +19,15 @@ const Ellipsis = ({ pages, setPage }: IEllipsisProps) => {
         >
           <DotsThreeIcon weight="bold" />
         </IconButton>
-      </FrostedDropdownMenu.Trigger>
-      <FrostedDropdownMenu.Content size="2" variant="soft">
+      </RadixDropdownMenu.Trigger>
+      <RadixDropdownMenu.Content size="2" variant="soft">
         {pages.map((p) => (
-          <FrostedDropdownMenu.Item key={p} onClick={() => setPage(p)}>
+          <RadixDropdownMenu.Item key={p} onClick={() => setPage(p)}>
             {p}
-          </FrostedDropdownMenu.Item>
+          </RadixDropdownMenu.Item>
         ))}
-      </FrostedDropdownMenu.Content>
-    </FrostedDropdownMenu.Root>
+      </RadixDropdownMenu.Content>
+    </RadixDropdownMenu.Root>
   );
 };
 

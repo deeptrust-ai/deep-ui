@@ -1,4 +1,4 @@
-import { Text as FrostedText, Select as FrostedSelect } from '@radix-ui/themes';
+import { Text as RadixText, Select as RadixSelect } from '@radix-ui/themes';
 import { PAGE_SIZE_OPTIONS } from '../constants';
 import type { TPaginationItemsPerPage } from '../types';
 
@@ -10,19 +10,19 @@ interface IRowsPerPageProps {
 const RowsPerPage = ({ itemsPerPage, onChange }: IRowsPerPageProps) => {
   return (
     <>
-      <FrostedText size="3" color="gray">
+      <RadixText size="3" color="gray">
         Show
-      </FrostedText>
-      <FrostedSelect.Root value={itemsPerPage} size="3" onValueChange={onChange}>
-        <FrostedSelect.Trigger variant="surface" aria-label="Rows Showing Per Page" />
-        <FrostedSelect.Content>
+      </RadixText>
+      <RadixSelect.Root value={itemsPerPage} size="3" onValueChange={onChange}>
+        <RadixSelect.Trigger variant="surface" aria-label="Rows Showing Per Page" />
+        <RadixSelect.Content>
           {PAGE_SIZE_OPTIONS.map((size) => (
-            <FrostedSelect.Item key={size} value={size}>
+            <RadixSelect.Item key={size} value={size}>
               {size}
-            </FrostedSelect.Item>
+            </RadixSelect.Item>
           ))}
-        </FrostedSelect.Content>
-      </FrostedSelect.Root>
+        </RadixSelect.Content>
+      </RadixSelect.Root>
     </>
   );
 };

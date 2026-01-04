@@ -8,10 +8,20 @@ const AttendeeBadge = ({
   children,
   chip,
   icon: Icon,
+  color,
+  variant,
+  radius,
+  className,
   ...rest
 }: PropsWithChildren<IAttendeeBadgeProps>) => {
   return (
-    <Badge color="gray" variant="surface" radius="large" className={styles.badge} {...rest}>
+    <Badge
+      color={color ?? 'gray'}
+      variant={variant ?? 'surface'}
+      radius={radius ?? 'large'}
+      className={`${styles.badge} ${className ?? ''}`}
+      {...rest}
+    >
       {Icon && <Icon weight="bold" size="16px" />}
       <Text size="1">{children}</Text>
       {chip && <Chip text={chip} />}

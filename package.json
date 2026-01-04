@@ -23,6 +23,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build": "vite build",
+    "build:watch": "vite build --watch",
     "generate": "plop",
     "lint:library": "eslint \"lib/**/*.@(ts|tsx)\"",
     "lint:stories": "eslint \"**/*.stories.@(ts|tsx|mdx)\"",

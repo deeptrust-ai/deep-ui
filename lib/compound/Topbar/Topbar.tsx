@@ -34,7 +34,10 @@ const Topbar = ({
               shortcut={item.shortcut}
             >
               {item.link ? (
-                <Link href={item.link}>{item.label}</Link>
+                <Link href={item.link}>
+                  {item.icon && <item.icon size={14} />}
+                  {item.label}
+                </Link>
               ) : (
                 <Button variant="ghost" size="1" onClick={item.onClick}>
                   {item.icon && <item.icon size={14} />}

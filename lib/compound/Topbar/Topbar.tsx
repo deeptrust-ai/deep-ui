@@ -29,7 +29,6 @@ const Topbar = ({
           {userMetaDropdown?.dropdownItem?.map((item) => (
             <DropdownMenu.Item
               key={item.label}
-              onClick={item.onClick}
               asChild
               shortcut={item.shortcut}
             >

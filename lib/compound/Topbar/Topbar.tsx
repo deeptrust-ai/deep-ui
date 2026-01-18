@@ -21,7 +21,7 @@ const Topbar = ({
 
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>
-          <IconButton variant="ghost" radius="full">
+          <IconButton variant="ghost" radius="full" aria-label="User menu">
             <Avatar name={userName} pfp={userPfp} />
           </IconButton>
         </DropdownMenu.Trigger>

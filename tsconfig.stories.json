@@ -7,5 +7,6 @@
     ".storybook/**/*.stories.(ts|tsx|mdx)",
     ".storybook/**/*",
     "../lib/**/*.stories.(ts|tsx|mdx)"
-  ]
+  ],
+  "exclude": [".storybook/vitest.config.ts"]
 }

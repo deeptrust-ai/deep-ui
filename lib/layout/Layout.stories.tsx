@@ -9,7 +9,6 @@ const meta = {
   component: Layout,
   parameters: {
     layout: 'fullscreen',
-    chromatic: { disableSnapshot: true },
   },
   args: {
     sidebar: undefined,

@@ -1,13 +1,16 @@
-const { resolve } = require('node:path');
+const { dirname, resolve } = require('node:path');
+
+const getAbsolutePath = (packageName) =>
+  dirname(require.resolve(`${packageName}/package.json`));
 
 /** @type {import('@storybook/react-vite').StorybookConfig} */
 const config = {
   stories: ['./stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
   addons: [
-    '@chromatic-com/storybook',
-    '@storybook/addon-docs',
-    '@storybook/addon-a11y',
-    '@storybook/addon-vitest',
+    getAbsolutePath('@chromatic-com/storybook'),
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-vitest'),
   ],
   core: {
     builder: '@storybook/builder-vite',

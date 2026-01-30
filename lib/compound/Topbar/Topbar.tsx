@@ -27,11 +27,7 @@ const Topbar = ({
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
           {userMetaDropdown?.dropdownItem?.map((item) => (
-            <DropdownMenu.Item
-              key={item.label}
-              asChild
-              shortcut={item.shortcut}
-            >
+            <DropdownMenu.Item key={item.label} asChild shortcut={item.shortcut}>
               {item.link ? (
                 <Link href={item.link}>
                   {item.icon && <item.icon size={14} />}

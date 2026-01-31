@@ -13,16 +13,16 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
-        <Flex align="center">
-          <Button variant="ghost" color="gray" className={styles.triggerButton} type="button">
+      <DropdownMenu.Trigger asChild>
+        <Button variant="ghost" color="gray" className={styles.triggerButton} type="button">
+          <Flex align="center" gap="2">
             <Text color="gray" size="1">
               <BuildingsIcon size={16} className={styles.icon} weight="bold" />
               {selectedOrg.name}
               <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
             </Text>
-          </Button>
-        </Flex>
+          </Flex>
+        </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2" variant="soft" className={styles.orgDropdown}>
         <DropdownMenu.Label>Organizations</DropdownMenu.Label>

@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs, type ITabsProps } from '../..';
+import { VerticalTabs, type IVerticalTabsProps } from '../..';
 
 const meta = {
   title: 'Molecule/Tabs',
-  component: Tabs,
+  component: VerticalTabs,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   args: {},
-} satisfies Meta<ITabsProps>;
+} satisfies Meta<IVerticalTabsProps>;
 
 export default meta;
 

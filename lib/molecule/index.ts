@@ -7,5 +7,4 @@ export { default as Pagination, type IPaginationProps } from './Pagination';
 export { default as TableRow, type ITableRowProps } from './TableRow';
 export { default as AttendeeBadge, type IAttendeeBadgeProps } from './AttendeeBadge/AttendeeBadge';
 
-
-export { default as Tabs, type ITabsProps } from './Tabs/Tabs';
+export { default as VerticalTabs, type IVerticalTabsProps } from './VerticalTabs/VerticalTabs';

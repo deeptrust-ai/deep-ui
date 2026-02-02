@@ -4,6 +4,9 @@ import { Flex, Text } from '@radix-ui/themes';
 import { subDays } from 'date-fns';
 import { useState } from 'react';
 
+const FIXED_FROM_DATE = new Date('2026-01-15T12:00:00.000Z');
+const FIXED_TO_DATE = subDays(FIXED_FROM_DATE, -4);
+
 const meta = {
   title: 'Compound/DateRangePicker',
   component: DateRangePicker,
@@ -11,7 +14,10 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  args: {},
+  args: {
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
+  },
 } satisfies Meta<IDateRangePickerProps>;
 
 export default meta;
@@ -20,19 +26,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
-const defaultFromDate = new Date();
-const defaultToDate = subDays(defaultFromDate, -4);
-
 export const WithInitialRange: Story = {
   args: {
-    fromDate: defaultFromDate,
-    toDate: defaultToDate,
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
   },
 };
 
 const ControlledStory = () => {
-  const [fromDate, setFromDate] = useState<Date | null>(defaultFromDate);
-  const [toDate, setToDate] = useState<Date | null>(defaultToDate);
+  const [fromDate, setFromDate] = useState<Date | null>(FIXED_FROM_DATE);
+  const [toDate, setToDate] = useState<Date | null>(FIXED_TO_DATE);
 
   const formatValue = (value: Date | null) =>
     value

@@ -1,6 +1,6 @@
-import { DropdownMenu, Text, Flex } from '@radix-ui/themes';
+import { DropdownMenu, Text, Flex, Button } from '@radix-ui/themes';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
-import styles from './styles.module.css';
+import styles from './OrganizationDropdown.module.css';
 import type { IOrganizationDropdownProps } from './types';
 
 /**
@@ -13,14 +13,16 @@ export const OrganizationDropdown = ({ organizations }: IOrganizationDropdownPro
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className={styles.triggerButton} type="button">
-        <Flex align="center" gap="2">
-          <Text color="gray" size="1">
-            <BuildingsIcon size={16} className={styles.icon} weight="bold" />
-            {selectedOrg.name}
-            <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
-          </Text>
-        </Flex>
+      <DropdownMenu.Trigger>
+        <Button variant="ghost" color="gray" className={styles.triggerButton}>
+          <Flex align="center" gap="2">
+            <Text color="gray" size="1">
+              <BuildingsIcon size={16} className={styles.icon} weight="bold" />
+              {selectedOrg.name}
+              <CaretUpDownIcon size={16} className={styles.icon} weight="bold" />
+            </Text>
+          </Flex>
+        </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2" variant="soft" className={styles.orgDropdown}>
         <DropdownMenu.Label>Organizations</DropdownMenu.Label>

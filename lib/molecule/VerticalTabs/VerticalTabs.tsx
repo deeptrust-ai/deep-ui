@@ -9,8 +9,7 @@ import type {
 } from './VerticalTabs.types';
 import styles from './VerticalTabs.module.css';
 
-const Root = ({ className, orientation, ...props }: IVerticalTabsRootProps) => {
-  void orientation; // to avoid unused variable warning
+const Root = ({ className, ...props }: IVerticalTabsRootProps) => {
   return <RadixTabs.Root className={classNames(styles.root, className)} {...props} />;
 };
 

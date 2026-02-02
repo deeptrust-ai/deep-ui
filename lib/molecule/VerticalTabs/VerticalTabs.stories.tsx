@@ -1,8 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { VerticalTabs } from '../..';
 
-const TabsDemo = () => {
-  return (
+const meta = {
+  title: 'Molecule/VerticalTabs',
+  component: VerticalTabs.Root,
+  parameters: {
+    layout: 'centered',
+  },
+  tags: ['autodocs'],
+} satisfies Meta<typeof VerticalTabs.Root>;
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  render: () => (
     <VerticalTabs.Root defaultValue="overview" style={{ maxWidth: 640 }}>
       <VerticalTabs.List>
         <VerticalTabs.Trigger value="overview">Overview</VerticalTabs.Trigger>
@@ -19,21 +32,5 @@ const TabsDemo = () => {
         Review invoices and update subscription information.
       </VerticalTabs.Content>
     </VerticalTabs.Root>
-  );
+  ),
 };
-
-const meta = {
-  title: 'Molecule/Tabs',
-  component: TabsDemo,
-  parameters: {
-    layout: 'centered',
-  },
-  tags: ['autodocs'],
-  args: {},
-} satisfies Meta<typeof TabsDemo>;
-
-export default meta;
-
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {};

@@ -3,13 +3,13 @@ import styles from './InboxView.module.css';
 import ContentWrapper from '../../atom/ContentWrapper/ContentWrapper';
 import { Box, Button, Flex, Heading, IconButton, Tabs, Text } from '@radix-ui/themes';
 import { useState } from 'react';
-import TimelineTranscript from './parts/TimelineTranscript';
 import CallList from './parts/CallList';
 import { SidebarSimpleIcon } from '@phosphor-icons/react';
 import Users from './parts/Users';
 import RiskAnalysis from './parts/RiskAnalysis';
+import { TranscriptItem } from '../../molecule';
 
-const InboxView = (_props: IInboxViewProps) => {
+const InboxView = () => {
   const [callListCollapsed, setCallListCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState<'users' | 'risk-analysis'>('users');
 
@@ -79,8 +79,21 @@ const InboxView = (_props: IInboxViewProps) => {
         </Flex>
       </ContentWrapper>
 
-      <ContentWrapper height={'100%'}>
-        <TimelineTranscript />
+      <ContentWrapper
+        height={'100%'}
+        width="100%"
+        overflowX={'auto'}
+        p="4"
+        className={styles.transactionTimelineWrapper}
+      >
+        <Heading size="4" mb="3">
+          Call Timeline & Transcript
+        </Heading>
+        <Flex gap="2" direction={'column'} pb="4">
+          {Array.from({ length: 26 }, (_, index) => (
+            <TranscriptItem key={index} />
+          ))}
+        </Flex>
       </ContentWrapper>
     </Flex>
   );

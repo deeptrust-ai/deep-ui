@@ -15,3 +15,6 @@ export {
   type IVerticalTabsTriggerProps,
   type IVerticalTabsContentProps,
 } from './VerticalTabs/VerticalTabs';
+
+
+export { default as TranscriptItem, type ITranscriptItemProps } from './TranscriptItem';

@@ -1,4 +1,4 @@
-import { Text, Heading, Flex, HoverCard, Link, Box } from '@radix-ui/themes';
+import { Text, Heading, Flex, HoverCard, Link, Box, Button } from '@radix-ui/themes';
 import cn from 'classnames';
 
 import styles from '../InboxView.module.css';
@@ -50,43 +50,47 @@ const CallList = ({ selectedCallID }: { readonly selectedCallID?: string }) => {
             gap="1"
             direction={'column'}
             aria-description={item.isNewMessage ? 'New Message' : undefined}
+            asChild
           >
-            <Flex justify={'between'} align="center">
-              <Heading size="2">New Year Sync</Heading>
-              {item.isNewMessage && <Box className={styles.newMessageBadge} />}
-            </Flex>
-            <Text as="p" size={'2'}>
-              January 1, 2024 at 12:00 AM
-            </Text>
-
-            <Text as="p" size="1">
-              <Text weight="bold" mr="1">
-                Violation:{' '}
+            <Button variant="outline">
+              <Flex justify={'between'} align="center" className={styles.callListItemHeading}>
+                <Heading size="2">New Year Sync</Heading>
+                {item.isNewMessage && <Box className={styles.newMessageBadge} />}
+              </Flex>
+              <Text as="p" size={'2'} color="gray">
+                January 1, 2024 at 12:00 AM
               </Text>
-              <HoverCard.Root>
-                <HoverCard.Trigger>
-                  <Text color="red" style={{ borderBottom: '1px dashed red', cursor: 'help' }}>
-                    SOP-007
-                  </Text>
-                </HoverCard.Trigger>
-                <HoverCard.Content maxWidth="300px">
-                  <Heading size="3" mb="2">
-                    SOP-007
-                  </Heading>
-                  <Text size="2" as="p">
-                    This is where the description of the violation would go. It would explain what
-                    the violation is, why it is a violation, and any other relevant information that
-                    would help the user understand the violation and how to avoid it in the future.
-                  </Text>
 
-                  <Text size="2" as="p" align="right" mt="2">
-                    <Link href="/settings/sop">
-                      More Information <ArrowSquareOutIcon />
-                    </Link>
-                  </Text>
-                </HoverCard.Content>
-              </HoverCard.Root>
-            </Text>
+              <Text as="p" size="1" color="gray">
+                <Text weight="bold" mr="1">
+                  Violation:{' '}
+                </Text>
+                <HoverCard.Root>
+                  <HoverCard.Trigger>
+                    <Text color="red" style={{ borderBottom: '1px dashed red', cursor: 'help' }}>
+                      SOP-007
+                    </Text>
+                  </HoverCard.Trigger>
+                  <HoverCard.Content maxWidth="300px">
+                    <Heading size="3" mb="2">
+                      SOP-007
+                    </Heading>
+                    <Text size="2" as="p">
+                      This is where the description of the violation would go. It would explain what
+                      the violation is, why it is a violation, and any other relevant information
+                      that would help the user understand the violation and how to avoid it in the
+                      future.
+                    </Text>
+
+                    <Text size="2" as="p" align="right" mt="2">
+                      <Link href="/settings/sop">
+                        More Information <ArrowSquareOutIcon />
+                      </Link>
+                    </Text>
+                  </HoverCard.Content>
+                </HoverCard.Root>
+              </Text>
+            </Button>
           </Flex>
         ))}
       </Flex>

@@ -14,10 +14,15 @@ const InboxView = (_props: IInboxViewProps) => {
   const [activeTab, setActiveTab] = useState<'users' | 'risk-analysis'>('users');
 
   return (
-    <Flex gap="3" width="100%">
-      <ContentWrapper className={styles.inboxViewWrapper}>
-        <Flex width="100%">
-          {!callListCollapsed && <CallList />}
+    <Flex gap="3" width="100%" height="100vh" direction={'row'}>
+      <ContentWrapper
+        className={styles.inboxViewWrapper}
+        flexBasis="60%"
+        flexGrow="0"
+        flexShrink="0"
+      >
+        <Flex width="100%" height="100%">
+          {!callListCollapsed && <CallList selectedCallID="call-list-item-1" />}
 
           <Box className={styles.alertDetails} py="4" px="4" flexShrink={'1'} flexGrow={'1'}>
             <Flex justify="between">
@@ -74,7 +79,7 @@ const InboxView = (_props: IInboxViewProps) => {
         </Flex>
       </ContentWrapper>
 
-      <ContentWrapper>
+      <ContentWrapper height={'100%'}>
         <TimelineTranscript />
       </ContentWrapper>
     </Flex>

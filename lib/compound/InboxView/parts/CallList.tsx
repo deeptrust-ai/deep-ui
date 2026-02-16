@@ -1,25 +1,60 @@
-import { Text, Box, Heading, Flex, HoverCard, Link } from '@radix-ui/themes';
+import { Text, Heading, Flex, HoverCard, Link, Box } from '@radix-ui/themes';
+import cn from 'classnames';
 
 import styles from '../InboxView.module.css';
 import { ArrowSquareOutIcon } from '@phosphor-icons/react';
 
-const CallList = () => {
+const CallList = ({ selectedCallID }: { readonly selectedCallID?: string }) => {
+  const items = Array.from({ length: 26 }, (_, index) => ({
+    id: `call-list-item-${index}`,
+    // Deterministic flags to keep render pure and lint-friendly.
+    isNewMessage: index % 4 === 0,
+    isSelected: `call-list-item-${index}` === selectedCallID,
+  }));
+
   return (
     <Flex
       className={styles.recentAlerts}
-      py="5"
-      px="4"
-      width={'250px'}
+      pb="4"
+      minWidth={'250px'}
       gap="2"
       direction={'column'}
+      overflowY={'auto'}
+      position={'relative'}
     >
-      <Heading size="3">Call List</Heading>
+      <Heading
+        size="3"
+        style={{
+          position: 'sticky',
+          top: 0,
+          backgroundColor: 'var(--gray-1)',
+          zIndex: 1,
+          paddingTop: 'var(--space-4)',
+          paddingBottom: 'var(--space-2)',
+          boxShadow: 'inset 0 -1px 0 0 var(--gray-a4)',
+          paddingInline: 'var(--space-4)',
+          marginRight: '1px',
+        }}
+      >
+        Call List
+      </Heading>
 
-      <Flex direction={'column'}>
-        {/* loop through 10 times to mock out the data */}
-        {[...Array(10)].map(() => (
-          <Flex className={styles.callListItem} p="3" gap="1" direction={'column'}>
-            <Heading size="2">New Year Sync</Heading>
+      <Flex direction={'column'} gap="2" px="4">
+        {items.map((item) => (
+          <Flex
+            key={item.id}
+            className={cn(styles.callListItem, {
+              [styles.callListItemSelected]: item.isSelected,
+            })}
+            p="3"
+            gap="1"
+            direction={'column'}
+            aria-description={item.isNewMessage ? 'New Message' : undefined}
+          >
+            <Flex justify={'between'} align="center">
+              <Heading size="2">New Year Sync</Heading>
+              {item.isNewMessage && <Box className={styles.newMessageBadge} />}
+            </Flex>
             <Text as="p" size={'2'}>
               January 1, 2024 at 12:00 AM
             </Text>

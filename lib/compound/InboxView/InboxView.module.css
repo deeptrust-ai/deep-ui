@@ -1,5 +1,5 @@
 .inboxViewWrapper {
-  flex: 1;
+  /* flex: 1; */
 
   > div {
     padding: 0;
@@ -8,14 +8,24 @@
 
 .recentAlerts {
   box-shadow: inset -1px 0 0 0 var(--gray-a5);
-  padding-right: var(--space-4);
 }
 
 .alertDetails {
 }
 
 .callListItem {
-  box-shadow: inset 0 0 0 1px var(--blue-9);
   border-radius: var(--radius-5);
   background-color: var(--color-background);
+  box-shadow: inset 0 0 0 1px var(--gray-a4);
+}
+
+.callListItemSelected {
+  box-shadow: inset 0 0 0 1px var(--blue-9);
+}
+
+.newMessageBadge {
+  border-radius: var(--radius-5);
+  background-color: var(--blue-5);
+  width: 6px;
+  height: 6px;
 }

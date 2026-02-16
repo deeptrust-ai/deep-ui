@@ -15,7 +15,7 @@ const ContentWrapper = ({
   return (
     <Box className={cn(styles.wrapper, className)} height="100%" {...rest}>
       {title && <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />}
-      <Box py="4" px="5">
+      <Box py="4" px="5" height="100%">
         {children}
       </Box>
     </Box>

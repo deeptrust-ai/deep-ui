@@ -7,7 +7,7 @@ import CallList from './parts/CallList';
 import { SidebarSimpleIcon } from '@phosphor-icons/react';
 import Users from './parts/Users';
 import RiskAnalysis from './parts/RiskAnalysis';
-import { TranscriptItem } from '../../molecule';
+import TranscriptItem from './parts/TranscriptItem';
 
 const InboxView = () => {
   const [callListCollapsed, setCallListCollapsed] = useState(false);

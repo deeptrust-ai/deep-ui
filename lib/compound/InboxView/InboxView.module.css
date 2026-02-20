@@ -10,6 +10,8 @@
 }
 
 .alertDetails {
+  background-color: var(--color-background);
+  z-index: 1;
 }
 
 .callListItem {
@@ -22,7 +24,7 @@
 }
 
 .callListItemHeading {
-  color: #000;
+  color: var(--gray-12);
   width: 100%;
 }
 
@@ -35,4 +37,11 @@
   background-color: var(--blue-5);
   width: 6px;
   height: 6px;
+}
+
+.tabContentRoot {
+  height: 100%;
+  flex: 1;
+  position: relative;
+  padding-inline: var(--space-4);
 }

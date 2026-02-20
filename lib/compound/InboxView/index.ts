@@ -1,2 +1,2 @@
 export { default } from './InboxView';
-export type { IInboxViewProps } from './InboxView.types';
+export type { IInboxViewProps, InboxViewTabs } from './InboxView.types';

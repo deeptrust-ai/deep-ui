@@ -1,3 +1,9 @@
+export type InboxViewTabs = {
+  label: string;
+  value: string;
+  content: React.ReactNode;
+};
+
 export interface IInboxViewProps {
-  // TODO: define component props
+  tabs: Array<InboxViewTabs>;
 }

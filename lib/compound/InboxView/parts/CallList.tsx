@@ -20,6 +20,7 @@ const CallList = ({ selectedCallID }: { readonly selectedCallID?: string }) => {
       gap="2"
       direction={'column'}
       overflowY={'auto'}
+      overflowX="hidden"
       position={'relative'}
     >
       <Heading

@@ -37,7 +37,7 @@ const CallList = ({ calls }: { readonly calls?: Array<CallListItem> }) => {
       </Heading>
 
       <Flex direction={'column'} gap="2" px="4">
-        {calls.map((item) => (
+        {calls?.map((item) => (
           <Flex
             key={item.id}
             className={cn(styles.callListItem, {

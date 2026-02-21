@@ -1,9 +1,14 @@
-export type InboxViewTabs = {
-  label: string;
-  value: string;
-  content: React.ReactNode;
+export type CallListItem = {
+  id: string;
+  label: React.ReactNode | string;
+  startTime: string;
+  severity: string;
+  onClick: () => void;
+  active: boolean;
+  read: boolean;
 };
 
 export interface IInboxViewProps {
-  tabs: Array<InboxViewTabs>;
+  content: React.ReactNode;
+  callList: Array<CallListItem>;
 }

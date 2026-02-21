@@ -3,20 +3,16 @@ import cn from 'classnames';
 
 import styles from '../InboxView.module.css';
 import { ArrowSquareOutIcon } from '@phosphor-icons/react';
+import type { CallListItem } from '../InboxView.types';
 
-const CallList = ({ selectedCallID }: { readonly selectedCallID?: string }) => {
-  const items = Array.from({ length: 26 }, (_, index) => ({
-    id: `call-list-item-${index}`,
-    // Deterministic flags to keep render pure and lint-friendly.
-    isNewMessage: index % 4 === 0,
-    isSelected: `call-list-item-${index}` === selectedCallID,
-  }));
-
+const CallList = ({ calls }: { readonly calls?: Array<CallListItem> }) => {
   return (
     <Flex
       className={styles.recentAlerts}
       pb="4"
       minWidth={'250px'}
+      maxWidth={'250px'}
+      width={'250px'}
       gap="2"
       direction={'column'}
       overflowY={'auto'}
@@ -41,25 +37,29 @@ const CallList = ({ selectedCallID }: { readonly selectedCallID?: string }) => {
       </Heading>
 
       <Flex direction={'column'} gap="2" px="4">
-        {items.map((item) => (
+        {calls.map((item) => (
           <Flex
             key={item.id}
             className={cn(styles.callListItem, {
-              [styles.callListItemSelected]: item.isSelected,
+              [styles.callListItemSelected]: item.active,
             })}
             p="3"
             gap="1"
             direction={'column'}
-            aria-description={item.isNewMessage ? 'New Message' : undefined}
+            aria-description={item.read ? 'New Message' : undefined}
             asChild
           >
             <Button variant="outline">
               <Flex justify={'between'} align="center" className={styles.callListItemHeading}>
-                <Heading size="2">New Year Sync</Heading>
-                {item.isNewMessage && <Box className={styles.newMessageBadge} />}
+                <Box asChild maxWidth={'80%'}>
+                  <Heading size="2" truncate>
+                    {item.label}
+                  </Heading>
+                </Box>
+                {!item.read && <Box className={styles.newMessageBadge} />}
               </Flex>
               <Text as="p" size={'2'} color="gray">
-                January 1, 2024 at 12:00 AM
+                {item.startTime}
               </Text>
 
               <Text as="p" size="1" color="gray">

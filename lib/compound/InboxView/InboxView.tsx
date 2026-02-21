@@ -1,28 +1,18 @@
 import type { IInboxViewProps } from './InboxView.types';
 import styles from './InboxView.module.css';
 import ContentWrapper from '../../atom/ContentWrapper/ContentWrapper';
-import { Box, Button, Flex, Heading, IconButton, Tabs, Text } from '@radix-ui/themes';
+import { Box, Button, Flex, Heading, IconButton, Text } from '@radix-ui/themes';
 import { useState } from 'react';
 import CallList from './parts/CallList';
 import { SidebarSimpleIcon } from '@phosphor-icons/react';
 
-const InboxView = (tabs: IInboxViewProps) => {
-  const tabValues = tabs.tabs.map((tab) => tab.value);
+const InboxView = ({ content, callList }: IInboxViewProps) => {
   const [callListCollapsed, setCallListCollapsed] = useState(false);
-  const [activeTab, setActiveTab] = useState<(typeof tabValues)[number]>(tabValues[0]);
-
-  const tabTriggers = tabs.tabs.map((tab) => (
-    <Tabs.Trigger key={tab.value} value={tab.value}>
-      {tab.label}
-    </Tabs.Trigger>
-  ));
-
-  const activeTabContent = tabs.tabs.find((tab) => tab.value === activeTab)?.content;
 
   return (
     <ContentWrapper className={styles.inboxViewWrapper} overflow={'hidden'} height="100%">
       <Flex width="100%" height="100%">
-        {!callListCollapsed && <CallList selectedCallID="call-list-item-1" />}
+        {!callListCollapsed && <CallList calls={callList} />}
 
         <Flex
           pb="4"
@@ -84,21 +74,7 @@ const InboxView = (tabs: IInboxViewProps) => {
             </Box>
           </Flex>
 
-          <Tabs.Root
-            value={activeTab}
-            onValueChange={(value) => {
-              if (value === activeTab) return;
-              if (tabValues.includes(value)) {
-                setActiveTab(value);
-              }
-            }}
-            className={styles.tabContentRoot}
-          >
-            <Tabs.List>{tabTriggers}</Tabs.List>
-            <Tabs.Content value={activeTab}>
-              <Box py="4">{activeTabContent}</Box>
-            </Tabs.Content>
-          </Tabs.Root>
+          <Box px="4">{content}</Box>
         </Flex>
       </Flex>
     </ContentWrapper>

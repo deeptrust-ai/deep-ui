@@ -1,6 +1,5 @@
 import { Box, Card, Flex, Text } from '@radix-ui/themes';
 import { Avatar } from '../../../atom';
-// import styles from '../InboxView.module.css';
 
 const TranscriptItem = () => {
   return (

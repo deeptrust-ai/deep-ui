@@ -1,7 +1,6 @@
 const { dirname, resolve } = require('node:path');
 
-const getAbsolutePath = (packageName) =>
-  dirname(require.resolve(`${packageName}/package.json`));
+const getAbsolutePath = (packageName) => dirname(require.resolve(`${packageName}/package.json`));
 
 /** @type {import('@storybook/react-vite').StorybookConfig} */
 const config = {

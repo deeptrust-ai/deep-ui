@@ -49,7 +49,7 @@ const CallList = ({ calls }: { readonly calls?: Array<CallListItem> }) => {
             aria-description={item.read ? 'New Message' : undefined}
             asChild
           >
-            <Button variant="outline">
+            <Button variant="outline" onClick={item.onClick}>
               <Flex justify={'between'} align="center" className={styles.callListItemHeading}>
                 <Box asChild maxWidth={'80%'}>
                   <Heading size="2" truncate>

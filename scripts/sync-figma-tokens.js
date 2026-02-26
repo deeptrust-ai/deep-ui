@@ -12,7 +12,31 @@ const FILES = {
 };
 const OUT = path.join(process.cwd(), 'packages/deep-ui/lib/styles/colors.css');
 
-const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'));
+const readJson = (filePath) => {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    try {
+      return JSON.parse(content);
+    } catch (parseError) {
+      throw new Error(
+        `Failed to parse JSON from "${filePath}". ` +
+          'Ensure the file contains valid JSON exported from Figma. ' +
+          `Original error: ${parseError.message}`,
+      );
+    }
+  } catch (err) {
+    if (err && err.code === 'ENOENT') {
+      throw new Error(
+        `Required Figma tokens file not found: "${filePath}". ` +
+          'Make sure you have exported tokens from Figma to this path.',
+      );
+    }
+    throw new Error(
+      `Failed to read Figma tokens file "${filePath}". ` +
+        `Original error: ${err.message}`,
+    );
+  }
+};
 
 const walkTokenLeaves = (obj, pathParts = [], out = []) => {
   if (!obj || typeof obj !== 'object') return out;

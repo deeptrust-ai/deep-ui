@@ -371,7 +371,7 @@ const css = `/**
  * - ${FILES.spaceModes}
  *
  * Do not edit manually. Re-run:
- *   node packages/deep-ui/scripts/sync-figma-tokens.js
+ *   node scripts/sync-figma-tokens.js
  */
 
 :root,

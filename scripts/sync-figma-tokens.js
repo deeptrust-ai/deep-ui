@@ -15,7 +15,31 @@ const OUT = path.join(process.cwd(), './lib/styles/colors.css');
 // Treat near-opaque values as fully opaque so output stays canonical (#RRGGBB).
 const ALPHA_OPAQUE_THRESHOLD = 0.999;
 
-const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'));
+const readJson = (filePath) => {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    try {
+      return JSON.parse(content);
+    } catch (parseError) {
+      throw new Error(
+        `Failed to parse JSON from "${filePath}". ` +
+          'Ensure the file contains valid JSON exported from Figma. ' +
+          `Original error: ${parseError.message}`,
+      );
+    }
+  } catch (err) {
+    if (err && err.code === 'ENOENT') {
+      throw new Error(
+        `Required Figma tokens file not found: "${filePath}". ` +
+          'Make sure you have exported tokens from Figma to this path.',
+      );
+    }
+    throw new Error(
+      `Failed to read Figma tokens file "${filePath}". ` +
+        `Original error: ${err.message}`,
+    );
+  }
+};
 
 const walkTokenLeaves = (obj, pathParts = [], out = []) => {
   if (!obj || typeof obj !== 'object') return out;
@@ -411,14 +435,22 @@ const spaceScaleBlocks = spaceScaleSelectors
   })
   .join('\n');
 
+const commentPath = (filePath) => {
+  const relative = path.relative(ROOT, filePath);
+  if (relative && !relative.startsWith('..') && !path.isAbsolute(relative)) {
+    return relative;
+  }
+  return path.basename(filePath);
+};
+
 const css = `/**
  * Generated from Figma token exports.
  * Source files:
- * - ${FILES.light}
- * - ${FILES.dark}
- * - ${FILES.theme}
- * - ${FILES.radiusModes}
- * - ${FILES.spaceModes}
+ * - ${commentPath(FILES.light)}
+ * - ${commentPath(FILES.dark)}
+ * - ${commentPath(FILES.theme)}
+ * - ${commentPath(FILES.radiusModes)}
+ * - ${commentPath(FILES.spaceModes)}
  *
  * Do not edit manually. Re-run:
  *   node scripts/sync-figma-tokens.js

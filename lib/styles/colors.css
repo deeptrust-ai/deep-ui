@@ -1,14 +1,14 @@
 /**
  * Generated from Figma token exports.
  * Source files:
- * - /Users/uxkyle/Code/DeepTrust/DeepUI/figma-export/Color scheme/Light.tokens.json
- * - /Users/uxkyle/Code/DeepTrust/DeepUI/figma-export/Color scheme/Dark.tokens.json
- * - /Users/uxkyle/Code/DeepTrust/DeepUI/figma-export/Theme A.tokens.json
- * - /Users/uxkyle/Code/DeepTrust/DeepUI/figma-export/Mode 1.tokens.json
- * - /Users/uxkyle/Code/DeepTrust/DeepUI/figma-export/Mode 1.tokens 2.json
+ * - scripts/tokens/Light.tokens.json
+ * - scripts/tokens/Dark.tokens.json
+ * - scripts/tokens/Theme.tokens.json
+ * - scripts/tokens/Radius.tokens.json
+ * - scripts/tokens/Space.tokens.json
  *
  * Do not edit manually. Re-run:
- *   node packages/deep-ui/scripts/sync-figma-tokens.js
+ *   node scripts/sync-figma-tokens.js
  */
 
 :root,
@@ -136,7 +136,7 @@
   --blue-a7: rgba(0, 131, 235, 0.443);
   --blue-a8: rgba(0, 132, 230, 0.631);
   --blue-a9: #0090FF;
-  --blue-contrast: #FFFFFF;
+  --blue-contrast: #1C2024;
   --blue-indicator: #4395F3;
   --blue-surface: rgba(0, 140, 255, 0.043);
   --blue-track: #4395F3;
@@ -168,7 +168,7 @@
   --gray-a7: rgba(0, 0, 0, 0.192);
   --gray-a8: rgba(0, 0, 0, 0.267);
   --gray-a9: rgba(0, 0, 0, 0.447);
-  --gray-contrast: #FFFFFF;
+  --gray-contrast: #1C2024;
   --gray-indicator: #8D8D8D;
   --gray-surface: rgba(0, 0, 0, 0.023);
   --gray-track: #8D8D8D;
@@ -196,7 +196,7 @@
   --green-a7: rgba(0, 145, 64, 0.443);
   --green-a8: rgba(0, 146, 75, 0.643);
   --green-a9: rgba(0, 143, 74, 0.812);
-  --green-contrast: #FFFFFF;
+  --green-contrast: #1C2024;
   --green-indicator: #30A46C;
   --green-surface: rgba(0, 163, 47, 0.043);
   --green-track: #30A46C;
@@ -248,7 +248,7 @@
   --orange-a7: rgba(237, 108, 0, 0.549);
   --orange-a8: rgba(227, 95, 0, 0.667);
   --orange-a9: rgba(246, 94, 0, 0.918);
-  --orange-contrast: #FFFFFF;
+  --orange-contrast: #1C2024;
   --orange-indicator: #F48200;
   --orange-surface: rgba(255, 142, 0, 0.071);
   --orange-track: #F48200;
@@ -364,7 +364,7 @@
   --yellow-a7: rgba(210, 161, 0, 0.596);
   --yellow-a8: rgba(201, 151, 0, 0.776);
   --yellow-a9: rgba(255, 225, 0, 0.839);
-  --yellow-contrast: #FFFFFF;
+  --yellow-contrast: #1C2024;
   --yellow-indicator: #FFE629;
   --yellow-surface: rgba(244, 221, 0, 0.086);
   --yellow-track: #FFE629;
@@ -496,7 +496,7 @@
   --green-a7: rgba(80, 253, 172, 0.369);
   --green-a8: rgba(84, 255, 173, 0.451);
   --green-a9: rgba(68, 255, 164, 0.62);
-  --green-contrast: #FFFFFF;
+  --green-contrast: #1C2024;
   --green-indicator: #30A46C;
   --green-surface: rgba(41, 249, 157, 0.043);
   --green-track: #30A46C;
@@ -548,7 +548,7 @@
   --orange-a7: rgba(255, 131, 44, 0.459);
   --orange-a8: rgba(254, 132, 56, 0.616);
   --orange-a9: rgba(254, 109, 21, 0.969);
-  --orange-contrast: #FFFFFF;
+  --orange-contrast: #1C2024;
   --orange-indicator: #F76B15;
   --orange-surface: rgba(254, 109, 0, 0.055);
   --orange-track: #F76B15;
@@ -664,7 +664,7 @@
   --yellow-a7: rgba(253, 203, 34, 0.361);
   --yellow-a8: rgba(253, 202, 50, 0.482);
   --yellow-a9: #FFE629;
-  --yellow-contrast: #FFFFFF;
+  --yellow-contrast: #1C2024;
   --yellow-indicator: #FFE629;
   --yellow-surface: rgba(249, 180, 0, 0.043);
   --yellow-track: #FFE629;

@@ -2,15 +2,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = process.env.FIGMA_TOKENS_ROOT || './colors';
+const ROOT = process.env.FIGMA_TOKENS_ROOT || './scripts/tokens';
 const FILES = {
-  light: path.join(ROOT, 'Color scheme', 'Light.tokens.json'),
-  dark: path.join(ROOT, 'Color scheme', 'Dark.tokens.json'),
-  radiusModes: path.join(ROOT, 'Radius.json'),
+  light: path.join(ROOT, 'Light.tokens.json'),
+  dark: path.join(ROOT, 'Dark.tokens.json'),
+  radiusModes: path.join(ROOT, 'Radius.tokens.json'),
   spaceModes: path.join(ROOT, 'Space.tokens.json'),
   theme: path.join(ROOT, 'Theme.tokens.json'),
 };
-const OUT = path.join(process.cwd(), 'packages/deep-ui/lib/styles/colors.css');
+const OUT = path.join(process.cwd(), './lib/styles/colors.css');
+// Figma exports can emit alpha like 0.999999 for visually opaque colors.
+// Treat near-opaque values as fully opaque so output stays canonical (#RRGGBB).
+const ALPHA_OPAQUE_THRESHOLD = 0.999;
 
 const readJson = (filePath) => JSON.parse(fs.readFileSync(filePath, 'utf8'));
 
@@ -39,13 +42,45 @@ const toColor = (value) => {
   if (value && typeof value === 'object' && typeof value.hex === 'string') {
     const hex = value.hex.toUpperCase();
     const alpha = typeof value.alpha === 'number' ? value.alpha : 1;
-    if (alpha >= 0.999) return hex;
+    if (alpha >= ALPHA_OPAQUE_THRESHOLD) return hex;
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
     return `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(3).replace(/0+$/, '').replace(/\.$/, '')})`;
   }
   throw new Error(`Unsupported color value: ${JSON.stringify(value)}`);
+};
+
+const parseColorToRgb = (value) => {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  const hexMatch = trimmed.match(/^#([0-9a-fA-F]{6})$/);
+  if (hexMatch) {
+    const hex = hexMatch[1];
+    return {
+      r: parseInt(hex.slice(0, 2), 16),
+      g: parseInt(hex.slice(2, 4), 16),
+      b: parseInt(hex.slice(4, 6), 16),
+    };
+  }
+  const rgbMatch = trimmed.match(
+    /^rgba?\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)(?:\s*,\s*[0-9.]+\s*)?\)$/
+  );
+  if (rgbMatch) {
+    return {
+      r: Number(rgbMatch[1]),
+      g: Number(rgbMatch[2]),
+      b: Number(rgbMatch[3]),
+    };
+  }
+  return null;
+};
+
+const chooseContrast = (colorValue, lightContrast, darkContrast) => {
+  const rgb = parseColorToRgb(colorValue);
+  if (!rgb) return lightContrast;
+  const luminance = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
+  return luminance > 0.5 ? darkContrast : lightContrast;
 };
 
 const kebab = (value) =>
@@ -219,6 +254,21 @@ const buildColorEntries = () => {
   addTokenColor('accent-contrast', 'accent-contrast');
   addTokenColor('accent-surface', 'accent-surface');
 
+  const whiteContrastToken = tokenMap.get('white-contrast');
+  const blackContrastToken = tokenMap.get('black-contrast');
+  const whiteContrast = whiteContrastToken
+    ? {
+        light: resolveThemeColor(whiteContrastToken, lightMap),
+        dark: resolveThemeColor(whiteContrastToken, darkMap),
+      }
+    : { light: '#FFFFFF', dark: '#FFFFFF' };
+  const blackContrast = blackContrastToken
+    ? {
+        light: resolveThemeColor(blackContrastToken, lightMap),
+        dark: resolveThemeColor(blackContrastToken, darkMap),
+      }
+    : { light: '#000000', dark: '#000000' };
+
   // Overlay alpha ramps from color scheme.
   for (let i = 1; i <= 12; i += 1) {
     const whitePath = `Overlays/White Alpha/${i}`;
@@ -252,8 +302,8 @@ const buildColorEntries = () => {
     if (!deduped.has(`--${palette}-contrast`)) {
       deduped.set(`--${palette}-contrast`, {
         cssVar: `--${palette}-contrast`,
-        light: '#FFFFFF',
-        dark: '#FFFFFF',
+        light: chooseContrast(nine?.light, whiteContrast.light, blackContrast.light),
+        dark: chooseContrast(nine?.dark, whiteContrast.dark, blackContrast.dark),
       });
     }
     if (!deduped.has(`--${palette}-surface`) && a2) {
@@ -371,7 +421,7 @@ const css = `/**
  * - ${FILES.spaceModes}
  *
  * Do not edit manually. Re-run:
- *   node packages/deep-ui/scripts/sync-figma-tokens.js
+ *   node scripts/sync-figma-tokens.js
  */
 
 :root,

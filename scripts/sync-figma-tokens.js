@@ -361,14 +361,22 @@ const spaceScaleBlocks = spaceScaleSelectors
   })
   .join('\n');
 
+const commentPath = (filePath) => {
+  const relative = path.relative(ROOT, filePath);
+  if (relative && !relative.startsWith('..') && !path.isAbsolute(relative)) {
+    return relative;
+  }
+  return path.basename(filePath);
+};
+
 const css = `/**
  * Generated from Figma token exports.
  * Source files:
- * - ${FILES.light}
- * - ${FILES.dark}
- * - ${FILES.theme}
- * - ${FILES.radiusModes}
- * - ${FILES.spaceModes}
+ * - ${commentPath(FILES.light)}
+ * - ${commentPath(FILES.dark)}
+ * - ${commentPath(FILES.theme)}
+ * - ${commentPath(FILES.radiusModes)}
+ * - ${commentPath(FILES.spaceModes)}
  *
  * Do not edit manually. Re-run:
  *   node scripts/sync-figma-tokens.js

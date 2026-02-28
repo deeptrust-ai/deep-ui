@@ -12,7 +12,7 @@ const Severity = ({ level, textOnly, iconOnly }: ISeverityProps) => {
 
   return (
     <Flex display="inline-flex" align="center" gap="2">
-      {(iconOnly || !textOnly) && <span className={dotStyles} />}
+      {(iconOnly || !textOnly) && <span className={dotStyles} data-radius={"full"} />}
       {(!iconOnly || textOnly) && (
         <Text size="2" className={textStyles}>
           {displayText}

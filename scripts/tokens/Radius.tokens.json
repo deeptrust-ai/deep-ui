@@ -657,8 +657,8 @@
       }
     },
     "1-max": {
-      "$type": "number",
-      "$value": 9999,
+      "$type": "string",
+      "$value": "50%",
       "$extensions": {
         "com.figma.variableId": "VariableID:2816:33571",
         "com.figma.hiddenFromPublishing": true,
@@ -669,8 +669,8 @@
       }
     },
     "2-max": {
-      "$type": "number",
-      "$value": 9999,
+      "$type": "string",
+      "$value": "50%",
       "$extensions": {
         "com.figma.variableId": "VariableID:2816:33572",
         "com.figma.hiddenFromPublishing": true,
@@ -681,8 +681,8 @@
       }
     },
     "3-max": {
-      "$type": "number",
-      "$value": 9999,
+      "$type": "string",
+      "$value": "50%",
       "$extensions": {
         "com.figma.variableId": "VariableID:2816:33573",
         "com.figma.hiddenFromPublishing": true,
@@ -693,8 +693,8 @@
       }
     },
     "4-max": {
-      "$type": "number",
-      "$value": 9999,
+      "$type": "string",
+      "$value": "50%",
       "$extensions": {
         "com.figma.variableId": "VariableID:2816:33574",
         "com.figma.hiddenFromPublishing": true,
@@ -705,8 +705,8 @@
       }
     },
     "5-max": {
-      "$type": "number",
-      "$value": 9999,
+      "$type": "string",
+      "$value": "50%",
       "$extensions": {
         "com.figma.variableId": "VariableID:2816:33575",
         "com.figma.hiddenFromPublishing": true,
@@ -717,8 +717,8 @@
       }
     },
     "6-max": {
-      "$type": "number",
-      "$value": 9999,
+      "$type": "string",
+      "$value": "50%",
       "$extensions": {
         "com.figma.variableId": "VariableID:2816:33576",
         "com.figma.hiddenFromPublishing": true,

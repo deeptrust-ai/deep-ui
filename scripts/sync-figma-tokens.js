@@ -139,9 +139,9 @@ const darkMap = makeColorMap(darkTokens);
 const readModeToken = (collection, mode, key) => {
   const token = collection?.[mode]?.[key] ?? (key === '9' ? collection?.[mode]?.['09'] : undefined);
   if (!token || typeof token !== 'object' || !('$value' in token)) {
-    throw new Error(`Missing mode token ${mode}/${key}`);
+    return undefined;
   }
-  return Number(token.$value);
+  return token.$value;
 };
 
 const resolveThemeColor = (token, fallbackMap) => {
@@ -356,46 +356,68 @@ const buildColorEntries = () => {
   return [...deduped.values()].sort((a, b) => a.cssVar.localeCompare(b.cssVar));
 };
 
-const numberToken = (value, unit = 'px') => {
+const formatNumeric = (value) => {
   const numeric = Number(value);
-  const rounded = Number.isInteger(numeric) ? String(numeric) : String(Number(numeric.toFixed(3)));
-  return `${rounded}${unit}`;
+  if (!Number.isFinite(numeric)) {
+    throw new Error(`Expected a numeric token value, received: ${String(value)}`);
+  }
+  return Number.isInteger(numeric) ? String(numeric) : String(Number(numeric.toFixed(3)));
+};
+
+const unitlessNumberPattern = /^[+-]?(\d+(\.\d+)?|\.\d+)$/;
+
+const measurementToken = (value, unit = 'px') => {
+  if (typeof value === 'number') {
+    return `${formatNumeric(value)}${unit}`;
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) {
+      throw new Error('Expected a non-empty measurement token string.');
+    }
+    if (unit && unitlessNumberPattern.test(trimmed)) {
+      return `${formatNumeric(trimmed)}${unit}`;
+    }
+    // Keep explicit CSS units/percentages/functions exactly as provided.
+    return trimmed;
+  }
+  throw new Error(`Unsupported measurement token value: ${JSON.stringify(value)}`);
 };
 
 const collectNonColorTokens = () => {
   const lines = [];
 
-  // Radius from explicit mode file (Medium mode as default).
+  // Radius from explicit radius mode file only. If a token is missing, do not emit
+  // an override so Radix defaults remain in effect.
   for (const key of ['1', '2', '3', '4', '5', '6', '1-max', '2-max', '3-max', '4-max', '5-max', '6-max']) {
-    lines.push(`  --radius-${kebab(key)}: ${numberToken(readModeToken(radiusModes, 'Medium', key))};`);
-  }
-  const full = themeTokens.find((token) => token.path === 'Radius/full');
-  if (full) {
-    lines.push(`  --radius-full: ${numberToken(full.value)};`);
+    const radiusValue = readModeToken(radiusModes, 'Medium', key);
+    if (radiusValue !== undefined) {
+      lines.push(`  --radius-${kebab(key)}: ${measurementToken(radiusValue)};`);
+    }
   }
 
   // Spacing from explicit scale file (100% mode as default).
   for (const key of ['1', '2', '3', '4', '5', '6', '7', '8', '9']) {
-    lines.push(`  --space-${kebab(key)}: ${numberToken(readModeToken(spaceModes, '100%', key))};`);
+    lines.push(`  --space-${kebab(key)}: ${measurementToken(readModeToken(spaceModes, '100%', key))};`);
   }
 
   // Typography from Theme A.
   for (const token of themeTokens) {
     if (token.path.startsWith('Typography/Font size/') && token.type === 'number') {
       const suffix = token.path.replace('Typography/Font size/', '');
-      lines.push(`  --font-size-${kebab(suffix)}: ${numberToken(token.value)};`);
+      lines.push(`  --font-size-${kebab(suffix)}: ${measurementToken(token.value)};`);
     }
     if (token.path.startsWith('Typography/Line height/') && token.type === 'number') {
       const suffix = token.path.replace('Typography/Line height/', '');
-      lines.push(`  --line-height-${kebab(suffix)}: ${numberToken(token.value)};`);
+      lines.push(`  --line-height-${kebab(suffix)}: ${measurementToken(token.value)};`);
     }
     if (token.path.startsWith('Typography/Letter spacing/') && token.type === 'number') {
       const suffix = token.path.replace('Typography/Letter spacing/', '');
-      lines.push(`  --letter-spacing-${kebab(suffix)}: ${numberToken(token.value, 'px')};`);
+      lines.push(`  --letter-spacing-${kebab(suffix)}: ${measurementToken(token.value, 'px')};`);
     }
-    if (token.path.startsWith('Typography/Font weight/') && token.type === 'number') {
+    if (token.path.startsWith('Typography/Font weight/') && (token.type === 'number' || token.type === 'string')) {
       const suffix = token.path.replace('Typography/Font weight/', '');
-      lines.push(`  --font-weight-${kebab(suffix)}: ${Number(token.value)};`);
+      lines.push(`  --font-weight-${kebab(suffix)}: ${measurementToken(token.value, '')};`);
     }
     if (token.path.startsWith('Typography/Font family/') && token.type === 'string') {
       const suffix = token.path.replace('Typography/Font family/', '');
@@ -418,18 +440,25 @@ const darkLines = colorEntries.map((entry) => `  ${entry.cssVar}: ${entry.dark};
 const radiusModeSelectors = ['None', 'Small', 'Medium', 'Large', 'Full'];
 const radiusModeBlocks = radiusModeSelectors
   .map((mode) => {
-    const lines = ['1', '2', '3', '4', '5', '6', '1-max', '2-max', '3-max', '4-max', '5-max', '6-max'].map(
-      (key) => `  --radius-${kebab(key)}: ${numberToken(readModeToken(radiusModes, mode, key))};`
-    );
+    const lines = ['1', '2', '3', '4', '5', '6', '1-max', '2-max', '3-max', '4-max', '5-max', '6-max']
+      .map((key) => {
+        const radiusValue = readModeToken(radiusModes, mode, key);
+        if (radiusValue === undefined) return null;
+        return `  --radius-${kebab(key)}: ${measurementToken(radiusValue)};`;
+      })
+      .filter(Boolean);
+
+    if (lines.length === 0) return '';
     return toBlock(`[data-token-radius-mode='${mode.toLowerCase()}']`, lines);
   })
+  .filter(Boolean)
   .join('\n');
 
 const spaceScaleSelectors = ['90%', '95%', '100%', '105%', '110%'];
 const spaceScaleBlocks = spaceScaleSelectors
   .map((scale) => {
     const lines = ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map(
-      (key) => `  --space-${kebab(key)}: ${numberToken(readModeToken(spaceModes, scale, key))};`
+      (key) => `  --space-${kebab(key)}: ${measurementToken(readModeToken(spaceModes, scale, key))};`
     );
     return toBlock(`[data-token-space-scale='${kebab(scale)}']`, lines);
   })

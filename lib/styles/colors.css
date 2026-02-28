@@ -1,11 +1,11 @@
 /**
  * Generated from Figma token exports.
  * Source files:
- * - scripts/tokens/Light.tokens.json
- * - scripts/tokens/Dark.tokens.json
- * - scripts/tokens/Theme.tokens.json
- * - scripts/tokens/Radius.tokens.json
- * - scripts/tokens/Space.tokens.json
+ * - Light.tokens.json
+ * - Dark.tokens.json
+ * - Theme.tokens.json
+ * - Radius.tokens.json
+ * - Space.tokens.json
  *
  * Do not edit manually. Re-run:
  *   node scripts/sync-figma-tokens.js
@@ -27,6 +27,10 @@
   --font-size-7: 28px;
   --font-size-8: 35px;
   --font-size-9: 60px;
+  --font-weight-bold: Bold;
+  --font-weight-light: Light;
+  --font-weight-medium: Medium;
+  --font-weight-regular: Regular;
   --letter-spacing-1: 0.04px;
   --letter-spacing-2: 0px;
   --letter-spacing-3: 0px;
@@ -57,7 +61,6 @@
   --radius-5: 12px;
   --radius-6-max: 16px;
   --radius-6: 16px;
-  --radius-full: 9999px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -737,12 +740,12 @@
   --radius-4: 16px;
   --radius-5: 24px;
   --radius-6: 32px;
-  --radius-1-max: 9999px;
-  --radius-2-max: 9999px;
-  --radius-3-max: 9999px;
-  --radius-4-max: 9999px;
-  --radius-5-max: 9999px;
-  --radius-6-max: 9999px;
+  --radius-1-max: 50%;
+  --radius-2-max: 50%;
+  --radius-3-max: 50%;
+  --radius-4-max: 50%;
+  --radius-5-max: 50%;
+  --radius-6-max: 50%;
 }
 
 [data-token-space-scale='90'] {

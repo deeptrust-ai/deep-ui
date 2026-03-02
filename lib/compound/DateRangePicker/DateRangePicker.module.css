@@ -4,14 +4,14 @@
   --rdp-day_button-width: 32px;
   --rdp-day_button-height: 32px;
   --rdp-nav-height: 32px;
-  font-size: 14px;
+  font-size: var(--font-size-2);
 }
 
 .today {
   background-color: var(--gray-3);
   color: var(--gray-12);
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: var(--radius-3);
 }
 
 .rangeEnd,
@@ -19,7 +19,7 @@
   background-color: var(--accent-9);
   color: var(--gray-1);
   font-weight: normal;
-  border-radius: 6px;
+  border-radius: var(--radius-3);
   border: 0;
 }
 

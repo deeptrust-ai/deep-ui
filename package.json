@@ -22,6 +22,7 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "prepare": "vite build",
     "build": "vite build",
     "build:watch": "vite build --watch",
     "generate": "plop",

@@ -88,3 +88,18 @@ export const ThreePages: Story = {
 };
 
 export const FourOrMorePages: Story = {};
+
+export const SingleOrganizationLabel: Story = {
+  args: {
+    ...defaultArgs,
+    organizations: 'Acme, Inc',
+  },
+};
+
+export const DisabledSelectors: Story = {
+  args: {
+    ...defaultArgs,
+    disableOrganizationsDropdown: true,
+    disableWorkspacesDropdown: true,
+  },
+};

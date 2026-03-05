@@ -19,17 +19,28 @@ const BreadcrumbSeparator = () => (
 );
 const EntityDropdown = ({
   entities,
-  label,
   icon,
+  disabled = false,
 }: {
   entities: BreadcrumbEntity[];
-  label: string;
   icon: ReactNode;
+  disabled?: boolean;
 }) => {
   const selectedEntity = entities[0];
 
   if (!selectedEntity) {
     return null;
+  }
+
+  if (disabled) {
+    return (
+      <Button variant="ghost" color="gray" disabled>
+        <Flex align="center" gap="1">
+          {icon}
+          <Text size="1">{selectedEntity.name}</Text>
+        </Flex>
+      </Button>
+    );
   }
 
   return (
@@ -44,7 +55,6 @@ const EntityDropdown = ({
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2" variant="soft">
-        <DropdownMenu.Label>{label}</DropdownMenu.Label>
         <DropdownMenu.RadioGroup onValueChange={() => {}} value={selectedEntity.id}>
           {entities.map((entity) => (
             <DropdownMenu.RadioItem key={entity.id} value={entity.id}>
@@ -57,20 +67,41 @@ const EntityDropdown = ({
   );
 };
 
+const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
+  <Flex align="center" gap="1">
+    {icon}
+    <Text color="gray" size="1">
+      {name}
+    </Text>
+  </Flex>
+);
+
 /**
  * Breadcrumbs component for navigation within the application.
  */
-const Breadcrumbs = ({ organizations, workspaces, pages = [] }: IBreadcrumbsProps) => {
-  const hasOrganizations = organizations.length > 0;
+const Breadcrumbs = ({
+  organizations,
+  workspaces,
+  pages = [],
+  disableOrganizationsDropdown = false,
+  disableWorkspacesDropdown = false,
+}: IBreadcrumbsProps) => {
+  const hasOrganizationLabel = typeof organizations === 'string' && organizations.length > 0;
+  const organizationItems = Array.isArray(organizations) ? organizations : [];
+  const hasOrganizations = organizationItems.length > 0 || hasOrganizationLabel;
   const hasWorkspaces = workspaces.length > 0;
 
   return (
     <Flex align="center" gap="2">
-      {hasOrganizations ? (
+      {hasOrganizationLabel ? (
+        <EntityLabel name={organizations} icon={<BuildingsIcon size={16} weight="bold" />} />
+      ) : null}
+
+      {!hasOrganizationLabel && hasOrganizations ? (
         <EntityDropdown
-          entities={organizations}
-          label="Organizations"
+          entities={organizationItems}
           icon={<BuildingsIcon size={16} weight="bold" />}
+          disabled={disableOrganizationsDropdown}
         />
       ) : null}
 
@@ -79,8 +110,8 @@ const Breadcrumbs = ({ organizations, workspaces, pages = [] }: IBreadcrumbsProp
       {hasWorkspaces ? (
         <EntityDropdown
           entities={workspaces}
-          label="Workspaces"
           icon={<HeadphonesIcon size={16} weight="bold" />}
+          disabled={disableWorkspacesDropdown}
         />
       ) : null}
 

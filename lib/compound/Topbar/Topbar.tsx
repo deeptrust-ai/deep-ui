@@ -8,6 +8,8 @@ const Topbar = ({
   breadcrumbs,
   organizations,
   workspaces,
+  disableOrganizationsDropdown,
+  disableWorkspacesDropdown,
   userName,
   userPfp,
   userMetaDropdown,
@@ -18,7 +20,13 @@ const Topbar = ({
 
   return (
     <Flex justify="between" align="center" p="4">
-      <Breadcrumbs organizations={organizations} workspaces={workspaces} pages={breadcrumbs} />
+      <Breadcrumbs
+        organizations={organizations}
+        workspaces={workspaces}
+        pages={breadcrumbs}
+        disableOrganizationsDropdown={disableOrganizationsDropdown}
+        disableWorkspacesDropdown={disableWorkspacesDropdown}
+      />
 
       <DropdownMenu.Root>
         <DropdownMenu.Trigger>

@@ -32,8 +32,10 @@ type UserMetaDropdown = LinkOrAction<'logOutLink', 'logOutOnClick'> & {
 
 export interface ITopbarProps {
   readonly breadcrumbs?: BreadcrumbPage[];
-  readonly organizations: BreadcrumbEntity[];
+  readonly organizations: BreadcrumbEntity[] | string;
   readonly workspaces: BreadcrumbEntity[];
+  readonly disableOrganizationsDropdown?: boolean;
+  readonly disableWorkspacesDropdown?: boolean;
   readonly userName: IAvatarProps['name'];
   readonly userPfp?: IAvatarProps['pfp'];
   // Logout can be either a link or an onClick action but is required

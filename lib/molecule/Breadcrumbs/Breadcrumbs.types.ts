@@ -9,7 +9,9 @@ export type BreadcrumbPage = {
 };
 
 export interface IBreadcrumbsProps {
-  organizations: BreadcrumbEntity[];
+  organizations: BreadcrumbEntity[] | string;
   workspaces: BreadcrumbEntity[];
   pages?: BreadcrumbPage[];
+  disableOrganizationsDropdown?: boolean;
+  disableWorkspacesDropdown?: boolean;
 }

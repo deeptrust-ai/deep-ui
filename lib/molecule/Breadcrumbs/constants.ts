@@ -1,1 +1,1 @@
-export const MANY_CRUMBS_THRESHOLD = 3;
+export const MANY_CRUMBS_THRESHOLD = 4;

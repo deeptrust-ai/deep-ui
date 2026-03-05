@@ -1,7 +1,8 @@
-import { Flex, Text, Link, DropdownMenu, Button } from '@radix-ui/themes';
+import { Flex, Text, Link, DropdownMenu, Button, IconButton } from '@radix-ui/themes';
 import type { BreadcrumbEntity, IBreadcrumbsProps } from './Breadcrumbs.types';
-import { BuildingsIcon, CaretUpDownIcon, HeadphonesIcon } from '@phosphor-icons/react';
+import { BuildingsIcon, CaretUpDownIcon, DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
+import { MANY_CRUMBS_THRESHOLD } from './constants';
 
 const BreadcrumbSeparator = () => (
   <Text color="gray" size="1">
@@ -90,6 +91,10 @@ const Breadcrumbs = ({
   const organizationItems = Array.isArray(organizations) ? organizations : [];
   const hasOrganizations = organizationItems.length > 0 || hasOrganizationLabel;
   const hasWorkspaces = workspaces.length > 0;
+  const firstPage = pages[0];
+  const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
+  const middlePages = pages.slice(1, pages.length - 1);
+  const showCollapsedPages = pages.length >= MANY_CRUMBS_THRESHOLD && middlePages.length > 0;
 
   return (
     <Flex align="center" gap="2">
@@ -115,24 +120,62 @@ const Breadcrumbs = ({
         />
       ) : null}
 
-      {pages.map((page, index) => {
-        const isLast = index === pages.length - 1;
-
-        return (
-          <Flex display="inline-flex" gap="1" key={`${page.name}-${page.link}`}>
+      {showCollapsedPages && firstPage ? (
+        <>
+          <Flex display="inline-flex" gap="1" key={`${firstPage.name}-${firstPage.link}`}>
             <BreadcrumbSeparator />
-            {isLast ? (
-              <Text color="gray" size="1">
-                {page.name}
-              </Text>
-            ) : (
-              <Link color="gray" size="1" underline="hover" href={page.link}>
-                {page.name}
-              </Link>
-            )}
+            <Link color="gray" size="1" underline="hover" href={firstPage.link}>
+              {firstPage.name}
+            </Link>
           </Flex>
-        );
-      })}
+
+          <Flex display="inline-flex" gap="1" key="middle-pages-dropdown">
+            <BreadcrumbSeparator />
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <IconButton variant="ghost" color="gray" size="2" aria-label="Show more pages">
+                  <DotsThreeIcon size={14} weight="bold" />
+                </IconButton>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content size="2" variant="soft">
+                {middlePages.map((page) => (
+                  <DropdownMenu.Item key={`${page.name}-${page.link}`} asChild>
+                    <Link href={page.link}>{page.name}</Link>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </Flex>
+
+          {lastPage ? (
+            <Flex display="inline-flex" gap="1" key={`${lastPage.name}-${lastPage.link}`}>
+              <BreadcrumbSeparator />
+              <Text color="gray" size="1">
+                {lastPage.name}
+              </Text>
+            </Flex>
+          ) : null}
+        </>
+      ) : (
+        pages.map((page, index) => {
+          const isLast = index === pages.length - 1;
+
+          return (
+            <Flex display="inline-flex" gap="1" key={`${page.name}-${page.link}`}>
+              <BreadcrumbSeparator />
+              {isLast ? (
+                <Text color="gray" size="1">
+                  {page.name}
+                </Text>
+              ) : (
+                <Link color="gray" size="1" underline="hover" href={page.link}>
+                  {page.name}
+                </Link>
+              )}
+            </Flex>
+          );
+        })
+      )}
     </Flex>
   );
 };

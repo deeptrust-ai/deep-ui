@@ -2,40 +2,45 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Breadcrumbs, type IBreadcrumbsProps } from '../..';
 
-const defaultCrumbs: NonNullable<IBreadcrumbsProps['crumbs']> = [
+const defaultPages: NonNullable<IBreadcrumbsProps['pages']> = [
   {
-    label: 'Projects',
-    href: '/projects',
+    name: 'Projects',
+    link: '/projects',
   },
   {
-    label: 'Alpha',
-    href: '/projects/alpha',
+    name: 'Alpha',
+    link: '/projects/alpha',
   },
   {
-    label: 'Datasets',
-    href: '/projects/alpha/datasets',
+    name: 'Datasets',
+    link: '/projects/alpha/datasets',
   },
   {
-    label: 'Dataset 42',
-    href: '/projects/alpha/datasets/42',
+    name: 'Dataset 42',
+    link: '/projects/alpha/datasets/42',
   },
   {
-    label: 'Settings',
-    href: '/projects/alpha/datasets/42/settings',
+    name: 'Settings',
+    link: '/projects/alpha/datasets/42/settings',
   },
   {
-    label: 'Profile',
-    href: '/projects/alpha/datasets/42/settings/profile',
+    name: 'Profile',
+    link: '/projects/alpha/datasets/42/settings/profile',
   },
 ];
 
 const defaultArgs: IBreadcrumbsProps = {
   organizations: [
-    { name: 'Acme, Inc', selected: true },
-    { name: 'Monsters Inc' },
-    { name: 'Stark Industries' },
+    { id: 'org-1', name: 'Acme, Inc' },
+    { id: 'org-2', name: 'Monsters Inc' },
+    { id: 'org-3', name: 'Stark Industries' },
   ],
-  crumbs: defaultCrumbs,
+  workspaces: [
+    { id: 'ws-1', name: 'Security Ops' },
+    { id: 'ws-2', name: 'Threat Intel' },
+    { id: 'ws-3', name: 'Platform Team' },
+  ],
+  pages: defaultPages,
 };
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -54,32 +59,32 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const NoCrumbs: Story = {
+export const NoPages: Story = {
   args: {
     ...defaultArgs,
-    crumbs: [],
+    pages: [],
   },
 };
 
-export const SingleCrumb: Story = {
+export const SinglePage: Story = {
   args: {
     ...defaultArgs,
-    crumbs: [defaultCrumbs[0]],
+    pages: [defaultPages[0]],
   },
 };
 
-export const TwoCrumbs: Story = {
+export const TwoPages: Story = {
   args: {
     ...defaultArgs,
-    crumbs: [defaultCrumbs[0], defaultCrumbs[1]],
+    pages: [defaultPages[0], defaultPages[1]],
   },
 };
 
-export const ThreeCrumbs: Story = {
+export const ThreePages: Story = {
   args: {
     ...defaultArgs,
-    crumbs: [defaultCrumbs[0], defaultCrumbs[1], defaultCrumbs[2]],
+    pages: [defaultPages[0], defaultPages[1], defaultPages[2]],
   },
 };
 
-export const FourOrMoreCrumbs: Story = {};
+export const FourOrMorePages: Story = {};

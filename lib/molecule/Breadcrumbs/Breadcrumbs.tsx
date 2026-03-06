@@ -1,9 +1,8 @@
-import { Flex, Text, Link, DropdownMenu, IconButton } from '@radix-ui/themes';
-import type { IBreadcrumbsProps } from './Breadcrumbs.types';
-import OrganizationDropdown from '../../atom/OrganizationDropdown';
-import { DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
+import { Flex, Text, Link, DropdownMenu, Button, IconButton } from '@radix-ui/themes';
+import type { BreadcrumbEntity, IBreadcrumbsProps } from './Breadcrumbs.types';
+import { BuildingsIcon, CaretUpDownIcon, DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
+import type { ReactNode } from 'react';
 import { MANY_CRUMBS_THRESHOLD } from './constants';
-import React from 'react';
 
 const BreadcrumbSeparator = () => (
   <Text color="gray" size="1">
@@ -19,87 +18,182 @@ const BreadcrumbSeparator = () => (
     </svg>
   </Text>
 );
-/**
- * Breadcrumbs component for navigation within the application.
- */
-const Breadcrumbs = ({ organizations, crumbs = [] }: IBreadcrumbsProps) => {
-  const hasCrumbs = crumbs.length > 0;
-  const firstCrumb = hasCrumbs ? crumbs[0] : undefined;
-  const lastCrumb = hasCrumbs ? crumbs[crumbs.length - 1] : undefined;
+const EntityDropdown = ({
+  entities,
+  icon,
+  disabled = false,
+  selectedId,
+  onSelect,
+}: {
+  entities: BreadcrumbEntity[];
+  icon: ReactNode;
+  disabled?: boolean;
+  selectedId?: string;
+  onSelect?: (entityId: string) => void;
+}) => {
+  const selectedEntity = entities.find((entity) => entity.id === selectedId) ?? entities[0];
 
-  const children = [];
-
-  if (firstCrumb) {
-    children.push(
-      <Flex display="inline-flex" gap="1" key={firstCrumb.href}>
-        <BreadcrumbSeparator />
-        <Link color="gray" size="1" underline="hover" href={firstCrumb.href}>
-          {firstCrumb.label}
-        </Link>
-      </Flex>
-    );
+  if (!selectedEntity) {
+    return null;
   }
 
-  if (crumbs.length >= MANY_CRUMBS_THRESHOLD) {
-    const withoutFirstLastCrumb = crumbs.slice(1, crumbs.length - 1);
-
-    if (withoutFirstLastCrumb.length > 1) {
-      children.push(
-        <React.Fragment key="many-crumbs-dropdown">
-          <BreadcrumbSeparator />
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Flex align="center">
-                <IconButton variant="ghost" color="gray" size="2">
-                  <DotsThreeIcon size={16} weight="bold" />
-                </IconButton>
-              </Flex>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content size="2" variant="soft">
-              {withoutFirstLastCrumb.map((crumb) => (
-                <DropdownMenu.Item key={crumb.label}>{crumb.label}</DropdownMenu.Item>
-              ))}
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-        </React.Fragment>
-      );
-    } else {
-      children.push(
-        <Flex display="inline-flex" gap="1" key={withoutFirstLastCrumb[0].href}>
-          <BreadcrumbSeparator />
-          <Link color="gray" size="1" underline="hover" href={withoutFirstLastCrumb[0].href}>
-            {withoutFirstLastCrumb[0].label}
-          </Link>
+  if (disabled) {
+    return (
+      <Button variant="ghost" color="gray" disabled>
+        <Flex align="center" gap="1">
+          {icon}
+          <Text size="1">{selectedEntity.name}</Text>
         </Flex>
-      );
-    }
-  }
-
-  if (lastCrumb && crumbs.length > 1) {
-    children.push(
-      <Flex display="inline-flex" gap="1" key={lastCrumb.href}>
-        <BreadcrumbSeparator />
-        <Link color="gray" size="1" underline="hover" href={lastCrumb.href}>
-          {lastCrumb.label}
-        </Link>
-      </Flex>
+      </Button>
     );
   }
 
   return (
-    <Flex align="center" gap="2">
-      <OrganizationDropdown organizations={organizations} />
-      <BreadcrumbSeparator />
-      <Flex display="inline-flex" align="center" gap="1" asChild>
-        <Link href="#/workspace" color="gray" size="1" underline="hover">
-          <Text weight="bold" size="1" asChild>
-            <HeadphonesIcon weight="bold" size={16} />
-          </Text>
-          <Text>Workspace</Text>
-        </Link>
-      </Flex>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
+        <Button variant="ghost" color="gray">
+          <Flex align="center" gap="1">
+            {icon}
+            <Text size="1">{selectedEntity.name}</Text>
+            <CaretUpDownIcon size={14} weight="bold" />
+          </Flex>
+        </Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content size="2" variant="soft">
+        <DropdownMenu.RadioGroup onValueChange={onSelect} value={selectedEntity.id}>
+          {entities.map((entity) => (
+            <DropdownMenu.RadioItem key={entity.id} value={entity.id}>
+              {entity.name}
+            </DropdownMenu.RadioItem>
+          ))}
+        </DropdownMenu.RadioGroup>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
+  );
+};
 
-      {children}
+const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
+  <Flex align="center" gap="1">
+    {icon}
+    <Text color="gray" size="1">
+      {name}
+    </Text>
+  </Flex>
+);
+
+/**
+ * Breadcrumbs component for navigation within the application.
+ */
+const Breadcrumbs = ({
+  organizations,
+  workspaces = [],
+  pages = [],
+  disableOrganizationsDropdown = false,
+  disableWorkspacesDropdown = false,
+  selectedOrganizationId,
+  selectedWorkspaceId,
+  onOrganizationSelect,
+  onWorkspaceSelect,
+}: IBreadcrumbsProps) => {
+  const hasOrganizations = organizations.length > 0;
+  const hasWorkspaces = workspaces.length > 0;
+  const hasPrefixSegments = hasOrganizations || hasWorkspaces;
+  const showOrganizationLabel = organizations.length === 1;
+  const showWorkspaceLabel = workspaces.length === 1;
+  const firstPage = pages[0];
+  const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
+  const middlePages = pages.slice(1, pages.length - 1);
+  const showCollapsedPages = pages.length >= MANY_CRUMBS_THRESHOLD && middlePages.length > 0;
+
+  return (
+    <Flex align="center" gap="2">
+      {showOrganizationLabel ? (
+        <EntityLabel name={organizations[0].name} icon={<BuildingsIcon size={16} weight="bold" />} />
+      ) : null}
+
+      {!showOrganizationLabel && hasOrganizations ? (
+        <EntityDropdown
+          entities={organizations}
+          icon={<BuildingsIcon size={16} weight="bold" />}
+          disabled={disableOrganizationsDropdown}
+          selectedId={selectedOrganizationId}
+          onSelect={onOrganizationSelect}
+        />
+      ) : null}
+
+      {hasOrganizations && hasWorkspaces ? <BreadcrumbSeparator /> : null}
+
+      {showWorkspaceLabel ? (
+        <EntityLabel name={workspaces[0].name} icon={<HeadphonesIcon size={16} weight="bold" />} />
+      ) : null}
+
+      {!showWorkspaceLabel && hasWorkspaces ? (
+        <EntityDropdown
+          entities={workspaces}
+          icon={<HeadphonesIcon size={16} weight="bold" />}
+          disabled={disableWorkspacesDropdown}
+          selectedId={selectedWorkspaceId}
+          onSelect={onWorkspaceSelect}
+        />
+      ) : null}
+
+      {showCollapsedPages && firstPage ? (
+        <>
+          <Flex display="inline-flex" gap="1" key={`${firstPage.name}-${firstPage.link}`}>
+            {hasPrefixSegments ? <BreadcrumbSeparator /> : null}
+            <Link color="gray" size="1" underline="hover" href={firstPage.link}>
+              {firstPage.name}
+            </Link>
+          </Flex>
+
+          <Flex display="inline-flex" gap="1" key="middle-pages-dropdown">
+            <BreadcrumbSeparator />
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger>
+                <IconButton variant="ghost" color="gray" size="2" aria-label="Show more pages">
+                  <DotsThreeIcon size={14} weight="bold" />
+                </IconButton>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Content size="2" variant="soft">
+                {middlePages.map((page) => (
+                  <DropdownMenu.Item key={`${page.name}-${page.link}`} asChild>
+                    <Link href={page.link}>{page.name}</Link>
+                  </DropdownMenu.Item>
+                ))}
+              </DropdownMenu.Content>
+            </DropdownMenu.Root>
+          </Flex>
+
+          {lastPage ? (
+            <Flex display="inline-flex" gap="1" key={`${lastPage.name}-${lastPage.link}`}>
+              <BreadcrumbSeparator />
+              <Text color="gray" size="1">
+                {lastPage.name}
+              </Text>
+            </Flex>
+          ) : null}
+        </>
+      ) : (
+        pages.map((page, index) => {
+          const isLast = index === pages.length - 1;
+          const shouldShowSeparator = hasPrefixSegments || index > 0;
+
+          return (
+            <Flex display="inline-flex" gap="1" key={`${page.name}-${page.link}`}>
+              {shouldShowSeparator ? <BreadcrumbSeparator /> : null}
+              {isLast ? (
+                <Text color="gray" size="1">
+                  {page.name}
+                </Text>
+              ) : (
+                <Link color="gray" size="1" underline="hover" href={page.link}>
+                  {page.name}
+                </Link>
+              )}
+            </Flex>
+          );
+        })
+      )}
     </Flex>
   );
 };

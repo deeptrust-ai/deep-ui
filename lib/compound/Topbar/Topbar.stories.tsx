@@ -10,9 +10,14 @@ const meta = {
   },
   args: {
     organizations: [
-      { name: 'Organization 1', selected: true },
-      { name: 'Organization 2' },
-      { name: 'Organization 3' },
+      { id: 'org-1', name: 'Organization 1' },
+      { id: 'org-2', name: 'Organization 2' },
+      { id: 'org-3', name: 'Organization 3' },
+    ],
+    workspaces: [
+      { id: 'ws-1', name: 'Workspace 1' },
+      { id: 'ws-2', name: 'Workspace 2' },
+      { id: 'ws-3', name: 'Workspace 3' },
     ],
     userName: 'Jane Doe',
     userPfp: 'https://i.pravatar.cc/150?img=70',

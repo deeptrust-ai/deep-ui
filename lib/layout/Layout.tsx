@@ -9,6 +9,7 @@ const Layout = ({
   menuPages,
   userName,
   organizations,
+  workspaces = [],
   title,
   subtitle,
   metaInfo,
@@ -22,7 +23,7 @@ const Layout = ({
       <LayoutSidebar menuPages={menuPages} />
 
       <Flex direction="column">
-        <Topbar userName={userName} organizations={organizations} />
+        <Topbar userName={userName} organizations={organizations} workspaces={workspaces} />
 
         <Box height="100%" px="4" mb="4">
           <Grid columns={splitRows} gap="4" height="100%">

@@ -16,17 +16,21 @@ const meta = {
     userName: 'Chewbacca',
     organizations: [
       {
+        id: 'org-1',
         name: 'Millennium Falcon',
-        selected: true,
       },
       {
+        id: 'org-2',
         name: 'Death Star',
-        selected: false,
       },
       {
+        id: 'org-3',
         name: 'X-Wing',
-        selected: false,
       },
+    ],
+    workspaces: [
+      { id: 'ws-1', name: 'Main Workspace' },
+      { id: 'ws-2', name: 'Read Only Workspace' },
     ],
     menuPages: [
       { label: 'Home', anchorProps: { href: '/' }, icon: AcornIcon, selected: false },

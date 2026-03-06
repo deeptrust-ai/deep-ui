@@ -1,7 +1,9 @@
 import type { Icon } from '@phosphor-icons/react';
-import type { IOrganizationDropdown } from '../../atom/OrganizationDropdown/types';
 import type { IAvatarProps } from '../../atom/Avatar/types';
-import type { Crumb } from '../../molecule/Breadcrumbs/Breadcrumbs.types';
+import type {
+  BreadcrumbEntity,
+  BreadcrumbPage,
+} from '../../molecule/Breadcrumbs/Breadcrumbs.types';
 
 type ItemLink = string;
 type ItemAction = () => void | Promise<void>;
@@ -29,8 +31,15 @@ type UserMetaDropdown = LinkOrAction<'logOutLink', 'logOutOnClick'> & {
 };
 
 export interface ITopbarProps {
-  readonly breadcrumbs?: Crumb[];
-  readonly organizations: IOrganizationDropdown[];
+  readonly breadcrumbs?: BreadcrumbPage[];
+  readonly organizations: BreadcrumbEntity[];
+  readonly workspaces?: BreadcrumbEntity[];
+  readonly disableOrganizationsDropdown?: boolean;
+  readonly disableWorkspacesDropdown?: boolean;
+  readonly selectedOrganizationId?: string;
+  readonly selectedWorkspaceId?: string;
+  readonly onOrganizationSelect?: (organizationId: string) => void;
+  readonly onWorkspaceSelect?: (workspaceId: string) => void;
   readonly userName: IAvatarProps['name'];
   readonly userPfp?: IAvatarProps['pfp'];
   // Logout can be either a link or an onClick action but is required

@@ -92,7 +92,14 @@ export const FourOrMorePages: Story = {};
 export const SingleOrganizationLabel: Story = {
   args: {
     ...defaultArgs,
-    organizations: 'Acme, Inc',
+    organizations: [{ id: 'org-1', name: 'Acme, Inc' }],
+  },
+};
+
+export const SingleWorkspaceLabel: Story = {
+  args: {
+    ...defaultArgs,
+    workspaces: [{ id: 'ws-1', name: 'Security Ops' }],
   },
 };
 

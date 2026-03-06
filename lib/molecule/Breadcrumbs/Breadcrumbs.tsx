@@ -22,12 +22,16 @@ const EntityDropdown = ({
   entities,
   icon,
   disabled = false,
+  selectedId,
+  onSelect,
 }: {
   entities: BreadcrumbEntity[];
   icon: ReactNode;
   disabled?: boolean;
+  selectedId?: string;
+  onSelect?: (entityId: string) => void;
 }) => {
-  const selectedEntity = entities[0];
+  const selectedEntity = entities.find((entity) => entity.id === selectedId) ?? entities[0];
 
   if (!selectedEntity) {
     return null;
@@ -56,7 +60,7 @@ const EntityDropdown = ({
         </Button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2" variant="soft">
-        <DropdownMenu.RadioGroup onValueChange={() => {}} value={selectedEntity.id}>
+        <DropdownMenu.RadioGroup onValueChange={onSelect} value={selectedEntity.id}>
           {entities.map((entity) => (
             <DropdownMenu.RadioItem key={entity.id} value={entity.id}>
               {entity.name}
@@ -82,15 +86,20 @@ const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
  */
 const Breadcrumbs = ({
   organizations,
-  workspaces,
+  workspaces = [],
   pages = [],
   disableOrganizationsDropdown = false,
   disableWorkspacesDropdown = false,
+  selectedOrganizationId,
+  selectedWorkspaceId,
+  onOrganizationSelect,
+  onWorkspaceSelect,
 }: IBreadcrumbsProps) => {
-  const hasOrganizationLabel = typeof organizations === 'string' && organizations.length > 0;
-  const organizationItems = Array.isArray(organizations) ? organizations : [];
-  const hasOrganizations = organizationItems.length > 0 || hasOrganizationLabel;
+  const hasOrganizations = organizations.length > 0;
   const hasWorkspaces = workspaces.length > 0;
+  const hasPrefixSegments = hasOrganizations || hasWorkspaces;
+  const showOrganizationLabel = organizations.length === 1;
+  const showWorkspaceLabel = workspaces.length === 1;
   const firstPage = pages[0];
   const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
   const middlePages = pages.slice(1, pages.length - 1);
@@ -98,32 +107,40 @@ const Breadcrumbs = ({
 
   return (
     <Flex align="center" gap="2">
-      {hasOrganizationLabel ? (
-        <EntityLabel name={organizations} icon={<BuildingsIcon size={16} weight="bold" />} />
+      {showOrganizationLabel ? (
+        <EntityLabel name={organizations[0].name} icon={<BuildingsIcon size={16} weight="bold" />} />
       ) : null}
 
-      {!hasOrganizationLabel && hasOrganizations ? (
+      {!showOrganizationLabel && hasOrganizations ? (
         <EntityDropdown
-          entities={organizationItems}
+          entities={organizations}
           icon={<BuildingsIcon size={16} weight="bold" />}
           disabled={disableOrganizationsDropdown}
+          selectedId={selectedOrganizationId}
+          onSelect={onOrganizationSelect}
         />
       ) : null}
 
       {hasOrganizations && hasWorkspaces ? <BreadcrumbSeparator /> : null}
 
-      {hasWorkspaces ? (
+      {showWorkspaceLabel ? (
+        <EntityLabel name={workspaces[0].name} icon={<HeadphonesIcon size={16} weight="bold" />} />
+      ) : null}
+
+      {!showWorkspaceLabel && hasWorkspaces ? (
         <EntityDropdown
           entities={workspaces}
           icon={<HeadphonesIcon size={16} weight="bold" />}
           disabled={disableWorkspacesDropdown}
+          selectedId={selectedWorkspaceId}
+          onSelect={onWorkspaceSelect}
         />
       ) : null}
 
       {showCollapsedPages && firstPage ? (
         <>
           <Flex display="inline-flex" gap="1" key={`${firstPage.name}-${firstPage.link}`}>
-            <BreadcrumbSeparator />
+            {hasPrefixSegments ? <BreadcrumbSeparator /> : null}
             <Link color="gray" size="1" underline="hover" href={firstPage.link}>
               {firstPage.name}
             </Link>
@@ -159,10 +176,11 @@ const Breadcrumbs = ({
       ) : (
         pages.map((page, index) => {
           const isLast = index === pages.length - 1;
+          const shouldShowSeparator = hasPrefixSegments || index > 0;
 
           return (
             <Flex display="inline-flex" gap="1" key={`${page.name}-${page.link}`}>
-              <BreadcrumbSeparator />
+              {shouldShowSeparator ? <BreadcrumbSeparator /> : null}
               {isLast ? (
                 <Text color="gray" size="1">
                   {page.name}

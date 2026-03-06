@@ -7,9 +7,13 @@ import { SignOutIcon } from '@phosphor-icons/react';
 const Topbar = ({
   breadcrumbs,
   organizations,
-  workspaces,
+  workspaces = [],
   disableOrganizationsDropdown,
   disableWorkspacesDropdown,
+  selectedOrganizationId,
+  selectedWorkspaceId,
+  onOrganizationSelect,
+  onWorkspaceSelect,
   userName,
   userPfp,
   userMetaDropdown,
@@ -26,6 +30,10 @@ const Topbar = ({
         pages={breadcrumbs}
         disableOrganizationsDropdown={disableOrganizationsDropdown}
         disableWorkspacesDropdown={disableWorkspacesDropdown}
+        selectedOrganizationId={selectedOrganizationId}
+        selectedWorkspaceId={selectedWorkspaceId}
+        onOrganizationSelect={onOrganizationSelect}
+        onWorkspaceSelect={onWorkspaceSelect}
       />
 
       <DropdownMenu.Root>

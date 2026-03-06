@@ -9,5 +9,5 @@ export type ILayoutComponent = IContentWrapperProps & {
   readonly menuPages?: IMenuProps['pages'];
   readonly userName: string;
   readonly organizations: BreadcrumbEntity[];
-  readonly workspaces: BreadcrumbEntity[];
+  readonly workspaces?: BreadcrumbEntity[];
 };

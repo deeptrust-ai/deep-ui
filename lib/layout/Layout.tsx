@@ -9,7 +9,7 @@ const Layout = ({
   menuPages,
   userName,
   organizations,
-  workspaces,
+  workspaces = [],
   title,
   subtitle,
   metaInfo,

@@ -81,6 +81,33 @@ const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
   </Flex>
 );
 
+const ALL_WORKSPACES_ID = '__all_workspaces__';
+const DEFAULT_WORKSPACE_ID = '__default_workspace__';
+const DEFAULT_WORKSPACE_NAME = 'Default';
+const ALL_WORKSPACES_NAME = 'All Workspaces';
+
+const normalizeWorkspaceEntities = (workspaces: BreadcrumbEntity[]): BreadcrumbEntity[] => {
+  if (workspaces.length === 0) {
+    return [{ id: DEFAULT_WORKSPACE_ID, name: DEFAULT_WORKSPACE_NAME }];
+  }
+
+  if (workspaces.length === 1) {
+    return workspaces;
+  }
+
+  const hasAllWorkspaces = workspaces.some(
+    (workspace) =>
+      workspace.id === ALL_WORKSPACES_ID ||
+      workspace.name.trim().toLowerCase() === ALL_WORKSPACES_NAME.toLowerCase()
+  );
+
+  if (hasAllWorkspaces) {
+    return workspaces;
+  }
+
+  return [{ id: ALL_WORKSPACES_ID, name: ALL_WORKSPACES_NAME }, ...workspaces];
+};
+
 /**
  * Breadcrumbs component for navigation within the application.
  */
@@ -95,11 +122,12 @@ const Breadcrumbs = ({
   onOrganizationSelect,
   onWorkspaceSelect,
 }: IBreadcrumbsProps) => {
+  const normalizedWorkspaces = normalizeWorkspaceEntities(workspaces);
   const hasOrganizations = organizations.length > 0;
-  const hasWorkspaces = workspaces.length > 0;
+  const hasWorkspaces = normalizedWorkspaces.length > 0;
   const hasPrefixSegments = hasOrganizations || hasWorkspaces;
   const showOrganizationLabel = organizations.length === 1;
-  const showWorkspaceLabel = workspaces.length === 1;
+  const showWorkspaceLabel = normalizedWorkspaces.length === 1;
   const firstPage = pages[0];
   const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
   const middlePages = pages.slice(1, pages.length - 1);
@@ -124,12 +152,12 @@ const Breadcrumbs = ({
       {hasOrganizations && hasWorkspaces ? <BreadcrumbSeparator /> : null}
 
       {showWorkspaceLabel ? (
-        <EntityLabel name={workspaces[0].name} icon={<HeadphonesIcon size={16} weight="bold" />} />
+        <EntityLabel name={normalizedWorkspaces[0].name} icon={<HeadphonesIcon size={16} weight="bold" />} />
       ) : null}
 
       {!showWorkspaceLabel && hasWorkspaces ? (
         <EntityDropdown
-          entities={workspaces}
+          entities={normalizedWorkspaces}
           icon={<HeadphonesIcon size={16} weight="bold" />}
           disabled={disableWorkspacesDropdown}
           selectedId={selectedWorkspaceId}

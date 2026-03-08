@@ -2,7 +2,7 @@ import { Flex, Text, Link, DropdownMenu, Button, IconButton } from '@radix-ui/th
 import type { BreadcrumbEntity, IBreadcrumbsProps } from './Breadcrumbs.types';
 import { BuildingsIcon, CaretUpDownIcon, DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
-import { MANY_CRUMBS_THRESHOLD } from './constants';
+import { ALL_WORKSPACES_ID, ALL_WORKSPACES_NAME, MANY_CRUMBS_THRESHOLD } from './constants';
 
 const BreadcrumbSeparator = () => (
   <Text color="gray" size="1">
@@ -81,6 +81,8 @@ const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
   </Flex>
 );
 
+const DEFAULT_WORKSPACE_NAME = 'Default';
+
 /**
  * Breadcrumbs component for navigation within the application.
  */
@@ -95,11 +97,18 @@ const Breadcrumbs = ({
   onOrganizationSelect,
   onWorkspaceSelect,
 }: IBreadcrumbsProps) => {
+  const hasAllWorkspacesOption = workspaces.some((workspace) => workspace.id === ALL_WORKSPACES_ID);
+  const workspaceOptions =
+    workspaces.length > 1 && !hasAllWorkspacesOption
+      ? [{ id: ALL_WORKSPACES_ID, name: ALL_WORKSPACES_NAME }, ...workspaces]
+      : workspaces;
   const hasOrganizations = organizations.length > 0;
-  const hasWorkspaces = workspaces.length > 0;
-  const hasPrefixSegments = hasOrganizations || hasWorkspaces;
+  const hasWorkspaces = workspaceOptions.length > 0;
+  const workspaceLabelName = hasWorkspaces ? workspaceOptions[0].name : DEFAULT_WORKSPACE_NAME;
+  const showWorkspaceLabel = workspaceOptions.length <= 1;
+  const hasWorkspaceSegment = true;
+  const hasPrefixSegments = hasOrganizations || hasWorkspaceSegment;
   const showOrganizationLabel = organizations.length === 1;
-  const showWorkspaceLabel = workspaces.length === 1;
   const firstPage = pages[0];
   const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
   const middlePages = pages.slice(1, pages.length - 1);
@@ -121,15 +130,15 @@ const Breadcrumbs = ({
         />
       ) : null}
 
-      {hasOrganizations && hasWorkspaces ? <BreadcrumbSeparator /> : null}
+      {hasOrganizations && hasWorkspaceSegment ? <BreadcrumbSeparator /> : null}
 
       {showWorkspaceLabel ? (
-        <EntityLabel name={workspaces[0].name} icon={<HeadphonesIcon size={16} weight="bold" />} />
+        <EntityLabel name={workspaceLabelName} icon={<HeadphonesIcon size={16} weight="bold" />} />
       ) : null}
 
       {!showWorkspaceLabel && hasWorkspaces ? (
         <EntityDropdown
-          entities={workspaces}
+          entities={workspaceOptions}
           icon={<HeadphonesIcon size={16} weight="bold" />}
           disabled={disableWorkspacesDropdown}
           selectedId={selectedWorkspaceId}

@@ -103,6 +103,20 @@ export const SingleWorkspaceLabel: Story = {
   },
 };
 
+export const NoWorkspaces: Story = {
+  args: {
+    ...defaultArgs,
+    workspaces: [],
+  },
+};
+
+export const OmittedWorkspaces: Story = {
+  args: {
+    ...defaultArgs,
+    workspaces: undefined,
+  },
+};
+
 export const DisabledSelectors: Story = {
   args: {
     ...defaultArgs,

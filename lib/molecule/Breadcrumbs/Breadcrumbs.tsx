@@ -81,6 +81,8 @@ const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
   </Flex>
 );
 
+const DEFAULT_WORKSPACE_NAME = 'Default';
+
 /**
  * Breadcrumbs component for navigation within the application.
  */
@@ -97,9 +99,11 @@ const Breadcrumbs = ({
 }: IBreadcrumbsProps) => {
   const hasOrganizations = organizations.length > 0;
   const hasWorkspaces = workspaces.length > 0;
-  const hasPrefixSegments = hasOrganizations || hasWorkspaces;
+  const workspaceLabelName = hasWorkspaces ? workspaces[0].name : DEFAULT_WORKSPACE_NAME;
+  const showWorkspaceLabel = workspaces.length <= 1;
+  const hasWorkspaceSegment = true;
+  const hasPrefixSegments = hasOrganizations || hasWorkspaceSegment;
   const showOrganizationLabel = organizations.length === 1;
-  const showWorkspaceLabel = workspaces.length === 1;
   const firstPage = pages[0];
   const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
   const middlePages = pages.slice(1, pages.length - 1);
@@ -121,10 +125,10 @@ const Breadcrumbs = ({
         />
       ) : null}
 
-      {hasOrganizations && hasWorkspaces ? <BreadcrumbSeparator /> : null}
+      {hasOrganizations && hasWorkspaceSegment ? <BreadcrumbSeparator /> : null}
 
       {showWorkspaceLabel ? (
-        <EntityLabel name={workspaces[0].name} icon={<HeadphonesIcon size={16} weight="bold" />} />
+        <EntityLabel name={workspaceLabelName} icon={<HeadphonesIcon size={16} weight="bold" />} />
       ) : null}
 
       {!showWorkspaceLabel && hasWorkspaces ? (

@@ -1,10 +1,12 @@
+import type { ReactNode } from 'react';
+
 export type BreadcrumbEntity = {
   id: string;
   name: string;
 };
 
 export type BreadcrumbPage = {
-  name: string;
+  name: ReactNode;
   link: string;
 };
 

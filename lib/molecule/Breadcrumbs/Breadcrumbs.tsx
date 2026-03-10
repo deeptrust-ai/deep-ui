@@ -1,8 +1,15 @@
 import { Flex, Text, Link, DropdownMenu, Button, IconButton } from '@radix-ui/themes';
 import type { BreadcrumbEntity, IBreadcrumbsProps } from './Breadcrumbs.types';
-import { BuildingsIcon, CaretUpDownIcon, DotsThreeIcon, HeadphonesIcon } from '@phosphor-icons/react';
+import {
+  BuildingsIcon,
+  CaretUpDownIcon,
+  DotsThreeIcon,
+  HeadphonesIcon,
+} from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
 import { ALL_WORKSPACES_ID, ALL_WORKSPACES_NAME, MANY_CRUMBS_THRESHOLD } from './constants';
+
+const getPageKey = (link: string, index: number) => `${link}-${index}`;
 
 const BreadcrumbSeparator = () => (
   <Text color="gray" size="1">
@@ -117,7 +124,10 @@ const Breadcrumbs = ({
   return (
     <Flex align="center" gap="2">
       {showOrganizationLabel ? (
-        <EntityLabel name={organizations[0].name} icon={<BuildingsIcon size={16} weight="bold" />} />
+        <EntityLabel
+          name={organizations[0].name}
+          icon={<BuildingsIcon size={16} weight="bold" />}
+        />
       ) : null}
 
       {!showOrganizationLabel && hasOrganizations ? (
@@ -148,7 +158,7 @@ const Breadcrumbs = ({
 
       {showCollapsedPages && firstPage ? (
         <>
-          <Flex display="inline-flex" gap="1" key={`${firstPage.name}-${firstPage.link}`}>
+          <Flex display="inline-flex" gap="1" key={getPageKey(firstPage.link, 0)}>
             {hasPrefixSegments ? <BreadcrumbSeparator /> : null}
             <Link color="gray" size="1" underline="hover" href={firstPage.link}>
               {firstPage.name}
@@ -164,8 +174,8 @@ const Breadcrumbs = ({
                 </IconButton>
               </DropdownMenu.Trigger>
               <DropdownMenu.Content size="2" variant="soft">
-                {middlePages.map((page) => (
-                  <DropdownMenu.Item key={`${page.name}-${page.link}`} asChild>
+                {middlePages.map((page, index) => (
+                  <DropdownMenu.Item key={getPageKey(page.link, index + 1)} asChild>
                     <Link href={page.link}>{page.name}</Link>
                   </DropdownMenu.Item>
                 ))}
@@ -174,7 +184,7 @@ const Breadcrumbs = ({
           </Flex>
 
           {lastPage ? (
-            <Flex display="inline-flex" gap="1" key={`${lastPage.name}-${lastPage.link}`}>
+            <Flex display="inline-flex" gap="1" key={getPageKey(lastPage.link, pages.length - 1)}>
               <BreadcrumbSeparator />
               <Text color="gray" size="1">
                 {lastPage.name}
@@ -188,7 +198,7 @@ const Breadcrumbs = ({
           const shouldShowSeparator = hasPrefixSegments || index > 0;
 
           return (
-            <Flex display="inline-flex" gap="1" key={`${page.name}-${page.link}`}>
+            <Flex display="inline-flex" gap="1" key={getPageKey(page.link, index)}>
               {shouldShowSeparator ? <BreadcrumbSeparator /> : null}
               {isLast ? (
                 <Text color="gray" size="1">

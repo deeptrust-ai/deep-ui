@@ -85,14 +85,12 @@ const WorkspaceDropdown = ({
   selectedIds,
   defaultSelectedIds,
   onSelectionChange,
-  onSingleSelect,
 }: {
   entities: BreadcrumbEntity[];
   disabled?: boolean;
   selectedIds?: string[];
   defaultSelectedIds?: string[];
   onSelectionChange?: (workspaceIds: string[]) => void;
-  onSingleSelect?: (workspaceId: string) => void;
 }) => {
   const getFallbackSelection = () =>
     entities.length > 1
@@ -154,14 +152,6 @@ const WorkspaceDropdown = ({
       }
 
       onSelectionChange?.(normalizedNextWorkspaceIds);
-
-      if (onSingleSelect) {
-        const selectedWorkspaceIds = normalizedNextWorkspaceIds.filter((id) => id !== ALL_WORKSPACES_ID);
-
-        if (selectedWorkspaceIds.length === 1) {
-          onSingleSelect(selectedWorkspaceIds[0]);
-        }
-      }
     };
 
     if (workspaceId === ALL_WORKSPACES_ID) {
@@ -259,11 +249,9 @@ const Breadcrumbs = ({
   disableOrganizationsDropdown = false,
   disableWorkspacesDropdown = false,
   selectedOrganizationId,
-  selectedWorkspaceId,
   selectedWorkspaceIds,
   defaultSelectedWorkspaceIds,
   onOrganizationSelect,
-  onWorkspaceSelect,
   onWorkspaceSelectionChange,
 }: IBreadcrumbsProps) => {
   const hasAllWorkspacesOption = workspaces.some((workspace) => workspace.id === ALL_WORKSPACES_ID);
@@ -278,10 +266,6 @@ const Breadcrumbs = ({
   const hasWorkspaceSegment = true;
   const hasPrefixSegments = hasOrganizations || hasWorkspaceSegment;
   const showOrganizationLabel = organizations.length === 1;
-  const workspaceSelection =
-    selectedWorkspaceIds ?? (selectedWorkspaceId ? [selectedWorkspaceId] : undefined);
-  const defaultWorkspaceSelection =
-    defaultSelectedWorkspaceIds ?? (selectedWorkspaceId ? [selectedWorkspaceId] : undefined);
   const firstPage = pages[0];
   const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
   const middlePages = pages.slice(1, pages.length - 1);
@@ -316,10 +300,9 @@ const Breadcrumbs = ({
         <WorkspaceDropdown
           entities={workspaceOptions}
           disabled={disableWorkspacesDropdown}
-          selectedIds={workspaceSelection}
-          defaultSelectedIds={defaultWorkspaceSelection}
+          selectedIds={selectedWorkspaceIds}
+          defaultSelectedIds={defaultSelectedWorkspaceIds}
           onSelectionChange={onWorkspaceSelectionChange}
-          onSingleSelect={onWorkspaceSelect}
         />
       ) : null}
 

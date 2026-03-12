@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Breadcrumbs, type IBreadcrumbsProps } from '../..';
+import { ALL_WORKSPACES_ID } from './constants';
 
 const defaultPages: NonNullable<IBreadcrumbsProps['pages']> = [
   {
@@ -122,5 +123,19 @@ export const DisabledSelectors: Story = {
     ...defaultArgs,
     disableOrganizationsDropdown: true,
     disableWorkspacesDropdown: true,
+  },
+};
+
+export const MultiWorkspaceSelection: Story = {
+  args: {
+    ...defaultArgs,
+    selectedWorkspaceIds: ['ws-1', 'ws-3'],
+  },
+};
+
+export const AllWorkspacesSelected: Story = {
+  args: {
+    ...defaultArgs,
+    selectedWorkspaceIds: [ALL_WORKSPACES_ID],
   },
 };

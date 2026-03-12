@@ -37,9 +37,9 @@ export interface ITopbarProps {
   readonly disableOrganizationsDropdown?: boolean;
   readonly disableWorkspacesDropdown?: boolean;
   readonly selectedOrganizationId?: string;
-  readonly selectedWorkspaceId?: string;
+  readonly selectedWorkspaceIds?: string[];
   readonly onOrganizationSelect?: (organizationId: string) => void;
-  readonly onWorkspaceSelect?: (workspaceId: string) => void;
+  readonly onWorkspaceSelectionChange?: (workspaceIds: string[]) => void;
   readonly userName: IAvatarProps['name'];
   readonly userPfp?: IAvatarProps['pfp'];
   // Logout can be either a link or an onClick action but is required

@@ -79,6 +79,108 @@ const EntityDropdown = ({
   );
 };
 
+const WorkspaceDropdown = ({
+  entities,
+  disabled = false,
+  selectedIds = [],
+  onSelectionChange,
+}: {
+  entities: BreadcrumbEntity[];
+  disabled?: boolean;
+  selectedIds?: string[];
+  onSelectionChange?: (workspaceIds: string[]) => void;
+}) => {
+  const normalizedSelectedIds =
+    selectedIds.length > 0
+      ? selectedIds
+      : entities.length > 1
+        ? [ALL_WORKSPACES_ID]
+        : entities.length === 1
+          ? [entities[0].id]
+          : [];
+  const allSelected = normalizedSelectedIds.includes(ALL_WORKSPACES_ID);
+  const selectedWorkspaceCount = allSelected
+    ? Math.max(entities.length - 1, 0)
+    : normalizedSelectedIds.filter((id) => id !== ALL_WORKSPACES_ID).length;
+
+  const triggerLabel =
+    entities.length <= 1
+      ? entities[0]?.name ?? DEFAULT_WORKSPACE_NAME
+      : allSelected
+        ? ALL_WORKSPACES_NAME
+        : selectedWorkspaceCount === 1
+          ? entities.find((entity) => entity.id === normalizedSelectedIds[0])?.name ?? ALL_WORKSPACES_NAME
+          : `${selectedWorkspaceCount} Workspaces`;
+
+  const handleCheckedChange = (workspaceId: string, checked: boolean | 'indeterminate') => {
+    if (!onSelectionChange) {
+      return;
+    }
+
+    if (workspaceId === ALL_WORKSPACES_ID) {
+      onSelectionChange(checked ? [ALL_WORKSPACES_ID] : []);
+      return;
+    }
+
+    const nextIds = new Set(normalizedSelectedIds.filter((id) => id !== ALL_WORKSPACES_ID));
+
+    if (checked) {
+      nextIds.add(workspaceId);
+    } else {
+      nextIds.delete(workspaceId);
+    }
+
+    const workspaceIds = entities.filter((entity) => entity.id !== ALL_WORKSPACES_ID).map((entity) => entity.id);
+    const nextSelectedIds = workspaceIds.every((id) => nextIds.has(id))
+      ? [ALL_WORKSPACES_ID]
+      : workspaceIds.filter((id) => nextIds.has(id));
+
+    onSelectionChange(nextSelectedIds);
+  };
+
+  if (disabled) {
+    return (
+      <Button variant="ghost" color="gray" disabled>
+        <Flex align="center" gap="1">
+          <HeadphonesIcon size={16} weight="bold" />
+          <Text size="1">{triggerLabel}</Text>
+        </Flex>
+      </Button>
+    );
+  }
+
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger>
+        <Button variant="ghost" color="gray">
+          <Flex align="center" gap="1">
+            <HeadphonesIcon size={16} weight="bold" />
+            <Text size="1">{triggerLabel}</Text>
+            <CaretUpDownIcon size={14} weight="bold" />
+          </Flex>
+        </Button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content size="2" variant="soft">
+        {entities.map((entity) => {
+          const checked = allSelected
+            ? true
+            : normalizedSelectedIds.includes(entity.id);
+
+          return (
+            <DropdownMenu.CheckboxItem
+              key={entity.id}
+              checked={checked}
+              onCheckedChange={(value) => handleCheckedChange(entity.id, value)}
+            >
+              {entity.name}
+            </DropdownMenu.CheckboxItem>
+          );
+        })}
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
+  );
+};
+
 const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
   <Flex align="center" gap="1">
     {icon}
@@ -100,9 +202,9 @@ const Breadcrumbs = ({
   disableOrganizationsDropdown = false,
   disableWorkspacesDropdown = false,
   selectedOrganizationId,
-  selectedWorkspaceId,
+  selectedWorkspaceIds,
   onOrganizationSelect,
-  onWorkspaceSelect,
+  onWorkspaceSelectionChange,
 }: IBreadcrumbsProps) => {
   const hasAllWorkspacesOption = workspaces.some((workspace) => workspace.id === ALL_WORKSPACES_ID);
   const workspaceOptions =
@@ -147,12 +249,11 @@ const Breadcrumbs = ({
       ) : null}
 
       {!showWorkspaceLabel && hasWorkspaces ? (
-        <EntityDropdown
+        <WorkspaceDropdown
           entities={workspaceOptions}
-          icon={<HeadphonesIcon size={16} weight="bold" />}
           disabled={disableWorkspacesDropdown}
-          selectedId={selectedWorkspaceId}
-          onSelect={onWorkspaceSelect}
+          selectedIds={selectedWorkspaceIds}
+          onSelectionChange={onWorkspaceSelectionChange}
         />
       ) : null}
 

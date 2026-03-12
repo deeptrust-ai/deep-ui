@@ -11,9 +11,9 @@ const Topbar = ({
   disableOrganizationsDropdown,
   disableWorkspacesDropdown,
   selectedOrganizationId,
-  selectedWorkspaceId,
+  selectedWorkspaceIds,
   onOrganizationSelect,
-  onWorkspaceSelect,
+  onWorkspaceSelectionChange,
   userName,
   userPfp,
   userMetaDropdown,
@@ -31,9 +31,9 @@ const Topbar = ({
         disableOrganizationsDropdown={disableOrganizationsDropdown}
         disableWorkspacesDropdown={disableWorkspacesDropdown}
         selectedOrganizationId={selectedOrganizationId}
-        selectedWorkspaceId={selectedWorkspaceId}
+        selectedWorkspaceIds={selectedWorkspaceIds}
         onOrganizationSelect={onOrganizationSelect}
-        onWorkspaceSelect={onWorkspaceSelect}
+        onWorkspaceSelectionChange={onWorkspaceSelectionChange}
       />
 
       <DropdownMenu.Root>

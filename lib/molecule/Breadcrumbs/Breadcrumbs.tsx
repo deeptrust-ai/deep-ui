@@ -6,7 +6,7 @@ import {
   DotsThreeIcon,
   HeadphonesIcon,
 } from '@phosphor-icons/react';
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ALL_WORKSPACES_ID, ALL_WORKSPACES_NAME, MANY_CRUMBS_THRESHOLD } from './constants';
 
 const getPageKey = (link: string, index: number) => `${link}-${index}`;
@@ -82,22 +82,26 @@ const EntityDropdown = ({
 const WorkspaceDropdown = ({
   entities,
   disabled = false,
-  selectedIds = [],
+  selectedIds,
+  defaultSelectedIds,
   onSelectionChange,
 }: {
   entities: BreadcrumbEntity[];
   disabled?: boolean;
   selectedIds?: string[];
+  defaultSelectedIds?: string[];
   onSelectionChange?: (workspaceIds: string[]) => void;
 }) => {
-  const normalizedSelectedIds =
-    selectedIds.length > 0
-      ? selectedIds
-      : entities.length > 1
-        ? [ALL_WORKSPACES_ID]
-        : entities.length === 1
-          ? [entities[0].id]
-          : [];
+  const getFallbackSelection = () =>
+    entities.length > 1
+      ? [ALL_WORKSPACES_ID]
+      : entities.length === 1
+        ? [entities[0].id]
+        : [];
+  const [internalSelectedIds, setInternalSelectedIds] = useState<string[]>(
+    defaultSelectedIds && defaultSelectedIds.length > 0 ? defaultSelectedIds : getFallbackSelection()
+  );
+  const normalizedSelectedIds = selectedIds ?? internalSelectedIds;
   const allSelected = normalizedSelectedIds.includes(ALL_WORKSPACES_ID);
   const selectedWorkspaceCount = allSelected
     ? Math.max(entities.length - 1, 0)
@@ -113,12 +117,16 @@ const WorkspaceDropdown = ({
           : `${selectedWorkspaceCount} Workspaces`;
 
   const handleCheckedChange = (workspaceId: string, checked: boolean | 'indeterminate') => {
-    if (!onSelectionChange) {
-      return;
-    }
+    const updateSelection = (nextWorkspaceIds: string[]) => {
+      if (selectedIds === undefined) {
+        setInternalSelectedIds(nextWorkspaceIds);
+      }
+
+      onSelectionChange?.(nextWorkspaceIds);
+    };
 
     if (workspaceId === ALL_WORKSPACES_ID) {
-      onSelectionChange(checked ? [ALL_WORKSPACES_ID] : []);
+      updateSelection(checked ? [ALL_WORKSPACES_ID] : []);
       return;
     }
 
@@ -135,7 +143,7 @@ const WorkspaceDropdown = ({
       ? [ALL_WORKSPACES_ID]
       : workspaceIds.filter((id) => nextIds.has(id));
 
-    onSelectionChange(nextSelectedIds);
+    updateSelection(nextSelectedIds);
   };
 
   if (disabled) {
@@ -203,6 +211,7 @@ const Breadcrumbs = ({
   disableWorkspacesDropdown = false,
   selectedOrganizationId,
   selectedWorkspaceIds,
+  defaultSelectedWorkspaceIds,
   onOrganizationSelect,
   onWorkspaceSelectionChange,
 }: IBreadcrumbsProps) => {
@@ -253,6 +262,7 @@ const Breadcrumbs = ({
           entities={workspaceOptions}
           disabled={disableWorkspacesDropdown}
           selectedIds={selectedWorkspaceIds}
+          defaultSelectedIds={defaultSelectedWorkspaceIds}
           onSelectionChange={onWorkspaceSelectionChange}
         />
       ) : null}

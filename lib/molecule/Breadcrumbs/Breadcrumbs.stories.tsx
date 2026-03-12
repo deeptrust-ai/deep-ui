@@ -139,3 +139,11 @@ export const AllWorkspacesSelected: Story = {
     selectedWorkspaceIds: [ALL_WORKSPACES_ID],
   },
 };
+
+export const UncontrolledWorkspaceSelection: Story = {
+  args: {
+    ...defaultArgs,
+    selectedWorkspaceIds: undefined,
+    defaultSelectedWorkspaceIds: ['ws-1', 'ws-2'],
+  },
+};

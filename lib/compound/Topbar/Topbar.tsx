@@ -24,7 +24,7 @@ const Topbar = ({
   const logOutLink = userMetaDropdown?.logOutLink;
 
   return (
-    <Flex justify="between" align="center" p="4">
+    <Flex justify="between" align="center" p="4" width="100%">
       <Breadcrumbs
         organizations={organizations}
         workspaces={workspaces}

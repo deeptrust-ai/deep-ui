@@ -98,10 +98,30 @@ const WorkspaceDropdown = ({
       : entities.length === 1
         ? [entities[0].id]
         : [];
+  const normalizeSelection = (workspaceIds: string[]) => {
+    if (workspaceIds.length === 0) {
+      return getFallbackSelection();
+    }
+
+    const nonAllIds = entities
+      .filter((entity) => entity.id !== ALL_WORKSPACES_ID)
+      .map((entity) => entity.id);
+    const selectedNonAllIds = workspaceIds.filter((id) => id !== ALL_WORKSPACES_ID);
+
+    if (selectedNonAllIds.length === 0) {
+      return workspaceIds.includes(ALL_WORKSPACES_ID) ? [ALL_WORKSPACES_ID] : getFallbackSelection();
+    }
+
+    return nonAllIds.every((id) => selectedNonAllIds.includes(id))
+      ? [ALL_WORKSPACES_ID]
+      : selectedNonAllIds;
+  };
   const [internalSelectedIds, setInternalSelectedIds] = useState<string[]>(
-    defaultSelectedIds && defaultSelectedIds.length > 0 ? defaultSelectedIds : getFallbackSelection()
+    normalizeSelection(
+      defaultSelectedIds && defaultSelectedIds.length > 0 ? defaultSelectedIds : getFallbackSelection()
+    )
   );
-  const normalizedSelectedIds = selectedIds ?? internalSelectedIds;
+  const normalizedSelectedIds = normalizeSelection(selectedIds ?? internalSelectedIds);
   const allSelected = normalizedSelectedIds.includes(ALL_WORKSPACES_ID);
   const selectedWorkspaceCount = allSelected
     ? Math.max(entities.length - 1, 0)
@@ -130,6 +150,15 @@ const WorkspaceDropdown = ({
       return;
     }
 
+    if (allSelected) {
+      const nextSelectedIds = entities
+        .filter((entity) => entity.id !== ALL_WORKSPACES_ID && entity.id !== workspaceId)
+        .map((entity) => entity.id);
+
+      updateSelection(checked ? [workspaceId] : nextSelectedIds);
+      return;
+    }
+
     const nextIds = new Set(normalizedSelectedIds.filter((id) => id !== ALL_WORKSPACES_ID));
 
     if (checked) {
@@ -138,10 +167,9 @@ const WorkspaceDropdown = ({
       nextIds.delete(workspaceId);
     }
 
-    const workspaceIds = entities.filter((entity) => entity.id !== ALL_WORKSPACES_ID).map((entity) => entity.id);
-    const nextSelectedIds = workspaceIds.every((id) => nextIds.has(id))
-      ? [ALL_WORKSPACES_ID]
-      : workspaceIds.filter((id) => nextIds.has(id));
+    const nextSelectedIds = entities
+      .filter((entity) => entity.id !== ALL_WORKSPACES_ID && nextIds.has(entity.id))
+      .map((entity) => entity.id);
 
     updateSelection(nextSelectedIds);
   };

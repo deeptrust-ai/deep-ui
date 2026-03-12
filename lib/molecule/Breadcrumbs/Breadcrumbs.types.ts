@@ -17,8 +17,12 @@ export interface IBreadcrumbsProps {
   disableOrganizationsDropdown?: boolean;
   disableWorkspacesDropdown?: boolean;
   selectedOrganizationId?: string;
+  /** @deprecated Use selectedWorkspaceIds instead. */
+  selectedWorkspaceId?: string;
   selectedWorkspaceIds?: string[];
   defaultSelectedWorkspaceIds?: string[];
   onOrganizationSelect?: (organizationId: string) => void;
+  /** @deprecated Use onWorkspaceSelectionChange instead. */
+  onWorkspaceSelect?: (workspaceId: string) => void;
   onWorkspaceSelectionChange?: (workspaceIds: string[]) => void;
 }

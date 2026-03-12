@@ -11,9 +11,11 @@ const Topbar = ({
   disableOrganizationsDropdown,
   disableWorkspacesDropdown,
   selectedOrganizationId,
+  selectedWorkspaceId,
   selectedWorkspaceIds,
   defaultSelectedWorkspaceIds,
   onOrganizationSelect,
+  onWorkspaceSelect,
   onWorkspaceSelectionChange,
   userName,
   userPfp,
@@ -32,9 +34,11 @@ const Topbar = ({
         disableOrganizationsDropdown={disableOrganizationsDropdown}
         disableWorkspacesDropdown={disableWorkspacesDropdown}
         selectedOrganizationId={selectedOrganizationId}
+        selectedWorkspaceId={selectedWorkspaceId}
         selectedWorkspaceIds={selectedWorkspaceIds}
         defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
         onOrganizationSelect={onOrganizationSelect}
+        onWorkspaceSelect={onWorkspaceSelect}
         onWorkspaceSelectionChange={onWorkspaceSelectionChange}
       />
 

@@ -37,9 +37,13 @@ export interface ITopbarProps {
   readonly disableOrganizationsDropdown?: boolean;
   readonly disableWorkspacesDropdown?: boolean;
   readonly selectedOrganizationId?: string;
+  /** @deprecated Use selectedWorkspaceIds instead. */
+  readonly selectedWorkspaceId?: string;
   readonly selectedWorkspaceIds?: string[];
   readonly defaultSelectedWorkspaceIds?: string[];
   readonly onOrganizationSelect?: (organizationId: string) => void;
+  /** @deprecated Use onWorkspaceSelectionChange instead. */
+  readonly onWorkspaceSelect?: (workspaceId: string) => void;
   readonly onWorkspaceSelectionChange?: (workspaceIds: string[]) => void;
   readonly userName: IAvatarProps['name'];
   readonly userPfp?: IAvatarProps['pfp'];

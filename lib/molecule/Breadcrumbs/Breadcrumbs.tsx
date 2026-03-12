@@ -85,12 +85,14 @@ const WorkspaceDropdown = ({
   selectedIds,
   defaultSelectedIds,
   onSelectionChange,
+  onSingleSelect,
 }: {
   entities: BreadcrumbEntity[];
   disabled?: boolean;
   selectedIds?: string[];
   defaultSelectedIds?: string[];
   onSelectionChange?: (workspaceIds: string[]) => void;
+  onSingleSelect?: (workspaceId: string) => void;
 }) => {
   const getFallbackSelection = () =>
     entities.length > 1
@@ -99,17 +101,24 @@ const WorkspaceDropdown = ({
         ? [entities[0].id]
         : [];
   const normalizeSelection = (workspaceIds: string[]) => {
-    if (workspaceIds.length === 0) {
+    const validIds = new Set(entities.map((entity) => entity.id));
+    const filteredWorkspaceIds = workspaceIds.filter(
+      (id) => id === ALL_WORKSPACES_ID || validIds.has(id)
+    );
+
+    if (filteredWorkspaceIds.length === 0) {
       return getFallbackSelection();
     }
 
     const nonAllIds = entities
       .filter((entity) => entity.id !== ALL_WORKSPACES_ID)
       .map((entity) => entity.id);
-    const selectedNonAllIds = workspaceIds.filter((id) => id !== ALL_WORKSPACES_ID);
+    const selectedNonAllIds = filteredWorkspaceIds.filter((id) => id !== ALL_WORKSPACES_ID);
 
     if (selectedNonAllIds.length === 0) {
-      return workspaceIds.includes(ALL_WORKSPACES_ID) ? [ALL_WORKSPACES_ID] : getFallbackSelection();
+      return filteredWorkspaceIds.includes(ALL_WORKSPACES_ID)
+        ? [ALL_WORKSPACES_ID]
+        : getFallbackSelection();
     }
 
     return nonAllIds.every((id) => selectedNonAllIds.includes(id))
@@ -138,15 +147,25 @@ const WorkspaceDropdown = ({
 
   const handleCheckedChange = (workspaceId: string, checked: boolean | 'indeterminate') => {
     const updateSelection = (nextWorkspaceIds: string[]) => {
+      const normalizedNextWorkspaceIds = normalizeSelection(nextWorkspaceIds);
+
       if (selectedIds === undefined) {
-        setInternalSelectedIds(nextWorkspaceIds);
+        setInternalSelectedIds(normalizedNextWorkspaceIds);
       }
 
-      onSelectionChange?.(nextWorkspaceIds);
+      onSelectionChange?.(normalizedNextWorkspaceIds);
+
+      if (onSingleSelect) {
+        const selectedWorkspaceIds = normalizedNextWorkspaceIds.filter((id) => id !== ALL_WORKSPACES_ID);
+
+        if (selectedWorkspaceIds.length === 1) {
+          onSingleSelect(selectedWorkspaceIds[0]);
+        }
+      }
     };
 
     if (workspaceId === ALL_WORKSPACES_ID) {
-      updateSelection(checked ? [ALL_WORKSPACES_ID] : []);
+      updateSelection(checked === true ? [ALL_WORKSPACES_ID] : []);
       return;
     }
 
@@ -155,16 +174,18 @@ const WorkspaceDropdown = ({
         .filter((entity) => entity.id !== ALL_WORKSPACES_ID && entity.id !== workspaceId)
         .map((entity) => entity.id);
 
-      updateSelection(checked ? [workspaceId] : nextSelectedIds);
+      updateSelection(checked === true ? [workspaceId] : nextSelectedIds);
       return;
     }
 
     const nextIds = new Set(normalizedSelectedIds.filter((id) => id !== ALL_WORKSPACES_ID));
 
-    if (checked) {
+    if (checked === true) {
       nextIds.add(workspaceId);
-    } else {
+    } else if (checked === false) {
       nextIds.delete(workspaceId);
+    } else {
+      return;
     }
 
     const nextSelectedIds = entities
@@ -238,9 +259,11 @@ const Breadcrumbs = ({
   disableOrganizationsDropdown = false,
   disableWorkspacesDropdown = false,
   selectedOrganizationId,
+  selectedWorkspaceId,
   selectedWorkspaceIds,
   defaultSelectedWorkspaceIds,
   onOrganizationSelect,
+  onWorkspaceSelect,
   onWorkspaceSelectionChange,
 }: IBreadcrumbsProps) => {
   const hasAllWorkspacesOption = workspaces.some((workspace) => workspace.id === ALL_WORKSPACES_ID);
@@ -255,6 +278,10 @@ const Breadcrumbs = ({
   const hasWorkspaceSegment = true;
   const hasPrefixSegments = hasOrganizations || hasWorkspaceSegment;
   const showOrganizationLabel = organizations.length === 1;
+  const workspaceSelection =
+    selectedWorkspaceIds ?? (selectedWorkspaceId ? [selectedWorkspaceId] : undefined);
+  const defaultWorkspaceSelection =
+    defaultSelectedWorkspaceIds ?? (selectedWorkspaceId ? [selectedWorkspaceId] : undefined);
   const firstPage = pages[0];
   const lastPage = pages.length > 0 ? pages[pages.length - 1] : undefined;
   const middlePages = pages.slice(1, pages.length - 1);
@@ -289,9 +316,10 @@ const Breadcrumbs = ({
         <WorkspaceDropdown
           entities={workspaceOptions}
           disabled={disableWorkspacesDropdown}
-          selectedIds={selectedWorkspaceIds}
-          defaultSelectedIds={defaultSelectedWorkspaceIds}
+          selectedIds={workspaceSelection}
+          defaultSelectedIds={defaultWorkspaceSelection}
           onSelectionChange={onWorkspaceSelectionChange}
+          onSingleSelect={onWorkspaceSelect}
         />
       ) : null}
 

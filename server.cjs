@@ -64,6 +64,12 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (pathname.indexOf('\0') !== -1) {
+    res.writeHead(400);
+    res.end('Bad Request');
+    return;
+  }
+
   // Resolve file path (no URL rewriting, no clean URLs)
   let filePath = path.join(ROOT, pathname);
 

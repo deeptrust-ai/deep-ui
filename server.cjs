@@ -53,7 +53,14 @@ function serveFile(filePath, res) {
 
 const server = http.createServer((req, res) => {
   const parsed = url.parse(req.url);
-  const pathname = decodeURIComponent(parsed.pathname);
+  let pathname;
+  try {
+    pathname = decodeURIComponent(parsed.pathname);
+  } catch {
+    res.writeHead(400);
+    res.end('Bad Request');
+    return;
+  }
 
   // Resolve file path (no URL rewriting, no clean URLs)
   let filePath = path.join(ROOT, pathname);

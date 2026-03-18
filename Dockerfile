@@ -9,16 +9,19 @@ RUN npm ci
 COPY . .
 RUN npm run build-storybook
 
-# Serve stage: lightweight static file server
-FROM node:20-alpine
+# Serve stage: nginx for reliable static file serving
+FROM nginx:alpine
 
-RUN npm install -g serve@14
+COPY --from=builder /app/storybook-static /usr/share/nginx/html
 
-COPY --from=builder /app/storybook-static /app/storybook-static
+# Configure nginx to listen on PORT (Railway sets this)
+RUN printf 'server {\n\
+    listen %s;\n\
+    root /usr/share/nginx/html;\n\
+    index index.html;\n\
+    location / {\n\
+        try_files $uri $uri/ /index.html;\n\
+    }\n\
+}\n' '${PORT}' > /etc/nginx/templates/default.conf.template
 
-# Disable cleanUrls so Storybook's iframe.html loads with query params intact
-RUN echo '{"cleanUrls": false}' > /app/storybook-static/serve.json
-
-WORKDIR /app
-
-CMD ["sh", "-c", "serve storybook-static -p ${PORT:-3000}"]
+EXPOSE 3000

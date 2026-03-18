@@ -93,11 +93,7 @@ const WorkspaceDropdown = ({
   onSelectionChange?: (workspaceIds: string[]) => void;
 }) => {
   const getFallbackSelection = () =>
-    entities.length > 1
-      ? [ALL_WORKSPACES_ID]
-      : entities.length === 1
-        ? [entities[0].id]
-        : [];
+    entities.length > 1 ? [ALL_WORKSPACES_ID] : entities.length === 1 ? [entities[0].id] : [];
   const normalizeSelection = (workspaceIds: string[]) => {
     const validIds = new Set(entities.map((entity) => entity.id));
     const filteredWorkspaceIds = workspaceIds.filter(
@@ -125,7 +121,9 @@ const WorkspaceDropdown = ({
   };
   const [internalSelectedIds, setInternalSelectedIds] = useState<string[]>(
     normalizeSelection(
-      defaultSelectedIds && defaultSelectedIds.length > 0 ? defaultSelectedIds : getFallbackSelection()
+      defaultSelectedIds && defaultSelectedIds.length > 0
+        ? defaultSelectedIds
+        : getFallbackSelection()
     )
   );
   const normalizedSelectedIds = normalizeSelection(selectedIds ?? internalSelectedIds);
@@ -136,11 +134,12 @@ const WorkspaceDropdown = ({
 
   const triggerLabel =
     entities.length <= 1
-      ? entities[0]?.name ?? DEFAULT_WORKSPACE_NAME
+      ? (entities[0]?.name ?? DEFAULT_WORKSPACE_NAME)
       : allSelected
         ? ALL_WORKSPACES_NAME
         : selectedWorkspaceCount === 1
-          ? entities.find((entity) => entity.id === normalizedSelectedIds[0])?.name ?? ALL_WORKSPACES_NAME
+          ? (entities.find((entity) => entity.id === normalizedSelectedIds[0])?.name ??
+            ALL_WORKSPACES_NAME)
           : `${selectedWorkspaceCount} Workspaces`;
 
   const handleCheckedChange = (workspaceId: string, checked: boolean | 'indeterminate') => {
@@ -209,9 +208,7 @@ const WorkspaceDropdown = ({
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2" variant="soft">
         {entities.map((entity) => {
-          const checked = allSelected
-            ? true
-            : normalizedSelectedIds.includes(entity.id);
+          const checked = allSelected ? true : normalizedSelectedIds.includes(entity.id);
 
           return (
             <DropdownMenu.CheckboxItem

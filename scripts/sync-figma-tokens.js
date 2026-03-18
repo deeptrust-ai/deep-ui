@@ -24,19 +24,18 @@ const readJson = (filePath) => {
       throw new Error(
         `Failed to parse JSON from "${filePath}". ` +
           'Ensure the file contains valid JSON exported from Figma. ' +
-          `Original error: ${parseError.message}`,
+          `Original error: ${parseError.message}`
       );
     }
   } catch (err) {
     if (err && err.code === 'ENOENT') {
       throw new Error(
         `Required Figma tokens file not found: "${filePath}". ` +
-          'Make sure you have exported tokens from Figma to this path.',
+          'Make sure you have exported tokens from Figma to this path.'
       );
     }
     throw new Error(
-      `Failed to read Figma tokens file "${filePath}". ` +
-        `Original error: ${err.message}`,
+      `Failed to read Figma tokens file "${filePath}". ` + `Original error: ${err.message}`
     );
   }
 };
@@ -389,7 +388,20 @@ const collectNonColorTokens = () => {
 
   // Radius from explicit radius mode file only. If a token is missing, do not emit
   // an override so Radix defaults remain in effect.
-  for (const key of ['1', '2', '3', '4', '5', '6', '1-max', '2-max', '3-max', '4-max', '5-max', '6-max']) {
+  for (const key of [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '1-max',
+    '2-max',
+    '3-max',
+    '4-max',
+    '5-max',
+    '6-max',
+  ]) {
     const radiusValue = readModeToken(radiusModes, 'Medium', key);
     if (radiusValue !== undefined) {
       lines.push(`  --radius-${kebab(key)}: ${measurementToken(radiusValue)};`);
@@ -398,7 +410,9 @@ const collectNonColorTokens = () => {
 
   // Spacing from explicit scale file (100% mode as default).
   for (const key of ['1', '2', '3', '4', '5', '6', '7', '8', '9']) {
-    lines.push(`  --space-${kebab(key)}: ${measurementToken(readModeToken(spaceModes, '100%', key))};`);
+    lines.push(
+      `  --space-${kebab(key)}: ${measurementToken(readModeToken(spaceModes, '100%', key))};`
+    );
   }
 
   // Typography from Theme A.
@@ -415,7 +429,10 @@ const collectNonColorTokens = () => {
       const suffix = token.path.replace('Typography/Letter spacing/', '');
       lines.push(`  --letter-spacing-${kebab(suffix)}: ${measurementToken(token.value, 'px')};`);
     }
-    if (token.path.startsWith('Typography/Font weight/') && (token.type === 'number' || token.type === 'string')) {
+    if (
+      token.path.startsWith('Typography/Font weight/') &&
+      (token.type === 'number' || token.type === 'string')
+    ) {
       const suffix = token.path.replace('Typography/Font weight/', '');
       lines.push(`  --font-weight-${kebab(suffix)}: ${measurementToken(token.value, '')};`);
     }
@@ -440,7 +457,20 @@ const darkLines = colorEntries.map((entry) => `  ${entry.cssVar}: ${entry.dark};
 const radiusModeSelectors = ['None', 'Small', 'Medium', 'Large', 'Full'];
 const radiusModeBlocks = radiusModeSelectors
   .map((mode) => {
-    const lines = ['1', '2', '3', '4', '5', '6', '1-max', '2-max', '3-max', '4-max', '5-max', '6-max']
+    const lines = [
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '1-max',
+      '2-max',
+      '3-max',
+      '4-max',
+      '5-max',
+      '6-max',
+    ]
       .map((key) => {
         const radiusValue = readModeToken(radiusModes, mode, key);
         if (radiusValue === undefined) return null;
@@ -458,7 +488,8 @@ const spaceScaleSelectors = ['90%', '95%', '100%', '105%', '110%'];
 const spaceScaleBlocks = spaceScaleSelectors
   .map((scale) => {
     const lines = ['1', '2', '3', '4', '5', '6', '7', '8', '9'].map(
-      (key) => `  --space-${kebab(key)}: ${measurementToken(readModeToken(spaceModes, scale, key))};`
+      (key) =>
+        `  --space-${kebab(key)}: ${measurementToken(readModeToken(spaceModes, scale, key))};`
     );
     return toBlock(`[data-token-space-scale='${kebab(scale)}']`, lines);
   })
@@ -497,4 +528,6 @@ ${radiusModeBlocks}
 ${spaceScaleBlocks}`;
 
 fs.writeFileSync(OUT, css);
-console.log(`Wrote ${OUT} with ${colorEntries.length} color vars and ${nonColorLines.length} non-color vars.`);
+console.log(
+  `Wrote ${OUT} with ${colorEntries.length} color vars and ${nonColorLines.length} non-color vars.`
+);

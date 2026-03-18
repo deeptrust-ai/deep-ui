@@ -42,7 +42,9 @@ function serveFile(filePath, res) {
 
   const stream = fs.createReadStream(filePath);
   stream.on('error', () => {
-    res.writeHead(500);
+    if (!res.headersSent) {
+      res.writeHead(500);
+    }
     res.end('Internal Server Error');
   });
   res.writeHead(200, headers);
@@ -57,7 +59,7 @@ const server = http.createServer((req, res) => {
   let filePath = path.join(ROOT, pathname);
 
   // Prevent directory traversal
-  if (!filePath.startsWith(ROOT)) {
+  if (!filePath.startsWith(ROOT + path.sep) && filePath !== ROOT) {
     res.writeHead(403);
     res.end('Forbidden');
     return;

@@ -4,7 +4,15 @@ const getAbsolutePath = (packageName) => dirname(require.resolve(`${packageName}
 
 /** @type {import('@storybook/react-vite').StorybookConfig} */
 const config = {
-  stories: ['./stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
+  stories: ['./stories/Main.mdx', './stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
+  managerHead: (head) => `
+    ${head}
+    <script>
+      if (!window.location.search.includes('path=')) {
+        window.history.replaceState({}, '', window.location.pathname + '?path=/docs/deepui-dev--docs');
+      }
+    </script>
+  `,
   addons: [
     getAbsolutePath('@chromatic-com/storybook'),
     getAbsolutePath('@storybook/addon-docs'),

@@ -10,6 +10,7 @@ const config = {
     getAbsolutePath('@storybook/addon-docs'),
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-vitest'),
+    getAbsolutePath('@storybook/addon-mcp'),
   ],
   core: {
     builder: '@storybook/builder-vite',

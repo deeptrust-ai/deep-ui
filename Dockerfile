@@ -16,6 +16,9 @@ RUN npm install -g serve@14
 
 COPY --from=builder /app/storybook-static /app/storybook-static
 
+# Disable cleanUrls so Storybook's iframe.html loads with query params intact
+RUN echo '{"cleanUrls": false}' > /app/storybook-static/serve.json
+
 WORKDIR /app
 
 CMD ["sh", "-c", "serve storybook-static -p ${PORT:-3000}"]

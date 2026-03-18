@@ -9,7 +9,7 @@ const config = {
     ${head}
     <script>
       if (!window.location.search.includes('path=')) {
-        window.history.replaceState({}, '', window.location.pathname + '?path=/docs/deepui-dev--docs');
+        window.location.replace(window.location.pathname + '?path=/docs/deepui-dev--docs');
       }
     </script>
   `,

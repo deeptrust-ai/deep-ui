@@ -54,6 +54,13 @@ function serveFile(filePath, res) {
 }
 
 const server = http.createServer((req, res) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    res.statusCode = 405;
+    res.setHeader('Allow', 'GET, HEAD');
+    res.end('Method Not Allowed');
+    return;
+  }
+
   const parsed = url.parse(req.url);
   let pathname;
   try {
@@ -70,19 +77,18 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Resolve file path (no URL rewriting, no clean URLs)
-  let filePath = path.join(ROOT, pathname);
+  // Map root to index.html before resolving; no URL rewriting, no clean URLs
+  const requestedPath = pathname === '/' ? '/index.html' : pathname;
 
-  // Prevent directory traversal
-  if (!filePath.startsWith(ROOT + path.sep) && filePath !== ROOT) {
+  // Resolve file path relative to ROOT in a way that keeps it under ROOT
+  const filePath = path.resolve(ROOT, '.' + requestedPath);
+
+  // Prevent directory traversal using path.relative
+  const relative = path.relative(ROOT, filePath);
+  if (relative.startsWith('..') || path.isAbsolute(relative)) {
     res.writeHead(403);
     res.end('Forbidden');
     return;
-  }
-
-  // Serve root as index.html
-  if (pathname === '/') {
-    filePath = path.join(ROOT, 'index.html');
   }
 
   fs.stat(filePath, (err, stats) => {

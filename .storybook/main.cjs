@@ -4,7 +4,7 @@ const getAbsolutePath = (packageName) => dirname(require.resolve(`${packageName}
 
 /** @type {import('@storybook/react-vite').StorybookConfig} */
 const config = {
-  stories: ['./stories/Main.mdx', './stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
+  stories: ['./stories/**/*.mdx', '../lib/**/*.stories.@(ts|tsx)'],
   managerHead: (head) => `
     ${head}
     <script>

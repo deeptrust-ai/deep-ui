@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import * as Toast from '@radix-ui/react-toast';
 import { Box, Flex, Grid, Text } from '@radix-ui/themes';
 
 type Scale = {
@@ -21,6 +23,7 @@ const scales: Scale[] = [
   { key: 'slate', label: 'Slate' },
   { key: 'black-a', label: 'Black Alpha', checkered: true },
   { key: 'gray-a', label: 'Gray Alpha', checkered: true },
+  { key: 'white-a', label: 'White Alpha', checkered: true },
 ];
 
 const columnWidth = 56;
@@ -57,6 +60,12 @@ function getScaleToken(scaleKey: string, step: number) {
     : `var(--${scaleKey}-${step})`;
 }
 
+function getScaleTokenName(scaleKey: string, step: number) {
+  return scaleKey.includes('-a')
+    ? `--${scaleKey}${step}`
+    : `--${scaleKey}-${step}`;
+}
+
 function UseCaseBand({
   label,
   start,
@@ -86,7 +95,13 @@ function UseCaseBand({
   );
 }
 
-function SwatchRow({ scale }: { scale: Scale }) {
+function SwatchRow({
+  scale,
+  onCopy,
+}: {
+  scale: Scale;
+  onCopy: (tokenName: string) => void;
+}) {
   return (
     <Flex align="center" gap="3">
       <Box style={{ width: `${labelColumnWidth}px`, flexShrink: 0 }}>
@@ -94,24 +109,29 @@ function SwatchRow({ scale }: { scale: Scale }) {
           {scale.label}
         </Text>
       </Box>
-      <Box
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${steps.length}, ${columnWidth}px)`,
-          gap: `${gap}px`,
-        }}
-      >
+      <Grid columns={`repeat(${steps.length}, ${columnWidth}px)`} gap={`${gap}px`} width="auto">
         {steps.map((step) => (
           <Box
             key={`${scale.key}-${step}`}
-            style={{
-              ...swatchBaseStyle,
-              ...(scale.checkered ? alphaBackplateStyle : {}),
-              backgroundColor: getScaleToken(scale.key, step),
-            }}
-          />
+            asChild
+          >
+            <button
+              type="button"
+              aria-label={`Copy ${getScaleTokenName(scale.key, step)}`}
+              onClick={() => onCopy(getScaleTokenName(scale.key, step))}
+              style={{
+                ...swatchBaseStyle,
+                ...(scale.checkered ? alphaBackplateStyle : {}),
+                backgroundColor: getScaleToken(scale.key, step),
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                transition: 'transform 120ms ease, box-shadow 120ms ease',
+              }}
+            />
+          </Box>
         ))}
-      </Box>
+      </Grid>
     </Flex>
   );
 }
@@ -119,9 +139,11 @@ function SwatchRow({ scale }: { scale: Scale }) {
 function ThemeSection({
   className,
   label,
+  onCopy,
 }: {
   className: string;
   label: string;
+  onCopy: (tokenName: string) => void;
 }) {
   return (
     <Box
@@ -140,20 +162,17 @@ function ThemeSection({
             {label}
           </Text>
           <Text size="2" style={{ color: 'var(--gray-10)' }}>
-            Radix-style 12-step scale
+            Click a tile to copy its token
           </Text>
         </Flex>
 
         <Box style={{ width: `${gridWidth}px`, maxWidth: '100%' }}>
-          <Box
-            style={{
-              display: 'grid',
-              gridTemplateColumns: `${labelColumnWidth}px repeat(${steps.length}, ${columnWidth}px)`,
-              columnGap: `${gap}px`,
-              rowGap: '10px',
-              alignItems: 'end',
-              marginBottom: '16px',
-            }}
+          <Grid
+            columns={`${labelColumnWidth}px repeat(${steps.length}, ${columnWidth}px)`}
+            gapX={`${gap}px`}
+            gapY="10px"
+            width="auto"
+            style={{ alignItems: 'end', marginBottom: '16px' }}
           >
             <Box />
             {steps.map((step) => (
@@ -169,11 +188,15 @@ function ThemeSection({
             <UseCaseBand label="Borders" start={7} span={3} />
             <UseCaseBand label="Solid" start={10} span={2} />
             <UseCaseBand label="A11y Text" start={12} span={2} />
-          </Box>
+          </Grid>
 
           <Flex direction="column" gap="3">
             {scales.map((scale) => (
-              <SwatchRow key={`${label}-${scale.key}`} scale={scale} />
+              <SwatchRow
+                key={`${label}-${scale.key}`}
+                scale={scale}
+                onCopy={onCopy}
+              />
             ))}
           </Flex>
         </Box>
@@ -183,10 +206,77 @@ function ThemeSection({
 }
 
 export function ColorsChart() {
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
+  const [toastOpen, setToastOpen] = useState(false);
+
+  async function handleCopy(tokenName: string) {
+    try {
+      await navigator.clipboard.writeText(`var(${tokenName})`);
+      setCopiedToken(`var(${tokenName})`);
+      setToastOpen(false);
+      window.setTimeout(() => setToastOpen(true), 0);
+    } catch {
+      setCopiedToken('Clipboard copy failed');
+      setToastOpen(false);
+      window.setTimeout(() => setToastOpen(true), 0);
+    }
+  }
+
   return (
-    <Flex direction="column" gap="6" style={{ maxWidth: '1000px' }}>
-      <ThemeSection className="light light-theme" label="Light theme" />
-      <ThemeSection className="dark dark-theme" label="Dark theme" />
-    </Flex>
+    <Toast.Provider swipeDirection="right" duration={1800}>
+      <Flex direction="column" gap="6" style={{ maxWidth: '1000px' }}>
+        <ThemeSection
+          className="light light-theme"
+          label="Light theme"
+          onCopy={handleCopy}
+        />
+        <ThemeSection
+          className="dark dark-theme"
+          label="Dark theme"
+          onCopy={handleCopy}
+        />
+      </Flex>
+
+      <Toast.Root
+        open={toastOpen}
+        onOpenChange={setToastOpen}
+        style={{
+          background: 'var(--gray-2)',
+          color: 'var(--gray-12)',
+          borderRadius: '12px',
+          boxShadow:
+            '0 10px 30px color-mix(in srgb, var(--gray-a12) 18%, transparent), inset 0 0 0 1px var(--gray-a5)',
+          padding: '12px 14px',
+        }}
+      >
+        <Toast.Title asChild>
+          <Text size="2" weight="medium">
+            {copiedToken === 'Clipboard copy failed' ? copiedToken : 'Copied token'}
+          </Text>
+        </Toast.Title>
+        {copiedToken && copiedToken !== 'Clipboard copy failed' ? (
+          <Toast.Description asChild>
+            <Text size="1" style={{ color: 'var(--gray-11)' }}>
+              {copiedToken}
+            </Text>
+          </Toast.Description>
+        ) : null}
+      </Toast.Root>
+
+      <Toast.Viewport
+        style={{
+          position: 'fixed',
+          right: '24px',
+          bottom: '24px',
+          width: '320px',
+          maxWidth: 'calc(100vw - 32px)',
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+          zIndex: 1000,
+          outline: 'none',
+        }}
+      />
+    </Toast.Provider>
   );
 }

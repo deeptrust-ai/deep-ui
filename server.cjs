@@ -47,8 +47,10 @@ function serveFile(filePath, res) {
     }
     res.end('Internal Server Error');
   });
-  res.writeHead(200, headers);
-  stream.pipe(res);
+  stream.on('open', () => {
+    res.writeHead(200, headers);
+    stream.pipe(res);
+  });
 }
 
 const server = http.createServer((req, res) => {

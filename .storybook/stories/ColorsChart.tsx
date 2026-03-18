@@ -54,54 +54,31 @@ const bandStyle = {
   borderTop: '1px solid var(--gray-a6)',
 } as const;
 
+const bandTextStyle = {
+  fontSize: '10px',
+  letterSpacing: '0.04em',
+  textTransform: 'uppercase',
+} as const;
+
 function getScaleToken(scaleKey: string, step: number) {
-  return scaleKey.includes('-a')
-    ? `var(--${scaleKey}${step})`
-    : `var(--${scaleKey}-${step})`;
+  return scaleKey.includes('-a') ? `var(--${scaleKey}${step})` : `var(--${scaleKey}-${step})`;
 }
 
 function getScaleTokenName(scaleKey: string, step: number) {
-  return scaleKey.includes('-a')
-    ? `--${scaleKey}${step}`
-    : `--${scaleKey}-${step}`;
+  return scaleKey.includes('-a') ? `--${scaleKey}${step}` : `--${scaleKey}-${step}`;
 }
 
-function UseCaseBand({
-  label,
-  start,
-  span,
-}: {
-  label: string;
-  start: number;
-  span: number;
-}) {
+function UseCaseBand({ label, start, span }: { label: string; start: number; span: number }) {
   return (
-    <Grid
-      gridColumn={`${start} / span ${span}`}
-      pt={'10px'}
-      style={{
-        ...bandStyle,
-      }}
-    >
-      <Text
-        weight="medium"
-        color={"gray"}
-        style={{ fontSize:"10px",letterSpacing: '0.04em', textTransform: 'uppercase' }}
-        align={"center"}
-      >
+    <Grid pt="10px" style={{ ...bandStyle, gridColumn: `${start} / span ${span}` }}>
+      <Text weight="medium" color="gray" style={bandTextStyle} align="center">
         {label}
       </Text>
     </Grid>
   );
 }
 
-function SwatchRow({
-  scale,
-  onCopy,
-}: {
-  scale: Scale;
-  onCopy: (tokenName: string) => void;
-}) {
+function SwatchRow({ scale, onCopy }: { scale: Scale; onCopy: (tokenName: string) => void }) {
   return (
     <Flex align="center" gap="3">
       <Box style={{ width: `${labelColumnWidth}px`, flexShrink: 0 }}>
@@ -111,10 +88,7 @@ function SwatchRow({
       </Box>
       <Grid columns={`repeat(${steps.length}, ${columnWidth}px)`} gap={`${gap}px`} width="auto">
         {steps.map((step) => (
-          <Box
-            key={`${scale.key}-${step}`}
-            asChild
-          >
+          <Box key={`${scale.key}-${step}`} asChild>
             <button
               type="button"
               aria-label={`Copy ${getScaleTokenName(scale.key, step)}`}
@@ -192,11 +166,7 @@ function ThemeSection({
 
           <Flex direction="column" gap="3">
             {scales.map((scale) => (
-              <SwatchRow
-                key={`${label}-${scale.key}`}
-                scale={scale}
-                onCopy={onCopy}
-              />
+              <SwatchRow key={`${label}-${scale.key}`} scale={scale} onCopy={onCopy} />
             ))}
           </Flex>
         </Box>
@@ -207,37 +177,36 @@ function ThemeSection({
 
 export function ColorsChart() {
   const [copiedToken, setCopiedToken] = useState<string | null>(null);
+  const [copyStatus, setCopyStatus] = useState<'success' | 'error'>('success');
   const [toastOpen, setToastOpen] = useState(false);
+  const [toastKey, setToastKey] = useState(0);
 
   async function handleCopy(tokenName: string) {
+    const tokenValue = `var(${tokenName})`;
+
     try {
-      await navigator.clipboard.writeText(`var(${tokenName})`);
-      setCopiedToken(`var(${tokenName})`);
-      setToastOpen(false);
-      window.setTimeout(() => setToastOpen(true), 0);
+      await navigator.clipboard.writeText(tokenValue);
+      setCopiedToken(tokenValue);
+      setCopyStatus('success');
+      setToastKey((current) => current + 1);
+      setToastOpen(true);
     } catch {
-      setCopiedToken('Clipboard copy failed');
-      setToastOpen(false);
-      window.setTimeout(() => setToastOpen(true), 0);
+      setCopiedToken(null);
+      setCopyStatus('error');
+      setToastKey((current) => current + 1);
+      setToastOpen(true);
     }
   }
 
   return (
     <Toast.Provider swipeDirection="right" duration={1800}>
       <Flex direction="column" gap="6" style={{ maxWidth: '1000px' }}>
-        <ThemeSection
-          className="light light-theme"
-          label="Light theme"
-          onCopy={handleCopy}
-        />
-        <ThemeSection
-          className="dark dark-theme"
-          label="Dark theme"
-          onCopy={handleCopy}
-        />
+        <ThemeSection className="light light-theme" label="Light theme" onCopy={handleCopy} />
+        <ThemeSection className="dark dark-theme" label="Dark theme" onCopy={handleCopy} />
       </Flex>
 
       <Toast.Root
+        key={toastKey}
         open={toastOpen}
         onOpenChange={setToastOpen}
         style={{
@@ -251,10 +220,10 @@ export function ColorsChart() {
       >
         <Toast.Title asChild>
           <Text size="2" weight="medium">
-            {copiedToken === 'Clipboard copy failed' ? copiedToken : 'Copied token'}
+            {copyStatus === 'error' ? 'Clipboard copy failed' : 'Copied token'}
           </Text>
         </Toast.Title>
-        {copiedToken && copiedToken !== 'Clipboard copy failed' ? (
+        {copyStatus === 'success' && copiedToken ? (
           <Toast.Description asChild>
             <Text size="1" style={{ color: 'var(--gray-11)' }}>
               {copiedToken}

@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useCalendarChips } from './hooks';
 import type { ICalendarChipsProps } from './CalendarChips.types';
 import cn from 'classnames';
-import styles from './CalendarChips.module.css'
+import styles from './CalendarChips.module.css';
 
 const CalendarChip = ({ date, selected }: { readonly date: Date; readonly selected?: boolean }) => {
   return (
@@ -18,7 +18,11 @@ const CalendarChip = ({ date, selected }: { readonly date: Date; readonly select
       width="42px"
       height="56px"
     >
-      <Button variant={selected ? 'solid' : 'outline'} color={selected ? 'blue' : 'gray'} className={cn(styles.calendarChip, selected ? 'selected' : '')}>
+      <Button
+        variant={selected ? 'solid' : 'outline'}
+        color={selected ? 'blue' : 'gray'}
+        className={cn(styles.calendarChip, selected ? 'selected' : '')}
+      >
         <Text size="2">{date.toLocaleDateString('en-US', { day: '2-digit' })}</Text>
         <Text size="2">{date.toLocaleDateString('en-US', { weekday: 'short' })}</Text>
       </Button>

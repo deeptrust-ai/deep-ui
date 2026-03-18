@@ -12,12 +12,10 @@ RUN npm run build-storybook
 # Serve stage: lightweight static file server
 FROM node:20-alpine
 
-RUN npm install -g serve@14
+RUN npm install -g http-server@14
 
 COPY --from=builder /app/storybook-static /app/storybook-static
 
 WORKDIR /app
 
-# Disable cleanUrls to preserve iframe.html query params; -s serves index.html for root
-RUN echo '{"cleanUrls":false}' > /app/storybook-static/serve.json
-CMD ["sh", "-c", "serve storybook-static -s -p ${PORT:-3000}"]
+CMD ["sh", "-c", "http-server storybook-static -p ${PORT:-3000}"]

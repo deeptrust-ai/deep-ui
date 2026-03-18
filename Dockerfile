@@ -9,13 +9,12 @@ RUN npm ci
 COPY . .
 RUN npm run build-storybook
 
-# Serve stage: lightweight static file server
+# Serve stage: minimal static file server (no URL rewriting)
 FROM node:20-alpine
 
-RUN npm install -g http-server@14
-
 COPY --from=builder /app/storybook-static /app/storybook-static
+COPY server.cjs /app/server.cjs
 
 WORKDIR /app
 
-CMD ["sh", "-c", "http-server storybook-static -p ${PORT:-3000}"]
+CMD ["node", "server.cjs"]

@@ -8,9 +8,12 @@ const config = {
   managerHead: (head) => `
     ${head}
     <script>
-      if (!window.location.search.includes('path=')) {
-        window.location.replace(window.location.pathname + '?path=/docs/deepui-dev--docs');
-      }
+      (function() {
+        var searchParams = new URLSearchParams(window.location.search);
+        if (!searchParams.has('path') && !searchParams.has('id')) {
+          window.location.replace(window.location.pathname + '?path=/docs/deepui-dev--docs');
+        }
+      })();
     </script>
   `,
   addons: [

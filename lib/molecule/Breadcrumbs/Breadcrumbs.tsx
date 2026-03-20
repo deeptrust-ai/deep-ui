@@ -269,7 +269,7 @@ const Breadcrumbs = ({
   const showCollapsedPages = pages.length >= MANY_CRUMBS_THRESHOLD && middlePages.length > 0;
 
   return (
-    <Flex align="center" gap="2">
+    <Flex align="center" gap="2" flexGrow={'1'}>
       {showOrganizationLabel ? (
         <EntityLabel
           name={organizations[0].name}

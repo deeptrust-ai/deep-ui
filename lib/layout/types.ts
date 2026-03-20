@@ -1,13 +1,24 @@
 import type { ReactNode } from 'react';
-import type { IMenuProps } from '../molecule/Menu/Menu.types';
 import type { IContentWrapperProps } from '../atom';
-import type { BreadcrumbEntity } from '../molecule/Breadcrumbs/Breadcrumbs.types';
+import type { ITopbarProps } from '@deeptrust-ai/deep-ui/compound';
 
-export type ILayoutComponent = IContentWrapperProps & {
-  readonly sidebar: ReactNode;
+export type ILayoutComponent = IContentWrapperProps &
+  Pick<
+    ITopbarProps,
+    | 'organizations'
+    | 'workspaces'
+    | 'pages'
+    | 'selectedOrganizationId'
+    | 'selectedWorkspaceIds'
+    | 'onWorkspaceSelectionChange'
+    | 'links'
+    | 'userName'
+    | 'userPfp'
+    | 'userMenuItems'
+    | 'logout'
+  > & {
+  readonly sidebar?: ReactNode;
   readonly children: ReactNode;
-  readonly menuPages?: IMenuProps['pages'];
-  readonly userName: string;
-  readonly organizations: BreadcrumbEntity[];
-  readonly workspaces?: BreadcrumbEntity[];
+  readonly wrapContent?: boolean;
+  readonly sidebarExpanded?: boolean;
 };

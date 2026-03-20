@@ -1,5 +1,10 @@
-export { default as Sidebar } from './Sidebar';
-export { default as Topbar } from './Topbar';
+export {
+  default as Topbar,
+  type ITopbarLink,
+  type ITopbarLogoutAction,
+  type ITopbarMenuItem,
+  type ITopbarProps,
+} from './Topbar';
 
 export { default as Table, type ITableProps } from './Table';
 

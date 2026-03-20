@@ -1,8 +1,8 @@
+import { AcornIcon } from '@phosphor-icons/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Container } from '@radix-ui/themes';
 
 import Layout from './Layout';
-import { AcornIcon } from '@phosphor-icons/react';
 
 const meta = {
   title: 'Guides/03. Layout',
@@ -32,19 +32,18 @@ const meta = {
       { id: 'ws-1', name: 'Main Workspace' },
       { id: 'ws-2', name: 'Read Only Workspace' },
     ],
-    menuPages: [
-      { label: 'Home', anchorProps: { href: '/' }, icon: AcornIcon, selected: false },
-      { label: 'About', anchorProps: { href: '/about' }, icon: AcornIcon, selected: false },
+    links: [
       {
-        label: 'Services',
-        anchorProps: { href: '/services' },
+        anchorProps: { href: '/' },
         icon: AcornIcon,
-        subPages: [
-          { label: 'Consulting', anchorProps: { href: '/services/consulting' }, selected: false },
-          { label: 'Development', anchorProps: { href: '/services/development' }, selected: false },
-        ],
+        label: 'Dashboard',
+        selected: true,
       },
-      { label: 'Contact', anchorProps: { href: '/contact' }, icon: AcornIcon, selected: false },
+      {
+        anchorProps: { href: '/issues' },
+        icon: AcornIcon,
+        label: 'Issues',
+      },
     ],
   },
   tags: ['!dev'],

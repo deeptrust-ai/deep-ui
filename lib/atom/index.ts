@@ -1,5 +1,3 @@
-export { default as MenuItem, type IMenuItemProps } from './MenuItem';
-
 export { default as Badge, type IBadgeProps } from './Badge';
 
 export {

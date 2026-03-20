@@ -1,7 +1,7 @@
-import { DropdownMenu, Flex, IconButton, Link, Text } from '@radix-ui/themes';
+import { DropdownMenu, Flex, IconButton, Link } from '@radix-ui/themes';
 import { SignOutIcon } from '@phosphor-icons/react';
 import type { ITopbarProps } from './Topbar.types';
-import { Avatar } from '../../atom';
+import { Avatar, MenuItem } from '../../atom';
 import { Breadcrumbs } from '../../molecule';
 import styles from './styles.module.css';
 
@@ -49,16 +49,13 @@ const Topbar = ({
             }
 
             return (
-              <Link
+              <MenuItem
                 key={`${link.label}-${href}`}
-                href={href}
-                aria-current={link.anchorProps['aria-current']}
-                data-selected={link.selected ? 'true' : 'false'}
-                className={styles.link}
-              >
-                {link.icon ? <link.icon size={16} /> : null}
-                <Text size="2">{link.label}</Text>
-              </Link>
+                anchorProps={link.anchorProps}
+                icon={link.icon}
+                label={link.label}
+                selected={link.selected}
+              />
             );
           })}
         </Flex>

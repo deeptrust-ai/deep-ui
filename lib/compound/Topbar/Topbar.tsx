@@ -9,8 +9,12 @@ const Topbar = ({
   organizations,
   workspaces = [],
   pages = [],
+  disableOrganizationsDropdown = false,
+  disableWorkspacesDropdown = false,
   selectedOrganizationId,
   selectedWorkspaceIds,
+  defaultSelectedWorkspaceIds,
+  onOrganizationSelect,
   onWorkspaceSelectionChange,
   links = [],
   userName,
@@ -34,27 +38,48 @@ const Topbar = ({
         <Breadcrumbs
           pages={pages}
           organizations={organizations}
+          disableOrganizationsDropdown={disableOrganizationsDropdown}
+          disableWorkspacesDropdown={disableWorkspacesDropdown}
           selectedOrganizationId={selectedOrganizationId}
           workspaces={workspaces}
           selectedWorkspaceIds={selectedWorkspaceIds}
+          defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
+          onOrganizationSelect={onOrganizationSelect}
           onWorkspaceSelectionChange={onWorkspaceSelectionChange}
         />
 
         <Flex align="center" justify="end" gap="2">
           {links.map((link) => {
-            const href = link.anchorProps.to ?? link.anchorProps.href;
+            const href =
+              typeof link.anchorProps?.to === 'string'
+                ? link.anchorProps.to
+                : link.anchorProps?.href;
 
             if (!href) {
               return null;
             }
 
+            const normalizedAnchorProps =
+              link.anchorComponent || !link.anchorProps?.to
+                ? link.anchorProps
+                : (() => {
+                    const { to, href: currentHref, ...anchorProps } = link.anchorProps;
+
+                    return {
+                      ...anchorProps,
+                      href: to ?? currentHref,
+                    };
+                  })();
+
             return (
               <MenuItem
                 key={`${link.label}-${href}`}
-                anchorProps={link.anchorProps}
+                anchorComponent={link.anchorComponent}
+                anchorProps={normalizedAnchorProps}
                 icon={link.icon}
                 label={link.label}
                 selected={link.selected}
+                activeClassName={link.activeClassName}
               />
             );
           })}

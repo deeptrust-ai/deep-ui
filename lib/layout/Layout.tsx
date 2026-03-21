@@ -11,8 +11,12 @@ const Layout = ({
   workspaces = [],
   links = [],
   pages = [],
+  disableOrganizationsDropdown = false,
+  disableWorkspacesDropdown = false,
   selectedOrganizationId,
   selectedWorkspaceIds,
+  defaultSelectedWorkspaceIds,
+  onOrganizationSelect,
   onWorkspaceSelectionChange,
   userPfp,
   userMenuItems = [],
@@ -52,8 +56,12 @@ const Layout = ({
         organizations={organizations}
         workspaces={workspaces}
         pages={pages}
+        disableOrganizationsDropdown={disableOrganizationsDropdown}
+        disableWorkspacesDropdown={disableWorkspacesDropdown}
         selectedOrganizationId={selectedOrganizationId}
         selectedWorkspaceIds={selectedWorkspaceIds}
+        defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
+        onOrganizationSelect={onOrganizationSelect}
         onWorkspaceSelectionChange={onWorkspaceSelectionChange}
         links={links}
         userMenuItems={userMenuItems}

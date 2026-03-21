@@ -17,14 +17,19 @@
   box-shadow: 0 0 2px rgb(0 0 0 / 3%);
 }
 
-.anchor.active,
-.anchor.heading {
+.anchor.active {
   background-color: var(--blue-a3);
   box-shadow: 0 0 2px rgb(0 0 0 / 10%) inset;
 }
 
 .anchor:hover {
   background-color: var(--blue-a2);
+  box-shadow: 0 0 2px rgb(0 0 0 / 10%) inset;
+}
+
+.anchor.heading,
+.anchor.heading:hover {
+  background-color: var(--blue-a3);
   box-shadow: 0 0 2px rgb(0 0 0 / 10%) inset;
 }
 

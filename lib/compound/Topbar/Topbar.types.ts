@@ -1,4 +1,5 @@
 import type { Icon } from '@phosphor-icons/react';
+import type { ComponentPropsWithoutRef, ElementType } from 'react';
 import type { IAvatarProps } from '../../atom/Avatar/types';
 import type {
   BreadcrumbEntity,
@@ -19,15 +20,18 @@ type LinkOrAction<TLinkKey extends string, TActionKey extends string> =
       readonly [Key in TActionKey]: ItemAction;
     });
 
+export type ITopbarLinkAnchorProps = Omit<ComponentPropsWithoutRef<'a'>, 'children'> & {
+  readonly to?: string;
+  readonly [key: string]: unknown;
+};
+
 export interface ITopbarLink {
-  readonly anchorProps: {
-    readonly href?: string;
-    readonly to?: string;
-    readonly 'aria-current'?: 'page';
-  };
+  readonly anchorComponent?: ElementType;
+  readonly anchorProps?: ITopbarLinkAnchorProps;
   readonly icon?: Icon;
   readonly label: string;
   readonly selected?: boolean;
+  readonly activeClassName?: string;
 }
 
 export type ITopbarMenuItem = LinkOrAction<'href', 'onClick'> & {
@@ -44,8 +48,12 @@ export interface ITopbarProps {
   readonly organizations: BreadcrumbEntity[];
   readonly workspaces?: BreadcrumbEntity[];
   readonly pages?: BreadcrumbPage[];
+  readonly disableOrganizationsDropdown?: boolean;
+  readonly disableWorkspacesDropdown?: boolean;
   readonly selectedOrganizationId?: string;
   readonly selectedWorkspaceIds?: string[];
+  readonly defaultSelectedWorkspaceIds?: string[];
+  readonly onOrganizationSelect?: (organizationId: string) => void;
   readonly onWorkspaceSelectionChange?: (workspaceIds: string[]) => void;
   readonly links?: ITopbarLink[];
   readonly userName: IAvatarProps['name'];

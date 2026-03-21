@@ -1,13 +1,28 @@
 import type { ReactNode } from 'react';
-import type { IMenuProps } from '../molecule/Menu/Menu.types';
 import type { IContentWrapperProps } from '../atom';
-import type { BreadcrumbEntity } from '../molecule/Breadcrumbs/Breadcrumbs.types';
+import type { ITopbarProps } from '../compound';
 
-export type ILayoutComponent = IContentWrapperProps & {
-  readonly sidebar: ReactNode;
+export type ILayoutComponent = IContentWrapperProps &
+  Pick<
+    ITopbarProps,
+    | 'organizations'
+    | 'workspaces'
+    | 'pages'
+    | 'disableOrganizationsDropdown'
+    | 'disableWorkspacesDropdown'
+    | 'selectedOrganizationId'
+    | 'selectedWorkspaceIds'
+    | 'defaultSelectedWorkspaceIds'
+    | 'onOrganizationSelect'
+    | 'onWorkspaceSelectionChange'
+    | 'links'
+    | 'userName'
+    | 'userPfp'
+    | 'userMenuItems'
+    | 'logout'
+  > & {
+  readonly sidebar?: ReactNode;
   readonly children: ReactNode;
-  readonly menuPages?: IMenuProps['pages'];
-  readonly userName: string;
-  readonly organizations: BreadcrumbEntity[];
-  readonly workspaces?: BreadcrumbEntity[];
+  readonly wrapContent?: boolean;
+  readonly sidebarExpanded?: boolean;
 };

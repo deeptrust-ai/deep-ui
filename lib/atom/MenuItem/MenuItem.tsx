@@ -1,12 +1,9 @@
-import type { ComponentPropsWithoutRef, ElementType } from 'react';
-import { Link, Text } from '@radix-ui/themes';
 import cn from 'classnames';
-import styles from './MenuItem.module.css';
+import { Link, Text } from '@radix-ui/themes';
+import type { ElementType } from 'react';
 import type { IMenuItemProps } from './MenuItem.types';
+import styles from './MenuItem.module.css';
 
-/**
- * MenuItem component represents a single item in a menu, which can optionally be a subpage and can indicate selection state.
- */
 const MenuItem = <TAnchor extends ElementType = 'a'>({
   anchorComponent,
   anchorProps,
@@ -18,46 +15,38 @@ const MenuItem = <TAnchor extends ElementType = 'a'>({
   activeClassName = 'active',
 }: IMenuItemProps<TAnchor>) => {
   const AnchorComponent = anchorComponent ?? 'a';
-
-  // Treat `className` as a space-separated list and check for an exact match
-  // to avoid false positives (e.g. "interactive" matching "active").
-  const anchorClassList = anchorProps?.className?.split(/\s+/) ?? [];
-  const hasActiveClass = anchorClassList.includes(activeClassName);
-  const selectedPage = !!selected || hasActiveClass;
-
+  const isActiveFromClassName = (anchorProps?.className?.split(/\s+/) ?? []).includes(
+    activeClassName
+  );
+  const isActive = selected || isActiveFromClassName;
   const anchorClassName = cn(styles.anchor, anchorProps?.className, {
-    [styles.heading]: !!heading,
-    [styles.active]: !subpage && selectedPage,
+    [styles.heading]: heading,
+    [styles.active]: !subpage && isActive,
   });
-  const selectedSubItem = selectedPage && !!subpage;
-
-  const combinedAnchorProps = {
-    ...anchorProps,
-    className: anchorClassName,
-  } as ComponentPropsWithoutRef<TAnchor>;
+  const hasSelectedSubpage = isActive && subpage;
 
   return (
     <div
       className={cn(styles.item, {
-        [styles.subItem]: !!subpage,
+        [styles.subItem]: subpage,
       })}
     >
-      {!!subpage && (
+      {subpage ? (
         <div
           className={cn(styles.subItemIndicator, {
-            [styles.selectedSubItem]: selectedSubItem,
+            [styles.selectedSubItem]: hasSelectedSubpage,
           })}
         />
-      )}
-
+      ) : null}
       <Link asChild>
-        <AnchorComponent {...combinedAnchorProps}>
-          {Icon && <Icon size="20" />}
+        <AnchorComponent {...anchorProps} className={anchorClassName}>
+          {Icon ? <Icon size={20} /> : null}
           <Text size="3">{label}</Text>
         </AnchorComponent>
       </Link>
     </div>
   );
 };
+
 export default MenuItem;
 export type { IMenuItemProps };

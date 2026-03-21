@@ -1,5 +1,3 @@
-export { default as MenuItem, type IMenuItemProps } from './MenuItem';
-
 export { default as Badge, type IBadgeProps } from './Badge';
 
 export {
@@ -17,3 +15,4 @@ export { default as ContentWrapper, type IContentWrapperProps } from './ContentW
 export { default as Severity, type ISeverityProps } from './Severity/Severity';
 
 export { default as Chip, type IChipProps } from './Chip/Chip';
+export { default as MenuItem, type IMenuItemProps } from './MenuItem';

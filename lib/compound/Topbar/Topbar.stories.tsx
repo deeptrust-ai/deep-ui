@@ -1,3 +1,4 @@
+import { AcornIcon } from '@phosphor-icons/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Topbar } from '../..';
@@ -18,6 +19,24 @@ const meta = {
       { id: 'ws-1', name: 'Workspace 1' },
       { id: 'ws-2', name: 'Workspace 2' },
       { id: 'ws-3', name: 'Workspace 3' },
+    ],
+    links: [
+      {
+        anchorProps: { href: '/' },
+        icon: AcornIcon,
+        label: 'Dashboard',
+        selected: true,
+      },
+      {
+        anchorProps: { href: '/issues' },
+        icon: AcornIcon,
+        label: 'Issues',
+      },
+      {
+        anchorProps: { href: '/metrics' },
+        icon: AcornIcon,
+        label: 'Usage',
+      },
     ],
     userName: 'Jane Doe',
     userPfp: 'https://i.pravatar.cc/150?img=70',

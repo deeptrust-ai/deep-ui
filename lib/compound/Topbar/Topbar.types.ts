@@ -3,7 +3,7 @@ import type { IAvatarProps } from '../../atom/Avatar/types';
 import type {
   BreadcrumbEntity,
   BreadcrumbPage,
-} from '@deeptrust-ai/deep-ui/molecule/Breadcrumbs';
+} from '../../molecule/Breadcrumbs';
 
 type ItemAction = () => void | Promise<void>;
 

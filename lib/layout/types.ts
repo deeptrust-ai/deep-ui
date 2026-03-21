@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { IContentWrapperProps } from '../atom';
-import type { ITopbarProps } from '@deeptrust-ai/deep-ui/compound';
+import type { ITopbarProps } from '../compound';
 
 export type ILayoutComponent = IContentWrapperProps &
   Pick<

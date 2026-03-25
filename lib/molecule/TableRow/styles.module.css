@@ -11,6 +11,13 @@
   vertical-align: middle;
 }
 
-.activeRow {
-  background-color: var(--gray-a2);
+.row {
+  cursor: pointer;
+  &:hover {
+    background-color: var(--accent-a2);
+  }
+}
+
+.selectedRow {
+  background-color: var(--blue-3);
 }

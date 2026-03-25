@@ -2,8 +2,9 @@ import { Table as RadixTable } from '@radix-ui/themes';
 
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
+import cn from 'classnames';
 
-const TableRow = ({ id, cells, onClickRow, active }: ITableRowProps) => {
+const TableRow = ({ name, id, cells, onClickRow, selected }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
@@ -11,8 +12,9 @@ const TableRow = ({ id, cells, onClickRow, active }: ITableRowProps) => {
   return (
     <RadixTable.Row
       data-row-id={id}
-      className={active ? styles.activeRow : undefined}
+      className={cn(styles.row, { [styles.selectedRow]: selected })}
       onClick={onClickRow}
+      aria-label={name}
     >
       {cells.map((cell) => {
         return (

@@ -4,6 +4,7 @@ export type SizeKey = keyof typeof SIZE_CONFIG;
 
 export interface ILogoProps {
   size?: SizeKey;
+  href?: string | null;
 }
 
 export interface ILogoPartProps {

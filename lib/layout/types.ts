@@ -24,5 +24,4 @@ export type ILayoutComponent = IContentWrapperProps &
     readonly sidebar?: ReactNode;
     readonly children: ReactNode;
     readonly wrapContent?: boolean;
-    readonly sidebarExpanded?: boolean;
   };

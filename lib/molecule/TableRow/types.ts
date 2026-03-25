@@ -1,10 +1,4 @@
-import type { Icon as PhosIconTypes } from '@phosphor-icons/react';
-
-export interface IITableRowAction {
-  readonly label: string;
-  readonly onClick: () => void;
-  readonly icon?: PhosIconTypes;
-}
+import React from 'react';
 
 export interface ITableRowCell {
   readonly id: string;
@@ -14,6 +8,6 @@ export interface ITableRowCell {
 export interface ITableRowProps {
   readonly id: string;
   readonly cells: ITableRowCell[];
-  readonly actions?: IITableRowAction[];
+  readonly onClickRow?: () => void;
   readonly active?: boolean;
 }

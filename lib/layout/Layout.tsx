@@ -20,14 +20,12 @@ const Layout = ({
   userPfp,
   userMenuItems = [],
   logout,
-  sidebarExpanded = false,
 }: ILayoutComponent) => {
-  const hasTwoColumns = !!sidebar;
-  const contentColumns = hasTwoColumns && !sidebarExpanded ? '1fr 1fr' : '1fr';
+  const contentColumns = sidebar ? '1fr 1fr' : '1fr';
 
   return (
     <Flex direction="column" height="100%" pb={'2'}>
-      <Box flexShrink={'1'}>
+      <Box flexShrink={'1'} style={{ zIndex: '1', position: 'sticky', top: 0 }}>
         <Topbar
           userName={userName}
           userPfp={userPfp}

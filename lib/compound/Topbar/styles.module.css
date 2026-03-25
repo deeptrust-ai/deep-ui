@@ -1,5 +1,6 @@
 .topbar {
-  border-bottom: 1px solid var(--gray-a4);
+  box-shadow: var(--shadow-2);
+  background: var(--gray-1);
 }
 
 .menuButton {

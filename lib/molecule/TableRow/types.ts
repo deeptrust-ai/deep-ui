@@ -15,6 +15,7 @@ export interface ITableRowCell {
 export interface ITableRowProps {
   readonly id: string;
   readonly cells: ITableRowCell[];
+  readonly actions?: ITableRowAction[];
   readonly name?: string;
   readonly onClickRow?: () => void;
   readonly selected?: boolean;

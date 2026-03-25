@@ -1,7 +1,7 @@
 import { DropdownMenu, Flex, IconButton, Link } from '@radix-ui/themes';
 import { SignOutIcon } from '@phosphor-icons/react';
 import type { ITopbarProps } from './Topbar.types';
-import { Avatar, MenuItem } from '../../atom';
+import { Avatar, Logo, MenuItem } from '../../atom';
 import { Breadcrumbs } from '../../molecule';
 import styles from './styles.module.css';
 
@@ -35,6 +35,8 @@ const Topbar = ({
       flexGrow="1"
     >
       <Flex align="center" gap="4" width="100%" flexGrow="1">
+        <Logo size="medium" />
+
         <Breadcrumbs
           pages={pages}
           organizations={organizations}

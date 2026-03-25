@@ -75,18 +75,18 @@
 :root,
 .light,
 .light-theme {
-  --accent-1: #FDFDFE;
-  --accent-10: #3358D4;
-  --accent-11: #3A5BC7;
-  --accent-12: #1F2D5C;
-  --accent-2: #F7F9FF;
-  --accent-3: #EDF2FE;
-  --accent-4: #E1E9FF;
-  --accent-5: #D2DEFF;
-  --accent-6: #C1D0FF;
-  --accent-7: #ABBDF9;
-  --accent-8: #8DA4EF;
-  --accent-9: #3E63DD;
+  --accent-1: #fdfdfe;
+  --accent-10: #3358d4;
+  --accent-11: #3a5bc7;
+  --accent-12: #1f2d5c;
+  --accent-2: #f7f9ff;
+  --accent-3: #edf2fe;
+  --accent-4: #e1e9ff;
+  --accent-5: #d2deff;
+  --accent-6: #c1d0ff;
+  --accent-7: #abbdf9;
+  --accent-8: #8da4ef;
+  --accent-9: #3e63dd;
   --accent-a1: rgba(0, 0, 128, 0.008);
   --accent-a10: rgba(0, 46, 201, 0.8);
   --accent-a11: rgba(0, 43, 183, 0.772);
@@ -99,8 +99,8 @@
   --accent-a7: rgba(0, 55, 237, 0.329);
   --accent-a8: rgba(0, 52, 220, 0.447);
   --accent-a9: rgba(0, 49, 210, 0.757);
-  --accent-contrast: #FFFFFF;
-  --accent-indicator: #3E63DD;
+  --accent-contrast: #ffffff;
+  --accent-indicator: #3e63dd;
   --accent-surface: rgba(0, 64, 255, 0.031);
   --accent-track: #3e63dd;
   --black-a1: rgba(0, 0, 0, 0.05);

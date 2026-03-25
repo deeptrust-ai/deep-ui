@@ -21,8 +21,8 @@ export type ILayoutComponent = IContentWrapperProps &
     | 'userMenuItems'
     | 'logout'
   > & {
-  readonly sidebar?: ReactNode;
-  readonly children: ReactNode;
-  readonly wrapContent?: boolean;
-  readonly sidebarExpanded?: boolean;
-};
+    readonly sidebar?: ReactNode;
+    readonly children: ReactNode;
+    readonly wrapContent?: boolean;
+    readonly sidebarExpanded?: boolean;
+  };

@@ -13,9 +13,9 @@ const ContentWrapper = ({
   ...rest
 }: IContentWrapperProps) => {
   return (
-    <Box className={cn(styles.wrapper, className)} height="100%" {...rest}>
+    <Box className={cn(styles.wrapper, className)} flexGrow={'1'} {...rest}>
       {title && <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />}
-      <Box py="4" px="5" height="100%">
+      <Box py="4" px="5">
         {children}
       </Box>
     </Box>

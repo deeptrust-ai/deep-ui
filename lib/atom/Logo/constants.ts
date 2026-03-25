@@ -14,8 +14,3 @@ export const SIZE_CONFIG = {
     baseWidth: 260,
   },
 } as const;
-
-export const WORDMARK_CONFIG = {
-  baseWidth: LOGO_BASE_WIDTH - WORDMARK_OFFSET,
-  baseHeight: LOGO_BASE_HEIGHT,
-} as const;

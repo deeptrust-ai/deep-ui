@@ -1,21 +1,19 @@
 import cn from 'classnames';
-import Wordmark from './Wordmark';
-import Icon from './Icon';
 import type { ILogoProps } from './types';
-import { SIZE_CONFIG, WORDMARK_CONFIG } from './constants';
+import { SIZE_CONFIG } from './constants';
 import styles from './styles.module.css';
+import { Box, Link } from '@radix-ui/themes';
+import logoSrc from './logo.png';
 
-export const Logo = ({ variant = 'full', size = 'medium' }: ILogoProps) => {
+export const Logo = ({ size = 'medium' }: ILogoProps) => {
   const width = SIZE_CONFIG[size].baseWidth;
 
-  const scale = width / WORDMARK_CONFIG.baseWidth;
-  const wordmarkHeight = WORDMARK_CONFIG.baseHeight * scale;
-
   return (
-    <div className={cn(styles.logo, styles[size])}>
-      {variant !== 'wordmark' && <Icon width={wordmarkHeight} height={wordmarkHeight} />}
-      {variant !== 'icon' && <Wordmark width={width} height={wordmarkHeight} />}
-    </div>
+    <Box className={cn(styles.logo, styles[size])} asChild>
+      <Link href="/">
+        <img src={logoSrc} alt={'DeepTrust.ai Logo'} width={width} />
+      </Link>
+    </Box>
   );
 };
 

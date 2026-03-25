@@ -1,10 +1,7 @@
 import type { Icon } from '@phosphor-icons/react';
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
 import type { IAvatarProps } from '../../atom/Avatar/types';
-import type {
-  BreadcrumbEntity,
-  BreadcrumbPage,
-} from '../../molecule/Breadcrumbs';
+import type { BreadcrumbEntity, BreadcrumbPage } from '../../molecule/Breadcrumbs';
 
 type ItemAction = () => void | Promise<void>;
 

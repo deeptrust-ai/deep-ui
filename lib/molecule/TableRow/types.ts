@@ -18,12 +18,4 @@ export interface ITableRowProps {
   readonly name?: string;
   readonly onClickRow?: () => void;
   readonly selected?: boolean;
-  /**
-   * @deprecated Use `selected` instead.
-   */
-  readonly active?: boolean;
-  /**
-   * @deprecated Prefer explicit action cells when authoring new tables.
-   */
-  readonly actions?: ITableRowAction[];
 }

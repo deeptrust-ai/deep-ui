@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import { DropdownMenu, Flex, IconButton, Link } from '@radix-ui/themes';
 import { SignOutIcon } from '@phosphor-icons/react';
 import type { ITopbarProps } from './Topbar.types';
@@ -106,7 +107,7 @@ const Topbar = ({
               if ('anchorComponent' in item && item.anchorComponent) {
                 const AnchorComponent = item.anchorComponent;
                 itemElement = (
-                  <AnchorComponent {...item.anchorProps} className={styles.menuButton}>
+                  <AnchorComponent {...item.anchorProps} className={cn(styles.menuButton, item.anchorProps?.className)}>
                     {itemContent}
                   </AnchorComponent>
                 );
@@ -134,7 +135,7 @@ const Topbar = ({
                     (() => {
                       const LogoutAnchor = logout.anchorComponent;
                       return (
-                        <LogoutAnchor {...logout.anchorProps} className={styles.menuButton} data-destructive="true">
+                        <LogoutAnchor {...logout.anchorProps} className={cn(styles.menuButton, logout.anchorProps?.className)} data-destructive="true">
                           <SignOutIcon size={14} />
                           {logout.label ?? 'Logout'}
                         </LogoutAnchor>

@@ -46,7 +46,7 @@ const Layout = ({
       </Box>
 
       <Flex flexGrow={'1'} px="4" pt={'4'}>
-        <Grid columns={contentColumns} gap="4" height="100%" width={'100%'}>
+        <Grid columns={contentColumns} gap="2" height="100%" width={'100%'}>
           <Flex direction={'column'}>{children}</Flex>
           {sidebar}
         </Grid>

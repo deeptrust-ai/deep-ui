@@ -94,26 +94,53 @@ const Topbar = ({
             </IconButton>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            {userMenuItems.map((item) => (
-              <DropdownMenu.Item key={item.label} asChild shortcut={item.shortcut}>
-                {'href' in item ? (
-                  <Link href={item.href}>
-                    {item.icon ? <item.icon size={14} /> : null}
-                    {item.label}
-                  </Link>
-                ) : (
-                  <button type="button" onClick={item.onClick} className={styles.menuButton}>
-                    {item.icon ? <item.icon size={14} /> : null}
-                    {item.label}
+            {userMenuItems.map((item) => {
+              const itemContent = (
+                <>
+                  {item.icon ? <item.icon size={14} /> : null}
+                  {item.label}
+                </>
+              );
+
+              let itemElement: React.ReactNode;
+              if ('anchorComponent' in item && item.anchorComponent) {
+                const AnchorComponent = item.anchorComponent;
+                itemElement = (
+                  <AnchorComponent {...item.anchorProps} className={styles.menuButton}>
+                    {itemContent}
+                  </AnchorComponent>
+                );
+              } else if ('href' in item && item.href) {
+                itemElement = <Link href={item.href}>{itemContent}</Link>;
+              } else {
+                itemElement = (
+                  <button type="button" onClick={'onClick' in item ? item.onClick : undefined} className={styles.menuButton}>
+                    {itemContent}
                   </button>
-                )}
-              </DropdownMenu.Item>
-            ))}
+                );
+              }
+
+              return (
+                <DropdownMenu.Item key={item.label} asChild shortcut={item.shortcut}>
+                  {itemElement}
+                </DropdownMenu.Item>
+              );
+            })}
             {logout ? (
               <>
                 <DropdownMenu.Separator />
                 <DropdownMenu.Item shortcut="⌘ Q" color="red" asChild>
-                  {'href' in logout ? (
+                  {('anchorComponent' in logout && logout.anchorComponent) ? (
+                    (() => {
+                      const LogoutAnchor = logout.anchorComponent;
+                      return (
+                        <LogoutAnchor {...logout.anchorProps} className={styles.menuButton} data-destructive="true">
+                          <SignOutIcon size={14} />
+                          {logout.label ?? 'Logout'}
+                        </LogoutAnchor>
+                      );
+                    })()
+                  ) : ('href' in logout && logout.href) ? (
                     <Link href={logout.href}>
                       <SignOutIcon size={14} />
                       {logout.label ?? 'Logout'}
@@ -121,7 +148,7 @@ const Topbar = ({
                   ) : (
                     <button
                       type="button"
-                      onClick={logout.onClick}
+                      onClick={'onClick' in logout ? logout.onClick : undefined}
                       className={styles.menuButton}
                       data-destructive="true"
                     >

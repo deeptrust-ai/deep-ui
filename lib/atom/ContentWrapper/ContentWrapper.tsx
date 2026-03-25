@@ -13,7 +13,13 @@ const ContentWrapper = ({
   ...rest
 }: IContentWrapperProps) => {
   return (
-    <Flex className={cn(styles.wrapper, className)} mb="2" flexGrow="1" direction="column" {...rest}>
+    <Flex
+      className={cn(styles.wrapper, className)}
+      mb="2"
+      flexGrow="1"
+      direction="column"
+      {...rest}
+    >
       {title && <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />}
       <Box py="4" px="5" flexGrow="1">
         {children}

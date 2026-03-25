@@ -12,7 +12,7 @@ const TableRow = ({ name, id, cells, onClickRow, selected }: ITableRowProps) => 
   return (
     <RadixTable.Row
       data-row-id={id}
-      className={cn(styles.row, { [styles.selectedRow]: selected })}
+      className={cn({ [styles.row]: onClickRow, [styles.selectedRow]: selected })}
       onClick={onClickRow}
       aria-label={name}
     >

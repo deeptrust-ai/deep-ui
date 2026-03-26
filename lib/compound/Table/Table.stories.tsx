@@ -3,7 +3,6 @@ import { Badge as RadixBadge, Text as RadixText } from '@radix-ui/themes';
 
 import { Table, type ITableProps } from '../..';
 import type { ReactNode } from 'react';
-import { CaretDoubleRightIcon } from '@phosphor-icons/react';
 
 function generateDate() {
   const start = new Date('2025-01-01');
@@ -19,11 +18,13 @@ function generateRows(numRows: number) {
   ];
   const orgs = ['Executive', 'Finance', 'HR', 'Engineering', 'Marketing'];
   const status = ['Exclusive', 'Default', 'Critical', 'Info'];
+  const name = ['Scam Call', 'Scam Call', 'Safe Call', 'Safe Call', 'Deepfake Detected'];
   const randomItem = (items: unknown[]): ReactNode =>
     items[Math.floor(Math.random() * items.length)] as ReactNode;
 
   return Array.from({ length: numRows }).map((_, index) => ({
     id: `row-${index}`,
+    name: `${randomItem(name)}-${index}`,
     cells: [
       {
         id: `event-${index}`,
@@ -43,13 +44,7 @@ function generateRows(numRows: number) {
       { id: `orgs-${index}`, content: randomItem(orgs) },
       { id: `status-${index}`, content: randomItem(status) },
     ],
-    actions: [
-      {
-        label: 'View Details',
-        onClick: () => alert(`Viewing details for row ${index}`),
-        icon: CaretDoubleRightIcon,
-      },
-    ],
+    onClickRow: () => alert(`Viewing details for row ${index}`),
   }));
 }
 

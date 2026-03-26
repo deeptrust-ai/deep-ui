@@ -1,7 +1,7 @@
-import type { BoxProps } from '@radix-ui/themes';
+import type { FlexProps } from '@radix-ui/themes';
 import type { ReactNode } from 'react';
 
-export type IContentWrapperProps = BoxProps & {
+export type IContentWrapperProps = FlexProps & {
   title?: string;
   subtitle?: string;
   metaInfo?: string;

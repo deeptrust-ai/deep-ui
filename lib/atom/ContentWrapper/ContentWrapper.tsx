@@ -1,4 +1,4 @@
-import { Box } from '@radix-ui/themes';
+import { Box, Flex } from '@radix-ui/themes';
 import cn from 'classnames';
 import styles from './ContentWrapper.styles.module.css';
 import type { IContentWrapperProps } from './ContentWrapper.types';
@@ -13,12 +13,18 @@ const ContentWrapper = ({
   ...rest
 }: IContentWrapperProps) => {
   return (
-    <Box className={cn(styles.wrapper, className)} height="100%" {...rest}>
+    <Flex
+      className={cn(styles.wrapper, className)}
+      mb="2"
+      flexGrow="1"
+      direction="column"
+      {...rest}
+    >
       {title && <Header title={title} subtitle={subtitle} metaInfo={metaInfo} />}
-      <Box py="4" px="5" height="100%">
+      <Box py="4" px="5" flexGrow="1">
         {children}
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

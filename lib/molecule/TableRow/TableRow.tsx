@@ -1,11 +1,11 @@
-import { Button, Flex, Table as RadixTable } from '@radix-ui/themes';
+import {  Table as RadixTable } from '@radix-ui/themes';
 import type { KeyboardEvent } from 'react';
 
 import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
 import cn from 'classnames';
 
-const TableRow = ({ name, id, cells, actions, onClickRow, selected }: ITableRowProps) => {
+const TableRow = ({ name, id, cells, onClickRow, selected }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
@@ -40,31 +40,6 @@ const TableRow = ({ name, id, cells, actions, onClickRow, selected }: ITableRowP
           </RadixTable.Cell>
         );
       })}
-      {actions?.length ? (
-        <RadixTable.Cell className={styles.actionsCell}>
-          <Flex justify="end" gap="2">
-            {actions.map((action) => {
-              const ActionIcon = action.icon;
-
-              return (
-                <Button
-                  key={action.label}
-                  variant="soft"
-                  color="gray"
-                  size="1"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    action.onClick();
-                  }}
-                >
-                  {ActionIcon ? <ActionIcon size={14} /> : null}
-                  {action.label}
-                </Button>
-              );
-            })}
-          </Flex>
-        </RadixTable.Cell>
-      ) : null}
     </RadixTable.Row>
   );
 };

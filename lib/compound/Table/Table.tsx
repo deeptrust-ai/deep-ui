@@ -48,10 +48,7 @@ const Table = ({
       }),
     [headers.length, rows]
   );
-  const showActionsColumn = useMemo(
-    () => validRows.some((row) => row.actions && row.actions.length > 0),
-    [validRows]
-  );
+
   const rowsPerPage = validRows.slice(startIndex, endIndex);
 
   return (
@@ -62,14 +59,13 @@ const Table = ({
             {headers.map((header) => (
               <RadixTable.ColumnHeaderCell key={`${header}`}>{header}</RadixTable.ColumnHeaderCell>
             ))}
-            {showActionsColumn ? <RadixTable.ColumnHeaderCell /> : null}
           </RadixTable.Row>
         </RadixTable.Header>
         <RadixTable.Body>
           {rowsPerPage.length ? (
             rowsPerPage.map((row) => <TableRow key={row.id} {...row} />)
           ) : (
-            <TableEmpty colSpan={headers.length + (showActionsColumn ? 1 : 0)} />
+            <TableEmpty colSpan={headers.length} />
           )}
         </RadixTable.Body>
       </RadixTable.Root>

@@ -33,7 +33,6 @@ const Topbar = ({
       width="100%"
       gap="4"
       className={styles.topbar}
-      flexGrow="1"
     >
       <Flex align="center" gap="4" width="100%" flexGrow="1">
         <Logo size="medium" />

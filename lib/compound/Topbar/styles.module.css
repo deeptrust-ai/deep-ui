@@ -1,6 +1,13 @@
+:root {
+  --topbar-z-index: 2;
+}
+
 .topbar {
   box-shadow: var(--shadow-2);
-  background: var(--gray-1);
+  background: var(--color-background);
+  position: sticky;
+  top: 0;
+  z-index: var(--topbar-z-index);
 }
 
 .menuButton {

@@ -19,6 +19,7 @@ export type ILayoutComponent = Pick<
   | 'userMenuItems'
   | 'logout'
 > & {
+  readonly topContent?: ReactNode;
   readonly sidebar?: ReactNode;
   readonly children: ReactNode;
 };

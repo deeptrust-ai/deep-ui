@@ -1,9 +1,10 @@
-import { Box, Flex, Grid } from '@radix-ui/themes';
+import { Flex, Grid } from '@radix-ui/themes';
 import { Topbar } from '../compound';
 import type { ILayoutComponent } from './types';
 
 const Layout = ({
   children,
+  topContent,
   sidebar,
   userName,
   organizations,
@@ -25,28 +26,27 @@ const Layout = ({
 
   return (
     <Flex direction="column" height="100%">
-      <Box flexShrink="0" style={{ zIndex: '1', position: 'sticky', top: 0 }}>
-        <Topbar
-          userName={userName}
-          userPfp={userPfp}
-          organizations={organizations}
-          workspaces={workspaces}
-          pages={pages}
-          disableOrganizationsDropdown={disableOrganizationsDropdown}
-          disableWorkspacesDropdown={disableWorkspacesDropdown}
-          selectedOrganizationId={selectedOrganizationId}
-          selectedWorkspaceIds={selectedWorkspaceIds}
-          defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
-          onOrganizationSelect={onOrganizationSelect}
-          onWorkspaceSelectionChange={onWorkspaceSelectionChange}
-          links={links}
-          userMenuItems={userMenuItems}
-          logout={logout}
-        />
-      </Box>
+      <Topbar
+        userName={userName}
+        userPfp={userPfp}
+        organizations={organizations}
+        workspaces={workspaces}
+        pages={pages}
+        disableOrganizationsDropdown={disableOrganizationsDropdown}
+        disableWorkspacesDropdown={disableWorkspacesDropdown}
+        selectedOrganizationId={selectedOrganizationId}
+        selectedWorkspaceIds={selectedWorkspaceIds}
+        defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
+        onOrganizationSelect={onOrganizationSelect}
+        onWorkspaceSelectionChange={onWorkspaceSelectionChange}
+        links={links}
+        userMenuItems={userMenuItems}
+        logout={logout}
+      />
 
-      <Flex flexGrow="1" px="4" pt="4">
-        <Grid columns={contentColumns} gap="2" height="100%" width="100%">
+      <Flex direction="column" flexGrow="1" px="4" pt="4" minHeight="0">
+        {topContent ? <Flex flexShrink="0">{topContent}</Flex> : null}
+        <Grid columns={contentColumns} gap="2" width="100%" flexGrow="1" minHeight="0">
           <Flex direction="column">{children}</Flex>
           {sidebar}
         </Grid>

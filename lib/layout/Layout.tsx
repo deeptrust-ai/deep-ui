@@ -1,15 +1,9 @@
 import { Box, Flex, Grid } from '@radix-ui/themes';
-import { ContentWrapper } from '../atom';
 import { Topbar } from '../compound';
 import type { ILayoutComponent } from './types';
 
 const Layout = ({
   children,
-  title,
-  subtitle,
-  metaInfo,
-  wrapContent = false,
-  sidebarExpanded,
   sidebar,
   userName,
   organizations,
@@ -27,19 +21,7 @@ const Layout = ({
   userMenuItems = [],
   logout,
 }: ILayoutComponent) => {
-  const contentColumns = sidebar
-    ? sidebarExpanded === false
-      ? 'minmax(0, 2fr) minmax(320px, 1fr)'
-      : '1fr 1fr'
-    : '1fr';
-  const content =
-    wrapContent || title || subtitle || metaInfo ? (
-      <ContentWrapper title={title} subtitle={subtitle} metaInfo={metaInfo}>
-        {children}
-      </ContentWrapper>
-    ) : (
-      children
-    );
+  const contentColumns = sidebar ? '1fr 1fr' : '1fr';
 
   return (
     <Flex direction="column" height="100%">
@@ -65,7 +47,7 @@ const Layout = ({
 
       <Flex flexGrow="1" px="4" pt="4">
         <Grid columns={contentColumns} gap="2" height="100%" width="100%">
-          <Flex direction="column">{content}</Flex>
+          <Flex direction="column">{children}</Flex>
           {sidebar}
         </Grid>
       </Flex>

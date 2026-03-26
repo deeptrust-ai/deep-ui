@@ -5,7 +5,6 @@ import type { ILayoutComponent } from './types';
 const Layout = ({
   children,
   topContent,
-  hasTopContent = false,
   sidebar,
   userName,
   organizations,
@@ -46,11 +45,7 @@ const Layout = ({
       />
 
       <Flex direction="column" flexGrow="1" px="4" pt="4" minHeight="0">
-        {topContent ? (
-          <Flex flexShrink="0" pb={hasTopContent ? '2' : '0'}>
-            {topContent}
-          </Flex>
-        ) : null}
+        {topContent ? <Flex flexShrink="0">{topContent}</Flex> : null}
         <Grid columns={contentColumns} gap="2" width="100%" flexGrow="1" minHeight="0">
           <Flex direction="column">{children}</Flex>
           {sidebar}

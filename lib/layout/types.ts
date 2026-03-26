@@ -20,7 +20,6 @@ export type ILayoutComponent = Pick<
   | 'logout'
 > & {
   readonly topContent?: ReactNode;
-  readonly hasTopContent?: boolean;
   readonly sidebar?: ReactNode;
   readonly children: ReactNode;
 };

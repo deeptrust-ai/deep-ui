@@ -48,12 +48,8 @@ const Table = ({
       }),
     [headers.length, rows]
   );
-  const rowsPerPage = validRows.slice(startIndex, endIndex);
 
-  const showActionsColumns = useMemo(
-    () => validRows.some((row) => row.actions && row.actions.length > 0),
-    [validRows]
-  );
+  const rowsPerPage = validRows.slice(startIndex, endIndex);
 
   return (
     <Flex direction="column" gap="2">
@@ -63,14 +59,13 @@ const Table = ({
             {headers.map((header) => (
               <RadixTable.ColumnHeaderCell key={`${header}`}>{header}</RadixTable.ColumnHeaderCell>
             ))}
-            {showActionsColumns && <RadixTable.ColumnHeaderCell />}
           </RadixTable.Row>
         </RadixTable.Header>
         <RadixTable.Body>
           {rowsPerPage.length ? (
             rowsPerPage.map((row) => <TableRow key={row.id} {...row} />)
           ) : (
-            <TableEmpty colSpan={headers.length + (showActionsColumns ? 1 : 0)} />
+            <TableEmpty colSpan={headers.length} />
           )}
         </RadixTable.Body>
       </RadixTable.Root>

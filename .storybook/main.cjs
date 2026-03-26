@@ -23,11 +23,8 @@ const config = {
     getAbsolutePath('@storybook/addon-vitest'),
     getAbsolutePath('@storybook/addon-mcp'),
   ],
-  core: {
-    builder: '@storybook/builder-vite',
-  },
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {},
   },
   async viteFinal(config) {

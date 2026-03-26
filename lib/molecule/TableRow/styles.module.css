@@ -1,16 +1,22 @@
-.actionButton {
-  border: 1px solid var(--accent-a11);
-}
-
-.actionsCell {
-  text-align: right;
-  vertical-align: middle;
-}
-
 .contentCell {
   vertical-align: middle;
 }
 
-.activeRow {
-  background-color: var(--gray-a2);
+.actionsCell {
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.row {
+  cursor: pointer;
+  &:hover {
+    background-color: var(--accent-a2);
+  }
+}
+
+.selectedRow {
+  background-color: var(--blue-3);
+  &:hover {
+    background-color: var(--blue-3);
+  }
 }

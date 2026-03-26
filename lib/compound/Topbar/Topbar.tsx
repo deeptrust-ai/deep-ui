@@ -111,7 +111,7 @@ const Topbar = ({
                     {itemContent}
                   </AnchorComponent>
                 );
-              } else if ('href' in item && item.href) {
+              } else if ('href' in item && typeof item.href === 'string') {
                 itemElement = <Link href={item.href}>{itemContent}</Link>;
               } else {
                 itemElement = (
@@ -141,7 +141,7 @@ const Topbar = ({
                         </LogoutAnchor>
                       );
                     })()
-                  ) : ('href' in logout && logout.href) ? (
+                  ) : ('href' in logout && typeof logout.href === 'string') ? (
                     <Link href={logout.href}>
                       <SignOutIcon size={14} />
                       {logout.label ?? 'Logout'}

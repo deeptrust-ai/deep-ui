@@ -1,5 +1,7 @@
-import { AcornIcon } from '@phosphor-icons/react';
+import { AcornIcon, GearFineIcon, UserCircleIcon } from '@phosphor-icons/react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ComponentPropsWithoutRef, ElementType } from 'react';
+import { forwardRef } from 'react';
 
 import { Topbar } from '../..';
 
@@ -48,3 +50,38 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+/**
+ * Mock anchor component that simulates a router Link (e.g. TanStack Router).
+ * Forwards refs so it works with Radix `asChild`.
+ */
+const MockRouterLink: ElementType = forwardRef<
+  HTMLAnchorElement,
+  ComponentPropsWithoutRef<'a'> & { to?: string }
+>(({ to, ...props }, ref) => <a ref={ref} href={to ?? '#'} {...props} />);
+(MockRouterLink as React.FC).displayName = 'MockRouterLink';
+
+export const WithAnchorComponent: Story = {
+  args: {
+    userMenuItems: [
+      {
+        label: 'User Account',
+        anchorComponent: MockRouterLink,
+        anchorProps: { to: '/user' },
+        shortcut: '⌘ U',
+        icon: UserCircleIcon,
+      },
+      {
+        label: 'Settings',
+        anchorComponent: MockRouterLink,
+        anchorProps: { to: '/settings' },
+        shortcut: '⌘ ,',
+        icon: GearFineIcon,
+      },
+    ],
+    logout: {
+      anchorComponent: MockRouterLink,
+      anchorProps: { to: '/logout' },
+    },
+  },
+};

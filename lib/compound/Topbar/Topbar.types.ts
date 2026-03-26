@@ -5,18 +5,6 @@ import type { BreadcrumbEntity, BreadcrumbPage } from '../../molecule/Breadcrumb
 
 type ItemAction = () => void | Promise<void>;
 
-type LinkOrAction<TLinkKey extends string, TActionKey extends string> =
-  | ({
-      readonly [Key in TLinkKey]: string;
-    } & {
-      readonly [Key in TActionKey]?: never;
-    })
-  | ({
-      readonly [Key in TLinkKey]?: never;
-    } & {
-      readonly [Key in TActionKey]: ItemAction;
-    });
-
 export type ITopbarLinkAnchorProps = Omit<ComponentPropsWithoutRef<'a'>, 'children'> & {
   readonly to?: string;
   readonly [key: string]: unknown;
@@ -31,15 +19,25 @@ export interface ITopbarLink {
   readonly activeClassName?: string;
 }
 
-export type ITopbarMenuItem = LinkOrAction<'href', 'onClick'> & {
+type MenuItemBase = {
   readonly label: string;
   readonly shortcut?: string;
   readonly icon?: Icon;
 };
 
-export type ITopbarLogoutAction = LinkOrAction<'href', 'onClick'> & {
+export type ITopbarMenuItem =
+  | (MenuItemBase & { readonly href: string; readonly onClick?: never; readonly anchorComponent?: never; readonly anchorProps?: never })
+  | (MenuItemBase & { readonly href?: never; readonly onClick: ItemAction; readonly anchorComponent?: never; readonly anchorProps?: never })
+  | (MenuItemBase & { readonly href?: never; readonly onClick?: never; readonly anchorComponent: ElementType; readonly anchorProps?: ITopbarLinkAnchorProps });
+
+type LogoutBase = {
   readonly label?: string;
 };
+
+export type ITopbarLogoutAction =
+  | (LogoutBase & { readonly href: string; readonly onClick?: never; readonly anchorComponent?: never; readonly anchorProps?: never })
+  | (LogoutBase & { readonly href?: never; readonly onClick: ItemAction; readonly anchorComponent?: never; readonly anchorProps?: never })
+  | (LogoutBase & { readonly href?: never; readonly onClick?: never; readonly anchorComponent: ElementType; readonly anchorProps?: ITopbarLinkAnchorProps });
 
 export interface ITopbarProps {
   readonly organizations: BreadcrumbEntity[];

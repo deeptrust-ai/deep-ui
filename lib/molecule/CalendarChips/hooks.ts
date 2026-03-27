@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 
+/** Parameters for computing a contiguous range of dates. */
 type GetDateRangeParams = {
   endDate: Date;
   days: number;

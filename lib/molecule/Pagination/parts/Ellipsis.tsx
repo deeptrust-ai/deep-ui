@@ -2,6 +2,7 @@ import { DotsThreeIcon } from '@phosphor-icons/react';
 import { DropdownMenu as RadixDropdownMenu, IconButton } from '@radix-ui/themes';
 import styles from '../Pagination.module.css';
 
+/** Props for the internal {@link Ellipsis} dropdown sub-component. */
 interface IEllipsisProps {
   pages: number[];
   setPage: (page: number) => void;

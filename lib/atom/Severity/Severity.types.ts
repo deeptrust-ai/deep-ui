@@ -1,4 +1,4 @@
-/** Display mode for the severity indicator — icon-only, text-only, or both (mutually exclusive). */
+/** Display mode for the severity indicator. `iconOnly` and `textOnly` cannot both be `true`; if neither is set, both icon and text are shown. */
 type SeverityDisplayMode =
   | { readonly iconOnly?: true; readonly textOnly?: false | undefined }
   | { readonly textOnly?: true; readonly iconOnly?: false | undefined }

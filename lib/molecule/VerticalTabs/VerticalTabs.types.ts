@@ -10,5 +10,5 @@ export type IVerticalTabsTriggerProps = ComponentProps<typeof RadixTabs.Trigger>
 /** Props forwarded to a Radix Tabs content panel. */
 export type IVerticalTabsContentProps = ComponentProps<typeof RadixTabs.Content>;
 
-/** Props for the {@link VerticalTabs} molecule component (alias of root props). */
+/** Props for the VerticalTabs molecule component (alias of root props). */
 export type IVerticalTabsProps = IVerticalTabsRootProps;

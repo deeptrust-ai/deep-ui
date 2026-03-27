@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-/** A selectable entity (organisation or workspace) in the breadcrumb trail. */
+/** A selectable entity (organization or workspace) in the breadcrumb trail. */
 export type BreadcrumbEntity = {
   id: string;
   name: string;

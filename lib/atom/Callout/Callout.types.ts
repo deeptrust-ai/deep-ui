@@ -1,4 +1,4 @@
-/** Visual variant controlling the colour and icon of a {@link Callout}. */
+/** Visual variant controlling the color and icon of a {@link Callout}. */
 export type CalloutVariant = 'success' | 'error' | 'info' | 'warning';
 
 /** Props for the {@link Callout} atom component. */
@@ -9,6 +9,6 @@ export interface ICalloutProps {
   readonly message: string;
   /** Optional click handler for the action button. */
   readonly onClick?: () => void;
-  /** Visual variant controlling colour and icon (defaults to `"info"`). */
+  /** Visual variant controlling color and icon (defaults to `"info"`). */
   readonly variant?: CalloutVariant;
 }

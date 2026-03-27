@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes } from 'react';
 
-/** A single organisation entry in the dropdown list. */
+/** A single organization entry in the dropdown list. */
 export interface IOrganizationDropdown {
   readonly name: string;
   readonly selected?: boolean;

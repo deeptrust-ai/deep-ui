@@ -8,6 +8,6 @@ export interface ITextBarGraphProps {
   readonly Icon: PhosIconTypes;
   /** Text label displayed next to the bar. */
   readonly label: string;
-  /** Semantic colour variant for the bar fill. */
+  /** Semantic color variant for the bar fill. */
   readonly variant?: 'default' | 'danger' | 'info' | 'warning';
 }

@@ -1,12 +1,13 @@
 import type { Icon as PhosIconTypes } from '@phosphor-icons/react';
 
+/** Props for the {@link TextBarGraph} molecule component. */
 export interface ITextBarGraphProps {
-  // Percentage value between 0 and 100
+  /** Percentage value between 0 and 100. */
   readonly percentage: number;
-  // Icon component from Phosphor Icons
+  /** Phosphor icon component rendered beside the label. */
   readonly Icon: PhosIconTypes;
-  // Label for the bar graph
+  /** Text label displayed next to the bar. */
   readonly label: string;
-  // Semantic variant for styling the bar graph
+  /** Semantic color variant for the bar fill. */
   readonly variant?: 'default' | 'danger' | 'info' | 'warning';
 }

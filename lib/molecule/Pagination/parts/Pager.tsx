@@ -3,14 +3,17 @@ import Ellipsis from './Ellipsis';
 import { Flex, IconButton } from '@radix-ui/themes';
 import styles from '../Pagination.module.css';
 
+/** A page number or the `'dots'` sentinel representing an ellipsis gap. */
 type PagerRangeItem = number | 'dots';
 
+/** State object returned by the pagination hook, consumed by {@link Pager}. */
 export interface PagerState {
   range: PagerRangeItem[];
   active: number;
   setPage: (page: number) => void;
 }
 
+/** Props for the internal {@link Pager} sub-component. */
 interface PagerProps {
   pager: PagerState;
   totalPages: number;

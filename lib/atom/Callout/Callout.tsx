@@ -11,6 +11,7 @@ import styles from './Callout.module.css';
 import cn from 'classnames';
 import type { ComponentProps } from 'react';
 
+/** Color value accepted by the Radix Callout root. */
 type CalloutColor = ComponentProps<typeof RadixCallout.Root>['color'];
 
 const calloutVariantColor: Record<CalloutVariant, CalloutColor> = {

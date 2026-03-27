@@ -2,6 +2,7 @@ import { Text as RadixText, Select as RadixSelect } from '@radix-ui/themes';
 import { PAGE_SIZE_OPTIONS } from '../constants';
 import type { TPaginationItemsPerPage } from '../types';
 
+/** Props for the internal {@link RowsPerPage} selector sub-component. */
 interface IRowsPerPageProps {
   itemsPerPage: TPaginationItemsPerPage;
   onChange: (rowsPerPage: TPaginationItemsPerPage) => void;

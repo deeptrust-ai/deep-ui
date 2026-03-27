@@ -1,3 +1,4 @@
+/** Props for the {@link DateRangePicker} compound component. */
 export interface IDateRangePickerProps {
   readonly fromDate?: Date;
   readonly toDate?: Date;

@@ -1,8 +1,9 @@
+/** Props for the {@link CalendarChips} molecule component. */
 export interface ICalendarChipsProps {
-  /* The date to be selected */
+  /** The currently selected date. */
   readonly selectedDate?: Date;
-  /* The end date for the range of dates to show */
+  /** The end date for the visible range. */
   readonly endDate?: Date;
-  /* Number of chips to show including the selected date chip */
+  /** Number of day chips to render (including the selected date). */
   readonly numberDaysShown?: 1 | 3 | 5 | 7;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Theme as RadixTheme } from '@radix-ui/themes';
 
+/** Props accepted by the Radix `Theme` provider, used to type the wrapper defaults. */
 type RadixThemeProps = React.ComponentProps<typeof RadixTheme>;
 
 const defaultThemeProps: Partial<RadixThemeProps> = {

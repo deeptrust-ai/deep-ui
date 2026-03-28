@@ -67,7 +67,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'lib/index.ts'),
       formats: ['es'],
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: shouldExternalize,
       input: (() => {
         const entries = Object.fromEntries(

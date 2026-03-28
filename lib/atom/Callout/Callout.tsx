@@ -55,6 +55,7 @@ export const Callout = ({ message, variant = 'info', onClick }: ICalloutProps) =
           onClick={onClick}
           className={actionButtonClassNames}
           color={calloutVariantColor[variant]}
+          radius="large"
         >
           <CaretDoubleRightIcon weight="bold" size="14px" />
         </IconButton>

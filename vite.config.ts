@@ -8,6 +8,25 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css';
 
 // https://vite.dev/config/
 const isStorybookCommand = process.argv.some((arg) => arg.includes('storybook'));
+const isWatchCommand = process.argv.includes('--watch');
+
+const runtimeExternalPackages = [
+  'react',
+  'react-dom',
+  'react/jsx-runtime',
+  '@phosphor-icons/react',
+  '@radix-ui/themes',
+  '@radix-ui/react-popover',
+  '@mantine/hooks',
+  'classnames',
+  'date-fns',
+  'react-day-picker',
+];
+
+const shouldExternalize = (id: string) =>
+  id === '@deeptrust-ai/deep-ui' ||
+  id.startsWith('@deeptrust-ai/deep-ui/') ||
+  runtimeExternalPackages.some((pkg) => id === pkg || id.startsWith(`${pkg}/`));
 
 export default defineConfig({
   plugins: [
@@ -42,19 +61,14 @@ export default defineConfig({
   build: {
     // Prevent the watch build from deleting dist between rebuilds,
     // which breaks consumers during HMR.
-    emptyOutDir: false,
+    emptyOutDir: !isWatchCommand,
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, 'lib/index.ts'),
       formats: ['es'],
     },
     rollupOptions: {
-      external: [
-        'react',
-        'react/jsx-runtime',
-        /^@radix-ui\/themes(\/.*)?$/,
-        /^@deeptrust-ai\/deep-ui(\/.*)?$/,
-      ],
+      external: shouldExternalize,
       input: (() => {
         const entries = Object.fromEntries(
           glob

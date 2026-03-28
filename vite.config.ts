@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { extname, relative, resolve } from 'path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 import { glob } from 'glob';
 import dts from 'vite-plugin-dts';
@@ -9,19 +10,17 @@ import { libInjectCss } from 'vite-plugin-lib-inject-css';
 // https://vite.dev/config/
 const isStorybookCommand = process.argv.some((arg) => arg.includes('storybook'));
 const isWatchCommand = process.argv.includes('--watch');
+const require = createRequire(import.meta.url);
+const { dependencies = {}, peerDependencies = {} } = require('./package.json') as {
+  dependencies?: Record<string, string>;
+  peerDependencies?: Record<string, string>;
+};
 
 const runtimeExternalPackages = [
-  'react',
-  'react-dom',
+  ...Object.keys(dependencies),
+  ...Object.keys(peerDependencies),
   'react/jsx-runtime',
-  '@phosphor-icons/react',
-  '@radix-ui/themes',
-  '@radix-ui/react-popover',
-  '@mantine/hooks',
-  'classnames',
-  'date-fns',
-  'react-day-picker',
-];
+].filter((pkg, index, packages) => packages.indexOf(pkg) === index);
 
 const shouldExternalize = (id: string) =>
   id === '@deeptrust-ai/deep-ui' ||

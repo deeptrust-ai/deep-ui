@@ -1,9 +1,9 @@
-import cn from 'classnames';
-import type { ILogoProps } from './types';
+import type { ILogoProps, SizeKey } from './types';
 import { SIZE_CONFIG } from './constants';
-import styles from './styles.module.css';
-import { Box, Link } from '@radix-ui/themes';
+import { Flex, Link } from '@radix-ui/themes';
 import logoSrc from './logo.png';
+
+const SIZE_GAP: Record<SizeKey, '1' | '2' | '4'> = { small: '1', medium: '2', large: '4' };
 
 export const Logo = ({ size = 'medium', href = '/' }: ILogoProps) => {
   const width = SIZE_CONFIG[size].baseWidth;
@@ -12,7 +12,7 @@ export const Logo = ({ size = 'medium', href = '/' }: ILogoProps) => {
   );
 
   return (
-    <Box className={cn(styles.logo, styles[size])}>{href ? <Link href={href}>{image}</Link> : image}</Box>
+    <Flex align="center" justify="start" gap={SIZE_GAP[size]}>{href ? <Link href={href}>{image}</Link> : image}</Flex>
   );
 };
 

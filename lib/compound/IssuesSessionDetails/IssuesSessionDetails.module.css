@@ -1,0 +1,383 @@
+.tabsList {
+  flex-wrap: wrap;
+  width: fit-content;
+}
+
+.tabContent {
+  min-height: 20rem;
+  padding-top: var(--space-4);
+}
+
+.emptyState {
+  align-items: center;
+  color: var(--gray-10);
+  display: flex;
+  justify-content: center;
+  min-height: 14rem;
+  text-align: center;
+}
+
+.notesCard {
+  background: linear-gradient(180deg, var(--gray-2), var(--gray-1));
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+}
+
+.notesSection {
+  border-bottom: 1px solid var(--gray-5);
+  padding: var(--space-4);
+}
+
+.notesSection:last-child {
+  border-bottom: 0;
+}
+
+.notesLabel {
+  color: var(--gray-11);
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.notesBody {
+  color: var(--gray-12);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.actionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-4);
+}
+
+.transcriptToolbar {
+  align-items: center;
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.transcriptMeta {
+  color: var(--gray-10);
+  font-size: var(--font-size-1);
+  margin-bottom: var(--space-4);
+}
+
+.transcriptList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.transcriptCard {
+  background: var(--gray-2);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
+}
+
+.transcriptSpeakerRow {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.transcriptTimestamp {
+  color: var(--gray-10);
+  font-family: var(--default-mono-font-family);
+  font-size: var(--font-size-1);
+}
+
+.transcriptSpeaker {
+  color: var(--gray-12);
+  font-weight: var(--font-weight-medium);
+}
+
+.transcriptText {
+  color: var(--gray-11);
+  line-height: 1.6;
+}
+
+.translated {
+  color: var(--teal-11);
+  font-weight: var(--font-weight-medium);
+}
+
+.translatedFrom {
+  color: var(--teal-11);
+  font-size: var(--font-size-1);
+  font-style: italic;
+  margin-top: var(--space-2);
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+}
+
+.timelineItem {
+  align-items: flex-start;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.timelineMarker {
+  align-items: center;
+  background: var(--accent-3);
+  border: 1px solid var(--accent-6);
+  border-radius: 999px;
+  color: var(--accent-11);
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  margin-top: var(--space-1);
+  width: 2rem;
+}
+
+.timelineCard {
+  background: var(--gray-2);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
+}
+
+.timelineHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+
+.timelineTitle {
+  color: var(--gray-12);
+  font-weight: var(--font-weight-medium);
+}
+
+.timelineTimestamp {
+  color: var(--gray-10);
+  font-size: var(--font-size-1);
+  white-space: nowrap;
+}
+
+.timelineSummary {
+  color: var(--gray-11);
+  line-height: 1.5;
+  margin-top: var(--space-2);
+}
+
+.toneSuccess {
+  --accent-3: var(--green-3);
+  --accent-6: var(--green-6);
+  --accent-11: var(--green-11);
+}
+
+.toneWarning {
+  --accent-3: var(--amber-3);
+  --accent-6: var(--amber-6);
+  --accent-11: var(--amber-11);
+}
+
+.toneDanger {
+  --accent-3: var(--red-3);
+  --accent-6: var(--red-6);
+  --accent-11: var(--red-11);
+}
+
+.toneNeutral {
+  --accent-3: var(--gray-3);
+  --accent-6: var(--gray-6);
+  --accent-11: var(--gray-11);
+}
+
+.speakersSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sectionTitle {
+  color: var(--gray-12);
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-medium);
+}
+
+.speakerStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.speakerCard {
+  background: var(--gray-2);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+}
+
+.speakerToggle {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: var(--space-4);
+  text-align: left;
+  width: 100%;
+}
+
+.speakerHeader {
+  align-items: flex-start;
+  display: flex;
+  gap: var(--space-3);
+  justify-content: space-between;
+}
+
+.speakerIdentity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.speakerName {
+  color: var(--gray-12);
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-medium);
+}
+
+.speakerSubtitle {
+  color: var(--gray-10);
+}
+
+.speakerHeaderActions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-3);
+}
+
+.statusBadge {
+  border-radius: 999px;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-medium);
+  padding: 0.2rem 0.6rem;
+}
+
+.statusNeutral {
+  background: var(--gray-3);
+  color: var(--gray-11);
+}
+
+.statusSuccess {
+  background: var(--green-3);
+  color: var(--green-11);
+}
+
+.statusWarning {
+  background: var(--amber-3);
+  color: var(--amber-11);
+}
+
+.statusDanger {
+  background: var(--red-3);
+  color: var(--red-11);
+}
+
+.caret {
+  color: var(--gray-10);
+  transition: transform 160ms ease;
+}
+
+.caretCollapsed {
+  transform: rotate(180deg);
+}
+
+.speakerContent {
+  border-top: 1px solid var(--gray-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+}
+
+.detailList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detailRow {
+  align-items: baseline;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.detailLabel {
+  color: var(--gray-10);
+  font-size: var(--font-size-2);
+  min-width: 5rem;
+}
+
+.detailValue {
+  color: var(--gray-12);
+  font-size: var(--font-size-2);
+}
+
+.evidenceGrid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.evidenceCard {
+  border-radius: var(--radius-4);
+  padding: var(--space-4);
+}
+
+.verificationCard {
+  background: var(--green-2);
+  border: 1px solid var(--green-5);
+}
+
+.detectionCard {
+  background: var(--blue-2);
+  border: 1px solid var(--blue-5);
+}
+
+.evidenceTitle {
+  color: var(--gray-12);
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-3);
+}
+
+.metricGrid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--space-3);
+}
+
+.metricLabel {
+  color: var(--gray-10);
+  font-size: var(--font-size-1);
+}
+
+.metricValue {
+  color: var(--gray-12);
+  font-size: var(--font-size-2);
+}
+
+@media (max-width: 720px) {
+  .evidenceGrid,
+  .metricGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

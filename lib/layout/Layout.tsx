@@ -22,7 +22,7 @@ const Layout = ({
   userMenuItems = [],
   logout,
 }: ILayoutComponent) => {
-  const contentColumns = sidebar ? '1fr 1fr' : '1fr';
+  const contentColumns = sidebar ? 'minmax(0, 1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)';
 
   return (
     <Flex direction="column" height="100%">
@@ -47,8 +47,14 @@ const Layout = ({
       <Flex direction="column" flexGrow="1" px="4" pt="4" minHeight="0">
         {topContent ? <Flex flexShrink="0">{topContent}</Flex> : null}
         <Grid columns={contentColumns} gap="2" width="100%" flexGrow="1" minHeight="0">
-          <Flex direction="column">{children}</Flex>
-          {sidebar}
+          <Flex direction="column" minWidth="0" minHeight="0">
+            {children}
+          </Flex>
+          {sidebar ? (
+            <Flex direction="column" minWidth="0" minHeight="0">
+              {sidebar}
+            </Flex>
+          ) : null}
         </Grid>
       </Flex>
     </Flex>

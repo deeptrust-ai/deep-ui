@@ -201,7 +201,7 @@ npm link @deeptrust-ai/deep-ui
 
 Rebuild DeepUI (`npm run build`) before testing changes in the consumer app.
 
-### Option D — DeepTrust.ai submodule (local dev)
+### Option C — DeepTrust.ai submodule (local dev)
 
 When working in the DeepTrust.ai repo, DeepUI is a submodule at `packages/deep-ui`.
 To see changes immediately:
@@ -213,7 +213,7 @@ npm run deep-ui:build:watch
 
 Then run the DeepTrust.ai dev server in another terminal.
 
-### Option C — Local file reference / monorepo
+### Option D — Local file reference / monorepo
 
 Add the dependency in the consumer `package.json`:
 

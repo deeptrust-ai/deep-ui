@@ -22,7 +22,8 @@ const Layout = ({
   userMenuItems = [],
   logout,
 }: ILayoutComponent) => {
-  const contentColumns = sidebar ? 'minmax(0, 1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)';
+  const hasSidebar = sidebar !== null && sidebar !== undefined && typeof sidebar !== 'boolean';
+  const contentColumns = hasSidebar ? 'minmax(0, 1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)';
 
   return (
     <Flex direction="column" height="100%">
@@ -50,7 +51,7 @@ const Layout = ({
           <Flex direction="column" minWidth="0" minHeight="0">
             {children}
           </Flex>
-          {sidebar ? (
+          {hasSidebar ? (
             <Flex direction="column" minWidth="0" minHeight="0">
               {sidebar}
             </Flex>

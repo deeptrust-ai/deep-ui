@@ -1,6 +1,6 @@
 # DeepUI — README
 
-This README explains how to build the component library, scaffold new components, validate a developer release, and consume the package locally or from a tarball. DeepUI is also used as a git submodule in VoxGuard.
+This README explains how to build the component library, scaffold new components, validate a developer release, and consume the package locally or from a tarball. DeepUI is also used as a git submodule in DeepTrust.ai.
 
 ---
 
@@ -201,19 +201,19 @@ npm link @deeptrust-ai/deep-ui
 
 Rebuild DeepUI (`npm run build`) before testing changes in the consumer app.
 
-### Option D — VoxGuard submodule (local dev)
+### Option C — DeepTrust.ai submodule (local dev)
 
-When working in the VoxGuard repo, DeepUI is a submodule at `packages/deep-ui`.
+When working in the DeepTrust.ai repo, DeepUI is a submodule at `packages/deep-ui`.
 To see changes immediately:
 
 ```bash
-# in VoxGuard
+# in DeepTrust.ai
 npm run deep-ui:build:watch
 ```
 
-Then run the VoxGuard dev server in another terminal.
+Then run the DeepTrust.ai dev server in another terminal.
 
-### Option C — Local file reference / monorepo
+### Option D — Local file reference / monorepo
 
 Add the dependency in the consumer `package.json`:
 

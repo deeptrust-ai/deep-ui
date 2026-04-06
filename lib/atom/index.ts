@@ -1,9 +1,13 @@
 export { default as Badge, type IBadgeProps } from './Badge';
 
 export {
-  default as OrganizationDropdown,
+  default as EntityDropdown,
+  OrganizationDropdown,
+  type IEntityDropdownItem,
+  type IEntityDropdownProps,
+  type IOrganizationDropdown,
   type IOrganizationDropdownProps,
-} from './OrganizationDropdown';
+} from './EntityDropdown';
 
 export { default as Logo, type ILogoProps } from './Logo';
 

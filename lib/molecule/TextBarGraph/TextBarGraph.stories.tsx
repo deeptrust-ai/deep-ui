@@ -4,7 +4,7 @@ import { TextBarGraph, type ITextBarGraphProps } from '../..';
 import {
   AcornIcon,
   CloudWarningIcon,
-  HeadphonesIcon,
+  UsersThreeIcon,
   SealWarningIcon,
 } from '@phosphor-icons/react';
 
@@ -61,14 +61,14 @@ export const Overview: Story = {
         {...args}
         percentage={100}
         label="Total Organization Calls"
-        Icon={HeadphonesIcon}
+        Icon={UsersThreeIcon}
         variant="default"
       />
       <TextBarGraph
         {...args}
         percentage={70}
         label="Total Protected Calls"
-        Icon={HeadphonesIcon}
+        Icon={UsersThreeIcon}
         variant="info"
       />
       <TextBarGraph

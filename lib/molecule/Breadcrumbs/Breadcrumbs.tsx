@@ -4,7 +4,7 @@ import {
   BuildingsIcon,
   CaretUpDownIcon,
   DotsThreeIcon,
-  HeadphonesIcon,
+  UsersThreeIcon,
 } from '@phosphor-icons/react';
 import { useState, type ReactNode } from 'react';
 import { ALL_WORKSPACES_ID, ALL_WORKSPACES_NAME, MANY_CRUMBS_THRESHOLD } from './constants';
@@ -188,7 +188,7 @@ const WorkspaceDropdown = ({
     return (
       <Button variant="ghost" color="gray" disabled>
         <Flex align="center" gap="1">
-          <HeadphonesIcon size={16} weight="bold" />
+          <UsersThreeIcon size={16} weight="bold" />
           <Text size="1">{triggerLabel}</Text>
         </Flex>
       </Button>
@@ -200,7 +200,7 @@ const WorkspaceDropdown = ({
       <DropdownMenu.Trigger>
         <Button variant="ghost" color="gray">
           <Flex align="center" gap="1">
-            <HeadphonesIcon size={16} weight="bold" />
+            <UsersThreeIcon size={16} weight="bold" />
             <Text size="1">{triggerLabel}</Text>
             <CaretUpDownIcon size={14} weight="bold" />
           </Flex>
@@ -290,7 +290,7 @@ const Breadcrumbs = ({
       {hasOrganizations && hasWorkspaceSegment ? <BreadcrumbSeparator /> : null}
 
       {showWorkspaceLabel ? (
-        <EntityLabel name={workspaceLabelName} icon={<HeadphonesIcon size={16} weight="bold" />} />
+        <EntityLabel name={workspaceLabelName} icon={<UsersThreeIcon size={16} weight="bold" />} />
       ) : null}
 
       {!showWorkspaceLabel && hasWorkspaces ? (

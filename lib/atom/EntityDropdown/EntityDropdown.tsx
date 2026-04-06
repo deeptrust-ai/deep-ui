@@ -56,8 +56,5 @@ export const EntityDropdown = ({
   );
 };
 
-/** @deprecated Use {@link EntityDropdown} instead. */
-export const OrganizationDropdown = EntityDropdown;
-
 export default EntityDropdown;
 export type { IEntityDropdownProps } from './types';

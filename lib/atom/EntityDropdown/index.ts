@@ -1,2 +1,2 @@
-export { default, EntityDropdown, OrganizationDropdown } from './EntityDropdown';
+export { default, EntityDropdown } from './EntityDropdown';
 export type * from './types';

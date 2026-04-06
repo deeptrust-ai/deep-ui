@@ -12,12 +12,5 @@ export interface IEntityDropdownProps extends ComponentPropsWithoutRef<typeof Bu
   readonly entities?: IEntityDropdownItem[];
   readonly label?: string;
   readonly icon?: ReactNode;
-  /** @deprecated Use `entities` instead. */
   readonly organizations?: IEntityDropdownItem[];
 }
-
-/** @deprecated Use {@link IEntityDropdownItem}. */
-export type IOrganizationDropdown = IEntityDropdownItem;
-
-/** @deprecated Use {@link IEntityDropdownProps}. */
-export type IOrganizationDropdownProps = IEntityDropdownProps;

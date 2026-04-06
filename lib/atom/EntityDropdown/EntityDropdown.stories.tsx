@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { EntityDropdown, type IEntityDropdownProps } from '../..';
-import { Button } from '@radix-ui/themes';
 import { BuildingsIcon, SquaresFourIcon } from '@phosphor-icons/react';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -14,11 +13,7 @@ const meta = {
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
-  render: (args) => (
-    <Button asChild>
-      <EntityDropdown {...args} />
-    </Button>
-  ),
+  render: (args) => <EntityDropdown {...args} />,
 } satisfies Meta<IEntityDropdownProps>;
 
 export default meta;

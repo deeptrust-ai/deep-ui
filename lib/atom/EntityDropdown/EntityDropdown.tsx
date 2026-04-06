@@ -1,5 +1,6 @@
 import { DropdownMenu, Text, Flex, Button } from '@radix-ui/themes';
 import { BuildingsIcon, CaretUpDownIcon } from '@phosphor-icons/react';
+import cn from 'classnames';
 import styles from './EntityDropdown.module.css';
 import type { IEntityDropdownProps } from './types';
 
@@ -11,6 +12,7 @@ export const EntityDropdown = ({
   organizations,
   label = 'Entities',
   icon = <BuildingsIcon size={16} className={styles.icon} weight="bold" />,
+  className,
   ...buttonProps
 }: IEntityDropdownProps) => {
   const options = entities ?? organizations ?? [];
@@ -24,10 +26,10 @@ export const EntityDropdown = ({
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
         <Button
+          {...buttonProps}
           variant="ghost"
           color="gray"
-          className={styles.triggerButton}
-          {...buttonProps}
+          className={cn(styles.triggerButton, className)}
         >
           <Flex align="center" gap="2">
             <Text color="gray" size="1">
@@ -45,7 +47,6 @@ export const EntityDropdown = ({
             <DropdownMenu.RadioItem
               key={entity.name}
               value={entity.name}
-              className={styles.radioItem}
             >
               {entity.name}
             </DropdownMenu.RadioItem>
@@ -55,6 +56,9 @@ export const EntityDropdown = ({
     </DropdownMenu.Root>
   );
 };
+
+/** @deprecated Use {@link EntityDropdown} instead. */
+export const OrganizationDropdown = EntityDropdown;
 
 export default EntityDropdown;
 export type { IEntityDropdownProps } from './types';

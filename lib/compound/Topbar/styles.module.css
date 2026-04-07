@@ -29,3 +29,7 @@
 .menuButton[data-destructive='true'] {
   color: var(--red-11);
 }
+
+:global(.rt-BaseMenuShortcut) {
+  font-family: var(--code-font-family), monospace;
+}

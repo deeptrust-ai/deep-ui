@@ -20,7 +20,7 @@ const TextBarGraph = ({
         className={cn(styles.filledBar, styles[variant])}
       />
       <Flex align="center" gap="2" pl="2">
-        {Icon && <Icon weight="bold" />}
+        {Icon && <Icon weight="bold" size={16} />}
         <RadixText size="2">{label}</RadixText>
       </Flex>
       <RadixText size="2" ml="auto">

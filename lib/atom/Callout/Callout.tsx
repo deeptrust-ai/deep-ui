@@ -39,10 +39,10 @@ export const Callout = ({ message, variant = 'info', onClick }: ICalloutProps) =
     >
       <Flex direction="row" align="center" gap="3">
         <RadixCallout.Icon className={iconClassNames}>
-          {variant === 'success' && <CheckCircleIcon weight="bold" size="14px" />}
-          {variant === 'error' && <WarningIcon weight="bold" size="14px" />}
-          {variant === 'info' && <InfoIcon weight="bold" size="14px" />}
-          {variant === 'warning' && <WarningDiamondIcon weight="bold" size="14px" />}
+          {variant === 'success' && <CheckCircleIcon weight="bold" size={14} />}
+          {variant === 'error' && <WarningIcon weight="bold" size={14} />}
+          {variant === 'info' && <InfoIcon weight="bold" size={14} />}
+          {variant === 'warning' && <WarningDiamondIcon weight="bold" size={14} />}
         </RadixCallout.Icon>
         <Text size="2" weight="bold" className={styles.message} asChild>
           <RadixCallout.Text>{message}</RadixCallout.Text>
@@ -57,7 +57,7 @@ export const Callout = ({ message, variant = 'info', onClick }: ICalloutProps) =
           color={calloutVariantColor[variant]}
           radius="large"
         >
-          <CaretDoubleRightIcon weight="bold" size="14px" />
+          <CaretDoubleRightIcon weight="bold" size={14} />
         </IconButton>
       )}
     </RadixCallout.Root>

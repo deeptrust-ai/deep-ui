@@ -22,7 +22,7 @@ const AttendeeBadge = ({
       className={`${styles.badge} ${className ?? ''}`}
       {...rest}
     >
-      {Icon && <Icon weight="bold" size="16px" />}
+      {Icon && <Icon weight="bold" size={16} />}
       <Text size="1">{children}</Text>
       {chip && <Chip text={chip} />}
     </Badge>

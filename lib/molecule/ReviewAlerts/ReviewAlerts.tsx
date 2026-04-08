@@ -8,7 +8,7 @@ const ReviewAlerts = ({ alerts }: IReviewAlertsProps) => {
   return (
     <div>
       <Flex gap="2" align="center" mb="2">
-        <ListChecksIcon weight="bold" size="24px" />
+        <ListChecksIcon weight="bold" size={20} />
         <RadixHeading as="h2" size="4" weight="medium" className={styles.title}>
           Requires Immediate Attention!
         </RadixHeading>

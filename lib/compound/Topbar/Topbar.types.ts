@@ -1,6 +1,7 @@
 import type { Icon } from '@phosphor-icons/react';
 import type { ComponentPropsWithoutRef, ElementType } from 'react';
 import type { IAvatarProps } from '../../atom/Avatar/types';
+import type { ILogoAnchorProps } from '../../atom/Logo/types';
 import type { BreadcrumbEntity, BreadcrumbPage } from '../../molecule/Breadcrumbs';
 
 /** Callback for menu-item and logout actions (may be async). */
@@ -59,6 +60,8 @@ export interface ITopbarProps {
   readonly onOrganizationSelect?: (organizationId: string) => void;
   readonly onWorkspaceSelectionChange?: (workspaceIds: string[]) => void;
   readonly links?: ITopbarLink[];
+  readonly logoAnchorComponent?: ElementType;
+  readonly logoAnchorProps?: ILogoAnchorProps;
   readonly userName: IAvatarProps['name'];
   readonly userPfp?: IAvatarProps['pfp'];
   readonly userMenuItems?: ITopbarMenuItem[];

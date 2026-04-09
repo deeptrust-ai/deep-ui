@@ -9,7 +9,7 @@ export {
   type IOrganizationDropdownProps,
 } from './EntityDropdown';
 
-export { default as Logo, type ILogoProps } from './Logo';
+export { default as Logo, type ILogoProps, type ILogoAnchorProps } from './Logo';
 
 export { default as Avatar, type IAvatarProps } from './Avatar';
 export { default as Header, type IHeaderProps } from './Header';

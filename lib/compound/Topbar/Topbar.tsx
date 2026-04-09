@@ -18,6 +18,8 @@ const Topbar = ({
   onOrganizationSelect,
   onWorkspaceSelectionChange,
   links = [],
+  logoAnchorComponent,
+  logoAnchorProps,
   userName,
   userPfp,
   userMenuItems = [],
@@ -35,7 +37,7 @@ const Topbar = ({
       className={styles.topbar}
     >
       <Flex align="center" gap="4" width="100%" flexGrow="1">
-        <Logo size="medium" />
+        <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />
 
         <Breadcrumbs
           pages={pages}

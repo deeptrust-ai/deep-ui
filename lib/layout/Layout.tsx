@@ -10,6 +10,8 @@ const Layout = ({
   organizations,
   workspaces = [],
   links = [],
+  logoAnchorComponent,
+  logoAnchorProps,
   pages = [],
   disableOrganizationsDropdown = false,
   disableWorkspacesDropdown = false,
@@ -41,6 +43,8 @@ const Layout = ({
         onOrganizationSelect={onOrganizationSelect}
         onWorkspaceSelectionChange={onWorkspaceSelectionChange}
         links={links}
+        logoAnchorComponent={logoAnchorComponent}
+        logoAnchorProps={logoAnchorProps}
         userMenuItems={userMenuItems}
         logout={logout}
       />

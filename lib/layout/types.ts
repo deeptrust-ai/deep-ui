@@ -15,6 +15,8 @@ export type ILayoutComponent = Pick<
   | 'onOrganizationSelect'
   | 'onWorkspaceSelectionChange'
   | 'links'
+  | 'logoAnchorComponent'
+  | 'logoAnchorProps'
   | 'userName'
   | 'userPfp'
   | 'userMenuItems'

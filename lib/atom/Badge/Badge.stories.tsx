@@ -7,7 +7,7 @@ const meta = {
   title: 'Atom/Badge',
   component: Badge,
   args: {
-    label: 'Badge',
+    children: 'Badge',
     color: 'blue',
   },
   parameters: {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { Button, Flex } from '@radix-ui/themes';
+import { Button, Flex, Theme } from '@radix-ui/themes';
 import { Popover, PopoverContent, PopoverPortal, PopoverTrigger } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
 import { CalendarIcon } from '@phosphor-icons/react';
@@ -96,6 +96,7 @@ const DateRangePicker = ({
         </Button>
       </PopoverTrigger>
       <PopoverPortal>
+        <Theme asChild>
         <PopoverContent align="start" sideOffset={4} className={styles.popoverContent}>
           <ContentWrapper>
             <DayPicker
@@ -124,6 +125,7 @@ const DateRangePicker = ({
             </Flex>
           </ContentWrapper>
         </PopoverContent>
+        </Theme>
       </PopoverPortal>
     </Popover>
   );

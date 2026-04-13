@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Flex, Theme } from '@radix-ui/themes';
 import { Popover, PopoverContent, PopoverPortal, PopoverTrigger } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
@@ -54,8 +54,23 @@ const DateRangePicker = ({
   const [draftDate, setDraftDate] = useState<DateRange | undefined>(controlledDate);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const popoverContentRef = useRef<HTMLDivElement>(null);
 
   const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
+
+  useEffect(() => {
+    if (!isPopoverOpen) return;
+
+    const handleScroll = (event: Event) => {
+      if (popoverContentRef.current?.contains(event.target as Node)) return;
+      setIsPopoverOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll, { capture: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll, { capture: true });
+    };
+  }, [isPopoverOpen]);
 
   const notifyChange = useCallback(
     (nextDate: DateRange | undefined) => {
@@ -97,7 +112,13 @@ const DateRangePicker = ({
       </PopoverTrigger>
       <PopoverPortal>
         <Theme asChild>
-        <PopoverContent align="start" sideOffset={4} className={styles.popoverContent}>
+        <PopoverContent
+          ref={popoverContentRef}
+          align="start"
+          sideOffset={4}
+          collisionPadding={10}
+          className={styles.popoverContent}
+        >
           <ContentWrapper>
             <DayPicker
               mode="range"

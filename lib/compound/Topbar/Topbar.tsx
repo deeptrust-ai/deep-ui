@@ -133,7 +133,7 @@ const Topbar = ({
             {logout ? (
               <>
                 <DropdownMenu.Separator />
-                <DropdownMenu.Item shortcut="⌘ Q" color="red" asChild>
+                <DropdownMenu.Item shortcut={logout.shortcut} color="red" asChild>
                   {('anchorComponent' in logout && logout.anchorComponent) ? (
                     (() => {
                       const LogoutAnchor = logout.anchorComponent;

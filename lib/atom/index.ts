@@ -16,6 +16,7 @@ export { default as Header, type IHeaderProps } from './Header';
 export { default as User, type IUserProps } from './User';
 export { default as Callout, type ICalloutProps } from './Callout';
 export { default as ContentWrapper, type IContentWrapperProps } from './ContentWrapper';
+export { default as PrimaryButton, type IPrimaryButtonProps } from './PrimaryButton';
 export { default as Severity, type ISeverityProps } from './Severity/Severity';
 
 export { default as Chip, type IChipProps } from './Chip/Chip';

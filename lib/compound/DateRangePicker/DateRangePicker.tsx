@@ -62,7 +62,9 @@ const DateRangePicker = ({
     if (!isPopoverOpen) return;
 
     const handleScroll = (event: Event) => {
-      if (popoverContentRef.current?.contains(event.target as Node)) return;
+      const target = event.target as Node;
+      if (popoverContentRef.current?.contains(target)) return;
+      if (target instanceof Element && target.closest('[data-radix-select-viewport]')) return;
       setIsPopoverOpen(false);
     };
 

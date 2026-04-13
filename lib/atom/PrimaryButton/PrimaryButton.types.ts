@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 /** Props for the {@link PrimaryButton} atom component. */
 export type IPrimaryButtonProps = Omit<
   ButtonProps,
-  'color' | 'highContrast' | 'radius' | 'size' | 'variant'
+  'asChild' | 'color' | 'highContrast' | 'radius' | 'size' | 'variant'
 > & {
   readonly icon?: ReactNode;
 };

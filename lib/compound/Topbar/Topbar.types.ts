@@ -39,6 +39,7 @@ export type ITopbarMenuItem =
 /** Shared fields for the topbar logout action. */
 type LogoutBase = {
   readonly label?: string;
+  readonly shortcut?: string;
 };
 
 /** Discriminated union for the topbar logout action (href, onClick, or custom anchor). */

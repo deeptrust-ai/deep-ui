@@ -34,9 +34,10 @@ const Topbar = ({
       data-testid="app-topbar"
       width="100%"
       gap="4"
+      wrap="wrap"
       className={styles.topbar}
     >
-      <Flex align="center" gap="4" width="100%" flexGrow="1">
+      <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="wrap">
         <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />
 
         <Breadcrumbs
@@ -52,7 +53,7 @@ const Topbar = ({
           onWorkspaceSelectionChange={onWorkspaceSelectionChange}
         />
 
-        <Flex align="center" justify="end" gap="2">
+        <Flex align="center" justify="end" gap="2" wrap="wrap">
           {links.map((link) => {
             const href =
               typeof link.anchorProps?.to === 'string'

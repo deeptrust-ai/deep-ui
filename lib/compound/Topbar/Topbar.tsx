@@ -146,13 +146,22 @@ const Topbar = ({
                       </LinkAnchor>
                     );
                   } else {
+                    const {
+                      to: _to,
+                      href: _href,
+                      className: anchorClassName,
+                      ...restAnchorProps
+                    } = link.anchorProps ?? {};
                     itemElement = (
-                      <Link
-                        href={href}
-                        className={styles.menuButton}
-                        data-selected={link.selected ? 'true' : undefined}
-                      >
-                        {itemContent}
+                      <Link asChild>
+                        <a
+                          {...restAnchorProps}
+                          href={href}
+                          className={cn(styles.menuButton, anchorClassName)}
+                          data-selected={link.selected ? 'true' : undefined}
+                        >
+                          {itemContent}
+                        </a>
                       </Link>
                     );
                   }

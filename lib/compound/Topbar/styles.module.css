@@ -8,6 +8,26 @@
   position: sticky;
   top: 0;
   z-index: var(--topbar-z-index);
+  container-type: inline-size;
+  container-name: topbar;
+}
+
+.navLinksInline {
+  display: flex;
+}
+
+.navLinksCollapsed {
+  display: none;
+}
+
+@container topbar (max-width: 900px) {
+  .navLinksInline {
+    display: none;
+  }
+
+  .navLinksCollapsed {
+    display: inline-flex;
+  }
 }
 
 .menuButton {

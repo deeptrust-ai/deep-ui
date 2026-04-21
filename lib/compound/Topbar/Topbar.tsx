@@ -1,11 +1,14 @@
 import cn from 'classnames';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { DropdownMenu, Flex, IconButton, Link } from '@radix-ui/themes';
 import { ListIcon, SignOutIcon, XIcon } from '@phosphor-icons/react';
 import type { ITopbarLink, ITopbarProps } from './Topbar.types';
 import { Avatar, Logo, MenuItem } from '../../atom';
 import { Breadcrumbs } from '../../molecule';
 import styles from './styles.module.css';
+
+/** Container width (px) at or below which topbar nav links collapse into a hamburger dropdown. Must match the @container query in styles.module.css. */
+const NAV_COLLAPSE_BREAKPOINT_PX = 900;
 
 const Topbar = ({
   organizations,
@@ -28,6 +31,33 @@ const Topbar = ({
 }: ITopbarProps) => {
   const hasUserMenu = userMenuItems.length > 0 || !!logout;
   const [navMenuOpen, setNavMenuOpen] = useState(false);
+  const topbarRef = useRef<HTMLDivElement | null>(null);
+
+  // Keep controlled dropdown state in sync with CSS-driven trigger visibility:
+  // if the topbar grows past the inline breakpoint while the menu is open, the
+  // hamburger trigger is hidden via `display: none`, which would leave the
+  // portal content floating with no visible anchor. Close the menu in that case.
+  useEffect(() => {
+    if (!navMenuOpen) {
+      return;
+    }
+    const element = topbarRef.current;
+    if (!element || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) {
+        return;
+      }
+      if (entry.contentRect.width > NAV_COLLAPSE_BREAKPOINT_PX) {
+        setNavMenuOpen(false);
+      }
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [navMenuOpen]);
+
   const renderableLinks = links.filter((link) => {
     const href =
       typeof link.anchorProps?.to === 'string'
@@ -80,6 +110,7 @@ const Topbar = ({
       gap="4"
       wrap="wrap"
       className={styles.topbar}
+      ref={topbarRef}
     >
       <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="wrap">
         <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />

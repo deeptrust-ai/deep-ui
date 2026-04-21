@@ -147,11 +147,13 @@ const Topbar = ({
                     );
                   } else {
                     const {
-                      to: _to,
-                      href: _href,
+                      to: _unusedTo,
+                      href: _unusedHref,
                       className: anchorClassName,
                       ...restAnchorProps
                     } = link.anchorProps ?? {};
+                    void _unusedTo;
+                    void _unusedHref;
                     itemElement = (
                       <Link asChild>
                         <a

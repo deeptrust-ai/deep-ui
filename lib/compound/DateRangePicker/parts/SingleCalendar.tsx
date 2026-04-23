@@ -43,13 +43,14 @@ const SingleCalendar = ({
   presets = DEFAULT_DATE_PRESETS,
 }: Omit<IDateRangePickerSingleProps, 'mode'>) => {
   const isControlled = value !== undefined;
+  const controlledDate = value ?? undefined;
 
-  const [draftDate, setDraftDate] = useState<Date | undefined>(value);
+  const [draftDate, setDraftDate] = useState<Date | undefined>(controlledDate);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const popoverContentRef = useRef<HTMLDivElement>(null);
 
-  const displayDate = isControlled && !isPopoverOpen ? value : draftDate;
+  const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
   const [today, setToday] = useState(() => new Date());
   const hasPresets = presets.length > 0;
 
@@ -82,8 +83,8 @@ const SingleCalendar = ({
   };
 
   const handleReset = () => {
-    setDraftDate(value);
-    notifyChange(value);
+    setDraftDate(controlledDate);
+    notifyChange(controlledDate);
     setIsPopoverOpen(false);
   };
 
@@ -102,7 +103,7 @@ const SingleCalendar = ({
         setIsPopoverOpen(open);
         if (open) {
           setToday(new Date());
-          setDraftDate(isControlled ? value : draftDate);
+          setDraftDate(isControlled ? controlledDate : draftDate);
         }
       }}
     >
@@ -141,7 +142,6 @@ const SingleCalendar = ({
                     className={styles.dayPicker}
                     modifiersClassNames={{
                       today: styles.today,
-                      day_button: styles.dayBtn,
                       selected: styles.singleSelected,
                     }}
                   />

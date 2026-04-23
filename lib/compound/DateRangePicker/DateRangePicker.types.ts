@@ -41,8 +41,12 @@ export interface IDateRangePickerRangeProps extends IDateRangePickerCommonProps 
 /** Props for {@link DateRangePicker} in single-date mode. */
 export interface IDateRangePickerSingleProps extends IDateRangePickerCommonProps {
   readonly mode: 'single';
-  /** Currently selected date, or `undefined` for no selection. */
-  readonly value?: Date;
+  /**
+   * Currently selected date in controlled mode. Pass `null` for "no selection"
+   * while keeping the component controlled. Omit the prop entirely (or pass
+   * `undefined`) to leave the component uncontrolled.
+   */
+  readonly value?: Date | null;
   readonly onChange?: (date: Date | null) => void;
   /** Optional placeholder shown on the trigger button when no date is selected. */
   readonly placeholder?: string;

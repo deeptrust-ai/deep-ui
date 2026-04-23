@@ -155,7 +155,6 @@ const RangeCalendar = ({
                   className={styles.dayPicker}
                   modifiersClassNames={{
                     today: styles.today,
-                    day_button: styles.dayBtn,
                     range_start: styles.rangeStart,
                     range_end: styles.rangeEnd,
                     range_middle: styles.rangeMiddle,

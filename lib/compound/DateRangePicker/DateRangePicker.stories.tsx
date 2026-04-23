@@ -148,7 +148,7 @@ const ControlledSingleStory = () => {
     <Flex direction="column" gap="2" align="center">
       <DateRangePicker
         mode="single"
-        value={date ?? undefined}
+        value={date}
         onChange={(next) => setDate(next)}
       />
       <Text size="2" color="gray">

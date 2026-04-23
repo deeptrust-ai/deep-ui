@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DateRangePicker, type IDateRangePickerProps } from '../..';
 import { Flex, Text } from '@radix-ui/themes';
-import { subDays } from 'date-fns';
+import { addDays, subDays } from 'date-fns';
 import { useState } from 'react';
 
 const FIXED_FROM_DATE = new Date('2026-01-15T12:00:00.000Z');
@@ -121,5 +121,69 @@ export const CustomPresets: Story = {
         }),
       },
     ],
+  },
+};
+
+export const Single: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+  },
+};
+
+const ControlledSingleStory = () => {
+  const [date, setDate] = useState<Date | null>(FIXED_FROM_DATE);
+
+  const formatValue = (value: Date | null) =>
+    value
+      ? value.toLocaleString('en-US', {
+          month: 'short',
+          day: '2-digit',
+          year: 'numeric',
+        })
+      : '—';
+
+  return (
+    <Flex direction="column" gap="2" align="center">
+      <DateRangePicker
+        mode="single"
+        value={date ?? undefined}
+        onChange={(next) => setDate(next)}
+      />
+      <Text size="2" color="gray">
+        {formatValue(date)}
+      </Text>
+    </Flex>
+  );
+};
+
+export const SingleControlled: Story = {
+  render: ControlledSingleStory,
+};
+
+export const SingleWithoutPresets: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+    presets: [],
+  },
+};
+
+export const SingleWithCustomPresets: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+    presets: [
+      { id: 'today', label: 'Today', getDate: (today) => today },
+      { id: 'next-week', label: 'Next week', getDate: (today) => addDays(today, 7) },
+      { id: 'next-month', label: 'Next month', getDate: (today) => addDays(today, 30) },
+    ],
+  },
+};
+
+export const SinglePlaceholder: Story = {
+  args: {
+    mode: 'single',
+    placeholder: 'Select due date',
   },
 };

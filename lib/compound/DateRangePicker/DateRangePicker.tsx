@@ -60,7 +60,7 @@ const DateRangePicker = ({
   const popoverContentRef = useRef<HTMLDivElement>(null);
 
   const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
-  const today = useMemo(() => new Date(), [isPopoverOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+  const [today, setToday] = useState(() => new Date());
   const hasPresets = presets.length > 0;
 
   useEffect(() => {
@@ -111,6 +111,7 @@ const DateRangePicker = ({
       onOpenChange={(open) => {
         setIsPopoverOpen(open);
         if (open) {
+          setToday(new Date());
           setDraftDate(isControlled ? controlledDate : draftDate);
         }
       }}

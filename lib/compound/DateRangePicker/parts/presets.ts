@@ -10,8 +10,7 @@ import {
 import type { IDateRangePreset } from '../DateRangePicker.types';
 
 /**
- * Default quick-select presets shown in the left column of the
- * {@link ../DateRangePicker.DateRangePicker} popover.
+ * Default quick-select presets shown in the left column of the DateRangePicker popover.
  *
  * All ranges are relative to the current day and inclusive on both ends.
  */

@@ -33,6 +33,7 @@ const PresetsColumn = ({ presets, selected, today, onSelect }: IPresetsColumnPro
                 type="button"
                 className={styles.presetButton}
                 data-active={isActive || undefined}
+                aria-pressed={isActive}
                 onClick={() => onSelect(range)}
               >
                 {preset.label}

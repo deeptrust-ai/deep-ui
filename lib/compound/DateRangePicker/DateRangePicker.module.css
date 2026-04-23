@@ -34,3 +34,49 @@
 .popoverContent {
   z-index: 2;
 }
+
+.calendarColumn {
+  min-width: 0;
+}
+
+.presetsColumn {
+  border-right: 1px solid var(--gray-a5);
+  padding-right: var(--space-2);
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  min-width: 140px;
+}
+
+.presetItem {
+  list-style: none;
+}
+
+.presetButton {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-2);
+  background: transparent;
+  border: 0;
+  color: var(--gray-12);
+  font: inherit;
+  font-size: var(--font-size-2);
+  cursor: pointer;
+}
+
+.presetButton:hover {
+  background-color: var(--gray-a3);
+}
+
+.presetButton:focus-visible {
+  outline: 2px solid var(--accent-8);
+  outline-offset: -2px;
+}
+
+.presetButton[data-active] {
+  background-color: var(--accent-a3);
+  color: var(--accent-11);
+  font-weight: 500;
+}

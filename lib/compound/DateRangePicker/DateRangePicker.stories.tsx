@@ -74,3 +74,52 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const WithoutPresets: Story = {
+  args: {
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
+    presets: [],
+  },
+};
+
+export const CustomPresets: Story = {
+  args: {
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
+    presets: [
+      {
+        id: 'q1',
+        label: 'Q1',
+        getRange: (today) => ({
+          from: new Date(today.getFullYear(), 0, 1),
+          to: new Date(today.getFullYear(), 2, 31),
+        }),
+      },
+      {
+        id: 'q2',
+        label: 'Q2',
+        getRange: (today) => ({
+          from: new Date(today.getFullYear(), 3, 1),
+          to: new Date(today.getFullYear(), 5, 30),
+        }),
+      },
+      {
+        id: 'q3',
+        label: 'Q3',
+        getRange: (today) => ({
+          from: new Date(today.getFullYear(), 6, 1),
+          to: new Date(today.getFullYear(), 8, 30),
+        }),
+      },
+      {
+        id: 'q4',
+        label: 'Q4',
+        getRange: (today) => ({
+          from: new Date(today.getFullYear(), 9, 1),
+          to: new Date(today.getFullYear(), 11, 31),
+        }),
+      },
+    ],
+  },
+};

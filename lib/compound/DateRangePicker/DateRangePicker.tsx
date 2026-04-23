@@ -13,6 +13,8 @@ import type { IDateRangePickerProps } from './DateRangePicker.types';
 import { ContentWrapper } from '../../atom';
 import DateSelection from './parts/DateSelection';
 import NextMonthButton from './parts/NextMonthButton';
+import PresetsColumn from './parts/PresetsColumn';
+import { DEFAULT_DATE_RANGE_PRESETS } from './parts/presets';
 
 const components: DayPickerProps['components'] = {
   YearsDropdown: DateSelection,
@@ -40,6 +42,7 @@ const DateRangePicker = ({
   toDate: toDateProp,
   onChange,
   disabled,
+  presets = DEFAULT_DATE_RANGE_PRESETS,
 }: IDateRangePickerProps) => {
   const isControlled = fromDateProp !== undefined || toDateProp !== undefined;
 
@@ -57,6 +60,8 @@ const DateRangePicker = ({
   const popoverContentRef = useRef<HTMLDivElement>(null);
 
   const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
+  const [today, setToday] = useState(() => new Date());
+  const hasPresets = presets.length > 0;
 
   useEffect(() => {
     if (!isPopoverOpen) return;
@@ -96,12 +101,17 @@ const DateRangePicker = ({
     setDraftDate(selected);
   };
 
+  const handlePresetSelect = (range: DateRange) => {
+    setDraftDate(range);
+  };
+
   return (
     <Popover
       open={isPopoverOpen}
       onOpenChange={(open) => {
         setIsPopoverOpen(open);
         if (open) {
+          setToday(new Date());
           setDraftDate(isControlled ? controlledDate : draftDate);
         }
       }}
@@ -122,29 +132,41 @@ const DateRangePicker = ({
           className={styles.popoverContent}
         >
           <ContentWrapper>
-            <DayPicker
-              mode="range"
-              captionLayout="dropdown"
-              components={components}
-              selected={draftDate}
-              onSelect={handleSelect}
-              className={styles.dayPicker}
-              modifiersClassNames={{
-                today: styles.today,
-                day_button: styles.dayBtn,
-                range_start: styles.rangeStart,
-                range_end: styles.rangeEnd,
-                range_middle: styles.rangeMiddle,
-                selected: styles.rangeButton,
-              }}
-            />
-            <Flex gap="1" justify="end" mt="2">
-              <Button variant="outline" color="crimson" onClick={handleReset} size="1">
-                Reset
-              </Button>
-              <Button onClick={handleApply} size="1">
-                Apply
-              </Button>
+            <Flex gap="3" align="stretch">
+              {hasPresets ? (
+                <PresetsColumn
+                  presets={presets}
+                  selected={draftDate}
+                  today={today}
+                  onSelect={handlePresetSelect}
+                />
+              ) : null}
+              <Flex direction="column" gap="2" className={styles.calendarColumn}>
+                <DayPicker
+                  mode="range"
+                  captionLayout="dropdown"
+                  components={components}
+                  selected={draftDate}
+                  onSelect={handleSelect}
+                  className={styles.dayPicker}
+                  modifiersClassNames={{
+                    today: styles.today,
+                    day_button: styles.dayBtn,
+                    range_start: styles.rangeStart,
+                    range_end: styles.rangeEnd,
+                    range_middle: styles.rangeMiddle,
+                    selected: styles.rangeButton,
+                  }}
+                />
+                <Flex gap="1" justify="end">
+                  <Button variant="outline" color="crimson" onClick={handleReset} size="1">
+                    Reset
+                  </Button>
+                  <Button onClick={handleApply} size="1">
+                    Apply
+                  </Button>
+                </Flex>
+              </Flex>
             </Flex>
           </ContentWrapper>
         </PopoverContent>

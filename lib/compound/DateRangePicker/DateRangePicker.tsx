@@ -8,12 +8,16 @@ import { CalendarIcon } from '@phosphor-icons/react';
 import { type DateRange, type DayPickerProps, DayPicker } from 'react-day-picker';
 
 import styles from './DateRangePicker.module.css';
-import type { IDateRangePickerProps } from './DateRangePicker.types';
+import type {
+  IDateRangePickerProps,
+  IDateRangePickerRangeProps,
+} from './DateRangePicker.types';
 
 import { ContentWrapper } from '../../atom';
 import DateSelection from './parts/DateSelection';
 import NextMonthButton from './parts/NextMonthButton';
 import PresetsColumn from './parts/PresetsColumn';
+import SingleCalendar from './parts/SingleCalendar';
 import { DEFAULT_DATE_RANGE_PRESETS } from './parts/presets';
 
 const components: DayPickerProps['components'] = {
@@ -37,13 +41,13 @@ const formatDateRangeLabel = (range: DateRange | undefined) => {
   return `${format(range.from, fromFormat)} - ${format(range.to, 'LLL dd, y')}`;
 };
 
-const DateRangePicker = ({
+const RangeCalendar = ({
   fromDate: fromDateProp,
   toDate: toDateProp,
   onChange,
   disabled,
   presets = DEFAULT_DATE_RANGE_PRESETS,
-}: IDateRangePickerProps) => {
+}: Omit<IDateRangePickerRangeProps, 'mode'>) => {
   const isControlled = fromDateProp !== undefined || toDateProp !== undefined;
 
   const controlledDate = useMemo<DateRange>(
@@ -130,6 +134,7 @@ const DateRangePicker = ({
           sideOffset={4}
           collisionPadding={10}
           className={styles.popoverContent}
+          aria-label="Choose a date range"
         >
           <ContentWrapper>
             <Flex gap="3" align="stretch">
@@ -151,7 +156,6 @@ const DateRangePicker = ({
                   className={styles.dayPicker}
                   modifiersClassNames={{
                     today: styles.today,
-                    day_button: styles.dayBtn,
                     range_start: styles.rangeStart,
                     range_end: styles.rangeEnd,
                     range_middle: styles.rangeMiddle,
@@ -174,6 +178,17 @@ const DateRangePicker = ({
       </PopoverPortal>
     </Popover>
   );
+};
+
+const DateRangePicker = (props: IDateRangePickerProps) => {
+  if (props.mode === 'single') {
+    const { mode, ...rest } = props;
+    void mode;
+    return <SingleCalendar {...rest} />;
+  }
+  const { mode, ...rest } = props;
+  void mode;
+  return <RangeCalendar {...rest} />;
 };
 
 export default DateRangePicker;

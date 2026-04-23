@@ -31,6 +31,14 @@
   border: none;
 }
 
+.singleSelected {
+  background-color: var(--accent-9);
+  color: var(--gray-1);
+  font-weight: normal;
+  border-radius: var(--radius-3);
+  border: 0;
+}
+
 .popoverContent {
   z-index: 2;
 }

@@ -8,7 +8,7 @@ const NextMonthButton = (props: NextMonthButtonProps) => {
   return (
     <Box px="1">
       <IconButton
-        aria-label="Next Month"
+        aria-label={isNext ? 'Next Month' : 'Previous Month'}
         disabled={props.disabled}
         size="1"
         onClick={props.onClick}

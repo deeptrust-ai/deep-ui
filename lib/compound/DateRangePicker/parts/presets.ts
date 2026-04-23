@@ -1,4 +1,5 @@
 import {
+  addDays,
   endOfMonth,
   endOfYear,
   startOfMonth,
@@ -7,7 +8,7 @@ import {
   subMonths,
 } from 'date-fns';
 
-import type { IDateRangePreset } from '../DateRangePicker.types';
+import type { IDatePreset, IDateRangePreset } from '../DateRangePicker.types';
 
 /**
  * Default quick-select presets shown in the left column of the DateRangePicker popover.
@@ -60,5 +61,39 @@ export const DEFAULT_DATE_RANGE_PRESETS: readonly IDateRangePreset[] = [
     id: 'this-year',
     label: 'This year',
     getRange: (today) => ({ from: startOfYear(today), to: endOfYear(today) }),
+  },
+];
+
+/**
+ * Default quick-select presets shown in the left column of the DateRangePicker
+ * popover when `mode="single"`.
+ *
+ * Forward-looking defaults tuned for due-date selectors.
+ */
+export const DEFAULT_DATE_PRESETS: readonly IDatePreset[] = [
+  {
+    id: 'today',
+    label: 'Today',
+    getDate: (today) => today,
+  },
+  {
+    id: 'tomorrow',
+    label: 'Tomorrow',
+    getDate: (today) => addDays(today, 1),
+  },
+  {
+    id: 'in-7-days',
+    label: 'In 7 days',
+    getDate: (today) => addDays(today, 7),
+  },
+  {
+    id: 'in-14-days',
+    label: 'In 14 days',
+    getDate: (today) => addDays(today, 14),
+  },
+  {
+    id: 'in-30-days',
+    label: 'In 30 days',
+    getDate: (today) => addDays(today, 30),
   },
 ];

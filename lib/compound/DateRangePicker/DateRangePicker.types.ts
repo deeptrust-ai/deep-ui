@@ -1,6 +1,6 @@
 import type { DateRange } from 'react-day-picker';
 
-/** A quick-select preset shown in the left column of the {@link DateRangePicker} popover. */
+/** A quick-select preset shown in the left column of the {@link DateRangePicker} popover in `range` mode. */
 export interface IDateRangePreset {
   /** Unique id used for keying/selection state. */
   readonly id: string;
@@ -10,12 +10,26 @@ export interface IDateRangePreset {
   readonly getRange: (today: Date) => DateRange;
 }
 
-/** Props for the {@link DateRangePicker} compound component. */
-export interface IDateRangePickerProps {
+/** A quick-select preset shown in the left column of the {@link DateRangePicker} popover in `single` mode. */
+export interface IDatePreset {
+  /** Unique id used for keying/selection state. */
+  readonly id: string;
+  /** Label shown on the preset button. */
+  readonly label: string;
+  /** Returns the date for this preset, given the current date. */
+  readonly getDate: (today: Date) => Date;
+}
+
+interface IDateRangePickerCommonProps {
+  readonly disabled?: boolean;
+}
+
+/** Props for {@link DateRangePicker} in range mode (the default). */
+export interface IDateRangePickerRangeProps extends IDateRangePickerCommonProps {
+  readonly mode?: 'range';
   readonly fromDate?: Date;
   readonly toDate?: Date;
   readonly onChange?: (fromDate: Date | null, toDate: Date | null) => void;
-  readonly disabled?: boolean;
   /**
    * Quick-select presets shown in the left column of the popover.
    * Pass an empty array to hide the preset column. Defaults to a common set
@@ -23,3 +37,29 @@ export interface IDateRangePickerProps {
    */
   readonly presets?: readonly IDateRangePreset[];
 }
+
+/** Props for {@link DateRangePicker} in single-date mode. */
+export interface IDateRangePickerSingleProps extends IDateRangePickerCommonProps {
+  readonly mode: 'single';
+  /**
+   * Currently selected date in controlled mode. Pass `null` for "no selection"
+   * while keeping the component controlled. Omit the prop entirely (or pass
+   * `undefined`) to leave the component uncontrolled.
+   */
+  readonly value?: Date | null;
+  readonly onChange?: (date: Date | null) => void;
+  /** Optional placeholder shown on the trigger button when no date is selected. */
+  readonly placeholder?: string;
+  /**
+   * Quick-select presets shown in the left column of the popover.
+   * Pass an empty array to hide the preset column. Defaults to a small
+   * forward-looking set suitable for due-date pickers (Today, Tomorrow,
+   * In 7/14/30 days).
+   */
+  readonly presets?: readonly IDatePreset[];
+}
+
+/** Props for the {@link DateRangePicker} compound component. */
+export type IDateRangePickerProps =
+  | IDateRangePickerRangeProps
+  | IDateRangePickerSingleProps;

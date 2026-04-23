@@ -3,6 +3,7 @@ import { DateRangePicker, type IDateRangePickerProps } from '../..';
 import { Flex, Text } from '@radix-ui/themes';
 import { addDays, subDays } from 'date-fns';
 import { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 
 const FIXED_FROM_DATE = new Date('2026-01-15T12:00:00.000Z');
 const FIXED_TO_DATE = subDays(FIXED_FROM_DATE, -4);
@@ -186,4 +187,43 @@ export const SinglePlaceholder: Story = {
     mode: 'single',
     placeholder: 'Select due date',
   },
+};
+
+// ── Chromatic visual regression: popover open states ────────────────────────
+//
+// The Radix popover renders into a portal at document.body, so the opened
+// content is not inside `canvasElement`. We wait on `within(document.body)`.
+
+const openPopoverPlay = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+  const canvas = within(canvasElement);
+  const trigger = await canvas.findByRole('button');
+  await userEvent.click(trigger);
+
+  const body = within(document.body);
+  const grid = await body.findByRole('grid', undefined, { timeout: 2000 });
+  await expect(grid).toBeVisible();
+};
+
+export const OpenPopover: Story = {
+  args: {
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
+  },
+  play: openPopoverPlay,
+};
+
+export const SingleOpenPopover: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+  },
+  play: openPopoverPlay,
+};
+
+export const SingleOpenPopoverNoSelection: Story = {
+  args: {
+    mode: 'single',
+    placeholder: 'Select due date',
+  },
+  play: openPopoverPlay,
 };

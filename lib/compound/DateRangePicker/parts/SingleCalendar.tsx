@@ -83,7 +83,7 @@ const SingleCalendar = ({
 
   const handleReset = () => {
     setDraftDate(value);
-    notifyChange(undefined);
+    notifyChange(value);
     setIsPopoverOpen(false);
   };
 

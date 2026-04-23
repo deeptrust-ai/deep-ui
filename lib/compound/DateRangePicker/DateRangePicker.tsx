@@ -134,6 +134,7 @@ const RangeCalendar = ({
           sideOffset={4}
           collisionPadding={10}
           className={styles.popoverContent}
+          aria-label="Choose a date range"
         >
           <ContentWrapper>
             <Flex gap="3" align="stretch">

@@ -3,6 +3,13 @@ import type { ChangeEvent } from 'react';
 import type { DropdownProps } from 'react-day-picker';
 
 const DateSelection = (props: DropdownProps) => {
+  // react-day-picker supplies a localized accessible name (e.g. "Choose the
+  // Month" / "Choose the Year") as the dropdown's `aria-label`. Forward it to
+  // the Select trigger so the underlying combobox has a discernible name
+  // (Radix's Select.Trigger does not inherit name-from-contents because it
+  // exposes `role="combobox"`).
+  const ariaLabel = props['aria-label'];
+
   return (
     <Select.Root
       size="1"
@@ -17,7 +24,7 @@ const DateSelection = (props: DropdownProps) => {
       }}
       disabled={props.disabled}
     >
-      <Select.Trigger />
+      <Select.Trigger aria-label={ariaLabel} />
       <Select.Content>
         {props.options?.map((option) => (
           <Select.Item

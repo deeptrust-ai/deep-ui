@@ -121,6 +121,7 @@ const SingleCalendar = ({
             sideOffset={4}
             collisionPadding={10}
             className={styles.popoverContent}
+            aria-label="Choose a date"
           >
             <ContentWrapper>
               <Flex gap="3" align="stretch">

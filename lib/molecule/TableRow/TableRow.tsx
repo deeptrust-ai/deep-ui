@@ -29,7 +29,6 @@ const TableRow = ({ name, id, cells, ariaLabel, onClickRow, selected }: ITableRo
       className={cn({ [styles.row]: isClickable, [styles.selectedRow]: selected })}
       onClick={onClickRow}
       onKeyDown={isClickable ? handleKeyDown : undefined}
-      role={isClickable ? 'button' : undefined}
       tabIndex={isClickable ? 0 : undefined}
       aria-label={isClickable ? (ariaLabel ?? name ?? id) : undefined}
       aria-selected={selected || undefined}

@@ -20,6 +20,7 @@ export interface ITableRowProps {
   readonly cells: ITableRowCell[];
   readonly actions?: ITableRowAction[];
   readonly name?: string;
+  readonly ariaLabel?: string;
   readonly onClickRow?: () => void;
   readonly selected?: boolean;
 }

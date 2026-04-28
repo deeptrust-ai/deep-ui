@@ -5,7 +5,7 @@ import type { ITableRowProps } from './types';
 import styles from './styles.module.css';
 import cn from 'classnames';
 
-const TableRow = ({ name, id, cells, onClickRow, selected }: ITableRowProps) => {
+const TableRow = ({ name, id, cells, ariaLabel, onClickRow, selected }: ITableRowProps) => {
   if (!cells || cells.length === 0) {
     return null;
   }
@@ -30,7 +30,7 @@ const TableRow = ({ name, id, cells, onClickRow, selected }: ITableRowProps) => 
       onClick={onClickRow}
       onKeyDown={isClickable ? handleKeyDown : undefined}
       tabIndex={isClickable ? 0 : undefined}
-      aria-label={name ?? id}
+      aria-label={isClickable ? (ariaLabel ?? name ?? id) : undefined}
       aria-selected={selected || undefined}
     >
       {cells.map((cell) => {

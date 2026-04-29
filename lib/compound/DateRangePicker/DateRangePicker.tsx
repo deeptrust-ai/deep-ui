@@ -114,14 +114,22 @@ const RangeCalendar = ({
   };
 
   // Shared popover-open initialization. Called from both `onOpenChange(true)`
-  // (button trigger path — Radix-initiated) and `onOpenRequest` (input trigger
-  // path — externally-initiated via `PopoverAnchor`). Radix does not fire
-  // `onOpenChange` when the controlled `open` prop is changed from outside, so
-  // the input variant needs to run this initialization explicitly.
+  // (button trigger path — Radix-initiated) and `onToggleRequest(true)` (input
+  // trigger path — externally-initiated via `PopoverAnchor`). Radix does not
+  // fire `onOpenChange` when the controlled `open` prop is changed from
+  // outside, so the input variant needs to run this initialization explicitly.
   const handleOpenPopover = () => {
     setIsPopoverOpen(true);
     setToday(new Date());
     setDraftDate(isControlled ? controlledDate : draftDate);
+  };
+
+  const handleToggleRequest = (nextOpen: boolean) => {
+    if (nextOpen) {
+      handleOpenPopover();
+    } else {
+      setIsPopoverOpen(false);
+    }
   };
 
   return (
@@ -142,7 +150,7 @@ const RangeCalendar = ({
         disabled={disabled}
         ariaLabel="Choose a date range"
         isOpen={isPopoverOpen}
-        onOpenRequest={handleOpenPopover}
+        onToggleRequest={handleToggleRequest}
         popoverId={popoverId}
       />
       <PopoverPortal>

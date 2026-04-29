@@ -18,8 +18,8 @@ interface IDateTriggerProps {
   readonly ariaLabel: string;
   /** Current open state of the parent popover (used only by the input variant). */
   readonly isOpen: boolean;
-  /** Called with `true` when the input variant wants the popover to open (click / Enter / Space / ArrowDown). */
-  readonly onOpenRequest: () => void;
+  /** Called when the input variant requests the popover to toggle. Click and Enter/Space toggle; ArrowDown only opens. */
+  readonly onToggleRequest: (nextOpen: boolean) => void;
   /** Id of the `PopoverContent`. Used only by the input variant to wire `role="combobox"` + `aria-controls` so `aria-expanded` is valid for axe. */
   readonly popoverId: string;
 }
@@ -32,10 +32,10 @@ interface IDateTriggerProps {
  *   the built-in trigger.
  * - **`variant='input'`** — uses `<PopoverAnchor asChild>` with a readonly
  *   `<TextField.Root>` + leading calendar icon slot, and manually wires
- *   click / keyboard handlers to `onOpenRequest` so the popover opens on
- *   click (including on the slot icon) and on Enter / Space / ArrowDown.
- *   Closing is handled by Radix's built-in outside-click + Escape behaviour
- *   on the popover content itself.
+ *   click / keyboard handlers to `onToggleRequest`. Click and Enter/Space
+ *   toggle the popover open/closed to match `PopoverTrigger`'s behaviour;
+ *   ArrowDown only opens. Escape and outside-click are still handled
+ *   natively by `PopoverContent`.
  */
 const DateTrigger = forwardRef<HTMLElement, IDateTriggerProps>(
   (
@@ -46,23 +46,36 @@ const DateTrigger = forwardRef<HTMLElement, IDateTriggerProps>(
       disabled,
       ariaLabel,
       isOpen,
-      onOpenRequest,
+      onToggleRequest,
       popoverId,
     },
     ref
   ) => {
     if (variant === 'input') {
-      const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+      const handleToggle = () => {
         if (disabled) return;
-        if (event.key === 'Enter' || event.key === ' ' || event.key === 'ArrowDown') {
-          event.preventDefault();
-          onOpenRequest();
-        }
+        onToggleRequest(!isOpen);
       };
 
-      const handleOpen = () => {
+      // Slot click fires first and also bubbles to `TextField.Root`'s
+      // `onClick`. Stop propagation so we don't double-fire the toggle (and
+      // flip open → closed → open on a single icon click).
+      const handleSlotClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+        handleToggle();
+      };
+
+      const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
         if (disabled) return;
-        onOpenRequest();
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onToggleRequest(!isOpen);
+          return;
+        }
+        if (event.key === 'ArrowDown' && !isOpen) {
+          event.preventDefault();
+          onToggleRequest(true);
+        }
       };
 
       return (
@@ -83,10 +96,10 @@ const DateTrigger = forwardRef<HTMLElement, IDateTriggerProps>(
             aria-label={ariaLabel}
             aria-haspopup="dialog"
             aria-expanded={isOpen}
-            onClick={handleOpen}
+            onClick={handleToggle}
             onKeyDown={handleKeyDown}
           >
-            <TextField.Slot side="left" onClick={handleOpen}>
+            <TextField.Slot side="left" onClick={handleSlotClick}>
               <CalendarIcon />
             </TextField.Slot>
           </TextField.Root>

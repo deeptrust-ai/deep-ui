@@ -113,6 +113,8 @@ const SingleCalendar = ({
         placeholder={placeholder}
         disabled={disabled}
         ariaLabel="Choose a date"
+        isOpen={isPopoverOpen}
+        onOpenRequest={() => setIsPopoverOpen(true)}
       />
       <PopoverPortal>
         <Theme asChild>

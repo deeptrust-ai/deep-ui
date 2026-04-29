@@ -129,6 +129,8 @@ const RangeCalendar = ({
         placeholder={RANGE_PLACEHOLDER}
         disabled={disabled}
         ariaLabel="Choose a date range"
+        isOpen={isPopoverOpen}
+        onOpenRequest={() => setIsPopoverOpen(true)}
       />
       <PopoverPortal>
         <Theme asChild>

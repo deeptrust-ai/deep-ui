@@ -22,6 +22,18 @@ export interface IDatePreset {
 
 interface IDateRangePickerCommonProps {
   readonly disabled?: boolean;
+  /**
+   * Visual variant of the trigger that opens the popover.
+   * - `'button'` (default): a compact outline button with a leading calendar
+   *   icon and the formatted label.
+   * - `'input'`: a readonly text-field with a leading calendar icon slot — use
+   *   this when the picker sits alongside other form inputs so the visual
+   *   rhythm lines up.
+   *
+   * The popover contents and keyboard/selection semantics are identical across
+   * both variants.
+   */
+  readonly trigger?: 'button' | 'input';
 }
 
 /** Props for {@link DateRangePicker} in range mode (the default). */

@@ -2,9 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Flex, Theme } from '@radix-ui/themes';
-import { Popover, PopoverContent, PopoverPortal, PopoverTrigger } from '@radix-ui/react-popover';
+import { Popover, PopoverContent, PopoverPortal } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
-import { CalendarIcon } from '@phosphor-icons/react';
 import { type DateRange, type DayPickerProps, DayPicker } from 'react-day-picker';
 
 import styles from './DateRangePicker.module.css';
@@ -15,6 +14,7 @@ import type {
 
 import { ContentWrapper } from '../../atom';
 import DateSelection from './parts/DateSelection';
+import DateTrigger from './parts/DateTrigger';
 import NextMonthButton from './parts/NextMonthButton';
 import PresetsColumn from './parts/PresetsColumn';
 import SingleCalendar from './parts/SingleCalendar';
@@ -41,12 +41,15 @@ const formatDateRangeLabel = (range: DateRange | undefined) => {
   return `${format(range.from, fromFormat)} - ${format(range.to, 'LLL dd, y')}`;
 };
 
+const RANGE_PLACEHOLDER = 'Pick a date range';
+
 const RangeCalendar = ({
   fromDate: fromDateProp,
   toDate: toDateProp,
   onChange,
   disabled,
   presets = DEFAULT_DATE_RANGE_PRESETS,
+  trigger = 'button',
 }: Omit<IDateRangePickerRangeProps, 'mode'>) => {
   const isControlled = fromDateProp !== undefined || toDateProp !== undefined;
 
@@ -120,12 +123,13 @@ const RangeCalendar = ({
         }
       }}
     >
-      <PopoverTrigger asChild>
-        <Button type="button" variant="outline" disabled={disabled}>
-          <CalendarIcon />
-          {displayDate?.from ? formatDateRangeLabel(displayDate) : <span>Pick a date range</span>}
-        </Button>
-      </PopoverTrigger>
+      <DateTrigger
+        variant={trigger}
+        label={formatDateRangeLabel(displayDate)}
+        placeholder={RANGE_PLACEHOLDER}
+        disabled={disabled}
+        ariaLabel="Choose a date range"
+      />
       <PopoverPortal>
         <Theme asChild>
         <PopoverContent

@@ -6,10 +6,8 @@ import {
   Popover,
   PopoverContent,
   PopoverPortal,
-  PopoverTrigger,
 } from '@radix-ui/react-popover';
 import { format } from 'date-fns';
-import { CalendarIcon } from '@phosphor-icons/react';
 import { type DayPickerProps, DayPicker } from 'react-day-picker';
 
 import styles from '../DateRangePicker.module.css';
@@ -17,6 +15,7 @@ import type { IDateRangePickerSingleProps } from '../DateRangePicker.types';
 
 import { ContentWrapper } from '../../../atom';
 import DateSelection from './DateSelection';
+import DateTrigger from './DateTrigger';
 import NextMonthButton from './NextMonthButton';
 import SinglePresetsColumn from './SinglePresetsColumn';
 import { DEFAULT_DATE_PRESETS } from './presets';
@@ -41,6 +40,7 @@ const SingleCalendar = ({
   disabled,
   placeholder = DEFAULT_PLACEHOLDER,
   presets = DEFAULT_DATE_PRESETS,
+  trigger = 'button',
 }: Omit<IDateRangePickerSingleProps, 'mode'>) => {
   const isControlled = value !== undefined;
   const controlledDate = value ?? undefined;
@@ -107,12 +107,13 @@ const SingleCalendar = ({
         }
       }}
     >
-      <PopoverTrigger asChild>
-        <Button type="button" variant="outline" disabled={disabled}>
-          <CalendarIcon />
-          {displayDate ? formatDateLabel(displayDate) : <span>{placeholder}</span>}
-        </Button>
-      </PopoverTrigger>
+      <DateTrigger
+        variant={trigger}
+        label={formatDateLabel(displayDate)}
+        placeholder={placeholder}
+        disabled={disabled}
+        ariaLabel="Choose a date"
+      />
       <PopoverPortal>
         <Theme asChild>
           <PopoverContent

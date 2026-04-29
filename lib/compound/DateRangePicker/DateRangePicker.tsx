@@ -1,10 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Button, Flex, Theme } from '@radix-ui/themes';
-import { Popover, PopoverContent, PopoverPortal, PopoverTrigger } from '@radix-ui/react-popover';
+import { Popover, PopoverContent, PopoverPortal } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
-import { CalendarIcon } from '@phosphor-icons/react';
 import { type DateRange, type DayPickerProps, DayPicker } from 'react-day-picker';
 
 import styles from './DateRangePicker.module.css';
@@ -15,6 +14,7 @@ import type {
 
 import { ContentWrapper } from '../../atom';
 import DateSelection from './parts/DateSelection';
+import DateTrigger from './parts/DateTrigger';
 import NextMonthButton from './parts/NextMonthButton';
 import PresetsColumn from './parts/PresetsColumn';
 import SingleCalendar from './parts/SingleCalendar';
@@ -41,12 +41,15 @@ const formatDateRangeLabel = (range: DateRange | undefined) => {
   return `${format(range.from, fromFormat)} - ${format(range.to, 'LLL dd, y')}`;
 };
 
+const RANGE_PLACEHOLDER = 'Pick a date range';
+
 const RangeCalendar = ({
   fromDate: fromDateProp,
   toDate: toDateProp,
   onChange,
   disabled,
   presets = DEFAULT_DATE_RANGE_PRESETS,
+  trigger = 'button',
 }: Omit<IDateRangePickerRangeProps, 'mode'>) => {
   const isControlled = fromDateProp !== undefined || toDateProp !== undefined;
 
@@ -62,6 +65,7 @@ const RangeCalendar = ({
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const popoverContentRef = useRef<HTMLDivElement>(null);
+  const popoverId = useId();
 
   const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
   const [today, setToday] = useState(() => new Date());
@@ -109,27 +113,51 @@ const RangeCalendar = ({
     setDraftDate(range);
   };
 
+  // Shared popover-open initialization. Called from both `onOpenChange(true)`
+  // (button trigger path — Radix-initiated) and `onToggleRequest(true)` (input
+  // trigger path — externally-initiated via `PopoverAnchor`). Radix does not
+  // fire `onOpenChange` when the controlled `open` prop is changed from
+  // outside, so the input variant needs to run this initialization explicitly.
+  const handleOpenPopover = () => {
+    setIsPopoverOpen(true);
+    setToday(new Date());
+    setDraftDate(isControlled ? controlledDate : draftDate);
+  };
+
+  const handleToggleRequest = (nextOpen: boolean) => {
+    if (nextOpen) {
+      handleOpenPopover();
+    } else {
+      setIsPopoverOpen(false);
+    }
+  };
+
   return (
     <Popover
       open={isPopoverOpen}
       onOpenChange={(open) => {
-        setIsPopoverOpen(open);
         if (open) {
-          setToday(new Date());
-          setDraftDate(isControlled ? controlledDate : draftDate);
+          handleOpenPopover();
+        } else {
+          setIsPopoverOpen(false);
         }
       }}
     >
-      <PopoverTrigger asChild>
-        <Button type="button" variant="outline" disabled={disabled}>
-          <CalendarIcon />
-          {displayDate?.from ? formatDateRangeLabel(displayDate) : <span>Pick a date range</span>}
-        </Button>
-      </PopoverTrigger>
+      <DateTrigger
+        variant={trigger}
+        label={formatDateRangeLabel(displayDate)}
+        placeholder={RANGE_PLACEHOLDER}
+        disabled={disabled}
+        ariaLabel="Choose a date range"
+        isOpen={isPopoverOpen}
+        onToggleRequest={handleToggleRequest}
+        popoverId={popoverId}
+      />
       <PopoverPortal>
         <Theme asChild>
         <PopoverContent
           ref={popoverContentRef}
+          id={popoverId}
           align="start"
           sideOffset={4}
           collisionPadding={10}

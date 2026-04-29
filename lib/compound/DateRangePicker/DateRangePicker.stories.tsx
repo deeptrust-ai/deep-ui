@@ -189,6 +189,84 @@ export const SinglePlaceholder: Story = {
   },
 };
 
+// ── Input-trigger variant ───────────────────────────────────────────────────
+
+const WIDE_CONTAINER_WIDTH = 320;
+
+export const InputTrigger: Story = {
+  args: {
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
+    trigger: 'input',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const InputTriggerEmpty: Story = {
+  args: {
+    trigger: 'input',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const SingleInputTrigger: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+    trigger: 'input',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const SingleInputTriggerEmpty: Story = {
+  args: {
+    mode: 'single',
+    trigger: 'input',
+    placeholder: 'Select due date',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const InputTriggerDisabled: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+    trigger: 'input',
+    disabled: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
 // ── Chromatic visual regression: popover open states ────────────────────────
 //
 // The Radix popover renders into a portal at document.body, so the opened
@@ -196,7 +274,11 @@ export const SinglePlaceholder: Story = {
 
 const openPopoverPlay = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
-  const trigger = await canvas.findByRole('button');
+  // Button variant renders a <button>; input variant renders a <TextField.Root>
+  // with `role="combobox"` (required for `aria-expanded` to be valid on the
+  // underlying <input>). Pick whichever exists.
+  const trigger =
+    canvas.queryByRole('combobox') ?? (await canvas.findByRole('button'));
   await userEvent.click(trigger);
 
   const body = within(document.body);
@@ -225,5 +307,37 @@ export const SingleOpenPopoverNoSelection: Story = {
     mode: 'single',
     placeholder: 'Select due date',
   },
+  play: openPopoverPlay,
+};
+
+export const InputTriggerOpenPopover: Story = {
+  args: {
+    fromDate: FIXED_FROM_DATE,
+    toDate: FIXED_TO_DATE,
+    trigger: 'input',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
+  play: openPopoverPlay,
+};
+
+export const SingleInputTriggerOpenPopover: Story = {
+  args: {
+    mode: 'single',
+    value: FIXED_FROM_DATE,
+    trigger: 'input',
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: WIDE_CONTAINER_WIDTH }}>
+        <Story />
+      </div>
+    ),
+  ],
   play: openPopoverPlay,
 };

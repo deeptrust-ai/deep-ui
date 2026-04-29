@@ -1,15 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Button, Flex, Theme } from '@radix-ui/themes';
 import {
   Popover,
   PopoverContent,
   PopoverPortal,
-  PopoverTrigger,
 } from '@radix-ui/react-popover';
 import { format } from 'date-fns';
-import { CalendarIcon } from '@phosphor-icons/react';
 import { type DayPickerProps, DayPicker } from 'react-day-picker';
 
 import styles from '../DateRangePicker.module.css';
@@ -17,6 +15,7 @@ import type { IDateRangePickerSingleProps } from '../DateRangePicker.types';
 
 import { ContentWrapper } from '../../../atom';
 import DateSelection from './DateSelection';
+import DateTrigger from './DateTrigger';
 import NextMonthButton from './NextMonthButton';
 import SinglePresetsColumn from './SinglePresetsColumn';
 import { DEFAULT_DATE_PRESETS } from './presets';
@@ -41,6 +40,7 @@ const SingleCalendar = ({
   disabled,
   placeholder = DEFAULT_PLACEHOLDER,
   presets = DEFAULT_DATE_PRESETS,
+  trigger = 'button',
 }: Omit<IDateRangePickerSingleProps, 'mode'>) => {
   const isControlled = value !== undefined;
   const controlledDate = value ?? undefined;
@@ -49,6 +49,7 @@ const SingleCalendar = ({
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const popoverContentRef = useRef<HTMLDivElement>(null);
+  const popoverId = useId();
 
   const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
   const [today, setToday] = useState(() => new Date());
@@ -96,27 +97,51 @@ const SingleCalendar = ({
     setDraftDate(date);
   };
 
+  // Shared popover-open initialization. Called from both `onOpenChange(true)`
+  // (button trigger path — Radix-initiated) and `onToggleRequest(true)` (input
+  // trigger path — externally-initiated via `PopoverAnchor`). Radix does not
+  // fire `onOpenChange` when the controlled `open` prop is changed from
+  // outside, so the input variant needs to run this initialization explicitly.
+  const handleOpenPopover = () => {
+    setIsPopoverOpen(true);
+    setToday(new Date());
+    setDraftDate(isControlled ? controlledDate : draftDate);
+  };
+
+  const handleToggleRequest = (nextOpen: boolean) => {
+    if (nextOpen) {
+      handleOpenPopover();
+    } else {
+      setIsPopoverOpen(false);
+    }
+  };
+
   return (
     <Popover
       open={isPopoverOpen}
       onOpenChange={(open) => {
-        setIsPopoverOpen(open);
         if (open) {
-          setToday(new Date());
-          setDraftDate(isControlled ? controlledDate : draftDate);
+          handleOpenPopover();
+        } else {
+          setIsPopoverOpen(false);
         }
       }}
     >
-      <PopoverTrigger asChild>
-        <Button type="button" variant="outline" disabled={disabled}>
-          <CalendarIcon />
-          {displayDate ? formatDateLabel(displayDate) : <span>{placeholder}</span>}
-        </Button>
-      </PopoverTrigger>
+      <DateTrigger
+        variant={trigger}
+        label={formatDateLabel(displayDate)}
+        placeholder={placeholder}
+        disabled={disabled}
+        ariaLabel="Choose a date"
+        isOpen={isPopoverOpen}
+        onToggleRequest={handleToggleRequest}
+        popoverId={popoverId}
+      />
       <PopoverPortal>
         <Theme asChild>
           <PopoverContent
             ref={popoverContentRef}
+            id={popoverId}
             align="start"
             sideOffset={4}
             collisionPadding={10}

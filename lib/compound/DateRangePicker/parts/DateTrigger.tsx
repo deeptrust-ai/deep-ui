@@ -20,6 +20,8 @@ interface IDateTriggerProps {
   readonly isOpen: boolean;
   /** Called with `true` when the input variant wants the popover to open (click / Enter / Space / ArrowDown). */
   readonly onOpenRequest: () => void;
+  /** Id of the `PopoverContent`. Used only by the input variant to wire `role="combobox"` + `aria-controls` so `aria-expanded` is valid for axe. */
+  readonly popoverId: string;
 }
 
 /**
@@ -37,7 +39,16 @@ interface IDateTriggerProps {
  */
 const DateTrigger = forwardRef<HTMLElement, IDateTriggerProps>(
   (
-    { variant, label, placeholder, disabled, ariaLabel, isOpen, onOpenRequest },
+    {
+      variant,
+      label,
+      placeholder,
+      disabled,
+      ariaLabel,
+      isOpen,
+      onOpenRequest,
+      popoverId,
+    },
     ref
   ) => {
     if (variant === 'input') {
@@ -58,6 +69,13 @@ const DateTrigger = forwardRef<HTMLElement, IDateTriggerProps>(
         <PopoverAnchor asChild>
           <TextField.Root
             ref={ref as React.Ref<HTMLInputElement>}
+            /*
+             * `role="combobox"` is required for `aria-expanded` to be valid on
+             * a plain `<input>` (axe flags it otherwise). `aria-controls`
+             * pairs the combobox with the dialog that holds the calendar.
+             */
+            role="combobox"
+            aria-controls={popoverId}
             readOnly
             value={label ?? ''}
             placeholder={placeholder}

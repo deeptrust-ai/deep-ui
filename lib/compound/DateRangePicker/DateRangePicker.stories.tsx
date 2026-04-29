@@ -275,9 +275,10 @@ export const InputTriggerDisabled: Story = {
 const openPopoverPlay = async ({ canvasElement }: { canvasElement: HTMLElement }) => {
   const canvas = within(canvasElement);
   // Button variant renders a <button>; input variant renders a <TextField.Root>
-  // whose accessible role is `textbox`. Pick whichever exists.
+  // with `role="combobox"` (required for `aria-expanded` to be valid on the
+  // underlying <input>). Pick whichever exists.
   const trigger =
-    canvas.queryByRole('textbox') ?? (await canvas.findByRole('button'));
+    canvas.queryByRole('combobox') ?? (await canvas.findByRole('button'));
   await userEvent.click(trigger);
 
   const body = within(document.body);

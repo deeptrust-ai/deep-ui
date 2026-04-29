@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Button, Flex, Theme } from '@radix-ui/themes';
 import { Popover, PopoverContent, PopoverPortal } from '@radix-ui/react-popover';
 import { addDays, format } from 'date-fns';
@@ -65,6 +65,7 @@ const RangeCalendar = ({
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const popoverContentRef = useRef<HTMLDivElement>(null);
+  const popoverId = useId();
 
   const displayDate = isControlled && !isPopoverOpen ? controlledDate : draftDate;
   const [today, setToday] = useState(() => new Date());
@@ -131,11 +132,13 @@ const RangeCalendar = ({
         ariaLabel="Choose a date range"
         isOpen={isPopoverOpen}
         onOpenRequest={() => setIsPopoverOpen(true)}
+        popoverId={popoverId}
       />
       <PopoverPortal>
         <Theme asChild>
         <PopoverContent
           ref={popoverContentRef}
+          id={popoverId}
           align="start"
           sideOffset={4}
           collisionPadding={10}

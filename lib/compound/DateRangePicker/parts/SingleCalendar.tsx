@@ -97,14 +97,25 @@ const SingleCalendar = ({
     setDraftDate(date);
   };
 
+  // Shared popover-open initialization. Called from both `onOpenChange(true)`
+  // (button trigger path — Radix-initiated) and `onOpenRequest` (input trigger
+  // path — externally-initiated via `PopoverAnchor`). Radix does not fire
+  // `onOpenChange` when the controlled `open` prop is changed from outside, so
+  // the input variant needs to run this initialization explicitly.
+  const handleOpenPopover = () => {
+    setIsPopoverOpen(true);
+    setToday(new Date());
+    setDraftDate(isControlled ? controlledDate : draftDate);
+  };
+
   return (
     <Popover
       open={isPopoverOpen}
       onOpenChange={(open) => {
-        setIsPopoverOpen(open);
         if (open) {
-          setToday(new Date());
-          setDraftDate(isControlled ? controlledDate : draftDate);
+          handleOpenPopover();
+        } else {
+          setIsPopoverOpen(false);
         }
       }}
     >
@@ -115,7 +126,7 @@ const SingleCalendar = ({
         disabled={disabled}
         ariaLabel="Choose a date"
         isOpen={isPopoverOpen}
-        onOpenRequest={() => setIsPopoverOpen(true)}
+        onOpenRequest={handleOpenPopover}
         popoverId={popoverId}
       />
       <PopoverPortal>

@@ -32,6 +32,27 @@ This README explains how to build the component library, scaffold new components
 
 ---
 
+## Dependency Cooldown (Supply Chain Security)
+
+This repo enforces a **7-day dependency cooldown** via npm's `min-release-age` setting in `.npmrc`. Any package version published to the npm registry within the last 7 days is automatically excluded from dependency resolution. This mitigates supply chain attacks where malicious packages are uploaded and removed within hours.
+
+```ini
+# .npmrc
+min-release-age=7
+```
+
+**How it works:** When running `npm install`, npm checks each candidate package version's publish date. Versions newer than 7 days are treated as if they don't exist. Packages already pinned in `package-lock.json` are unaffected.
+
+**Requirements:** npm 11.10.0+ (on older npm, the setting is silently ignored).
+
+**Overriding for urgent CVE patches:**
+
+```bash
+npm install <package>@<version> --min-release-age=0
+```
+
+---
+
 ## Developer release workflow
 
 Use this checklist whenever you cut a `0.0.x-dev` build or validate changes before promotion to a stable release.

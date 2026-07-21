@@ -20,6 +20,26 @@
   display: none;
 }
 
+/*
+ * Icon-only tier: before fully collapsing to the hamburger, drop the text
+ * labels and keep just the icons so the inline nav takes less room when the
+ * breadcrumb grows. Labels are visually hidden (not removed) so the links keep
+ * an accessible name; a native `title` tooltip is set on each anchor in Topbar.
+ */
+@container topbar (max-width: 1150px) {
+  .navLinksInline :global(.rt-Text) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
 @container topbar (max-width: 900px) {
   .navLinksInline {
     display: none;

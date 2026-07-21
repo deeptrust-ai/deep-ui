@@ -87,11 +87,14 @@ const Topbar = ({
             };
           })();
 
+    // `title` gives a native tooltip once the icon-only tier hides the label.
+    const anchorPropsWithTitle = { title: link.label, ...normalizedAnchorProps };
+
     return (
       <MenuItem
         key={`${link.label}-${href}`}
         anchorComponent={link.anchorComponent}
-        anchorProps={normalizedAnchorProps}
+        anchorProps={anchorPropsWithTitle}
         icon={link.icon}
         label={link.label}
         selected={link.selected}

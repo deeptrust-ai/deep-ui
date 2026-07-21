@@ -27,7 +27,9 @@
  * an accessible name; a native `title` tooltip is set on each anchor in Topbar.
  */
 @container topbar (max-width: 1150px) {
-  .navLinksInline :global(.rt-Text) {
+  /* Only the label span — the anchor itself also carries `.rt-Text` (Radix Link),
+     so scoping to `span` avoids collapsing the whole link (icon included). */
+  .navLinksInline :global(span.rt-Text) {
     position: absolute;
     width: 1px;
     height: 1px;

@@ -8,12 +8,22 @@
   position: sticky;
   top: 0;
   z-index: var(--topbar-z-index);
-  container-type: inline-size;
-  container-name: topbar;
+  /* The row is single-line at every width: overflow is absorbed by the nav
+     tiers below, never by wrapping the topbar onto extra lines. */
+  overflow: hidden;
+}
+
+/* Kept at its natural width so the row's overflow is measurable, and clipped
+   only once the nav has nothing left to give up. */
+.breadcrumbs {
+  min-width: 0;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .navLinksInline {
   display: flex;
+  flex-shrink: 0;
 }
 
 .navLinksCollapsed {
@@ -25,31 +35,35 @@
  * labels and keep just the icons so the inline nav takes less room when the
  * breadcrumb grows. Labels are visually hidden (not removed) so the links keep
  * an accessible name; a native `title` tooltip is set on each anchor in Topbar.
+ *
+ * Only the label span — the anchor itself also carries `.rt-Text` (Radix Link),
+ * so scoping to `span` avoids collapsing the whole link (icon included).
  */
-@container topbar (max-width: 1150px) {
-  /* Only the label span — the anchor itself also carries `.rt-Text` (Radix Link),
-     so scoping to `span` avoids collapsing the whole link (icon included). */
-  .navLinksInline :global(span.rt-Text) {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
+.topbar[data-nav-tier='icons'] .navLinksInline :global(span.rt-Text) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
-@container topbar (max-width: 900px) {
-  .navLinksInline {
-    display: none;
-  }
+.topbar[data-nav-tier='menu'] .navLinksInline {
+  display: none;
+}
 
-  .navLinksCollapsed {
-    display: inline-flex;
-  }
+.topbar[data-nav-tier='menu'] .navLinksCollapsed {
+  display: inline-flex;
+}
+
+/* Narrowest tier: the nav is already a hamburger, so a breadcrumb longer than
+   the remaining room truncates instead of pushing the row out of shape. */
+.topbar[data-nav-tier='menu'] .breadcrumbs {
+  flex-shrink: 1;
+  overflow: hidden;
 }
 
 .menuButton {

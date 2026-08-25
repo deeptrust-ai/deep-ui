@@ -46,7 +46,7 @@ export const Pagination = ({
   return (
     <Flex align="center">
       <Text size="3" color="gray">
-        {totalItems === 0 ? 'No items to show' : `Showing ${itemFrom} — ${itemTo} of ${totalItems}`}
+        {totalItems === 0 ? 'No items to show' : `Showing ${itemFrom} - ${itemTo} of ${totalItems}`}
       </Text>
 
       {totalItems > 0 && (

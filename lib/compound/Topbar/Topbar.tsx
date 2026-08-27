@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { DropdownMenu, Flex, IconButton, Link } from '@radix-ui/themes';
 import { ListIcon, SignOutIcon, XIcon } from '@phosphor-icons/react';
 import type { ITopbarLink, ITopbarProps } from './Topbar.types';
@@ -7,8 +7,22 @@ import { Avatar, Logo, MenuItem } from '../../atom';
 import { Breadcrumbs } from '../../molecule';
 import styles from './styles.module.css';
 
-/** Container width (px) at or below which topbar nav links collapse into a hamburger dropdown. Must match the @container query in styles.module.css. */
-const NAV_COLLAPSE_BREAKPOINT_PX = 900;
+/**
+ * Tiers the nav degrades through as the topbar row runs out of room: full
+ * labels, icons only, then a hamburger dropdown. The active tier is chosen by
+ * measuring real overflow rather than by width breakpoints, because the room
+ * left for the nav depends on the breadcrumb, which varies per page rather than
+ * per viewport.
+ */
+const NAV_TIERS = ['full', 'icons', 'menu'] as const;
+type NavTier = (typeof NAV_TIERS)[number];
+const NARROWEST_NAV_TIER = NAV_TIERS[NAV_TIERS.length - 1];
+
+/** Sub-pixel layout rounding can make a row report a scrollWidth a hair wider than its box. */
+const OVERFLOW_TOLERANCE_PX = 1;
+
+/** There is nothing to measure while server rendering, where `useLayoutEffect` only warns. */
+const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 const Topbar = ({
   organizations,
@@ -32,44 +46,67 @@ const Topbar = ({
   const hasUserMenu = userMenuItems.length > 0 || !!logout;
   const [navMenuOpen, setNavMenuOpen] = useState(false);
   const topbarRef = useRef<HTMLDivElement | null>(null);
+  const contentRowRef = useRef<HTMLDivElement | null>(null);
 
-  // Keep controlled dropdown state in sync with CSS-driven trigger visibility:
-  // if the topbar grows past the inline breakpoint while the menu is open, the
-  // hamburger trigger is hidden via `display: none`, which would leave the
-  // portal content floating with no visible anchor. Close the menu in that case.
-  useEffect(() => {
-    if (!navMenuOpen) {
+  /**
+   * Picks the widest tier whose content fits on one line. The tier is written
+   * straight to the DOM rather than held in state: the decision needs a
+   * measurement per candidate tier, and doing that in one synchronous pass
+   * avoids a render (and a paint) per step.
+   */
+  const applyNavTier = useCallback(() => {
+    const element = topbarRef.current;
+    if (!element) {
       return;
     }
+
+    // The left row is the flexible one, so it is where content stops fitting:
+    // it shrinks to whatever the row leaves it and lets its own content spill,
+    // which keeps the topbar itself reporting no overflow at all.
+    const overflowOf = (node: HTMLElement | null) =>
+      node ? node.scrollWidth - node.clientWidth : 0;
+
+    let appliedTier: NavTier = NARROWEST_NAV_TIER;
+    for (const tier of NAV_TIERS) {
+      element.dataset.navTier = tier;
+      const overflow = Math.max(overflowOf(element), overflowOf(contentRowRef.current));
+      if (overflow <= OVERFLOW_TOLERANCE_PX) {
+        appliedTier = tier;
+        break;
+      }
+    }
+
+    // The hamburger trigger only exists at the narrowest tier; an open menu past
+    // that point would leave the portal content floating with no visible anchor.
+    if (appliedTier !== NARROWEST_NAV_TIER) {
+      setNavMenuOpen(false);
+    }
+  }, []);
+
+  // Re-measure after every render, which covers the breadcrumb and nav labels
+  // growing or shrinking as the user navigates — the row is never resized then,
+  // so a resize observer alone would leave the nav collapsed on a page that now
+  // has room for it.
+  useIsomorphicLayoutEffect(applyNavTier);
+
+  useEffect(() => {
     const element = topbarRef.current;
     if (!element || typeof ResizeObserver === 'undefined') {
       return;
     }
-    const observer = new ResizeObserver((entries) => {
-      const entry = entries[0];
-      if (!entry) {
-        return;
-      }
-      if (entry.contentRect.width > NAV_COLLAPSE_BREAKPOINT_PX) {
-        setNavMenuOpen(false);
-      }
-    });
+    const observer = new ResizeObserver(() => applyNavTier());
     observer.observe(element);
     return () => observer.disconnect();
-  }, [navMenuOpen]);
+  }, [applyNavTier]);
 
   const renderableLinks = links.filter((link) => {
     const href =
-      typeof link.anchorProps?.to === 'string'
-        ? link.anchorProps.to
-        : link.anchorProps?.href;
+      typeof link.anchorProps?.to === 'string' ? link.anchorProps.to : link.anchorProps?.href;
     return typeof href === 'string' && href.length > 0;
   });
   const renderInlineLink = (link: ITopbarLink) => {
     const href =
-      typeof link.anchorProps?.to === 'string'
-        ? link.anchorProps.to
-        : link.anchorProps?.href;
+      typeof link.anchorProps?.to === 'string' ? link.anchorProps.to : link.anchorProps?.href;
 
     if (!href) {
       return null;
@@ -113,34 +150,37 @@ const Topbar = ({
       align="center"
       p="4"
       data-testid="app-topbar"
+      data-nav-tier="full"
       width="100%"
       gap="4"
-      wrap="wrap"
+      wrap="nowrap"
       className={styles.topbar}
       ref={topbarRef}
     >
-      <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="wrap">
+      <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="nowrap" ref={contentRowRef}>
         <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />
 
-        <Breadcrumbs
-          pages={pages}
-          organizations={organizations}
-          disableOrganizationsDropdown={disableOrganizationsDropdown}
-          disableWorkspacesDropdown={disableWorkspacesDropdown}
-          selectedOrganizationId={selectedOrganizationId}
-          workspaces={workspaces}
-          selectedWorkspaceIds={selectedWorkspaceIds}
-          defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
-          onOrganizationSelect={onOrganizationSelect}
-          onWorkspaceSelectionChange={onWorkspaceSelectionChange}
-        />
+        <div className={styles.breadcrumbs}>
+          <Breadcrumbs
+            pages={pages}
+            organizations={organizations}
+            disableOrganizationsDropdown={disableOrganizationsDropdown}
+            disableWorkspacesDropdown={disableWorkspacesDropdown}
+            selectedOrganizationId={selectedOrganizationId}
+            workspaces={workspaces}
+            selectedWorkspaceIds={selectedWorkspaceIds}
+            defaultSelectedWorkspaceIds={defaultSelectedWorkspaceIds}
+            onOrganizationSelect={onOrganizationSelect}
+            onWorkspaceSelectionChange={onWorkspaceSelectionChange}
+          />
+        </div>
 
-        <Flex align="center" justify="end" gap="2" wrap="wrap" className={styles.navLinksInline}>
+        <Flex align="center" justify="end" gap="2" wrap="nowrap" className={styles.navLinksInline}>
           {renderableLinks.map(renderInlineLink)}
         </Flex>
       </Flex>
 
-      <Flex align="center" gap="2">
+      <Flex align="center" gap="2" wrap="nowrap" flexShrink="0">
         {renderableLinks.length > 0 ? (
           <div className={styles.navLinksCollapsed}>
             <DropdownMenu.Root open={navMenuOpen} onOpenChange={setNavMenuOpen}>
@@ -237,7 +277,10 @@ const Topbar = ({
                 if ('anchorComponent' in item && item.anchorComponent) {
                   const AnchorComponent = item.anchorComponent;
                   itemElement = (
-                    <AnchorComponent {...item.anchorProps} className={cn(styles.menuButton, item.anchorProps?.className)}>
+                    <AnchorComponent
+                      {...item.anchorProps}
+                      className={cn(styles.menuButton, item.anchorProps?.className)}
+                    >
                       {itemContent}
                     </AnchorComponent>
                   );
@@ -245,7 +288,11 @@ const Topbar = ({
                   itemElement = <Link href={item.href}>{itemContent}</Link>;
                 } else {
                   itemElement = (
-                    <button type="button" onClick={'onClick' in item ? item.onClick : undefined} className={styles.menuButton}>
+                    <button
+                      type="button"
+                      onClick={'onClick' in item ? item.onClick : undefined}
+                      className={styles.menuButton}
+                    >
                       {itemContent}
                     </button>
                   );
@@ -261,17 +308,21 @@ const Topbar = ({
                 <>
                   <DropdownMenu.Separator />
                   <DropdownMenu.Item shortcut={logout.shortcut} color="red" asChild>
-                    {('anchorComponent' in logout && logout.anchorComponent) ? (
+                    {'anchorComponent' in logout && logout.anchorComponent ? (
                       (() => {
                         const LogoutAnchor = logout.anchorComponent;
                         return (
-                          <LogoutAnchor {...logout.anchorProps} className={cn(styles.menuButton, logout.anchorProps?.className)} data-destructive="true">
+                          <LogoutAnchor
+                            {...logout.anchorProps}
+                            className={cn(styles.menuButton, logout.anchorProps?.className)}
+                            data-destructive="true"
+                          >
                             <SignOutIcon size={14} />
                             {logout.label ?? 'Logout'}
                           </LogoutAnchor>
                         );
                       })()
-                    ) : ('href' in logout && typeof logout.href === 'string') ? (
+                    ) : 'href' in logout && typeof logout.href === 'string' ? (
                       <Link href={logout.href}>
                         <SignOutIcon size={14} />
                         {logout.label ?? 'Logout'}

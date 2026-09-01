@@ -45,12 +45,18 @@
   }
 }
 
+/*
+ * Hamburger tier. The class is doubled to out-specify `.rt-Flex { display: flex }`
+ * — the inline nav is a Radix `Flex`, and Radix Themes' stylesheet loads after
+ * this one, so a single class loses the tie and the nav stays visible alongside
+ * the hamburger.
+ */
 @container topbar (max-width: 900px) {
-  .navLinksInline {
+  .navLinksInline.navLinksInline {
     display: none;
   }
 
-  .navLinksCollapsed {
+  .navLinksCollapsed.navLinksCollapsed {
     display: inline-flex;
   }
 }

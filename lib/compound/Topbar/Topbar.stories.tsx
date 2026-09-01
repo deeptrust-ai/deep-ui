@@ -85,3 +85,29 @@ export const WithAnchorComponent: Story = {
     },
   },
 };
+
+/**
+ * A full breadcrumb trail plus the app's five nav links: the width where the
+ * topbar used to wrap the avatar onto a second row. Resize the viewport to see
+ * the degradation order — breadcrumb entity names, then nav labels, then the
+ * hamburger — with the page name truncating instead of pushing.
+ */
+export const CrowdedTrail: Story = {
+  args: {
+    pages: [
+      { name: 'Home', link: '/' },
+      { name: 'Mercury <> DeepTrust - Design Partnership', link: '/calls/1' },
+    ],
+    links: [
+      { anchorProps: { href: '/' }, icon: AcornIcon, label: 'Home', selected: true },
+      { anchorProps: { href: '/knowledge-base' }, icon: AcornIcon, label: 'Knowledge' },
+      { anchorProps: { href: '/controls' }, icon: AcornIcon, label: 'Controls' },
+      { anchorProps: { href: '/issues' }, icon: AcornIcon, label: 'Issues' },
+      { anchorProps: { href: '/insights' }, icon: AcornIcon, label: 'Insights' },
+    ],
+    organizations: [
+      { id: 'org-1', name: 'DeepTrust Dev' },
+      { id: 'org-2', name: 'DeepTrust Business' },
+    ],
+  },
+};

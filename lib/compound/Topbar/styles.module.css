@@ -3,6 +3,9 @@
 }
 
 .topbar {
+  /* The topbar is one row at every width: the breadcrumb truncates and the nav
+     drops labels, so nothing is ever pushed onto a second line. */
+  flex-wrap: nowrap;
   box-shadow: var(--shadow-2);
   background: var(--color-background);
   position: sticky;
@@ -26,7 +29,7 @@
  * breadcrumb grows. Labels are visually hidden (not removed) so the links keep
  * an accessible name; a native `title` tooltip is set on each anchor in Topbar.
  */
-@container topbar (max-width: 1150px) {
+@container topbar (max-width: 1300px) {
   /* Only the label span — the anchor itself also carries `.rt-Text` (Radix Link),
      so scoping to `span` avoids collapsing the whole link (icon included). */
   .navLinksInline :global(span.rt-Text) {
@@ -42,12 +45,18 @@
   }
 }
 
+/*
+ * Hamburger tier. The class is doubled to out-specify `.rt-Flex { display: flex }`
+ * — the inline nav is a Radix `Flex`, and Radix Themes' stylesheet loads after
+ * this one, so a single class loses the tie and the nav stays visible alongside
+ * the hamburger.
+ */
 @container topbar (max-width: 900px) {
-  .navLinksInline {
+  .navLinksInline.navLinksInline {
     display: none;
   }
 
-  .navLinksCollapsed {
+  .navLinksCollapsed.navLinksCollapsed {
     display: inline-flex;
   }
 }

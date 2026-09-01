@@ -115,12 +115,14 @@ const Topbar = ({
       data-testid="app-topbar"
       width="100%"
       gap="4"
-      wrap="wrap"
+      wrap="nowrap"
       className={styles.topbar}
       ref={topbarRef}
     >
-      <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="wrap">
-        <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />
+      <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="nowrap">
+        <Flex flexShrink="0">
+          <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />
+        </Flex>
 
         <Breadcrumbs
           pages={pages}
@@ -135,12 +137,19 @@ const Topbar = ({
           onWorkspaceSelectionChange={onWorkspaceSelectionChange}
         />
 
-        <Flex align="center" justify="end" gap="2" wrap="wrap" className={styles.navLinksInline}>
+        <Flex
+          align="center"
+          justify="end"
+          gap="2"
+          wrap="nowrap"
+          flexShrink="0"
+          className={styles.navLinksInline}
+        >
           {renderableLinks.map(renderInlineLink)}
         </Flex>
       </Flex>
 
-      <Flex align="center" gap="2">
+      <Flex align="center" gap="2" flexShrink="0">
         {renderableLinks.length > 0 ? (
           <div className={styles.navLinksCollapsed}>
             <DropdownMenu.Root open={navMenuOpen} onOpenChange={setNavMenuOpen}>

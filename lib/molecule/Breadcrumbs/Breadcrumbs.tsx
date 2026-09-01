@@ -8,6 +8,10 @@ import {
 } from '@phosphor-icons/react';
 import { useState, type ReactNode } from 'react';
 import { ALL_WORKSPACES_ID, ALL_WORKSPACES_NAME, MANY_CRUMBS_THRESHOLD } from './constants';
+import styles from './styles.module.css';
+
+/** Native tooltip for a crumb whose label may be truncated; only strings can be one. */
+const titleOf = (name: ReactNode) => (typeof name === 'string' ? name : undefined);
 
 const getPageKey = (link: string, index: number) => `${link}-${index}`;
 
@@ -46,10 +50,12 @@ const EntityDropdown = ({
 
   if (disabled) {
     return (
-      <Button variant="ghost" color="gray" disabled>
+      <Button variant="ghost" color="gray" disabled title={selectedEntity.name}>
         <Flex align="center" gap="1">
           {icon}
-          <Text size="1">{selectedEntity.name}</Text>
+          <Text size="1" className={styles.entityLabel}>
+            {selectedEntity.name}
+          </Text>
         </Flex>
       </Button>
     );
@@ -58,10 +64,12 @@ const EntityDropdown = ({
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Button variant="ghost" color="gray">
+        <Button variant="ghost" color="gray" title={selectedEntity.name}>
           <Flex align="center" gap="1">
             {icon}
-            <Text size="1">{selectedEntity.name}</Text>
+            <Text size="1" className={styles.entityLabel}>
+              {selectedEntity.name}
+            </Text>
             <CaretUpDownIcon size={14} weight="bold" />
           </Flex>
         </Button>
@@ -186,10 +194,12 @@ const WorkspaceDropdown = ({
 
   if (disabled) {
     return (
-      <Button variant="ghost" color="gray" disabled>
+      <Button variant="ghost" color="gray" disabled title={triggerLabel}>
         <Flex align="center" gap="1">
           <UsersThreeIcon size={16} weight="bold" />
-          <Text size="1">{triggerLabel}</Text>
+          <Text size="1" className={styles.entityLabel}>
+            {triggerLabel}
+          </Text>
         </Flex>
       </Button>
     );
@@ -198,10 +208,12 @@ const WorkspaceDropdown = ({
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
-        <Button variant="ghost" color="gray">
+        <Button variant="ghost" color="gray" title={triggerLabel}>
           <Flex align="center" gap="1">
             <UsersThreeIcon size={16} weight="bold" />
-            <Text size="1">{triggerLabel}</Text>
+            <Text size="1" className={styles.entityLabel}>
+              {triggerLabel}
+            </Text>
             <CaretUpDownIcon size={14} weight="bold" />
           </Flex>
         </Button>
@@ -226,9 +238,9 @@ const WorkspaceDropdown = ({
 };
 
 const EntityLabel = ({ name, icon }: { name: string; icon: ReactNode }) => (
-  <Flex align="center" gap="1">
+  <Flex align="center" gap="1" flexShrink="0" title={name}>
     {icon}
-    <Text color="gray" size="1">
+    <Text color="gray" size="1" className={styles.entityLabel}>
       {name}
     </Text>
   </Flex>
@@ -269,7 +281,7 @@ const Breadcrumbs = ({
   const showCollapsedPages = pages.length >= MANY_CRUMBS_THRESHOLD && middlePages.length > 0;
 
   return (
-    <Flex align="center" gap="2" flexGrow={'1'}>
+    <Flex align="center" gap="2" flexGrow="1" wrap="nowrap" className={styles.breadcrumbs}>
       {showOrganizationLabel ? (
         <EntityLabel
           name={organizations[0].name}
@@ -305,9 +317,21 @@ const Breadcrumbs = ({
 
       {showCollapsedPages && firstPage ? (
         <>
-          <Flex display="inline-flex" gap="1" key={getPageKey(firstPage.link, 0)}>
+          <Flex
+            display="inline-flex"
+            gap="1"
+            className={styles.crumb}
+            key={getPageKey(firstPage.link, 0)}
+          >
             {hasPrefixSegments ? <BreadcrumbSeparator /> : null}
-            <Link color="gray" size="1" underline="hover" href={firstPage.link}>
+            <Link
+              color="gray"
+              size="1"
+              underline="hover"
+              href={firstPage.link}
+              className={styles.crumbLabel}
+              title={titleOf(firstPage.name)}
+            >
               {firstPage.name}
             </Link>
           </Flex>
@@ -331,9 +355,19 @@ const Breadcrumbs = ({
           </Flex>
 
           {lastPage ? (
-            <Flex display="inline-flex" gap="1" key={getPageKey(lastPage.link, pages.length - 1)}>
+            <Flex
+              display="inline-flex"
+              gap="1"
+              className={styles.crumb}
+              key={getPageKey(lastPage.link, pages.length - 1)}
+            >
               <BreadcrumbSeparator />
-              <Text color="gray" size="1">
+              <Text
+                color="gray"
+                size="1"
+                className={styles.crumbLabel}
+                title={titleOf(lastPage.name)}
+              >
                 {lastPage.name}
               </Text>
             </Flex>
@@ -345,14 +379,31 @@ const Breadcrumbs = ({
           const shouldShowSeparator = hasPrefixSegments || index > 0;
 
           return (
-            <Flex display="inline-flex" gap="1" key={getPageKey(page.link, index)}>
+            <Flex
+              display="inline-flex"
+              gap="1"
+              className={styles.crumb}
+              key={getPageKey(page.link, index)}
+            >
               {shouldShowSeparator ? <BreadcrumbSeparator /> : null}
               {isLast ? (
-                <Text color="gray" size="1">
+                <Text
+                  color="gray"
+                  size="1"
+                  className={styles.crumbLabel}
+                  title={titleOf(page.name)}
+                >
                   {page.name}
                 </Text>
               ) : (
-                <Link color="gray" size="1" underline="hover" href={page.link}>
+                <Link
+                  color="gray"
+                  size="1"
+                  underline="hover"
+                  href={page.link}
+                  className={styles.crumbLabel}
+                  title={titleOf(page.name)}
+                >
                   {page.name}
                 </Link>
               )}

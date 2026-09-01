@@ -1,0 +1,42 @@
+/*
+ * The trail is the only elastic part of the topbar, so it has to absorb the
+ * width the logo, nav and avatar need: it never wraps, and it gives up space by
+ * truncating page names rather than by pushing anything onto a second row.
+ */
+.breadcrumbs {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.crumb {
+  min-width: 0;
+}
+
+.crumbLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.entityLabel {
+  white-space: nowrap;
+}
+
+/*
+ * Narrow topbars: the org and workspace pickers keep their icon and caret but
+ * drop their names, which buys back the width two full labels take while the
+ * dropdowns stay reachable. The current page name is what a user actually needs
+ * here, and it keeps its own label.
+ */
+@container topbar (max-width: 1300px) {
+  .entityLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}

@@ -63,6 +63,8 @@ export interface ITopbarProps {
   readonly links?: ITopbarLink[];
   readonly logoAnchorComponent?: ElementType;
   readonly logoAnchorProps?: ILogoAnchorProps;
+  readonly logoSrc?: string;
+  readonly logoAlt?: string;
   readonly userName: IAvatarProps['name'];
   readonly userPfp?: IAvatarProps['pfp'];
   readonly userMenuItems?: ITopbarMenuItem[];

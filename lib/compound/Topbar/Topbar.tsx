@@ -24,6 +24,8 @@ const Topbar = ({
   links = [],
   logoAnchorComponent,
   logoAnchorProps,
+  logoSrc,
+  logoAlt,
   userName,
   userPfp,
   userMenuItems = [],
@@ -121,7 +123,13 @@ const Topbar = ({
     >
       <Flex align="center" gap="4" flexGrow="1" minWidth="0" wrap="nowrap">
         <Flex flexShrink="0">
-          <Logo size="medium" anchorComponent={logoAnchorComponent} anchorProps={logoAnchorProps} />
+          <Logo
+            size="medium"
+            src={logoSrc}
+            alt={logoAlt}
+            anchorComponent={logoAnchorComponent}
+            anchorProps={logoAnchorProps}
+          />
         </Flex>
 
         <Breadcrumbs

@@ -17,6 +17,8 @@ export type ILayoutComponent = Pick<
   | 'links'
   | 'logoAnchorComponent'
   | 'logoAnchorProps'
+  | 'logoSrc'
+  | 'logoAlt'
   | 'userName'
   | 'userPfp'
   | 'userMenuItems'

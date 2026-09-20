@@ -12,6 +12,8 @@ const Layout = ({
   links = [],
   logoAnchorComponent,
   logoAnchorProps,
+  logoSrc,
+  logoAlt,
   pages = [],
   disableOrganizationsDropdown = false,
   disableWorkspacesDropdown = false,
@@ -45,6 +47,8 @@ const Layout = ({
         links={links}
         logoAnchorComponent={logoAnchorComponent}
         logoAnchorProps={logoAnchorProps}
+        logoSrc={logoSrc}
+        logoAlt={logoAlt}
         userMenuItems={userMenuItems}
         logout={logout}
       />

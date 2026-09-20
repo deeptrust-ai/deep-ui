@@ -13,6 +13,8 @@ export type ILogoAnchorProps = Omit<ComponentPropsWithoutRef<'a'>, 'children'> &
 /** Props for the {@link Logo} atom component. */
 export interface ILogoProps {
   size?: SizeKey;
+  src?: string;
+  alt?: string;
   href?: string | null;
   anchorComponent?: ElementType;
   anchorProps?: ILogoAnchorProps;

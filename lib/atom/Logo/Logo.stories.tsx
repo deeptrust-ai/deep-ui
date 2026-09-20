@@ -17,6 +17,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 
+export const CustomLogo: Story = {
+  args: {
+    src: 'https://example.com/custom-logo.svg',
+    alt: 'Custom organization logo',
+  },
+};
+
 export const Large: Story = {
   args: {
     size: 'large',

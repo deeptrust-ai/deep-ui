@@ -5,10 +5,28 @@ import logoSrc from './logo.png';
 
 const SIZE_GAP: Record<SizeKey, '1' | '2' | '4'> = { small: '1', medium: '2', large: '4' };
 
-export const Logo = ({ size = 'medium', href = '/', anchorComponent, anchorProps }: ILogoProps) => {
+export const Logo = ({
+  size = 'medium',
+  src,
+  alt,
+  href = '/',
+  anchorComponent,
+  anchorProps,
+}: ILogoProps) => {
   const width = SIZE_CONFIG[size].baseWidth;
-  const image = (
-    <img src={logoSrc} alt={'DeepTrust.ai Logo'} width={width} style={{ display: 'block' }} />
+  const image = src ? (
+    <img
+      src={src}
+      alt={alt ?? 'DeepTrust.ai Logo'}
+      style={{
+        display: 'block',
+        maxHeight: `${Math.round(width * 0.28)}px`,
+        maxWidth: width,
+        objectFit: 'contain',
+      }}
+    />
+  ) : (
+    <img src={logoSrc} alt={alt ?? 'DeepTrust.ai Logo'} width={width} style={{ display: 'block' }} />
   );
 
   const renderLink = () => {

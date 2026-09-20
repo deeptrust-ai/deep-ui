@@ -17,7 +17,7 @@ export const Logo = ({
   const image = src ? (
     <img
       src={src}
-      alt={alt ?? 'DeepTrust.ai Logo'}
+      alt={alt ?? 'Organization logo'}
       style={{
         display: 'block',
         maxHeight: `${Math.round(width * 0.28)}px`,
